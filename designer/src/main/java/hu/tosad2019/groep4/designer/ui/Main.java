@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.tosad.ui;
+package hu.tosad2019.groep4.designer.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
