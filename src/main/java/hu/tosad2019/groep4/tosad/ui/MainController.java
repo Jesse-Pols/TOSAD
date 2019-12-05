@@ -1,10 +1,10 @@
-package hu.tosad2019.groep4.tosad;
+package hu.tosad2019.groep4.tosad.ui;
 
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class GUIController {
+public class MainController {
 
 	@FXML Button button1;
 	
