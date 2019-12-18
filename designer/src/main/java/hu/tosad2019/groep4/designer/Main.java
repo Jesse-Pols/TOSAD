@@ -1,19 +1,13 @@
-package hu.tosad2019.groep4.designer.ui;
+package hu.tosad2019.groep4.designer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
 
+import hu.tosad2019.groep4.designer.ui.MainWindow;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -25,34 +19,27 @@ public class Main extends Application
 	private static String PollingURl = "";
 	
 	public static void main(String[] args) {
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	    System.out.print("Generator url: ");
-	    Main.PollingURl = myObj.nextLine();  // Read user input
-		try {
-			while(true) {
-				System.out.println("Request pending...");
-				Main.getHTTP();
-			}
-		} catch (ConnectException e) {
-			System.err.println(String.format("Could not find \"%s\".", Main.PollingURl));
-		} catch (MalformedURLException e) {
-			System.err.println(String.format("URL \"%s\" is not valid.", Main.PollingURl));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		launch();
+//		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+//	    System.out.print("Generator url: ");
+//	    Main.PollingURl = myObj.nextLine();  // Read user input
+//		try {
+//			while(true) {
+//				System.out.println("Request pending...");
+//				Main.getHTTP();
+//			}
+//		} catch (ConnectException e) {
+//			System.err.println(String.format("Could not find \"%s\".", Main.PollingURl));
+//		} catch (MalformedURLException e) {
+//			System.err.println(String.format("URL \"%s\" is not valid.", Main.PollingURl));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			Pane root = new AnchorPane();
-			root = FXMLLoader.load(getClass().getResource("Form1.fxml"));
-			Scene scene = new Scene(root,400,400);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		MainWindow.create(primaryStage);
 	}
 	
 	public static void getHTTP() throws IOException {
