@@ -56,9 +56,9 @@ public class AttributeRangeRuleBuilder {
 		this.andOrOperator = operator;
 	}
 	
-	public AttributeRangeRule getResult() {
+	public _AttributeRangeRule getResult() {
 		
-		AttributeRangeRule attributeRangeRule = new AttributeRangeRule(triggerName, position, forEachRow);
+		_AttributeRangeRule attributeRangeRule = new _AttributeRangeRule(triggerName, position, forEachRow);
 		
 		attributeRangeRule.setTable(tableName);
 		attributeRangeRule.setColumn(columnName);

@@ -1,78 +1,28 @@
 package hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule;
 
-import hu.tosad2019.groep4.generator.domain.Enums.Operator;
-import hu.tosad2019.groep4.generator.domain.businessrule.BusinessRule;
-
-public class AttributeRangeRule implements BusinessRule {
+public class AttributeRangeRule {
 	
-	String triggerName;
-	String tableName;
-	int position;
-	boolean forEachRow;
+	private String triggerName;
+	private String tableName;
+	private int position;
+	private boolean forEachRow;
 	
-	String columnName;
+	private AttributeRangeRule() { }
 	
-	int minValue;
-	Operator minValueOperator;	
-	Operator andOrOperator;	
-	int maxValue;
-	Operator maxValueOperator;
-	
-	private String id;
-	private String description;
+	public static class Builder {
+		private AttributeRangeRule instance;
+		public Builder() { instance = new AttributeRangeRule(); }
 		
-	public AttributeRangeRule(String triggerName, int position, boolean forEachRow) {
-		this.triggerName = triggerName;
-		this.position = position;
-		this.forEachRow = forEachRow;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public void setTable(String tableName) {
-		this.tableName = tableName;
-	}
-	
-	public void setColumn(String columnName) {
-		this.columnName = columnName;
-	}
-	
-	public void setMinValue(int minValue) {
-		this.minValue = minValue;
-	}
-	
-	public void setMaxValue(int maxValue) {
-		this.maxValue = maxValue;
-	}
-	
-	public void setMinValueOperator(Operator minValueOperator) {
-		this.minValueOperator = minValueOperator;
-	}
-	
-	public void setAndOrOperator(Operator andOrOperator) {
-		this.andOrOperator = andOrOperator;
-	}
-	
-	public void setMaxValueOperator(Operator maxValueOperator) {
-		this.maxValueOperator = maxValueOperator;
-	}
-	
-	public String getCode() {
-		return this.id;		
-	}
-	
-	public String getName() {
-		return this.triggerName;
-	}
-	
-	public String getDescription() {
-		return this.description;
+		public Builder setTriggerName(String triggerName) {
+			instance.triggerName = triggerName;
+			return this;
+		}
+		
+		
+		
+		public AttributeRangeRule build() {
+			return instance;
+		}
 	}
 
 }

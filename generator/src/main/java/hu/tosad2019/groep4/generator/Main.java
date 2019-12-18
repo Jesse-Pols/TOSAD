@@ -1,10 +1,11 @@
 package hu.tosad2019.groep4.generator;
 
-import hu.tosad2019.groep4.generator.server.ServerListener;
+import hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule.AttributeRangeRule;
 
 public class Main
 {
 	public static void main(String[] args) {
+		/*
 		ServerListener server;
 		try {
 			server = ServerListener.create(8000);
@@ -12,5 +13,7 @@ public class Main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
+		AttributeRangeRule.Builder test = new AttributeRangeRule.Builder();
 	}
 }
