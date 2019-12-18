@@ -1,15 +1,14 @@
 package hu.tosad2019.groep4.generator.domain.businessrule.AttributeCompareRule;
 
-import hu.tosad2019.groep4.generator.domain.Database;
 import hu.tosad2019.groep4.generator.domain.Enums.Operator;
 import hu.tosad2019.groep4.generator.domain.SpecifiedValue;
+import hu.tosad2019.groep4.generator.domain.businessrule.BaseRule;
 import hu.tosad2019.groep4.generator.domain.businessrule.BusinessRule;
-
-import javax.xml.crypto.Data;
 
 public class AttributeCompareRule implements BusinessRule {
 
-    private Database database;
+    private BaseRule rule;
+
     private boolean not;
     private String table;
     private String column;
@@ -17,33 +16,30 @@ public class AttributeCompareRule implements BusinessRule {
     private SpecifiedValue value;
 
 
+    public AttributeCompareRule(BaseRule rule, AttributeRuleContext context){
+        this.rule = rule;
 
-    public AttributeCompareRule(Database database,
-                                Boolean not,
-                                String table,
-                                String column,
-                                Operator operator,
-                                SpecifiedValue value){
-        this.database = database;
-        this.not = not;
-        this.table = table;
-        this.column = column;
-        this.operator = operator;
-        this.value = value;
+        this.not = context.getNot();
+        this.table = context.getColumn().getTableName();
+        this.column = context.getColumn().getName();
+        this.operator = context.getOperator();
+        this.value = context.getSpecifiedValue();
     }
 
     @Override
     public String getCode() {
-        return null;
+        return rule.getCode();
     }
 
     @Override
     public String getName() {
-        return null;
+        return rule.getName();
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return rule.getDescription();
     }
+
+
 }
