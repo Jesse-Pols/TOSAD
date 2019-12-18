@@ -6,7 +6,10 @@ public enum Operator {
     greaterThen(">"),
     smallerThen("<"),
     greaterThenOrEqualsTo(">="),
-    smallerThenOrEqualsTo("<=");
+    smallerThenOrEqualsTo("<="),
+	and("&"),
+	or("|");
+	
 
 
     public final String label;
