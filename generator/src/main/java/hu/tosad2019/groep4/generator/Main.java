@@ -15,5 +15,9 @@ public class Main
 		}
 		*/
 		AttributeRangeRule.Builder test = new AttributeRangeRule.Builder();
+		test.setTriggerName("Hree");
+		AttributeRangeRule attribute = test.build();
+		
+		
 	}
 }
