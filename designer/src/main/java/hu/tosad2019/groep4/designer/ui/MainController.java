@@ -1,5 +1,9 @@
 package hu.tosad2019.groep4.designer.ui;
 
+import java.io.IOException;
+
+import hu.tosad2019.groep4.designer.communication.ServerConnection;
+import hu.tosad2019.groep4.designer.exceptions.RequestFailException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -43,11 +47,24 @@ public class MainController {
 			System.err.println("Empty");
 			return;
 		}
-		
-		String url = String.format("%s%s:%s/test", protocol, host, port, password);
-	    System.out.println("Connect to: " + url);
-	    this.sendServerConnectionError("Host not found");
-	    this.setDatabaseConnectionStatus(true);
+	    
+		try {
+			ServerConnection sc = new ServerConnection(protocol, host, Integer.parseInt(port), password);
+			sc.send("/test", null);
+			this.setDatabaseConnectionStatus(true);
+			return;
+		} catch(NumberFormatException e) {
+			this.setDatabaseConnectionStatus(false);
+			this.sendError("Port must be a number");
+		} catch (IOException e) {
+			this.setDatabaseConnectionStatus(false);
+			this.sendError("Could not connect to server.");
+		} catch (RequestFailException e) {
+			this.setDatabaseConnectionStatus(false);
+			if(e.getResponseCode() == 404) this.sendError("Path not found");
+			else if(e.getResponseCode() == 401) this.sendError("Invalid password");
+			else this.sendError("Unknown error while connecting server");
+		}
 	}
 
 	@FXML
@@ -57,16 +74,11 @@ public class MainController {
 		}
 	}
 	
-	
-	public void sendServerConnectionError() {
-		this.sendServerConnectionError(null);
-	}
-	public void sendServerConnectionError(String message) {
+	public void sendError(String message) {
 		Alert alert = new Alert(AlertType.ERROR);
 	    alert.setTitle("Connection error");
 	    alert.setHeaderText(null);
-		if(message != null) alert.setContentText("Error: Could not connect to server.\n\nReason: " + message);
-		else alert.setContentText("Error: Could not connect to server.");
+		if(message != null) alert.setContentText("Error: " + message);
 	    alert.showAndWait();
 	}
 	

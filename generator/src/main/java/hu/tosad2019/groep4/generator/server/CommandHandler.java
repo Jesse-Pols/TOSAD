@@ -7,7 +7,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-public class TestHandler implements HttpHandler {
+public class CommandHandler implements HttpHandler {
 	@Override
     public void handle(HttpExchange t) {
     	Headers headers = t.getRequestHeaders();
@@ -19,7 +19,8 @@ public class TestHandler implements HttpHandler {
 	            response = String.format("Inwalid access token", LocalDateTime.now());
 	            t.sendResponseHeaders(401, response.length());
 			}else {
-				response = String.format("{ \"res\": true, \"sent\": \"%s\" } ", LocalDateTime.now());
+				Thread.sleep(Math.round(Math.random() * 5000) + 2000);
+				response = String.format("{ \"res\": \"[PLACE OBJECT HERE]\", \"sent\": \"%s\" } ", LocalDateTime.now());
 	            t.sendResponseHeaders(200, response.length());
 			}
 			os.write(response.getBytes());

@@ -7,64 +7,42 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.json.JsonObjectBuilder;
+
+import hu.tosad2019.groep4.designer.exceptions.RequestFailException;
+
 public class ServerConnection {
 
-	public final boolean https;
 	public final String protocol;
 	public final String host;
 	public final int port;
 	public final String authkey;
-	private HttpURLConnection connection;
 	
-	/**
-	* Create new ServerConnection,
-	* defaults protocol to 'http'
-	*/
-	public ServerConnection(String host, String authkey, int port) {
-		this(host, port, authkey, false);
-	}
 	/**
 	* Create new ServerConnection
 	*/
-	public ServerConnection(String host, int port, String authkey, boolean https) {
+	public ServerConnection(String protocol, String host, int port, String authkey) {
 		this.host = host;
 		this.port = port;
 		this.authkey = authkey;
-		this.https = https;
-		
-		if(this.https) this.protocol = "https://";
-		else this.protocol = "http://";
+		this.protocol = protocol;
 	}
 	
-	public ServerConnection open() {
-		try {
-			URL obj = this.getConnectionURL();
-			this.connection = (HttpURLConnection) obj.openConnection();
-		} 
-		catch (MalformedURLException e) { e.printStackTrace(); } 
-		catch (IOException e) {
-			// TODO: Error handling
-			System.err.println("IOException!");
-			e.printStackTrace();
-		}
-		return this;
+	public String getConnectionString(String subpath) {
+		return String.format("%s%s:%s", this.protocol, this.host, this.port) + subpath;
+	}
+	public URL getConnectionURL(String subpath) throws MalformedURLException { 
+		return new URL(this.getConnectionString(subpath)); 
 	}
 	
-	
-	public String getConnectionString() {
-		return String.format("%s%s:%s/test", this.protocol, this.host, this.port);
-	}
-	public URL getConnectionURL() throws MalformedURLException { 
-		return new URL(this.getConnectionString()); 
-	}
-	
-	public boolean send() throws IOException {
-        this.connection.setRequestMethod("GET");
-        this.connection.setRequestProperty("Authorization", this.authkey);
-//        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = this.connection.getResponseCode();
+	public String send(String subpath, JsonObjectBuilder jsondata) throws IOException, RequestFailException {
+		URL obj = this.getConnectionURL(subpath);
+		HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Authorization", this.authkey);
+        int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(this.connection.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
@@ -74,11 +52,10 @@ public class ServerConnection {
             in.close();
 
             // print result
-            System.out.println(response.toString());
-        } else {
-            System.err.println("GET request returned with code " + responseCode + ".");
+            return response.toString();
+        } else { 
+        	throw new RequestFailException(responseCode, null);  
         }
-		return  true;
 	}
 	
 }
