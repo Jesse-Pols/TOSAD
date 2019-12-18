@@ -16,18 +16,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- *
- */
+
 public class Main extends Application
 {
 	private static String PollingURl = "";
-	
+
 	public static void main(String[] args) {
 		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 	    System.out.print("Generator url: ");
 	    Main.PollingURl = myObj.nextLine();  // Read user input
+		launch();
+
 		try {
 			while(true) {
 				System.out.println("Request pending...");
@@ -41,12 +40,12 @@ public class Main extends Application
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Pane root = new AnchorPane();
-			root = FXMLLoader.load(getClass().getResource("Form1.fxml"));
+			root = FXMLLoader.load(getClass().getResource("Form_Home.fxml"));
 			Scene scene = new Scene(root,400,400);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -54,7 +53,8 @@ public class Main extends Application
 			e.printStackTrace();
 		}
 	}
-	
+
+
 	public static void getHTTP() throws IOException {
 		URL obj = new URL(Main.PollingURl);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
