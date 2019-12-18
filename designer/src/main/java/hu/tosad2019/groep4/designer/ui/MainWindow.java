@@ -19,8 +19,8 @@ public class MainWindow {
 	public void setupWindow() {
 		try {
 			Pane root = new AnchorPane();
-			root = FXMLLoader.load(getClass().getClassLoader().getResource("Form1.fxml"));
-			Scene scene = new Scene(root,400,400);
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("Form_Home.fxml"));
+			Scene scene = new Scene(root, 1280, 720);
 			this.stage.setScene(scene);
 			this.stage.show();
 		} catch(Exception e) {

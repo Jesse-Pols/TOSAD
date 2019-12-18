@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
@@ -7,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.tosad2019.groep4.tosad.GUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.tosad2019.groep4.designer.ui.MainController">
    <children>
       <TabPane layoutX="131.0" layoutY="22.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -32,7 +33,7 @@
                               </ContextMenu>
                            </contextMenu>
                         </TableView>
-                        <Button fx:id="btn_add" layoutX="448.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btn_add_onclick" prefHeight="31.0" prefWidth="138.0" style="-fx-background-color: #4BB543#62e05c;" text="Add businessrule" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                        <Button fx:id="btn_home_add" layoutX="448.0" layoutY="316.0" mnemonicParsing="false" onAction="#btn_home_add_onclick" prefHeight="31.0" prefWidth="138.0" style="-fx-background-color: #4BB543#62e05c;" text="Add businessrule" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -44,25 +45,44 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutX="47.0" layoutY="116.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox layoutX="47.0" layoutY="116.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label text="Database connection ">
-                                 <font>
-                                    <Font size="31.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefWidth="984.0" spacing="10.0">
-                                 <children>
-                                    <ComboBox prefWidth="150.0" promptText="Protocol" />
-                                    <TextField fx:id="dbConnectionInput" prefHeight="27.0" prefWidth="333.0" promptText="Database connection url" HBox.hgrow="ALWAYS" />
-                                    <TextField minWidth="100.0" promptText="Port" />
-                                    <TextField minWidth="200.0" promptText="Password" />
-                                    <Button minWidth="100.0" mnemonicParsing="false" onAction="#getDbConnection" prefHeight="27.0" prefWidth="108.0" text="Connect" />
-                                 </children>
-                              </HBox>
+                              <TitledPane animated="false" maxWidth="1.7976931348623157E308" text="Server connection">
+                                <content>
+                                    <VBox maxWidth="1.7976931348623157E308" spacing="10.0">
+                                       <children>
+                                          <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
+                                             <children>
+                                                <Label text="Status:" />
+                                                <Label fx:id="lbl_generate_dbstatus" style="-fx-font-weight: bold; -fx-background-color: red; -fx-text-alignment: center;" text="Not connected" textAlignment="CENTER" textFill="WHITE">
+                                                   <padding>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
+                                             <children>
+                                                <ComboBox fx:id="cb_generate_protocol" minWidth="110.0" promptText="Protocol" />
+                                                <TextField fx:id="txt_generate_host" minWidth="200.0" promptText="Database connection url" HBox.hgrow="ALWAYS" />
+                                                <TextField fx:id="txt_generate_port" alignment="CENTER" maxWidth="70.0" minWidth="70.0" promptText="Port" />
+                                                <TextField fx:id="txt_generate_password" minWidth="200.0" promptText="Password" />
+                                                <Button fx:id="btn_generate_connect" minWidth="90.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" text="Connect" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                </content>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TitledPane>
                            </children>
                            <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </VBox>
                      </children></AnchorPane>
