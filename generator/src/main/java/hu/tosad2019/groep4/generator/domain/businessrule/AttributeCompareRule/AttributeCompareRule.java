@@ -1,12 +1,13 @@
-package hu.tosad2019.groep4.generator.domain.businessrule;
+package hu.tosad2019.groep4.generator.domain.businessrule.AttributeCompareRule;
 
 import hu.tosad2019.groep4.generator.domain.Database;
 import hu.tosad2019.groep4.generator.domain.Enums.Operator;
 import hu.tosad2019.groep4.generator.domain.SpecifiedValue;
+import hu.tosad2019.groep4.generator.domain.businessrule.BusinessRule;
 
 import javax.xml.crypto.Data;
 
-public class AttributeCompareRule implements BusinessRule{
+public class AttributeCompareRule implements BusinessRule {
 
     private Database database;
     private boolean not;
