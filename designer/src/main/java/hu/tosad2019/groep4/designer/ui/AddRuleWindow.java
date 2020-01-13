@@ -6,27 +6,29 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class MainWindow {
+public class AddRuleWindow {
 
-	private static MainWindow INSTANCE = new MainWindow();
+	private static AddRuleWindow INSTANCE = new AddRuleWindow();
 	private Stage stage;
 	
-	private MainWindow() {}
+	private AddRuleWindow() {}
 	
-	public static MainWindow getInstance() {
-		return MainWindow.INSTANCE; 
+	public static AddRuleWindow getInstance() {
+		return AddRuleWindow.INSTANCE; 
 	}
 	
-	public void create(Stage stage) {
+	public void create() {
 		try {
 			Pane root = new AnchorPane();
-			root = FXMLLoader.load(getClass().getClassLoader().getResource("Form_Home.fxml"));
-			this.stage = stage;
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("Form_AddRule.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
+			this.stage = new Stage();
 			this.stage.setScene(scene);
 			this.stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

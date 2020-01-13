@@ -16,7 +16,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="homeBusinessRuleTable" onMouseClicked="#doubleClicked" prefHeight="304.0" prefWidth="600.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tbl_businessrules" onMouseClicked="#doubleClicked" prefHeight="304.0" prefWidth="600.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                               <TableColumn minWidth="-1.0" prefWidth="364.5384705066681" text="Business rule" />
                             <TableColumn minWidth="-1.0" prefWidth="637.4614868164062" text="Column" />

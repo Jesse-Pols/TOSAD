@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 public class MainController {
 
 	// Home
-	@FXML TableView<String> homeBusinessRuleTable;
+	@FXML TableView<String> tbl_businessrules;
 	@FXML Button btn_home_add;	
 	// Generate
 	@FXML Label lbl_generate_dbstatus;
@@ -30,11 +30,12 @@ public class MainController {
 	@FXML private void initialize() {
 		cb_generate_protocol.getItems().addAll("http://", "https://");
 		cb_generate_protocol.getSelectionModel().selectFirst();
+		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));
 	}
 	
 	@FXML 
 	private void btn_home_add_onclick() {
-		System.out.println("Click");
+		AddRuleWindow.getInstance().create();
 	}
 	
 	@FXML
@@ -47,30 +48,17 @@ public class MainController {
 			System.err.println("Empty");
 			return;
 		}
-	    
-		try {
-			ServerConnection sc = new ServerConnection(protocol, host, Integer.parseInt(port), password);
-			sc.send("/test", null);
-			this.setDatabaseConnectionStatus(true);
-			return;
-		} catch(NumberFormatException e) {
-			this.setDatabaseConnectionStatus(false);
-			this.sendError("Port must be a number");
-		} catch (IOException e) {
-			this.setDatabaseConnectionStatus(false);
-			this.sendError("Could not connect to server.");
-		} catch (RequestFailException e) {
-			this.setDatabaseConnectionStatus(false);
-			if(e.getResponseCode() == 404) this.sendError("Path not found");
-			else if(e.getResponseCode() == 401) this.sendError("Invalid password");
-			else this.sendError("Unknown error while connecting server");
-		}
+		
+		int port_nr = Integer.parseInt(port);
+		
+		boolean result = this.connectToServer(protocol, host, port_nr, password);
+		this.setDatabaseConnectionStatus(result);
 	}
 
 	@FXML
 	private void doubleClicked(MouseEvent event) {
 		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-			System.out.println(homeBusinessRuleTable.getSelectionModel().getSelectedItem());
+			System.out.println(tbl_businessrules.getSelectionModel().getSelectedItem());
 		}
 	}
 	
@@ -81,7 +69,6 @@ public class MainController {
 		if(message != null) alert.setContentText("Error: " + message);
 	    alert.showAndWait();
 	}
-	
 	private void setDatabaseConnectionStatus(boolean status) {
 		if(status) {
 			lbl_generate_dbstatus.setText("Connected");
@@ -90,5 +77,21 @@ public class MainController {
 			lbl_generate_dbstatus.setText("Not connected");
 		    lbl_generate_dbstatus.setStyle("-fx-background-color:red;-fx-font-weight:bold");
 		}
+	}
+	private boolean connectToServer(String protocol, String host, int port, String password) {
+		try {
+			ServerConnection sc = new ServerConnection(protocol, host, port, password);
+			sc.send("/test", null);
+			return true;
+		} catch(NumberFormatException e) {
+			this.sendError("Port must be a number");
+		} catch (IOException e) {
+			this.sendError("Could not connect to server.");
+		} catch (RequestFailException e) {
+			if(e.getResponseCode() == 404) this.sendError("Path not found");
+			else if(e.getResponseCode() == 401) this.sendError("Invalid password");
+			else this.sendError("Unknown error while connecting server");
+		}
+		return false;
 	}
 }
