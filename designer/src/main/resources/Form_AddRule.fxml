@@ -12,7 +12,7 @@
          <children>
             <HBox prefHeight="40.0" prefWidth="948.0" spacing="10.0">
                <children>
-                  <Label text="Business rule type" />
+                  <Label minWidth="100.0" prefWidth="150.0" text="Business rule type" />
                   <ComboBox fx:id="cb_ruletype" maxWidth="1.7976931348623157E308" onAction="#cb_ruletype_onselect" promptText="Select rule.." HBox.hgrow="ALWAYS" />
                </children>
                <padding>
@@ -36,7 +36,7 @@
                                                       <Insets />
                                                    </HBox.margin>
                                                 </Label>
-                                                <ComboBox fx:id="cb_table" maxWidth="1.7976931348623157E308" promptText="Select column.." HBox.hgrow="ALWAYS" />
+                                                <ComboBox maxWidth="1.7976931348623157E308" promptText="Select column.." HBox.hgrow="ALWAYS" />
                                              </children>
                                           </HBox>
                                           <HBox spacing="10.0">
@@ -46,7 +46,7 @@
                                                       <Insets />
                                                    </HBox.margin>
                                                 </Label>
-                                                <ComboBox fx:id="cb_column" maxWidth="1.7976931348623157E308" promptText="Select operator.." HBox.hgrow="ALWAYS" />
+                                                <ComboBox maxWidth="1.7976931348623157E308" promptText="Select operator.." HBox.hgrow="ALWAYS" />
                                              </children>
                                           </HBox>
                                           <HBox spacing="10.0">
@@ -56,12 +56,12 @@
                                                       <Insets />
                                                    </HBox.margin>
                                                 </Label>
-                                                <ComboBox fx:id="cb_operator" maxWidth="1.7976931348623157E308" prefWidth="100.0" promptText="Select table.." HBox.hgrow="ALWAYS" />
+                                                <ComboBox maxWidth="1.7976931348623157E308" prefWidth="100.0" promptText="Select table.." HBox.hgrow="ALWAYS" />
                                              </children>
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <TitledPane fx:id="tp_validation" animated="false" collapsible="false" maxHeight="1.7976931348623157E308" text="Validation" VBox.vgrow="ALWAYS">
+                                    <TitledPane fx:id="tp_validation" collapsible="false" maxHeight="1.7976931348623157E308" text="Validation" VBox.vgrow="ALWAYS">
                                       <content>
                                           <VBox spacing="10.0">
                                              <children>
@@ -73,7 +73,6 @@
                                                       <TextField HBox.hgrow="ALWAYS" />
                                                    </children>
                                                 </HBox>
-                                                <Button fx:id="generateRule" mnemonicParsing="false" text="Create rule" />
                                              </children>
                                           </VBox>
                                       </content>

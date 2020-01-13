@@ -24,6 +24,8 @@ public class MainWindow {
 			this.stage = stage;
 			Scene scene = new Scene(root, 1280, 720);
 			this.stage.setScene(scene);
+			this.stage.setWidth(700);
+			this.stage.setHeight(500);
 			this.stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

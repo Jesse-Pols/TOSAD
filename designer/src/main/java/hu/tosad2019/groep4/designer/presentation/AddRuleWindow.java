@@ -24,6 +24,8 @@ public class AddRuleWindow {
 			Scene scene = new Scene(root, 1280, 720);
 			this.stage = new Stage();
 			this.stage.setScene(scene);
+			this.stage.setWidth(600);
+			this.stage.setHeight(450);
 			this.stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
