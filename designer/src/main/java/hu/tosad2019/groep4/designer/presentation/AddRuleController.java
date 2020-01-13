@@ -26,7 +26,7 @@ public class AddRuleController {
 
 	
 	// TODO We should place this somewhere else
-	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute compare rule", "Attribute list rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
+	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute Compare Rule", "Attribute List Rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
 
 
 	@FXML private void initialize() {
@@ -42,6 +42,10 @@ public class AddRuleController {
 		tp_validation.setVisible(true);
 		String rulename = cb_ruletype.getSelectionModel().getSelectedItem().toString();
 		Map<String, Node> options = AddRuleFacade.loadUICompoent(rulename);
+		if(options == null) {
+			this.showValidationBox(false);
+			return;
+		}
 		for(String key : options.keySet()) {
 			Label lbl = new Label(key);
 			lbl.setMinWidth(70);

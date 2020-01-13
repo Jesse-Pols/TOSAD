@@ -14,10 +14,10 @@ public class AddRuleLoader {
         
         ComboBox<String> cb1 = new ComboBox<String>();
         cb1.setPromptText("Select table..");
-        cb1.prefWidth(200);
+        cb1.setPlaceholder(new Label("No tables"));
         ComboBox<String> cb2 = new ComboBox<String>();
         cb2.setPromptText("Select column..");
-        cb2.prefWidth(200);
+        cb2.setPlaceholder(new Label("No columns"));
         
         result.put("Table", cb1);
         result.put("Column", cb2);
@@ -27,44 +27,30 @@ public class AddRuleLoader {
 
 	static Map<String, Node> loadAttributeCompareRule() {
         Map<String, Node> result = new LinkedHashMap<String, Node>();
-        
+                
         ComboBox<String> cb1 = new ComboBox<String>();
-        cb1.setPlaceholder(new Label("Select table.."));
-  
+        cb1.setPromptText("Select table..");
+        cb1.setPlaceholder(new Label("No tables"));
+        ComboBox<String> cb2 = new ComboBox<String>();
+        cb2.setPromptText("Select column..");
+        cb2.setPlaceholder(new Label("No columns"));
+        ComboBox<String> cb3 = new ComboBox<String>();
+        cb3.setPromptText("Select operator..");
+        cb3.setPlaceholder(new Label("No operators"));
+        // TODO Place this elsewhere, demo data from Drive document
+        cb3.getItems().addAll(
+        		"[= ] Equal to", 
+        		"[!=] Not equal to", 
+        		"[> ] Greater than", 
+        		"[>=] Greater than or equal", 
+        		"[< ] Less than",
+        		"[<=] Less than or equal"
+        );
+        
         result.put("Table", cb1);
+        result.put("Column", cb2);
+        result.put("Operator", cb3);
         
         return result;
-//        clearCanvas(hbox, vbox);
-//
-//        ComboBox<String> columList = createComboBox();
-//        columList.setPlaceholder(new Label("Select column..."));
-//        columList.getItems().add("Column1");
-//
-//        ComboBox<String> tableList = createComboBox();
-//        tableList.setPlaceholder(new Label("Select table..."));
-//        tableList.getItems().add("table1");
-//
-//        ComboBox<String> operatorList = createComboBox();
-//        operatorList.setPlaceholder(new Label("Select operator..."));
-//        operatorList.getItems().add("Equal");
-//
-//        HBox comboHbox = createHbox();
-//        comboHbox.getChildren().add(columList);
-//        comboHbox.setMaxWidth(Double.MAX_VALUE);
-//        HBox.setHgrow(columList, Priority.ALWAYS);
-//
-//        HBox tableListHBox = createHbox();
-//        tableListHBox.getChildren().add(tableList);
-//
-//        HBox operatorListHbox = createHbox();
-//        operatorListHbox.getChildren().add(operatorList);
-//
-////        hbox.getChildren().add(columList);
-////        hbox.getChildren().add(tableList);
-////        hbox.getChildren().add(operatorList);
-//
-//        vbox.getChildren().add(comboHbox);
-//        vbox.getChildren().add(tableListHBox);
-//        vbox.getChildren().add(operatorListHbox);
     }	
 }

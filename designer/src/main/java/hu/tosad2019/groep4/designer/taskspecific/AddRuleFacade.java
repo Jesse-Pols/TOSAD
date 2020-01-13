@@ -11,9 +11,10 @@ public class AddRuleFacade {
     	switch(businessRule) {
     		case "Attribute Range Rule":
     			return AddRuleLoader.loadAttributeRangeRule();
-    		case "Attribute compare rule":
+    		case "Attribute Compare Rule":
     			return AddRuleLoader.loadAttributeCompareRule();
     		default:
+    			System.err.println("Business rule \"" + businessRule + "\" has not been implemented yet.");
     			return null;
     	}
     }
