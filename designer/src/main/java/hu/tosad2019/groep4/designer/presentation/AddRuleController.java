@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import hu.tosad2019.groep4.designer.taskspecific.AddRuleFacade;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -41,7 +40,7 @@ public class AddRuleController {
 		this.showValidationBox(true);
 		tp_validation.setVisible(true);
 		String rulename = cb_ruletype.getSelectionModel().getSelectedItem().toString();
-		Map<String, Node> options = AddRuleFacade.loadUICompoent(rulename);
+		Map<String, Node> options = AddRuleLoader.loadUICompoent(rulename);
 		if(options == null) {
 			this.showValidationBox(false);
 			return;

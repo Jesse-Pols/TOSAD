@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.taskspecific;
+package hu.tosad2019.groep4.designer.presentation;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,6 +9,19 @@ import javafx.scene.control.Label;
 
 public class AddRuleLoader {
 
+    static Map<String, Node> loadUICompoent(String businessRule) {
+
+    	switch(businessRule) {
+    		case "Attribute Range Rule":
+    			return AddRuleLoader.loadAttributeRangeRule();
+    		case "Attribute Compare Rule":
+    			return AddRuleLoader.loadAttributeCompareRule();
+    		default:
+    			System.err.println("Business rule \"" + businessRule + "\" has not been implemented yet.");
+    			return null;
+    	}
+    }
+    
 	static Map<String, Node> loadAttributeRangeRule() {
         Map<String, Node> result = new LinkedHashMap<String, Node>();
         
