@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.ui;
+package hu.tosad2019.groep4.designer.presentation;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;

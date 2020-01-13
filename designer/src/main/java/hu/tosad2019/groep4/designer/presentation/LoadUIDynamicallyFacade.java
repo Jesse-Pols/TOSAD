@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.ui;
+package hu.tosad2019.groep4.designer.presentation;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
