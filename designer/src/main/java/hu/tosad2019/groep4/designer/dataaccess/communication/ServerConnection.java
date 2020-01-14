@@ -11,17 +11,23 @@ import javax.json.JsonObjectBuilder;
 
 public class ServerConnection {
 
-	public final ServerConnectionDetails details;
+	private String protocol; 
+	private String host; 
+	private int port;
+	private String password;
 	
 	/**
 	* Create new ServerConnection
 	*/
-	public ServerConnection(ServerConnectionDetails details) {
-		this.details = details;
+	public ServerConnection(String protocol, String host, int port, String password) {
+		this.protocol = protocol;
+		this.host = host;
+		this.port = port;
+		this.password = password;
 	}
 	
 	public String getConnectionString(String subpath) {
-		return String.format("%s%s:%s", this.details.protocol, this.details.host, this.details.port) + subpath;
+		return String.format("%s%s:%s", this.protocol, this.host, this.port) + subpath;
 	}
 	public URL getConnectionURL(String subpath) throws MalformedURLException { 
 		return new URL(this.getConnectionString(subpath)); 
@@ -31,7 +37,9 @@ public class ServerConnection {
 		URL obj = this.getConnectionURL(subpath);
 		HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("GET");
-        connection.setRequestProperty("Authorization", this.details.password);
+        connection.setConnectTimeout(1000);
+        connection.setReadTimeout(1000);
+        connection.setRequestProperty("Authorization", this.password);
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
