@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.exceptions;
+package hu.tosad2019.groep4.designer.dataaccess;
 
 public class RequestFailException extends Exception{
 

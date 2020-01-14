@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.communication;
+package hu.tosad2019.groep4.designer.dataaccess;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,27 +9,19 @@ import java.net.URL;
 
 import javax.json.JsonObjectBuilder;
 
-import hu.tosad2019.groep4.designer.exceptions.RequestFailException;
-
 public class ServerConnection {
 
-	public final String protocol;
-	public final String host;
-	public final int port;
-	public final String authkey;
+	public final ServerConnectionDetails details;
 	
 	/**
 	* Create new ServerConnection
 	*/
-	public ServerConnection(String protocol, String host, int port, String authkey) {
-		this.host = host;
-		this.port = port;
-		this.authkey = authkey;
-		this.protocol = protocol;
+	public ServerConnection(ServerConnectionDetails details) {
+		this.details = details;
 	}
 	
 	public String getConnectionString(String subpath) {
-		return String.format("%s%s:%s", this.protocol, this.host, this.port) + subpath;
+		return String.format("%s%s:%s", this.details.protocol, this.details.host, this.details.port) + subpath;
 	}
 	public URL getConnectionURL(String subpath) throws MalformedURLException { 
 		return new URL(this.getConnectionString(subpath)); 
@@ -39,7 +31,7 @@ public class ServerConnection {
 		URL obj = this.getConnectionURL(subpath);
 		HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("GET");
-        connection.setRequestProperty("Authorization", this.authkey);
+        connection.setRequestProperty("Authorization", this.details.password);
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
