@@ -14,6 +14,7 @@ public class CommandHandler implements HttpHandler {
 		String authToken = headers.getFirst("Authorization");
 		OutputStream os = t.getResponseBody();
 		String response = "";
+
 		try {
 			if(authToken == null || !authToken.equals("vMDhvChAYbRcF4dG")) {
 	            response = String.format("Inwalid access token", LocalDateTime.now());
@@ -23,6 +24,7 @@ public class CommandHandler implements HttpHandler {
 				response = String.format("{ \"res\": \"[PLACE OBJECT HERE]\", \"sent\": \"%s\" } ", LocalDateTime.now());
 	            t.sendResponseHeaders(200, response.length());
 			}
+
 			os.write(response.getBytes());
 	        os.close();
 		}catch(Exception e) {

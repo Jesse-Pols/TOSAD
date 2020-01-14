@@ -5,6 +5,7 @@ import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
 public class Range {
     private int minValue;
     private int maxValue;
+    private Operator andOrOperator;
 
     public Range(int minValue,
                  int maxValue,
@@ -12,6 +13,7 @@ public class Range {
 
         this.minValue = minValue;
         this.maxValue = maxValue;
+        this.andOrOperator = andOrOperator;
     }
 
 }

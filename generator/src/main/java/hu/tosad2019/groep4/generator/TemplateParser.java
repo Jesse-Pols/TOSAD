@@ -13,6 +13,7 @@ public class TemplateParser {
 		String rawfile = "";
 		String replacedfile = "";
 		Scanner sc;
+
 		try {
 			sc = new TemplateReader().read(templatename);
 		} catch (FileNotFoundException e) {
@@ -23,11 +24,13 @@ public class TemplateParser {
 			rawfile += sc.nextLine() + "\n";
 		}
 		sc.close();
+
 		replacedfile = rawfile;
 		Set<Map.Entry<String, String>> set = variables.entrySet();
 	    for (Entry<String, String> me : set) {
 	    	replacedfile = replacedfile.replace("{{"+me.getKey()+"}}", me.getValue());
 	    }
+
 		return replacedfile;
 	}
 	
