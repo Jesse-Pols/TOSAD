@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.util.converter.NumberStringConverter;
 
 public class AddRuleLoader {
 
@@ -31,9 +31,17 @@ public class AddRuleLoader {
         ComboBox<String> cb2 = new ComboBox<String>();
         cb2.setPromptText("Select column..");
         cb2.setPlaceholder(new Label("No columns"));
-        
+        TextField minValue = new TextField();
+        minValue.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
+        minValue.setPromptText("Min value");
+        TextField maxValue = new TextField();
+        maxValue.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
+        maxValue.setPromptText("Max value");
+
         result.put("Table", cb1);
         result.put("Column", cb2);
+        result.put("minValue", minValue);
+        result.put("maxValue", maxValue);
         
         return result;
     }

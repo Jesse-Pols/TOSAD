@@ -21,30 +21,27 @@ public class AddRuleController {
 	@FXML private ComboBox<String> cb_define_column;
 	@FXML private ComboBox<String> cb_define_operator;
 	@FXML private VBox vbox_define_selection;
-	@FXML private TitledPane tp_validation;
 
 	
-	// TODO We should place this somewhere else
+	// TODO We should place this somewhere else - I agree greetings from Bart
 	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute Compare Rule", "Attribute List Rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
 
 
 	@FXML private void initialize() {
 		cb_ruletype.getItems().addAll(this.rules);
-		this.showValidationBox(false);
 		this.clearOptions();
 	}
 
 	@FXML
 	private void cb_ruletype_onselect() {
 		this.clearOptions();
-		this.showValidationBox(true);
-		tp_validation.setVisible(true);
 		String rulename = cb_ruletype.getSelectionModel().getSelectedItem().toString();
 		Map<String, Node> options = AddRuleLoader.loadUICompoent(rulename);
+
 		if(options == null) {
-			this.showValidationBox(false);
 			return;
 		}
+
 		for(String key : options.keySet()) {
 			Label lbl = new Label(key);
 			lbl.setMinWidth(70);
@@ -60,9 +57,6 @@ public class AddRuleController {
 	
 	private void clearOptions() {
 		vbox_define_selection.getChildren().clear();
-	}
-	private void showValidationBox(boolean value) {
-		tp_validation.setVisible(value);
 	}
 
 }
