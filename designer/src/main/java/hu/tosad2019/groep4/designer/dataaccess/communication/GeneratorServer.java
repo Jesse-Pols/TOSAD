@@ -12,19 +12,19 @@ public class GeneratorServer implements Server {
 	
 	public static GeneratorServer getInstance() { return GeneratorServer.INSTANCE; }
 	
-	public boolean connect(ServerConnectionDetails details) throws ServerConnectionException {
+	public boolean connect(String protocol, String host, int port, String password) throws Exception {
 		try {
-			this.connection = new ServerConnection(details);
+			this.connection = new ServerConnection(protocol, host, port, password);
 			this.connection.send("/test", null);
 			return true;
 		} catch(NumberFormatException e) {
-			throw new ServerConnectionException("Port must be a number");
+			throw new Exception("Port must be a number");
 		} catch (IOException e) {
-			throw new ServerConnectionException("Could not connect to server.");
+			throw new Exception("Could not connect to server.");
 		} catch (RequestFailException e) {
-			if(e.getResponseCode() == 404) throw new ServerConnectionException("Path not found");
-			else if(e.getResponseCode() == 401) throw new ServerConnectionException("Invalid password");
-			else throw new ServerConnectionException("Unknown error while connecting server");
+			if(e.getResponseCode() == 404) throw new Exception("Path not found");
+			else if(e.getResponseCode() == 401) throw new Exception("Invalid password");
+			else throw new Exception("Unknown error while connecting server");
 		}
 	}
 	
