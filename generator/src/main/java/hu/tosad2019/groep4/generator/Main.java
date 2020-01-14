@@ -2,7 +2,12 @@ package hu.tosad2019.groep4.generator;
 
 import java.util.HashMap;
 
-//import hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.*;
+import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
+import hu.tosad2019.groep4.generator.domain.objects.Range;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 
 public class Main
 {
@@ -20,8 +25,8 @@ public class Main
 		/*
 		 * EINDE
 		 */
-		
-		
+
+
 		/*
 		ServerListener server;
 		try {
@@ -30,13 +35,15 @@ public class Main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 
-		AttributeRangeRule.Builder test = new AttributeRangeRule.Builder();
-		test.setTriggerName("Hree");
-		AttributeRangeRule attribute = test.build();
+		Range range = new Range(0, 10, Operator.and);
 
-		 */
-		
-		
+		AttributeRangeRuleContext rangeRuleContext = new AttributeRangeRuleContext(true, 0, range);
+
+		BusinessRule rangeRule = new AttributeRangeRule("rr1", "rangerule 1", "dit is een testobject", rangeRuleContext);
+
+
+
 	}
 }
