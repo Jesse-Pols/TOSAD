@@ -5,9 +5,7 @@ import hu.tosad2019.groep4.generator.domain.objects.Range;
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.BaseRule;
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
 
-public class AttributeRangeRule implements BusinessRule {
-
-	private BaseRule rule;
+public class AttributeRangeRule extends BaseRule{
 
 	private Column column;
 
@@ -17,27 +15,12 @@ public class AttributeRangeRule implements BusinessRule {
 
 	private Range range;
 
-	private AttributeRangeRule(BaseRule baseRule, AttributeRangeRuleContext context) {
-		this.rule = baseRule;
+	public AttributeRangeRule(String code, String name, String description, AttributeRangeRuleContext context) {
+		super(code, name, description);
 		this.column = context.getColumn();
 		this.not = context.getNot();
 		this.forEachRow = context.getForEachRow();
 		this.range = context.getRange();
-	}
-
-	@Override
-	public String getCode() {
-		return rule.getCode();
-	}
-
-	@Override
-	public String getName() {
-		return rule.getName();
-	}
-
-	@Override
-	public String getDescription() {
-		return rule.getDescription();
 	}
 
 }
