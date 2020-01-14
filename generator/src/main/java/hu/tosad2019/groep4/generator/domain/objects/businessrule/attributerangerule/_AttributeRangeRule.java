@@ -1,7 +1,7 @@
-package hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule;
+package hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule;
 
-import hu.tosad2019.groep4.generator.domain.Enums.Operator;
-import hu.tosad2019.groep4.generator.domain.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
 
 public class _AttributeRangeRule implements BusinessRule {
 	

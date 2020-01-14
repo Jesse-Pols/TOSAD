@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator.domain;
+package hu.tosad2019.groep4.generator.domain.objects;
 
 public class Column {
     private String tableName;

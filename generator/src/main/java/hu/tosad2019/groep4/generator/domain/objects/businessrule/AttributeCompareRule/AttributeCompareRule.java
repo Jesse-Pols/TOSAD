@@ -1,9 +1,9 @@
-package hu.tosad2019.groep4.generator.domain.businessrule.AttributeCompareRule;
+package hu.tosad2019.groep4.generator.domain.objects.businessrule.AttributeCompareRule;
 
-import hu.tosad2019.groep4.generator.domain.Enums.Operator;
-import hu.tosad2019.groep4.generator.domain.SpecifiedValue;
-import hu.tosad2019.groep4.generator.domain.businessrule.BaseRule;
-import hu.tosad2019.groep4.generator.domain.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
+import hu.tosad2019.groep4.generator.domain.objects.SpecifiedValue;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
 
 public class AttributeCompareRule implements BusinessRule {
 

@@ -1,9 +1,9 @@
-package hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule;
+package hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule;
 
-import hu.tosad2019.groep4.generator.domain.Column;
-import hu.tosad2019.groep4.generator.domain.Range;
-import hu.tosad2019.groep4.generator.domain.businessrule.BaseRule;
-import hu.tosad2019.groep4.generator.domain.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.Column;
+import hu.tosad2019.groep4.generator.domain.objects.Range;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
 
 public class AttributeRangeRule implements BusinessRule {
 

@@ -1,7 +1,7 @@
-package hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule;
+package hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule;
 
-import hu.tosad2019.groep4.generator.domain.Column;
-import hu.tosad2019.groep4.generator.domain.Range;
+import hu.tosad2019.groep4.generator.domain.objects.Column;
+import hu.tosad2019.groep4.generator.domain.objects.Range;
 
 public class AttributeRangeRuleContext {
     private boolean forEachRow;
