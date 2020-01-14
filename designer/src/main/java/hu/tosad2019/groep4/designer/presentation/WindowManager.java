@@ -18,5 +18,4 @@ public class WindowManager implements WindowManagerFacade {
 	public void openAddRuleWindow() {
 		this.addRuleWindow.create();
 	}
-	
 }
