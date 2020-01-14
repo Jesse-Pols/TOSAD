@@ -64,10 +64,10 @@
                                           <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
                                              <children>
                                                 <ComboBox fx:id="cb_generate_protocol" minWidth="110.0" promptText="Protocol" />
-                                                <TextField fx:id="txt_generate_host" minWidth="200.0" promptText="Database connection url" HBox.hgrow="ALWAYS" />
+                                                <TextField fx:id="txt_generate_host" minWidth="50.0" promptText="Database connection url" HBox.hgrow="ALWAYS" />
                                                 <TextField fx:id="txt_generate_port" alignment="CENTER" maxWidth="70.0" minWidth="70.0" promptText="Port" />
-                                                <TextField fx:id="txt_generate_password" minWidth="200.0" promptText="Password" />
-                                                <Button fx:id="btn_generate_connect" minWidth="90.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" text="Connect" />
+                                                <TextField fx:id="txt_generate_password" maxWidth="1.7976931348623157E308" promptText="Password" />
+                                                <Button fx:id="btn_generate_connect" minWidth="70.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" text="Connect" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -80,6 +80,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </TitledPane>
+                              <Button fx:id="btn_generate_run" mnemonicParsing="false" onAction="#btn_generate_run_onclick" text="(TEMP) Run generator" />
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
