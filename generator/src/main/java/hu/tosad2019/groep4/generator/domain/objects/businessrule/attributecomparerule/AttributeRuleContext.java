@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator.domain.objects.businessrule.AttributeCompareRule;
+package hu.tosad2019.groep4.generator.domain.objects.businessrule.attributecomparerule;
 
 import hu.tosad2019.groep4.generator.domain.objects.Column;
 import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;

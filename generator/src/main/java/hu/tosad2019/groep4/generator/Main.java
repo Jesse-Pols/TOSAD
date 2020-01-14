@@ -2,7 +2,7 @@ package hu.tosad2019.groep4.generator;
 
 import java.util.HashMap;
 
-import hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule.AttributeRangeRule;
+//import hu.tosad2019.groep4.generator.domain.businessrule.attributerangerule.AttributeRangeRule;
 
 public class Main
 {
@@ -30,10 +30,12 @@ public class Main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
+
 		AttributeRangeRule.Builder test = new AttributeRangeRule.Builder();
 		test.setTriggerName("Hree");
 		AttributeRangeRule attribute = test.build();
+
+		 */
 		
 		
 	}
