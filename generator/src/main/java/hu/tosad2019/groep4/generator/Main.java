@@ -18,7 +18,7 @@ public class Main
 
 
 
-		Configuration con = new Configuration();
+		Configuration con = new Configuration().configure();
 
 		SessionFactory sf = con.buildSessionFactory();
 
