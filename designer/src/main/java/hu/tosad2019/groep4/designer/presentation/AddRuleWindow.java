@@ -8,16 +8,11 @@ import javafx.stage.Stage;
 
 public class AddRuleWindow {
 
-	private static AddRuleWindow INSTANCE = new AddRuleWindow();
 	private Stage stage;
 	
-	private AddRuleWindow() {}
+	AddRuleWindow() {}
 	
-	public static AddRuleWindow getInstance() {
-		return AddRuleWindow.INSTANCE; 
-	}
-	
-	public void create() {
+	void create() {
 		try {
 			Pane root = new AnchorPane();
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("Form_AddRule.fxml"));

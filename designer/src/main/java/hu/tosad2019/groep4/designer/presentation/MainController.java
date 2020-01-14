@@ -33,7 +33,7 @@ public class MainController {
 	
 	@FXML 
 	private void btn_home_add_onclick() {
-		AddRuleWindow.getInstance().create();
+		WindowManager.getInstance().openAddRuleWindow();
 	}
 	
 	@FXML

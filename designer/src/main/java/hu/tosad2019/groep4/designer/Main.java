@@ -1,6 +1,6 @@
 package hu.tosad2019.groep4.designer;
 
-import hu.tosad2019.groep4.designer.presentation.MainWindow;
+import hu.tosad2019.groep4.designer.presentation.WindowManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,6 +13,6 @@ public class Main extends Application
 
 	@Override
 	public void start(Stage primaryStage) {
-		MainWindow.getInstance().create(primaryStage);
+		WindowManager.getInstance().openMainWindow();
 	}
 }

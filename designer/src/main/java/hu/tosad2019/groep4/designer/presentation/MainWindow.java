@@ -8,21 +8,16 @@ import javafx.stage.Stage;
 
 public class MainWindow {
 
-	private static MainWindow INSTANCE = new MainWindow();
 	private Stage stage;
 	
-	private MainWindow() {}
+	MainWindow() {}
 	
-	public static MainWindow getInstance() {
-		return MainWindow.INSTANCE; 
-	}
-	
-	public void create(Stage stage) {
+	void create() {
 		try {
 			Pane root = new AnchorPane();
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("Form_Home.fxml"));
-			this.stage = stage;
 			Scene scene = new Scene(root, 1280, 720);
+			this.stage = new Stage();
 			this.stage.setScene(scene);
 			this.stage.setWidth(700);
 			this.stage.setHeight(500);
