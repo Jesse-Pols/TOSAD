@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.taskspecific;
+package hu.tosad2019.groep4.designer.application;
 
 public class AddRuleFacade {
 
