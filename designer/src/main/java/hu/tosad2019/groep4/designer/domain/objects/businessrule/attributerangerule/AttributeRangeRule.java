@@ -1,8 +1,8 @@
-package hu.tosad2019.groep4.designer.objects.businessrule.attributerangerule;
+package hu.tosad2019.groep4.designer.domain.objects.businessrule.attributerangerule;
 
-import hu.tosad2019.groep4.designer.objects.Column;
-import hu.tosad2019.groep4.designer.objects.Range;
-import hu.tosad2019.groep4.designer.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.designer.domain.objects.Column;
+import hu.tosad2019.groep4.designer.domain.objects.Range;
+import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRule;
 
 public class AttributeRangeRule extends BaseRule {
 

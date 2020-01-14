@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.dataaccess;
+package hu.tosad2019.groep4.designer.dataaccess.communication;
 
 public class GenerateCommand implements ServerCommand {
 

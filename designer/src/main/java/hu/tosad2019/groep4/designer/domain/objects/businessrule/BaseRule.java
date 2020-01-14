@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.objects.businessrule;
+package hu.tosad2019.groep4.designer.domain.objects.businessrule;
 
 public abstract class BaseRule implements BusinessRule{
 

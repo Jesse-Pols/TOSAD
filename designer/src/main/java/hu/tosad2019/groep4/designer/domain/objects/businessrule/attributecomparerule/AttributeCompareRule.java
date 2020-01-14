@@ -1,8 +1,8 @@
-package hu.tosad2019.groep4.designer.objects.businessrule.attributecomparerule;
+package hu.tosad2019.groep4.designer.domain.objects.businessrule.attributecomparerule;
 
-import hu.tosad2019.groep4.designer.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.objects.businessrule.BaseRule;
-import hu.tosad2019.groep4.designer.objects.enums.Operator;
+import hu.tosad2019.groep4.designer.domain.objects.SpecifiedValue;
+import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.designer.domain.objects.enums.Operator;
 
 public class AttributeCompareRule extends BaseRule {
 

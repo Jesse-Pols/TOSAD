@@ -1,8 +1,8 @@
 package hu.tosad2019.groep4.designer.presentation;
 
-import hu.tosad2019.groep4.designer.dataaccess.GeneratorServer;
-import hu.tosad2019.groep4.designer.dataaccess.ServerConnectionDetails;
-import hu.tosad2019.groep4.designer.dataaccess.ServerConnectionException;
+import hu.tosad2019.groep4.designer.dataaccess.communication.GeneratorServer;
+import hu.tosad2019.groep4.designer.dataaccess.communication.ServerConnectionDetails;
+import hu.tosad2019.groep4.designer.dataaccess.communication.ServerConnectionException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

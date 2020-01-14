@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.objects.enums;
+package hu.tosad2019.groep4.designer.domain.objects.enums;
 
 public enum Operator {
     equals("="),

@@ -1,6 +1,6 @@
-package hu.tosad2019.groep4.designer.objects;
+package hu.tosad2019.groep4.designer.domain.objects;
 
-import hu.tosad2019.groep4.designer.objects.enums.Operator;
+import hu.tosad2019.groep4.designer.domain.objects.enums.Operator;
 
 public class Range {
     private int minValue;
