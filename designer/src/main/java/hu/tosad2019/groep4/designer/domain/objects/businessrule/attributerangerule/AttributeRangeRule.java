@@ -4,7 +4,7 @@ import hu.tosad2019.groep4.designer.domain.objects.Column;
 import hu.tosad2019.groep4.designer.domain.objects.Range;
 import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRuleI;
 
-public class AttributeRangeRuleI extends BaseRuleI {
+public class AttributeRangeRule extends BaseRuleI {
 
 	private Column column;
 
@@ -14,7 +14,7 @@ public class AttributeRangeRuleI extends BaseRuleI {
 
 	private Range range;
 
-	public AttributeRangeRuleI(String code, String name, String description, AttributeRangeRuleContext context) {
+	public AttributeRangeRule(String code, String name, String description, AttributeRangeRuleContext context) {
 		super(code, name, description);
 		this.column = context.getColumn();
 		this.not = context.getNot();
