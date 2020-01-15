@@ -1,6 +1,6 @@
 package hu.tosad2019.groep4.designer.application;
 
-import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.IBusinessRule;
+import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.BusinessRule;
 import hu.tosad2019.groep4.designer.domain.processing.BusinessRuleFactory;
 import hu.tosad2019.groep4.designer.domain.processing.ObjectService;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;
@@ -11,7 +11,7 @@ public class DefineRule {
     public static boolean saveBusinessRule(String typeString, HashMap<String, String> properties) {
         boolean success = false;
         BusinessRuleType type = null;
-        IBusinessRule rule = null;
+        BusinessRule rule = null;
 
 
 

@@ -1,8 +1,8 @@
 package hu.tosad2019.groep4.designer.domain.objects.businessrule;
 
-import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.IBusinessRule;
+import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.BusinessRule;
 
-public abstract class BaseRule implements IBusinessRule{
+public abstract class BaseRule implements BusinessRule {
 
     private String code;
     private String name;

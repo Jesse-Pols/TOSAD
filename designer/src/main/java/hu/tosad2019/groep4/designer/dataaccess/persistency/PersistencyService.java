@@ -1,10 +1,10 @@
 package hu.tosad2019.groep4.designer.dataaccess.persistency;
 
-import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.IBusinessRule;
+import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.BusinessRule;
 
 public class PersistencyService {
 
-    public void saveBusinessRule(IBusinessRule businessRule){
+    public void saveBusinessRule(BusinessRule businessRule){
 
         String code = businessRule.getCode();
         String description = businessRule.getDescription();
