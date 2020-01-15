@@ -13,9 +13,11 @@ public class WindowManager implements WindowManagerFacade {
 	}
 	
 	public void openMainWindow() {
+		if(this.mainWindow.isActive()) return;
 		this.mainWindow.create();
 	}
 	public void openAddRuleWindow() {
+		if(this.addRuleWindow.isActive()) return;
 		this.addRuleWindow.create();
 	}
 }

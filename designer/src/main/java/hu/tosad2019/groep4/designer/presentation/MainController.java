@@ -60,7 +60,11 @@ public class MainController {
 	
 	@FXML
 	private void btn_generate_run_onclick() {
-		System.out.println("Run");
+		try {
+			this.generateBusinessRule(5);
+		} catch (Exception e) {
+			this.sendError(e.getMessage());
+		}
 	}
 	
 	public void sendError(String message) {
@@ -86,5 +90,9 @@ public class MainController {
 			this.sendError(e.getMessage());
 			return false;
 		}
+	}
+	
+	public void generateBusinessRule(int id) throws Exception {
+		MainFacade.generateBusinessRule(id);
 	}
 }

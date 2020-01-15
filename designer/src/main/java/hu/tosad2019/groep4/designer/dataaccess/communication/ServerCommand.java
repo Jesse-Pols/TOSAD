@@ -4,6 +4,6 @@ import hu.tosad2019.groep4.designer.datainfrastructure.Server;
 
 public interface ServerCommand {
 
-	public String execute(Server server);
+	public boolean execute(Server server);
 	
 }

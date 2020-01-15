@@ -27,7 +27,7 @@
                            <children>
                               <VBox maxWidth="1.7976931348623157E308" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox fx:id="vbox_define_selection" maxHeight="1.7976931348623157E308" spacing="10.0" VBox.vgrow="NEVER">
+                                    <VBox fx:id="vbox_define_selection" maxHeight="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                                        <children>
                                           <HBox fx:id="hbox_define_selection" spacing="10.0">
                                              <children>
@@ -61,6 +61,15 @@
                                           </HBox>
                                        </children>
                                     </VBox>
+                                    <HBox alignment="BOTTOM_RIGHT">
+                                       <children>
+                                          <Button fx:id="btn_save" mnemonicParsing="false" onAction="#btn_save_onclick" prefWidth="150.0" style="-fx-background-color: #4BB543#62e05c;" text="Save" textFill="WHITE">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </Button>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
