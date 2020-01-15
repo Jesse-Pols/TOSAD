@@ -14,7 +14,7 @@ public class MainWindow {
 	
 	void create() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Form_Main.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Form_Home.fxml"));
 			Pane root = loader.load();
 			this.controller = (MainController) loader.getController();
 			Scene scene = new Scene(root, 1280, 720);
