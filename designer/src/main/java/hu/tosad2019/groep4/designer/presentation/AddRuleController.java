@@ -24,7 +24,7 @@ public class AddRuleController {
 	@FXML private Button btn_save;
 
 	
-	// TODO We should place this somewhere else - I agree greetings from Bart
+	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
 	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute Compare Rule", "Attribute List Rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
 
 
