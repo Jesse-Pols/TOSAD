@@ -1,8 +1,8 @@
 package hu.tosad2019.groep4.generator;
 
-import hu.tosad2019.groep4.generator.dataaccess.objects.Range;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.IRangeDao;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.RangeDao;
+import hu.tosad2019.groep4.generator.domain.objects.Range;
 
 
 public class Main
@@ -12,9 +12,13 @@ public class Main
 
 		IRangeDao rangeDao = new RangeDao();
 
-		Range range = new Range(11,12, 2, 1);
 
-		rangeDao.save(range);
+		//Range range = rangeDao.getById(3);
+		//range.writeMinMax();
+
+		//hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range range = new hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range(6,9, 2, 1);
+
+		//rangeDao.save(range);
 
 		/*
 		Configuration con = new Configuration().configure().addAnnotatedClass(Range.class);

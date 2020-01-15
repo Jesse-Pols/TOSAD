@@ -1,6 +1,6 @@
 package hu.tosad2019.groep4.generator.dataaccess.persistency.dao;
 
-import hu.tosad2019.groep4.generator.dataaccess.objects.Range;
+import hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.IRangeDao;
 import hu.tosad2019.groep4.generator.datainfrastructure.BaseDao;
 import org.hibernate.Session;
@@ -10,6 +10,14 @@ public class RangeDao extends BaseDao implements IRangeDao {
 
     public RangeDao() {
         super();
+    }
+
+    public Range getById(int id) {
+        Session session = super.sessionFactory.openSession();
+        Range range = session.get(Range.class, id);
+
+        session.close();
+        return range;
     }
 
     public void save(Range range) {

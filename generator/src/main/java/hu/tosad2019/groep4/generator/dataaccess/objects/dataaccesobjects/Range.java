@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator.dataaccess.objects;
+package hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,4 +21,12 @@ public class Range {
         this.column2 = column2;
     }
 
+    public void writeMinMax() {
+        System.out.println("Min:");
+        System.out.println(this.min);
+        System.out.println("Max:");
+        System.out.println(this.max);
+    }
+
 }
+
