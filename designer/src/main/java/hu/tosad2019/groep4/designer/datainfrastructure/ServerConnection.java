@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.dataaccess.communication;
+package hu.tosad2019.groep4.designer.datainfrastructure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,16 +14,14 @@ public class ServerConnection {
 	private String protocol; 
 	private String host; 
 	private int port;
-	private String password;
 	
 	/**
 	* Create new ServerConnection
 	*/
-	public ServerConnection(String protocol, String host, int port, String password) {
+	public ServerConnection(String protocol, String host, int port) {
 		this.protocol = protocol;
 		this.host = host;
 		this.port = port;
-		this.password = password;
 	}
 	
 	public String getConnectionString(String subpath) {
@@ -39,7 +37,6 @@ public class ServerConnection {
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(1000);
         connection.setReadTimeout(1000);
-        connection.setRequestProperty("Authorization", this.password);
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
