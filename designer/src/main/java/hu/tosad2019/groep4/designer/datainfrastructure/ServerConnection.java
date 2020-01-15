@@ -35,8 +35,6 @@ public class ServerConnection {
 		URL obj = this.getConnectionURL(subpath);
 		HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("GET");
-        connection.setConnectTimeout(1000);
-        connection.setReadTimeout(1000);
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
