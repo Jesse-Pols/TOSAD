@@ -4,7 +4,7 @@ import hu.tosad2019.groep4.generator.domain.objects.Column;
 import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
 import hu.tosad2019.groep4.generator.domain.objects.SpecifiedValue;
 
-public class AttributeRuleContext {
+public class AttributeCompareRuleContext {
     private Column column;
     private boolean not;
     private Operator operator;
@@ -27,7 +27,7 @@ public class AttributeRuleContext {
         return specifiedValue;
     }
 
-    public AttributeRuleContext(Column column, boolean not, Operator operator, SpecifiedValue specifiedValue) {
+    public AttributeCompareRuleContext(Column column, boolean not, Operator operator, SpecifiedValue specifiedValue) {
         this.column = column;
         this.not = not;
         this.operator = operator;
