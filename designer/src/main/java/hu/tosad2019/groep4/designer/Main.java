@@ -14,14 +14,16 @@ public class Main extends Application
 {
 	public static void main(String[] args) {
 		System.out.println("Starting designer..");
-		//launch();
-
+		launch();
+/*
 		Range range = new Range(1, 2, Operator.and);
 		AttributeRangeRuleContext attributeRangeRuleContext = new AttributeRangeRuleContext(true, 2, range);
 		BusinessRule businessRule = new AttributeRangeRule("testCode_123", "testName", "testDescription", attributeRangeRuleContext);
 
 		PersistencyService ps = new PersistencyService();
 		ps.saveBusinessRule(businessRule);
+
+ */
 
 	}
 
