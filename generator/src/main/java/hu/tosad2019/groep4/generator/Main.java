@@ -1,7 +1,10 @@
 package hu.tosad2019.groep4.generator;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.HashMap;
 
+import hu.tosad2019.groep4.generator.dataaccess.dao.RangeDao;
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.*;
 import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
 import hu.tosad2019.groep4.generator.domain.objects.Range;
@@ -10,20 +13,32 @@ import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributeranger
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class Main
 {
 	public static void main(String[] args) {
 
+		// Hibernate
 
+		Range range = new Range(11,12, 2, 1);
 
-		Configuration con = new Configuration().configure();
+		RangeDao rangeDao = new RangeDao();
+		rangeDao.save(range);
+
+		/*
+		Configuration con = new Configuration().configure().addAnnotatedClass(Range.class);
 
 		SessionFactory sf = con.buildSessionFactory();
-
 		Session session = sf.openSession();
-		session.save(null);
+
+		Transaction tx = session.beginTransaction();
+
+		session.save(range);
+
+		tx.commit();
+		 */
 
 		/*
 		 * TEMPLATES BABYYY
