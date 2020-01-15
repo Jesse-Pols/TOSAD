@@ -1,8 +1,7 @@
 package hu.tosad2019.groep4.designer.domain.processing;
 
+import hu.tosad2019.groep4.designer.dataaccess.persistency.PersistencyService;
 import hu.tosad2019.groep4.designer.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;
 
 import java.util.HashMap;
@@ -13,6 +12,7 @@ public class ObjectService {
     }
 
     public boolean saveBusinessRule(BusinessRule rule){
+
         return false;
     }
 }

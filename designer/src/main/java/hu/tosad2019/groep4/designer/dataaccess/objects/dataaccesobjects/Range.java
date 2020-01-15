@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.dataaccess.objects;
+package hu.tosad2019.groep4.designer.dataaccess.objects.dataaccesobjects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
