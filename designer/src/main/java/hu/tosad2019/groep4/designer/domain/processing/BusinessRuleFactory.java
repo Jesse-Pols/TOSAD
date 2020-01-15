@@ -1,6 +1,6 @@
 package hu.tosad2019.groep4.designer.domain.processing;
 
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.IBusinessRule;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;
 
 import java.util.HashMap;
@@ -14,8 +14,8 @@ public class BusinessRuleFactory {
         this.attributes = attributes;
     }
 
-    public BusinessRule MakeBusinessRule(){
-        BusinessRule rule = null;
+    public IBusinessRule MakeBusinessRule(){
+        IBusinessRule rule = null;
 
 
 
