@@ -1,6 +1,4 @@
-package hu.tosad2019.groep4.generator.domain.objects;
-
-import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
+package hu.tosad2019.groep4.generator.dataaccess.objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
