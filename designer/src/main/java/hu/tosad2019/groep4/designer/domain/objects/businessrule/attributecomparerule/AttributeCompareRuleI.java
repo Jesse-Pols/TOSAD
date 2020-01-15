@@ -1,10 +1,10 @@
 package hu.tosad2019.groep4.designer.domain.objects.businessrule.attributecomparerule;
 
 import hu.tosad2019.groep4.designer.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRuleI;
 import hu.tosad2019.groep4.designer.domain.objects.enums.Operator;
 
-public class AttributeCompareRule extends BaseRule {
+public class AttributeCompareRuleI extends BaseRuleI {
 
     private boolean not;
     private String table;
@@ -13,7 +13,7 @@ public class AttributeCompareRule extends BaseRule {
     private SpecifiedValue value;
 
 
-    public AttributeCompareRule(String code, String name, String description, AttributeRuleContext context){
+    public AttributeCompareRuleI(String code, String name, String description, AttributeRuleContext context){
         super(code, name, description);
 
         this.not = context.getNot();

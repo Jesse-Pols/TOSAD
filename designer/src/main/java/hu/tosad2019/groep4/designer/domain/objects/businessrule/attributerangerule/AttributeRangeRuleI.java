@@ -2,9 +2,9 @@ package hu.tosad2019.groep4.designer.domain.objects.businessrule.attributeranger
 
 import hu.tosad2019.groep4.designer.domain.objects.Column;
 import hu.tosad2019.groep4.designer.domain.objects.Range;
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.designer.domain.objects.businessrule.BaseRuleI;
 
-public class AttributeRangeRule extends BaseRule {
+public class AttributeRangeRuleI extends BaseRuleI {
 
 	private Column column;
 
@@ -14,7 +14,7 @@ public class AttributeRangeRule extends BaseRule {
 
 	private Range range;
 
-	public AttributeRangeRule(String code, String name, String description, AttributeRangeRuleContext context) {
+	public AttributeRangeRuleI(String code, String name, String description, AttributeRangeRuleContext context) {
 		super(code, name, description);
 		this.column = context.getColumn();
 		this.not = context.getNot();

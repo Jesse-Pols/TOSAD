@@ -1,11 +1,5 @@
 package hu.tosad2019.groep4.designer;
 
-import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.BusinessRule;
-import hu.tosad2019.groep4.designer.dataaccess.persistency.PersistencyService;
-import hu.tosad2019.groep4.designer.domain.objects.Range;
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.designer.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
-import hu.tosad2019.groep4.designer.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.presentation.WindowManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
