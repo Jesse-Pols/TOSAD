@@ -11,13 +11,16 @@ public class GenerateCommand implements ServerCommand {
 	}
 	
 	@Override
-	public String execute(Server server) {
+	public boolean execute(Server server) {
 		try {
-			return server.send("/ping", null);
+			System.out.println("Generating..");
+			String response = server.send("/cmd", null);
+			System.out.println(response);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return false;
 	}
 
 }
