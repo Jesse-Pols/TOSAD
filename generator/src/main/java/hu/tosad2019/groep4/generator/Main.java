@@ -1,6 +1,7 @@
 package hu.tosad2019.groep4.generator;
 
 import hu.tosad2019.groep4.generator.dataaccess.objects.Range;
+import hu.tosad2019.groep4.generator.dataaccess.persistency.IRangeDao;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.RangeDao;
 
 
@@ -9,9 +10,10 @@ public class Main
 	public static void main(String[] args) {
 
 
+		IRangeDao rangeDao = new RangeDao();
+
 		Range range = new Range(11,12, 2, 1);
 
-		RangeDao rangeDao = new RangeDao();
 		rangeDao.save(range);
 
 		/*
