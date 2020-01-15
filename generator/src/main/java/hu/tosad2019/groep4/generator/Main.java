@@ -1,26 +1,13 @@
 package hu.tosad2019.groep4.generator;
 
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.HashMap;
+import hu.tosad2019.groep4.generator.dataaccess.objects.Range;
+import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.RangeDao;
 
-import hu.tosad2019.groep4.generator.dataaccess.dao.RangeDao;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.*;
-import hu.tosad2019.groep4.generator.domain.objects.Enums.Operator;
-import hu.tosad2019.groep4.generator.domain.objects.Range;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 public class Main
 {
 	public static void main(String[] args) {
 
-		// Hibernate
 
 		Range range = new Range(11,12, 2, 1);
 

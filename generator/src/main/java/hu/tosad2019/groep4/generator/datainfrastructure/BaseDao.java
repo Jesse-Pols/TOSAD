@@ -1,9 +1,6 @@
-package hu.tosad2019.groep4.generator.dataaccess.dao;
+package hu.tosad2019.groep4.generator.datainfrastructure;
 
-import hu.tosad2019.groep4.generator.domain.objects.Range;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class BaseDao {
@@ -13,7 +10,7 @@ public class BaseDao {
     public BaseDao() {
 
         if (sessionFactory == null || sessionFactory.isClosed()) {
-            Configuration con = new Configuration().configure().addAnnotatedClass(Range.class);
+            Configuration con = new Configuration().configure();
             this.sessionFactory = con.buildSessionFactory();
         }
 
