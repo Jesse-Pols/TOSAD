@@ -66,7 +66,6 @@
                                                 <ComboBox fx:id="cb_generate_protocol" minWidth="110.0" promptText="Protocol" />
                                                 <TextField fx:id="txt_generate_host" minWidth="50.0" promptText="Database connection url" HBox.hgrow="ALWAYS" />
                                                 <TextField fx:id="txt_generate_port" alignment="CENTER" maxWidth="70.0" minWidth="70.0" promptText="Port" />
-                                                <TextField fx:id="txt_generate_password" maxWidth="1.7976931348623157E308" promptText="Password" />
                                                 <Button fx:id="btn_generate_connect" minWidth="70.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" text="Connect" />
                                              </children>
                                           </HBox>

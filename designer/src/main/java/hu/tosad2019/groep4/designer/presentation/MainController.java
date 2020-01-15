@@ -21,7 +21,6 @@ public class MainController {
 	@FXML private ComboBox<String> cb_generate_protocol;
 	@FXML private TextField txt_generate_host;
 	@FXML private TextField txt_generate_port;
-	@FXML private TextField txt_generate_password;
 	@FXML private Button btn_generate_connect;
 	@FXML private Button btn_generate_run;
 	
@@ -41,15 +40,14 @@ public class MainController {
 		String protocol = this.cb_generate_protocol.getValue();
 		String host = this.txt_generate_host.getText();
 		String port = this.txt_generate_port.getText();
-		String password = this.txt_generate_password.getText();
-		if(host.equals("") || port.equals("") || password.equals("")) {
+		if(host.equals("") || port.equals("")) {
 			System.err.println("Empty");
 			return;
 		}
 		
 		int port_nr = Integer.parseInt(port);
 		
-		boolean result = this.connectToServer(protocol, host, port_nr, password);
+		boolean result = this.connectToServer(protocol, host, port_nr);
 		this.setDatabaseConnectionStatus(result);
 	}
 
@@ -81,9 +79,9 @@ public class MainController {
 		    lbl_generate_dbstatus.setStyle("-fx-background-color:red;-fx-font-weight:bold");
 		}
 	}
-	private boolean connectToServer(String protocol, String host, int port, String password) {
+	private boolean connectToServer(String protocol, String host, int port) {
 		try {
-			return MainFacade.connectToServer(protocol, host, port, password);
+			return MainFacade.connectToServer(protocol, host, port);
 		} catch (Exception e) {
 			this.sendError(e.getMessage());
 			return false;
