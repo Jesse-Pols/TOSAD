@@ -9,7 +9,7 @@ public class MainFacade {
 
 
         Generator generator = new Generator();
-        BusinessRule rule = objectService.getBusinessRule();
+        BusinessRule rule = objectService.getBusinessRule(id);
 
         return generator.generateBusinessRule();
     }
