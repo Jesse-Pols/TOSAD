@@ -1,8 +1,6 @@
 package hu.tosad2019.groep4.designer.presentation;
 
-import hu.tosad2019.groep4.designer.dataaccess.GeneratorServer;
-import hu.tosad2019.groep4.designer.dataaccess.ServerConnectionDetails;
-import hu.tosad2019.groep4.designer.dataaccess.ServerConnectionException;
+import hu.tosad2019.groep4.designer.application.MainFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -35,7 +33,7 @@ public class MainController {
 	
 	@FXML 
 	private void btn_home_add_onclick() {
-		AddRuleWindow.getInstance().create();
+		WindowManager.getInstance().openAddRuleWindow();
 	}
 	
 	@FXML
@@ -51,8 +49,7 @@ public class MainController {
 		
 		int port_nr = Integer.parseInt(port);
 		
-		ServerConnectionDetails details = new ServerConnectionDetails(protocol, host, port_nr, password);
-		boolean result = this.connectToServer(details);
+		boolean result = this.connectToServer(protocol, host, port_nr, password);
 		this.setDatabaseConnectionStatus(result);
 	}
 
@@ -84,10 +81,10 @@ public class MainController {
 		    lbl_generate_dbstatus.setStyle("-fx-background-color:red;-fx-font-weight:bold");
 		}
 	}
-	private boolean connectToServer(ServerConnectionDetails details) {
+	private boolean connectToServer(String protocol, String host, int port, String password) {
 		try {
-			return GeneratorServer.getInstance().connect(details);
-		} catch (ServerConnectionException e) {
+			return MainFacade.connectToServer(protocol, host, port, password);
+		} catch (Exception e) {
 			this.sendError(e.getMessage());
 			return false;
 		}

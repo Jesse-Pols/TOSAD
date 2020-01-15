@@ -1,0 +1,1 @@
+Hier moeten classes komen die niks afweten van het domein en de persistency. Dus objecten zoals sql connection of iets wat een message stuurt of ontvangt
