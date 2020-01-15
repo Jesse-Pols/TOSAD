@@ -5,15 +5,19 @@ import hu.tosad2019.groep4.designer.domain.objects.enums.Operator;
 public class Range {
     private int minValue;
     private int maxValue;
-    private Operator andOrOperator;
+    private Operator minValueOperator;
+    private Operator maxValueOperator;
+
 
     public Range(int minValue,
                  int maxValue,
-                 Operator andOrOperator){
+                 Operator minValueOperator,
+                 Operator maxValueOperator){
 
         this.minValue = minValue;
         this.maxValue = maxValue;
-        this.andOrOperator = andOrOperator;
+        this.minValueOperator = minValueOperator;
+        this.maxValueOperator = maxValueOperator;
     }
 
 }
