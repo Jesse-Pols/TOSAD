@@ -17,5 +17,46 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-agroal</artifactId>
+      <version>5.3.15.Final</version>
+      <type>pom</type>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.15</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
+    <dependency>
+      <groupId>com.oracle.ojdbc</groupId>
+      <artifactId>ojdbc10</artifactId>
+      <version>19.3.0.0</version>
+    </dependency>
+    <!-- JSON  -->
+	<dependency>
+	    <groupId>javax.json</groupId>
+	    <artifactId>javax.json-api</artifactId>
+	    <version>1.1.4</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	    <version>2.10.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>javax.json</groupId>
+	    <artifactId>javax.json-api</artifactId>
+	    <version>1.1.4</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.glassfish</groupId>
+	    <artifactId>javax.json</artifactId>
+	    <version>1.1.4</version>
+	</dependency>
+
   </dependencies>
 </project>

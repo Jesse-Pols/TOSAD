@@ -9,10 +9,19 @@ public class AddRuleWindow {
 
 	private Stage stage;
 	AddRuleController controller;
+	private boolean active;
 	
 	AddRuleWindow() {}
 	
+	public boolean isActive() {
+		return this.active;
+	}
+	public void focus() {
+		this.stage.requestFocus();
+	}
+	
 	void create() {
+		this.active = true;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Form_AddRule.fxml"));
 			Pane root = loader.load();

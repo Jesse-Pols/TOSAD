@@ -7,6 +7,7 @@ import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -20,9 +21,10 @@ public class AddRuleController {
 	@FXML private ComboBox<String> cb_define_column;
 	@FXML private ComboBox<String> cb_define_operator;
 	@FXML private VBox vbox_define_selection;
+	@FXML private Button btn_save;
 
 	
-	// TODO We should place this somewhere else - I agree greetings from Bart
+	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
 	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute Compare Rule", "Attribute List Rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
 
 
@@ -52,6 +54,10 @@ public class AddRuleController {
 			HBox.setHgrow(node, Priority.ALWAYS);
 			vbox_define_selection.getChildren().add(box);
 		}
+	}
+	
+	@FXML private void btn_save_onclick(){
+		System.out.println("SAVE");
 	}
 	
 	private void clearOptions() {

@@ -18,8 +18,9 @@ public class ServerListener {
 	
 	private ServerListener setup() throws IOException {
 		this.server = HttpServer.create(new InetSocketAddress(this.port), 0);
-		this.server.createContext("/test", new TestHandler());
+		this.server.createContext("/ping", new PingHandler());
 		this.server.createContext("/cmd", new CommandHandler());
+		this.server.createContext("/status", new StatusHandler());
         this.server.setExecutor(null); // Default handler
         return this;
 	}

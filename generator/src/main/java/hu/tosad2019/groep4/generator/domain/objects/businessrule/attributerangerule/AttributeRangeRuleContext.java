@@ -5,24 +5,19 @@ import hu.tosad2019.groep4.generator.domain.objects.Range;
 
 public class AttributeRangeRuleContext {
     private boolean forEachRow;
-    private int position;
-
     private Column column;
     private boolean not;
     private Range range;
 
-    public AttributeRangeRuleContext(boolean forEachRow, int position, Range range) {
+    public AttributeRangeRuleContext(boolean forEachRow, boolean not, Column column, Range range) {
         this.forEachRow = forEachRow;
-        this.position = position;
+        this.not = not;
+        this.column = column;
         this.range = range;
     }
 
     public boolean getForEachRow() {
         return forEachRow;
-    }
-
-    public int getPosition() {
-        return position;
     }
 
     public Column getColumn() {

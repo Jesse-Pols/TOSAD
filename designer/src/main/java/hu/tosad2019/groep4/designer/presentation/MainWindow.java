@@ -9,12 +9,21 @@ public class MainWindow {
 
 	private Stage stage;
 	MainController controller;
+	boolean active;
 	
 	MainWindow() {}
 	
+	public boolean isActive() {
+		return this.active;
+	}
+	public void focus() {
+		this.stage.requestFocus();
+	}
+	
 	void create() {
+		this.active=true;
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Form_Main.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Form_Home.fxml"));
 			Pane root = loader.load();
 			this.controller = (MainController) loader.getController();
 			Scene scene = new Scene(root, 1280, 720);
