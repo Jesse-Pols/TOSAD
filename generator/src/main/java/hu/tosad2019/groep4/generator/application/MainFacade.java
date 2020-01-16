@@ -7,9 +7,9 @@ public class MainFacade {
     boolean GenerateBusinessRule(int id, String database){
         ObjectService objectService = new ObjectService();
 
-
-        Generator generator = new Generator();
         BusinessRule rule = objectService.getBusinessRule(id);
+
+        Generator generator = new Generator(rule);
 
         return generator.generateBusinessRule();
     }

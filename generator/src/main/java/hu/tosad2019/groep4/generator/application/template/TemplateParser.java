@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator;
+package hu.tosad2019.groep4.generator.application.template;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
