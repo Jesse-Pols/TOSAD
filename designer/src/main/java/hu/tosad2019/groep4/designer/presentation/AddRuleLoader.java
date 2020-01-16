@@ -6,8 +6,7 @@ import java.util.Map;
 import hu.tosad2019.groep4.designer.application.ManageRuleFacade;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class AddRuleLoader {
 
@@ -25,10 +24,9 @@ public class AddRuleLoader {
     		String type = properties.get(name);
     		switch(type) {
     			case "string":
-    				ComboBox<String> cb = new ComboBox<String>();
-    		        cb.setPromptText(name + "..");
-    		        cb.setPlaceholder(new Label("Empty"));
-    				result.put(name, cb);
+    				TextField tf = new TextField();
+    				tf.setPromptText(name + "..");
+    				result.put(name, tf);
     				break;
     			case "boolean":
     				CheckBox cbs = new CheckBox();
