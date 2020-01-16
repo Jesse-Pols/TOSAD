@@ -1,7 +1,7 @@
 package hu.tosad2019.groep4.designer.dataaccess.persistency.dao;
 
 import hu.tosad2019.groep4.designer.dataaccess.objects.dataaccesobjects.Range;
-import hu.tosad2019.groep4.designer.dataaccess.persistency.IRangeDao;
+import hu.tosad2019.groep4.designer.dataaccess.persistency.interfaces.IRangeDao;
 import hu.tosad2019.groep4.designer.datainfrastructure.BaseDao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

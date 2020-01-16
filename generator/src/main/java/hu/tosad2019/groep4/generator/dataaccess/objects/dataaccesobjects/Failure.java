@@ -17,4 +17,6 @@ public class Failure {
         this.rule = rule;
     }
 
+    public Failure() {}
+
 }

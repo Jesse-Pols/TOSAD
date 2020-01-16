@@ -15,4 +15,6 @@ public class BusinessRuleType {
         this.name = name;
     }
 
+    public BusinessRuleType() {}
+
 }

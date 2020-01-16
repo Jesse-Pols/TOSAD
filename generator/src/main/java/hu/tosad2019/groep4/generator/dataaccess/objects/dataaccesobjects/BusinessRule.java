@@ -24,4 +24,6 @@ public class BusinessRule {
         this.specifiedvalue_id = specifiedvalue_id;
         this.range_id = range_id;
     }
+
+    public BusinessRule() {}
 }

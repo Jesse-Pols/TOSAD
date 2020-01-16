@@ -21,11 +21,10 @@ public class Range {
         this.column2 = column2;
     }
 
-    public void writeMinMax() {
-        System.out.println("Min:");
-        System.out.println(this.min);
-        System.out.println("Max:");
-        System.out.println(this.max);
+    public Range() {}
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class DbColumn {
+public class SpecifiedValue {
 
     @Id
     private int id;
@@ -12,11 +12,10 @@ public class DbColumn {
     private String column1;
     private String column2;
 
-    public DbColumn(String column1, String column2) {
+    public SpecifiedValue(String column1, String column2) {
         this.column1 = column1;
         this.column2 = column2;
     }
 
-    public DbColumn() {}
-
+    public SpecifiedValue() {}
 }

@@ -14,4 +14,6 @@ public class BusinessRuleCategory {
     public BusinessRuleCategory(String name) {
         this.name = name;
     }
+
+    public BusinessRuleCategory() {}
 }
