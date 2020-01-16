@@ -2,6 +2,7 @@ package hu.tosad2019.groep4.generator.application;
 
 import hu.tosad2019.groep4.generator.application.template.TemplateData;
 import hu.tosad2019.groep4.generator.application.template.TemplateParser;
+import hu.tosad2019.groep4.generator.dataaccess.TriggerCreation;
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
@@ -14,12 +15,13 @@ public class Generator {
         this.rule = rule;
     }
 
-    public boolean generateBusinessRule()
+    public boolean generateBusinessRule(String dbHostName)
     {
         String trigger = createTrigger();
 
+        TriggerCreation triggerCreation = new TriggerCreation(dbHostName);
 
-        return false;
+        return triggerCreation.apply(trigger);
     }
 
     private String createTrigger(){
