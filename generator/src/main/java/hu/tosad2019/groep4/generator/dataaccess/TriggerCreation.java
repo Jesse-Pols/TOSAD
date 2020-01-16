@@ -13,20 +13,25 @@ public class TriggerCreation {
         this.hostName = dbHostname;
     }
 
-    public boolean apply(String trigger) throws SQLException {
-        boolean result;
+    public boolean apply(String trigger) {
+        boolean result = false;
 
 
         DbConnection dbConnectionObject = new OracleDbConnection(hostName);
         Connection connection = null;
 
-        connection = dbConnectionObject.getConnection();
+        try {
+            connection = dbConnectionObject.getConnection();
+            Statement statement = connection.createStatement();
 
-        Statement statement = connection.createStatement();
+            result = statement.execute(trigger);
+            connection.commit();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        result = statement.execute(trigger);
-        connection.commit();
-        connection.close();
+
 
 
         return result;
