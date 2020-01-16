@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator.server;
+package hu.tosad2019.groep4.generator.application.webservice;
 
 import java.util.ArrayList;
 import java.util.Collections;

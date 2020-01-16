@@ -1,7 +1,7 @@
 package hu.tosad2019.groep4.generator;
 
+import hu.tosad2019.groep4.generator.application.webservice.ServerListener;
 import hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range;
-import hu.tosad2019.groep4.generator.dataaccess.persistency.interfaces.IRangeDao;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.RangeDao;
 
 
@@ -53,8 +53,6 @@ public class Main
 		 * EINDE
 		 */
 
-
-		/*
 		ServerListener server;
 		try {
 			server = ServerListener.create(8000);
@@ -62,7 +60,6 @@ public class Main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
 /*
 		Range range = new Range(0, 10, Operator.and);
 

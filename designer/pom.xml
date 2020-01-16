@@ -27,6 +27,7 @@
 	    <artifactId>javafx-fxml</artifactId>
 	    <version>11</version>
 	</dependency>
+    <!-- JSON  -->
 	<dependency>
 	    <groupId>javax.json</groupId>
 	    <artifactId>javax.json-api</artifactId>
@@ -37,6 +38,18 @@
 	    <artifactId>jackson-core</artifactId>
 	    <version>2.10.1</version>
 	</dependency>
+	<dependency>
+	    <groupId>javax.json</groupId>
+	    <artifactId>javax.json-api</artifactId>
+	    <version>1.1.4</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.glassfish</groupId>
+	    <artifactId>javax.json</artifactId>
+	    <version>1.1.4</version>
+	</dependency>
+
 	  <dependency>
 		  <groupId>org.hibernate</groupId>
 		  <artifactId>hibernate-agroal</artifactId>

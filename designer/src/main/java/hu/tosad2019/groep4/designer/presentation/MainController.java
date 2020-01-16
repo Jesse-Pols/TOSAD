@@ -129,6 +129,7 @@ public class MainController {
 		try {
 			return MainFacade.connectToServer(protocol, host, port);
 		} catch (Exception e) {
+			e.printStackTrace();
 			this.sendError(e.getMessage());
 			return false;
 		}

@@ -2,7 +2,7 @@ package hu.tosad2019.groep4.designer.datainfrastructure;
 
 import java.io.IOException;
 
-import javax.json.JsonObjectBuilder;
+import javax.json.JsonObject;
 
 public class Server {
 	
@@ -20,6 +20,7 @@ public class Server {
 		} catch(NumberFormatException e) {
 			throw new Exception("Port must be a number");
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new Exception("Could not connect to server.");
 		} catch (RequestFailException e) {
 			if(e.getResponseCode() == 404) throw new Exception("Path not found");
@@ -27,7 +28,7 @@ public class Server {
 			else throw new Exception("Unknown error while connecting server");
 		}
 	}
-	public String send(String subpath, JsonObjectBuilder jsondata) throws IOException, RequestFailException {
+	public String send(String subpath, JsonObject jsondata) throws IOException, RequestFailException {
 		return this.connection.send(subpath, jsondata);
 	}
 	
