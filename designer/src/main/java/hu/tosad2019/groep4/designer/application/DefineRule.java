@@ -10,7 +10,7 @@ import hu.tosad2019.groep4.designer.domain.processing.ObjectService;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;
 
 public class DefineRule {
-    public static boolean saveBusinessRule(String typeString, HashMap<String, String> properties) {
+    public static boolean saveBusinessRule(String typeString, Map<String, String> properties) {
         BusinessRuleType type = null;
         IBusinessRule rule;
 
@@ -23,6 +23,7 @@ public class DefineRule {
                 type = BusinessRuleType.AttributeRangeRule;
                 break;
             default:
+                System.err.println("NOT FOUND");
                 break;
         }
 

@@ -1,18 +1,17 @@
 package hu.tosad2019.groep4.designer.presentation;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import hu.tosad2019.groep4.designer.application.ManageRuleFacade;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import org.hibernate.annotations.Check;
+import org.w3c.dom.Text;
 
 public class AddRuleController {
 
@@ -26,6 +25,8 @@ public class AddRuleController {
 	
 	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
 	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute Compare Rule", "Attribute List Rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
+	private Map<String, String> currentProperties = new LinkedHashMap<>();
+	private ManageRuleFacade manageRuleFacade = new ManageRuleFacade();
 
 
 	@FXML private void initialize() {
@@ -55,9 +56,38 @@ public class AddRuleController {
 			vbox_define_selection.getChildren().add(box);
 		}
 	}
-	
-	@FXML private void btn_save_onclick(){
-		System.out.println("SAVE");
+
+	@FXML private void btn_save_onclick() {
+
+		for (Node node : vbox_define_selection.getChildren()) {
+			if (!(node instanceof HBox)) continue;
+			HBox hbox = (HBox) node;
+
+			Node input = hbox.getChildren().get(1);
+			Node label = hbox.getChildren().get(0);
+			System.out.println(input);
+			if (input instanceof TextField) {
+
+				Label propertyNameLabel = (Label) label;
+				String propertyName = propertyNameLabel.getText();
+
+				this.currentProperties.put(propertyName, ((TextField) input).getText());
+
+			} else if (input instanceof CheckBox) {
+				Label propertyNameLabel = (Label) label;
+				String propertyName = propertyNameLabel.getText();
+
+				CheckBox checkbox = (CheckBox) input;
+				String isSelected = String.valueOf(checkbox);
+
+				this.currentProperties.put(propertyName, isSelected);
+			}
+
+			System.out.println(this.currentProperties.size());
+			System.out.println("SAVE");
+		}
+
+		manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
 	}
 	
 	private void clearOptions() {
