@@ -1,6 +1,8 @@
 package hu.tosad2019.groep4.generator.datainfrastructure.hibernate;
 
+import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -19,6 +21,36 @@ public class AbstractDao {
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);
+        } finally {
+            HibernateFactory.close(this.session);
+        }
+    }
+
+    protected void delete(Object obj) {
+        try {
+            this.startOperation();
+            this.session.delete(obj);
+            this.tx.commit();
+        } catch (HibernateException err) {
+            this.handleException(err);
+        } finally {
+            HibernateFactory.close(this.session);
+        }
+    }
+
+    protected Object find(Class clazz, int id) {
+        Object obj = null;
+
+        try {
+            try {
+                this.startOperation();
+                obj = this.session.get(clazz, id);
+                this.tx.commit();
+            } catch (HibernateException err) {
+                this.handleException(err);
+            }
+
+            return obj;
         } finally {
             HibernateFactory.close(this.session);
         }

@@ -10,6 +10,9 @@
         <property name="hibernate.connection.password">cursist6791</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
         <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range"/>
         <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRule"/>
         <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRuleCategory"/>

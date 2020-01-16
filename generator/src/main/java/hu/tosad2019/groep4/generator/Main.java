@@ -1,7 +1,8 @@
 package hu.tosad2019.groep4.generator;
 
+import hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRule;
 import hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range;
-import hu.tosad2019.groep4.generator.dataaccess.persistency.interfaces.IRangeDao;
+import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.BusinessRuleDao;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.RangeDao;
 
 
@@ -10,11 +11,18 @@ public class Main
 	public static void main(String[] args) {
 
 
-		RangeDao rangeDao = new RangeDao();
-		Range range = new Range(6, 9, 4, 2);
-		range.setId(1);
+		//PersistencyService ps = new PersistencyService();
+		//ps.getBusinessRuleById(21);
 
-		rangeDao.create(range);
+		RangeDao rangeDao = new RangeDao();
+		Range range = rangeDao.find(1);
+
+		BusinessRuleDao brDao = new BusinessRuleDao();
+		BusinessRule businessRule = brDao.find(21);
+
+		System.out.println("Done");
+
+
 
 
 		//Range range = rangeDao.getById(3);

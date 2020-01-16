@@ -23,9 +23,5 @@ public class Range {
 
     public Range() {}
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
 }
 
