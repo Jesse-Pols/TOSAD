@@ -1,6 +1,7 @@
 package hu.tosad2019.groep4.designer.application;
 
 import java.util.HashMap;
+import java.util.Map;
 
 //          application component interface
 public class ManageRuleFacade {
@@ -10,11 +11,11 @@ public class ManageRuleFacade {
         return null;
     }
 
-    public static boolean saveBusinessRule(String type, HashMap<String, String> properties) {
+    public static boolean saveBusinessRule(String type, Map<String, String> properties) {
         return DefineRule.saveBusinessRule(type, properties);
     }
 
-    public  HashMap<String, String> getProperties(String businessRuleType){
+    public  Map<String, String> getProperties(String businessRuleType){
         return DefineRule.getProperties(businessRuleType);
     }
 
