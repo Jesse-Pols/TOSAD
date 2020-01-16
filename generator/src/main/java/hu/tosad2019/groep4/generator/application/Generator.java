@@ -40,9 +40,9 @@ public class Generator {
         HashMap<String, String> variables = new HashMap<>();
         variables.put("trigger_name", TemplateData.getTriggerName(compareRule));
         variables.put("position", "BEFORE");
-        variables.put("table_name", compareRule.getColumn().getTable());
+        variables.put("table_name", compareRule.getColumn().getTableName());
         variables.put("for_each_row", "FOR EACH ROW");
-        variables.put("column1", compareRule.getColumn().getColumnName());
+        variables.put("column1", compareRule.getColumn().getName());
         variables.put("operator", compareRule.getOperator().toString());
         variables.put("value", compareRule.getSpecifiedValue().toString());
         String filledTemplate = TemplateParser.parse(templateName, variables);
@@ -58,16 +58,16 @@ public class Generator {
 
         variables.put("trigger_name", TemplateData.getTriggerName(rangeRule));
         variables.put("position", "BEFORE");
-        variables.put("table_name", rangeRule.getColumn().getTable());
+        variables.put("table_name", rangeRule.getColumn().getTableName());
         variables.put("for_each_row", "FOR EACH ROW");
         variables.put("not", "NOT");
-        variables.put("column_1", rangeRule.getColumn().getColumnName());
-        variables.put("operator_1", rangeRule.getMinValueOperator().toString());
-        variables.put("value_min", rangeRule.getMinValue().toString());
+        variables.put("column_1", rangeRule.getColumn().getName());
+        variables.put("operator_1", rangeRule.getRange().getMinValueOperator().toString());
+        variables.put("value_min", Integer.toString(rangeRule.getRange().getMinValue()));
         variables.put("operator", "AND");
-        variables.put("column_2", rangeRule.getColumn().getColumnName());
-        variables.put("operator_2", rangeRule.getMaxValueOperator().toString());
-        variables.put("value_max", rangeRule.getMinValue().toString());
+        variables.put("column_2", rangeRule.getColumn().getName());
+        variables.put("operator_2", rangeRule.getRange().getMaxValueOperator().toString());
+        variables.put("value_max", Integer.toString(rangeRule.getRange().getMaxValue()));
 
         String filledTemplate = TemplateParser.parse(templateName, variables);
         System.out.println(filledTemplate);
