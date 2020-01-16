@@ -11,6 +11,5 @@ public class PersistencyService {
     public void getBusinessRuleById(int id) {
         IBusinessRuleDao brDao = new BusinessRuleDao();
         BusinessRule businessRule = brDao.find(id);
-        System.out.println("done");
     }
 }
