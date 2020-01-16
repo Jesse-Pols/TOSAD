@@ -11,12 +11,13 @@ import hu.tosad2019.groep4.designer.domain.objects.businessrule.attributerangeru
 import hu.tosad2019.groep4.designer.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.domain.processing.enums.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class BusinessRuleFactory {
     private BusinessRuleType type;
-    private HashMap<String, String> attributes;
+    private Map<String, String> attributes;
 
-    public BusinessRuleFactory(BusinessRuleType type, HashMap<String,String> attributes){
+    public BusinessRuleFactory(BusinessRuleType type, Map<String,String> attributes){
         this.type = type;
         this.attributes = attributes;
     }
@@ -24,7 +25,7 @@ public class BusinessRuleFactory {
     public IBusinessRule MakeBusinessRule(){
         IBusinessRule rule = null;
 
-        switch (type){
+        switch (this.type){
             case AttributeCompareRule:
                 rule = createAttributeCompareRule(attributes);
                 break;
@@ -32,6 +33,7 @@ public class BusinessRuleFactory {
                 rule = createAttributeRangeRule(attributes);
                 break;
             default:
+                System.out.println(this.type + " != iets");
                 break;
         }
 
@@ -39,7 +41,7 @@ public class BusinessRuleFactory {
         return rule;
     }
 
-    private AttributeCompareRule createAttributeCompareRule(HashMap<String, String> attributes){
+    private AttributeCompareRule createAttributeCompareRule(Map<String, String> attributes){
         AttributeCompareRule rule = null;
         if (
                 this.containsBasicAttributes(attributes) &&
@@ -75,7 +77,7 @@ public class BusinessRuleFactory {
         return rule;
     }
 
-    private boolean containsBasicAttributes(HashMap<String, String> attributes){
+    private boolean containsBasicAttributes(Map<String, String> attributes){
         if (
                 attributes.containsKey(Attribute.code.toString()) &&
                 attributes.containsKey(Attribute.name.toString()) &&
@@ -86,7 +88,7 @@ public class BusinessRuleFactory {
         return false;
     }
 
-    private AttributeRangeRule createAttributeRangeRule(HashMap<String, String> attributes){
+    private AttributeRangeRule createAttributeRangeRule(Map<String, String> attributes){
         AttributeRangeRule rule = null;
         if (
                 this.containsBasicAttributes(attributes) &&

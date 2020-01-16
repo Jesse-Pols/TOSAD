@@ -1,20 +1,29 @@
 package hu.tosad2019.groep4.designer.presentation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import hu.tosad2019.groep4.designer.application.MainFacade;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 public class MainController {
 
 	// Home
-	@FXML private TableView<String> tbl_businessrules;
+	@FXML private TableView<Map.Entry<String,String>> tbl_businessrules;
 	@FXML private Button btn_home_add;	
 	// Generate
 	@FXML private Label lbl_generate_dbstatus;
@@ -24,15 +33,48 @@ public class MainController {
 	@FXML private Button btn_generate_connect;
 	@FXML private Button btn_generate_run;
 	
+	private Map<String, String> tableitems = new HashMap<>();
+	
 	@FXML private void initialize() {
 		cb_generate_protocol.getItems().addAll("http://", "https://");
 		cb_generate_protocol.getSelectionModel().selectFirst();
 		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));
+		
+//		Table
+		// sample data 
+        this.tableitems.put("businessrule_1", "AttributeRangeRule");
+        this.tableitems.put("businessrule_2", "AttributeCompareRule");
+        this.tableitems.put("businessrule_3", "AttributeRangeRule");
+
+        this.setupTable();
+		
 	}
 	
 	@FXML 
 	private void btn_home_add_onclick() {
 		WindowManager.getInstance().openAddRuleWindow();
+	}
+	
+	private void setupTable() {
+		TableColumn<Map.Entry<String, String>, String> column_name = new TableColumn<>("Name");
+        column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
+                return new SimpleStringProperty(p.getValue().getKey());
+            }
+        });
+
+        TableColumn<Map.Entry<String, String>, String> column_type = new TableColumn<>("Type");
+        column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
+                return new SimpleStringProperty(p.getValue().getValue());
+            }
+        });
+        this.tbl_businessrules.getColumns().add(column_name);
+        this.tbl_businessrules.getColumns().add(column_type);
+        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(this.tableitems.entrySet());
+        this.tbl_businessrules.getItems().addAll(items);
 	}
 	
 	@FXML
