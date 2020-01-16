@@ -23,4 +23,11 @@ public class AttributeRangeRule extends BaseRule{
 		this.range = context.getRange();
 	}
 
+	public Column getColumn() {
+		return this.column;
+	}
+
+	public Range getRange() {
+		return this.range;
+	}
 }
