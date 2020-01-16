@@ -1,5 +1,8 @@
 package hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects;
 
+import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.DbColumnDao;
+import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.SpecifiedValueDao;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -26,4 +29,22 @@ public class BusinessRule {
     }
 
     public BusinessRule() {}
+
+    public DbColumn getDbColumn() {
+        DbColumnDao dbcDao = new DbColumnDao();
+        return dbcDao.find(this.dbcolumn_id);
+    }
+
+    public SpecifiedValue getSpecifiedValue() {
+        SpecifiedValueDao svDao = new SpecifiedValueDao();
+        return svDao.find(this.specifiedvalue_id);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
 }

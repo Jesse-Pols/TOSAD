@@ -4,16 +4,20 @@ import hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Busines
 import hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.BusinessRuleDao;
 import hu.tosad2019.groep4.generator.dataaccess.persistency.dao.RangeDao;
+import hu.tosad2019.groep4.generator.domain.processing.ObjectService;
 
 
 public class Main
 {
 	public static void main(String[] args) {
 
+		ObjectService os = new ObjectService();
+		os.getBusinessRule(21);
 
 		//PersistencyService ps = new PersistencyService();
 		//ps.getBusinessRuleById(21);
 
+		/*
 		RangeDao rangeDao = new RangeDao();
 		Range range = rangeDao.find(1);
 
@@ -21,6 +25,8 @@ public class Main
 		BusinessRule businessRule = brDao.find(21);
 
 		System.out.println("Done");
+
+		 */
 
 
 

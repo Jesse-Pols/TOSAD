@@ -9,14 +9,22 @@ public class DbColumn {
     @Id
     private int id;
 
-    private String column1;
-    private String column2;
+    private String column_name;
+    private String table_name;
 
-    public DbColumn(String column1, String column2) {
-        this.column1 = column1;
-        this.column2 = column2;
+    public DbColumn(String column_name, String table_name) {
+        this.column_name = column_name;
+        this.table_name = table_name;
     }
 
     public DbColumn() {}
+
+    public String getColumn_name(){
+        return this.column_name;
+    }
+
+    public String getTable_name() {
+        return this.table_name;
+    }
 
 }
