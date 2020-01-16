@@ -28,4 +28,19 @@ public class Range {
         this.maxValueOperator = maxValueOperator;
     }
 
+    public int getMinValue() {
+        return this.minValue;
+    }
+
+    public int getMaxValue() {
+        return this.maxValue;
+    }
+
+    public Operator getMinValueOperator() {
+        return this.minValueOperator;
+    }
+
+    public Operator getMaxValueOperator() {
+        return this.maxValueOperator;
+    }
 }
