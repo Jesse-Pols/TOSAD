@@ -11,16 +11,21 @@ public class Range {
     @Id
     private int id;
 
-    private int min;
-    private int max;
-    private int column1;
-    private int column2;
+    private int minValue;
+    private int maxValue;
+    private Operator minValueOperator;
+    private Operator maxValueOperator;
 
-    public Range(int min, int max, int column1, int column2) {
-        this.min = min;
-        this.max = max;
-        this.column1 = column1;
-        this.column2 = column2;
+
+    public Range(int minValue,
+                 int maxValue,
+                 Operator minValueOperator,
+                 Operator maxValueOperator){
+
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        this.minValueOperator = minValueOperator;
+        this.maxValueOperator = maxValueOperator;
     }
 
 }

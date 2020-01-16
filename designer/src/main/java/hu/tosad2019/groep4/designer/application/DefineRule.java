@@ -9,11 +9,8 @@ import java.util.HashMap;
 
 public class DefineRule {
     public static boolean saveBusinessRule(String typeString, HashMap<String, String> properties) {
-        boolean success = false;
         BusinessRuleType type = null;
-        IBusinessRule rule = null;
-
-
+        IBusinessRule rule;
 
 
         switch (typeString){
@@ -39,7 +36,7 @@ public class DefineRule {
 
     public static HashMap<String, String> getProperties(String BusinessRuleType){
 
-        HashMap<String, String> properties = new HashMap<>();
+        HashMap<String, String> properties;
 
         switch (BusinessRuleType){
             case "AttributeRangeRule":
@@ -61,7 +58,15 @@ public class DefineRule {
     private static HashMap<String, String> getRangeRuleProperties(){
         HashMap<String, String> properties = new HashMap<String, String>();
 
-        properties.put("", "");
+        properties.put("code", "string");
+        properties.put("name", "string");
+        properties.put("description", "string");
+
+        properties.put("not", "boolean");
+        properties.put("table", "string");
+        properties.put("column", "string");
+        properties.put("operator", "string");
+        properties.put("specifiedvalue", "string");
 
 
         return properties;
@@ -70,7 +75,18 @@ public class DefineRule {
     private static HashMap<String, String> getCompareRuleProperties(){
         HashMap<String, String> properties = new HashMap<String, String>();
 
-        properties.put("", "");
+        properties.put("code", "string");
+        properties.put("name", "string");
+        properties.put("description", "string");
+        properties.put("table", "string");
+        properties.put("column", "string");
+        properties.put("not", "boolean");
+        properties.put("foreachrow", "boolean");
+        properties.put("minvalue", "string");
+        properties.put("maxvalue", "string");
+        properties.put("minvalueOperator", "string");
+        properties.put("maxvalueOperator", "string");
+
 
 
         return properties;
