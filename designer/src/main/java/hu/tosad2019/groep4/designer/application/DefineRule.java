@@ -1,10 +1,9 @@
 package hu.tosad2019.groep4.designer.application;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import hu.tosad2019.groep4.designer.dataaccess.objects.domainobjects.IBusinessRule;
+import hu.tosad2019.groep4.designer.application.storage.objects.domainobjects.IBusinessRule;
 import hu.tosad2019.groep4.designer.domain.processing.BusinessRuleFactory;
 import hu.tosad2019.groep4.designer.domain.processing.ObjectService;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;

@@ -1,9 +1,8 @@
 package hu.tosad2019.groep4.generator;
 
-import hu.tosad2019.groep4.generator.domain.objects.hibernated.RangeModel;
-import hu.tosad2019.groep4.generator.domain.persistency.dao.RangeDao;
-import hu.tosad2019.groep4.generator.domain.persistency.interfaces.IRangeDao;
-import hu.tosad2019.groep4.generator.domain.processing.ObjectService;
+import hu.tosad2019.groep4.generator.application.storage.objects.RangeModel;
+import hu.tosad2019.groep4.generator.application.storage.dao.RangeDao;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.IRangeDao;
 
 
 public class Main
