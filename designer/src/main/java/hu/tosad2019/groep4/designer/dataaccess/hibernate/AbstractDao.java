@@ -1,9 +1,9 @@
 package hu.tosad2019.groep4.designer.dataaccess.hibernate;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -39,13 +39,13 @@ public class AbstractDao {
         }
     }
 
-    protected Object find(Class clazz, Long id) {
+    protected Object find(Class clazz, int id) {
         Object obj = null;
 
         try {
             try {
                 this.startOperation();
-                obj = this.session.load(clazz, id);
+                obj = this.session.get(clazz, id);
                 this.tx.commit();
             } catch (HibernateException err) {
                 this.handleException(err);
@@ -65,8 +65,8 @@ public class AbstractDao {
             Query query = this.session.createQuery("from " + clazz.getName());
             objects = query.list();
             this.tx.commit();
-        } catch (HibernateException var7) {
-            this.handleException(var7);
+        } catch (HibernateException err) {
+            this.handleException(err);
         } finally {
             HibernateFactory.close(this.session);
         }

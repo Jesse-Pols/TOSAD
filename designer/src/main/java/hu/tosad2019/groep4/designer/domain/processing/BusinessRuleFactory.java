@@ -22,7 +22,9 @@ public class BusinessRuleFactory {
         this.attributes = attributes;
     }
 
-    public IBusinessRule MakeBusinessRule(){
+    public void MakeBusinessRule(){
+
+        /*
         IBusinessRule rule = null;
 
         switch (this.type){
@@ -39,6 +41,8 @@ public class BusinessRuleFactory {
 
 
         return rule;
+
+         */
     }
 
     private AttributeCompareRule createAttributeCompareRule(Map<String, String> attributes){

@@ -1,10 +1,10 @@
-package hu.tosad2019.groep4.designer.application.storage.objects.dataaccesobjects;
+package hu.tosad2019.groep4.designer.application.storage.objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class Failure {
+@Entity (name="Failure")
+public class FailureModel {
 
     @Id
     private int id;
@@ -12,9 +12,11 @@ public class Failure {
     private String message;
     private int rule;
 
-    public Failure(String message, int rule) {
+    public FailureModel(String message, int rule) {
         this.message = message;
         this.rule = rule;
     }
+
+    public FailureModel() {}
 
 }

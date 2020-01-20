@@ -1,10 +1,10 @@
-package hu.tosad2019.groep4.designer.application.storage.objects.dataaccesobjects;
+package hu.tosad2019.groep4.designer.application.storage.objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class BusinessRule {
+@Entity (name="BusinessRule")
+public class BusinessRuleModel {
 
     @Id
     private int id;
@@ -16,7 +16,7 @@ public class BusinessRule {
     private int specifiedvalue_id;
     private int range_id;
 
-    public BusinessRule(String name, String description, int type_id, int dbcolumn_id, int specifiedvalue_id, int range_id) {
+    public BusinessRuleModel(String name, String description, int type_id, int dbcolumn_id, int specifiedvalue_id, int range_id) {
         this.name = name;
         this.description = description;
         this.type_id = type_id;
@@ -24,4 +24,6 @@ public class BusinessRule {
         this.specifiedvalue_id = specifiedvalue_id;
         this.range_id = range_id;
     }
+
+    public BusinessRuleModel() {}
 }

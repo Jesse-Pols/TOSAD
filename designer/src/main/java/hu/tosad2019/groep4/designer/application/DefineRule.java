@@ -1,17 +1,15 @@
 package hu.tosad2019.groep4.designer.application;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import hu.tosad2019.groep4.designer.application.storage.objects.domainobjects.IBusinessRule;
 import hu.tosad2019.groep4.designer.domain.processing.BusinessRuleFactory;
 import hu.tosad2019.groep4.designer.domain.processing.ObjectService;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class DefineRule {
     public static boolean saveBusinessRule(String typeString, Map<String, String> properties) {
         BusinessRuleType type = null;
-        IBusinessRule rule;
 
 
         switch (typeString){
@@ -29,11 +27,10 @@ public class DefineRule {
 
 
         BusinessRuleFactory factory = new BusinessRuleFactory(type, properties);
-        rule = factory.MakeBusinessRule();
 
         ObjectService objectService = new ObjectService();
 
-        return  objectService.saveBusinessRule(rule);
+        return  objectService.saveBusinessRule();
     }
 
     public static Map<String, String> getProperties(String BusinessRuleType){
