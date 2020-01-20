@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.presentation;
+package hu.tosad2019.groep4.designer.presentation.ui;
 
 import java.util.HashMap;
 import java.util.Map;
