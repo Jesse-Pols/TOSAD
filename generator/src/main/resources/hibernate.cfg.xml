@@ -13,12 +13,12 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Range"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRule"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRuleCategory"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRuleType"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.DbColumn"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Failure"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.SpecifiedValue"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.RangeModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.BusinessRuleModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.BusinessRuleCategoryModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.BusinessRuleTypeModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.DbColumnModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.FailureModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.domain.objects.hibernated.SpecifiedValueModel"/>
     </session-factory>
 </hibernate-configuration>

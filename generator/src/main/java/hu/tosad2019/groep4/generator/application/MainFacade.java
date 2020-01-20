@@ -1,6 +1,6 @@
 package hu.tosad2019.groep4.generator.application;
 
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.domain.processing.ObjectService;
 
 public class MainFacade {

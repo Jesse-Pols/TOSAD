@@ -3,9 +3,9 @@ package hu.tosad2019.groep4.generator.application;
 import hu.tosad2019.groep4.generator.application.template.TemplateData;
 import hu.tosad2019.groep4.generator.application.template.TemplateParser;
 import hu.tosad2019.groep4.generator.dataaccess.TriggerCreation;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.generator.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributerangerule.AttributeRangeRule;
 
 import java.util.HashMap;
 
