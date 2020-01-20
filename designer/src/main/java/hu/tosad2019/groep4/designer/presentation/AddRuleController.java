@@ -2,7 +2,7 @@ package hu.tosad2019.groep4.designer.presentation;
 
 import java.util.*;
 
-import hu.tosad2019.groep4.designer.application.ManageRuleFacade;
+import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -10,8 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import org.hibernate.annotations.Check;
-import org.w3c.dom.Text;
 
 public class AddRuleController {
 

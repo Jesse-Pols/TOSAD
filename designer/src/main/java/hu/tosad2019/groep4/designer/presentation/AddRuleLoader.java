@@ -3,7 +3,7 @@ package hu.tosad2019.groep4.designer.presentation;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import hu.tosad2019.groep4.designer.application.ManageRuleFacade;
+import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;

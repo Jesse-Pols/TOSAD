@@ -3,7 +3,7 @@ package hu.tosad2019.groep4.designer.presentation;
 import java.util.HashMap;
 import java.util.Map;
 
-import hu.tosad2019.groep4.designer.application.MainFacade;
+import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
