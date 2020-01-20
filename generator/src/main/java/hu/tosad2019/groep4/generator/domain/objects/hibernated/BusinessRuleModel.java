@@ -1,5 +1,8 @@
 package hu.tosad2019.groep4.generator.domain.objects.hibernated;
 
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRuleContext;
+import hu.tosad2019.groep4.generator.domain.persistency.dao.BusinessRuleTypeDao;
 import hu.tosad2019.groep4.generator.domain.persistency.dao.DbColumnDao;
 import hu.tosad2019.groep4.generator.domain.persistency.dao.SpecifiedValueDao;
 
@@ -40,6 +43,12 @@ public class BusinessRuleModel {
         return svDao.find(this.specifiedvalue_id);
     }
 
+    public BusinessRuleTypeModel getBusinessRuleType() {
+        BusinessRuleTypeDao brtDao = new BusinessRuleTypeDao();
+        return brtDao.find(this.type_id);
+    }
+
+    /*
     public String getName() {
         return this.name;
     }
@@ -47,4 +56,6 @@ public class BusinessRuleModel {
     public String getDescription() {
         return this.description;
     }
+
+     */
 }

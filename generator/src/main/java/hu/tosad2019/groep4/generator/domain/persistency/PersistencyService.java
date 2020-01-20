@@ -1,41 +1,40 @@
 package hu.tosad2019.groep4.generator.domain.persistency;
 
 import hu.tosad2019.groep4.generator.domain.objects.hibernated.BusinessRuleModel;
+import hu.tosad2019.groep4.generator.domain.objects.hibernated.BusinessRuleTypeModel;
 import hu.tosad2019.groep4.generator.domain.objects.hibernated.DbColumnModel;
 import hu.tosad2019.groep4.generator.domain.objects.hibernated.SpecifiedValueModel;
-import hu.tosad2019.groep4.generator.domain.persistency.dao.BusinessRuleDao;
-import hu.tosad2019.groep4.generator.domain.persistency.dao.DbColumnDao;
-import hu.tosad2019.groep4.generator.domain.persistency.interfaces.IBusinessRuleDao;
-import hu.tosad2019.groep4.generator.domain.persistency.interfaces.IDbColumnDao;
 import hu.tosad2019.groep4.generator.domain.objects.processed.Column;
-import hu.tosad2019.groep4.generator.domain.objects.processed.enums.Operator;
-import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRuleContext;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.persistency.dao.BusinessRuleDao;
+import hu.tosad2019.groep4.generator.domain.persistency.interfaces.IBusinessRuleDao;
 
-public class PersistencyService {
-    public void getAllBusinessRules() {
+import java.util.List;
 
+public class PersistencyService implements IPersistencyService{
+    public List<BusinessRule> getAllBusinessRules() {
+        return null;
     }
-    public hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule getBusinessRuleById(int id) {
+    public BusinessRule getBusinessRuleById(int id) {
 
-        // TODO Wtf is the deal with our domain objects
-        // TODO Below code must be possible much shorter and simpler
+        // TODO ff dit wat beter doen k
 
         // DAO
         IBusinessRuleDao brDao = new BusinessRuleDao();
-        IDbColumnDao dbcDao = new DbColumnDao();
 
-        // Database Objects
-        BusinessRuleModel BusinessRuleModel = brDao.find(id);
-        DbColumnModel dbDbColumnModel = BusinessRuleModel.getDbColumn();
-        SpecifiedValueModel dbSpecifiedValueModel = BusinessRuleModel.getSpecifiedValue();
+        // Database Models
+        BusinessRuleModel businessRuleModel = brDao.find(id);
+        DbColumnModel dbColumnModel = businessRuleModel.getDbColumn();
+        SpecifiedValueModel dbSpecifiedValueModel = businessRuleModel.getSpecifiedValue();
+        BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getBusinessRuleType();
 
-        // Domain Objects
-        Column column = new Column(dbDbColumnModel.getTable_name(), dbDbColumnModel.getColumn_name());
-        AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, true, Operator.and, null);
+        // Domain Models
+        Column column = dbColumnModel.getColumn();
 
-        hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule businessRule;
-        businessRule = new AttributeCompareRule(null, BusinessRuleModel.getName(), BusinessRuleModel.getDescription(), context);
+
+        BusinessRule businessRule = null;
+
+
 
         return businessRule;
     }

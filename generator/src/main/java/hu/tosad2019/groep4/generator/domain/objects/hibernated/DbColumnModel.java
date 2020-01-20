@@ -1,5 +1,7 @@
 package hu.tosad2019.groep4.generator.domain.objects.hibernated;
 
+import hu.tosad2019.groep4.generator.domain.objects.processed.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -19,12 +21,8 @@ public class DbColumnModel {
 
     public DbColumnModel() {}
 
-    public String getColumn_name(){
-        return this.column_name;
-    }
-
-    public String getTable_name() {
-        return this.table_name;
+    public Column getColumn() {
+        return new Column(this.table_name, this.column_name);
     }
 
 }

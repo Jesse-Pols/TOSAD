@@ -3,6 +3,9 @@ package hu.tosad2019.groep4.designer.datainfrastructure.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class AbstractDao {
     private Session session;

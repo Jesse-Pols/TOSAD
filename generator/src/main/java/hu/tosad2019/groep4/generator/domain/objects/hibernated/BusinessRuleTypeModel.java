@@ -1,5 +1,8 @@
 package hu.tosad2019.groep4.generator.domain.objects.hibernated;
 
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRule;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,5 +19,9 @@ public class BusinessRuleTypeModel {
     }
 
     public BusinessRuleTypeModel() {}
+
+    public String getName() {
+        return this.name;
+    }
 
 }
