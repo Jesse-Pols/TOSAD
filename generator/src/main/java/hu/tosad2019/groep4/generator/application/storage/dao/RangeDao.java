@@ -5,6 +5,8 @@ import hu.tosad2019.groep4.generator.application.storage.interfaces.IRangeDao;
 import hu.tosad2019.groep4.generator.dataaccess.hibernate.AbstractDao;
 import hu.tosad2019.groep4.generator.dataaccess.hibernate.DataAccessLayerException;
 
+import java.util.List;
+
 public class RangeDao extends AbstractDao implements IRangeDao {
     public RangeDao() {}
 
@@ -13,8 +15,17 @@ public class RangeDao extends AbstractDao implements IRangeDao {
     }
 
     public void create(RangeModel range) throws DataAccessLayerException {
-        //super.saveOrUpdate(range);
-        System.out.println("Saved");
+        super.saveOrUpdate(range);
     }
+
+    public void delete(RangeModel range) throws DataAccessLayerException {
+        super.delete(range);
+    }
+
+    public List findAll() throws DataAccessLayerException {
+        return super.findAll(RangeModel.class);
+    }
+
+
 
 }
