@@ -1,16 +1,15 @@
 package hu.tosad2019.groep4.designer.application;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import hu.tosad2019.groep4.designer.domain.processing.BusinessRuleFactory;
 import hu.tosad2019.groep4.designer.domain.processing.ObjectService;
 import hu.tosad2019.groep4.designer.domain.processing.enums.BusinessRuleType;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class DefineRule {
     public static boolean saveBusinessRule(String typeString, Map<String, String> properties) {
         BusinessRuleType type = null;
-
 
         switch (typeString){
             case "AttributeCompareRule":

@@ -1,17 +1,15 @@
 package hu.tosad2019.groep4.generator;
 
-import hu.tosad2019.groep4.generator.application.storage.objects.RangeModel;
-import hu.tosad2019.groep4.generator.application.storage.dao.RangeDao;
-import hu.tosad2019.groep4.generator.application.storage.interfaces.IRangeDao;
+import hu.tosad2019.groep4.generator.application.webservice.ServerListener;
 
 
 public class Main
 {
 	public static void main(String[] args) {
 
-		IRangeDao rangeDao = new RangeDao();
-		RangeModel range = new RangeModel(2, 4, 6, 8);
-		rangeDao.create(range);
+//		IRangeDao rangeDao = new RangeDao();
+//		RangeModel range = new RangeModel(2, 4, 6, 8);
+//		rangeDao.create(range);
 
 
 		/*
@@ -31,8 +29,6 @@ public class Main
 		 * EINDE
 		 */
 
-
-		/*
 		ServerListener server;
 		try {
 			server = ServerListener.create(8000);
@@ -40,7 +36,6 @@ public class Main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
 
 	}
 }
