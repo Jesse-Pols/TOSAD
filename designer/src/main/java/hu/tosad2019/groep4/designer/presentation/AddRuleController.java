@@ -88,6 +88,15 @@ public class AddRuleController {
 
 				this.currentProperties.put(propertyName, isSelected);
 				System.out.println("saved data");
+			} else if (input instanceof ComboBox) {
+				Label propertyNameLabel = (Label) label;
+				String propertyName = propertyNameLabel.getText();
+
+				ComboBox comboBox = (ComboBox) input;
+				String isSelected = comboBox.getSelectionModel().getSelectedItem().toString();
+
+				this.currentProperties.put(propertyName, isSelected);
+				System.out.println("saved data");
 			}
 
 			System.out.println(this.currentProperties.size());
