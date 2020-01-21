@@ -1,19 +1,28 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class AddRuleController {
 
-	@FXML private ComboBox<String> cb_ruletype;
+	@FXML private ComboBox<BusinessRuleType> cb_ruletype;
 	@FXML private ComboBox<String> cb_define_table;
 	@FXML private ComboBox<String> cb_define_column;
 	@FXML private ComboBox<String> cb_define_operator;
@@ -22,10 +31,8 @@ public class AddRuleController {
 
 	
 	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
-	private List<String> rules = Arrays.asList("Attribute Range Rule", "Attribute Compare Rule", "Attribute List Rule", "Attribute Other Rule", "Tuple Compare Rule", "Tuple Other Rule", "Inter-Entity Compare rule", "Entity Other Rule", "Modify Rule");
-	private Map<String, String> currentProperties = new LinkedHashMap<>();
-	private ManageRuleFacade manageRuleFacade = new ManageRuleFacade();
-
+	private Map<String, Object> currentProperties = new LinkedHashMap<>();
+	private List<BusinessRuleType> rules = List.of(BusinessRuleType.values());
 
 	@FXML private void initialize() {
 		cb_ruletype.getItems().addAll(this.rules);
@@ -44,7 +51,7 @@ public class AddRuleController {
 
 		for(String key : options.keySet()) {
 			Label lbl = new Label(key);
-			lbl.setMinWidth(70);
+			lbl.setMinWidth(80);
 			lbl.setPadding(new Insets(5,0,0,0));
 			Node node = options.get(key);
 
@@ -68,40 +75,84 @@ public class AddRuleController {
 			Node label = hbox.getChildren().get(0);
 
 			if (input instanceof TextField) {
-
 				Label propertyNameLabel = (Label) label;
 				String propertyName = propertyNameLabel.getText();
-
 				this.currentProperties.put(propertyName, ((TextField) input).getText());
-				System.out.println("saved data");
 
 			} else if (input instanceof CheckBox) {
 				Label propertyNameLabel = (Label) label;
 				String propertyName = propertyNameLabel.getText();
-
 				CheckBox checkbox = (CheckBox) input;
 				String isSelected = String.valueOf(checkbox);
-
 				this.currentProperties.put(propertyName, isSelected);
-				System.out.println("saved data");
 			} else if (input instanceof ComboBox) {
 				Label propertyNameLabel = (Label) label;
 				String propertyName = propertyNameLabel.getText();
-
-				ComboBox comboBox = (ComboBox) input;
-				String isSelected = comboBox.getSelectionModel().getSelectedItem().toString();
-
+				ComboBox<?> comboBox = (ComboBox<?>) input;
+				Object isSelected = comboBox.getSelectionModel().getSelectedItem();
 				this.currentProperties.put(propertyName, isSelected);
-				System.out.println("saved data");
 			}
-
-			System.out.println(this.currentProperties.size());
-			System.out.println("SAVE");
 		}
 
-		if(!(currentProperties.isEmpty())) {
-			manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
+		if(this.cb_ruletype.getSelectionModel().getSelectedItem() != null) {
+//			manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
+			this.saveRule();
 		}
+	}
+	
+	// TODO place this elsewhere?
+	private void saveRule() {
+		System.out.println("Saving..");
+		BusinessRuleType type = this.cb_ruletype.getSelectionModel().getSelectedItem();
+		BusinessRuleContext context = new BusinessRuleContext(type);
+		
+		context.setName((String) this.currentProperties.get("Name"));
+		context.setDescription((String) this.currentProperties.get("Description"));
+		context.setTable((String) this.currentProperties.get("Table"));
+		// TODO Add Column
+//		context.setColumn(this.currentProperties.get("Column"));
+		switch(type) {
+			case AttributeCompareRule:
+				context.setOperator((Operator) this.currentProperties.get("Operator"));		
+				context.setSpecifiedValue((String) this.currentProperties.get("Value"));
+				break;
+			case AttributeRangeRule:
+				context.setOperator((Operator) this.currentProperties.get("Operator"));		
+				context.setRange_minValue((String) this.currentProperties.get("Min value"));
+				context.setRange_maxValue((String) this.currentProperties.get("Max value"));
+				break;
+			case AttributeListRule:
+				context.setOperator((Operator) this.currentProperties.get("Operator"));
+				List<String> values = List.of(((String) this.currentProperties.get("Values")).split(", "));
+				context.setListOfValues(values);
+				break;
+			case AttributeOtherRule:
+				context.setOperator((Operator) this.currentProperties.get("Operator"));
+				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
+				break;
+			case TupleCompareRule:
+				context.setOperator((Operator) this.currentProperties.get("Operator"));
+				// TODO Add Column 2
+				break;
+			case TupleOtherRule:
+				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
+				// TODO Add Column 2
+				break;
+			case InterEntityCompareRule:
+				// TODO Add Table 2
+				// TODO Add Column 2
+				context.setOperator((Operator) this.currentProperties.get("Operator"));
+				break;
+			case EntityOtherRule:
+				// TODO Add Table 2
+				// TODO Add Column 2
+				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
+				break;
+			case ModifyRule:
+				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
+				break;
+		}
+		ManageRuleFacade.saveBusinessRule(context);
 	}
 	
 	private void clearOptions() {
