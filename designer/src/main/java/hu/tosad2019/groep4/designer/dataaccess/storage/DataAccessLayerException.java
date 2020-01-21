@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator.dataaccess.hibernate;
+package hu.tosad2019.groep4.designer.dataaccess.storage;
 
 public class DataAccessLayerException extends RuntimeException {
     public DataAccessLayerException() {}

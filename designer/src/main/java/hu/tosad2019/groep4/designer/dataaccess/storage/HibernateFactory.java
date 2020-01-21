@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.designer.dataaccess.hibernate;
+package hu.tosad2019.groep4.designer.dataaccess.storage;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
