@@ -125,7 +125,7 @@ public class DefineRule {
         properties.put("Description", "string");
 
         properties.put("Table", "string");
-        properties.put("Column 1", "string");
+        properties.put("Column", "string");
         properties.put("Operator", "operator");
         properties.put("Column 2", "string");
 
@@ -141,7 +141,7 @@ public class DefineRule {
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("Operator", "string");
-        properties.put("Column", "string");
+        properties.put("Column 2", "string");
 
         return properties;
     }
@@ -154,12 +154,9 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Between", "boolean");
-        properties.put("Table", "string");
-        properties.put("Column", "string");
+        properties.put("Table 2", "string");
+        properties.put("Column 2", "string");
         properties.put("Operator", "string");
-        properties.put("Min. value", "string");
-        properties.put("Max. value", "string");
 
         return properties;
     }
@@ -173,7 +170,7 @@ public class DefineRule {
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("Operator", "string");
-        properties.put("Column", "comobox");
+        properties.put("Column 2", "comobox");
         properties.put("SQL statement", "string");
 
         return properties;

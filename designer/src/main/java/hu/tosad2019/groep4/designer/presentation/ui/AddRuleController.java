@@ -102,15 +102,14 @@ public class AddRuleController {
 	
 	// TODO place this elsewhere?
 	private void saveRule() {
-		System.out.println("Saving..");
 		BusinessRuleType type = this.cb_ruletype.getSelectionModel().getSelectedItem();
+		System.out.println("Saving " + type.label + "..");
 		BusinessRuleContext context = new BusinessRuleContext(type);
 		
 		context.setName((String) this.currentProperties.get("Name"));
 		context.setDescription((String) this.currentProperties.get("Description"));
 		context.setTable((String) this.currentProperties.get("Table"));
-		// TODO Add Column
-//		context.setColumn(this.currentProperties.get("Column"));
+		context.setColumn((String) this.currentProperties.get("Column"));
 		switch(type) {
 			case AttributeCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));		
@@ -132,20 +131,20 @@ public class AddRuleController {
 				break;
 			case TupleCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
-				// TODO Add Column 2
+				context.setSecondaryColumn((String) this.currentProperties.get("Column"));
 				break;
 			case TupleOtherRule:
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
-				// TODO Add Column 2
+				context.setSecondaryColumn((String) this.currentProperties.get("Column"));
 				break;
 			case InterEntityCompareRule:
-				// TODO Add Table 2
-				// TODO Add Column 2
+				context.setSecondaryTable((String) this.currentProperties.get("Table 2"));
+				context.setSecondaryColumn((String) this.currentProperties.get("Column 2"));
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
 				break;
 			case EntityOtherRule:
-				// TODO Add Table 2
-				// TODO Add Column 2
+				context.setSecondaryTable((String) this.currentProperties.get("Table 2"));
+				context.setSecondaryColumn((String) this.currentProperties.get("Column 2"));
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
 				break;
 			case ModifyRule:
