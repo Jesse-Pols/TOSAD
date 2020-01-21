@@ -36,11 +36,11 @@ public class AddRuleLoader {
 					CheckBox cbs = new CheckBox();
 					result.put(name, cbs);
 					break;
-				case "combobox":
-					ComboBox combo = new ComboBox();
-
+				case "operator":
+					ComboBox<Operator> combo = new ComboBox<Operator>();
+					combo.setStyle("-fx-font: 14px \"monospace\";");
 					for(Operator t : Operator.values()) {
-						combo.getItems().add(t.label);
+						combo.getItems().add(t);
 					}
 
 					result.put(name, combo);
