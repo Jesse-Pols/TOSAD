@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleFactory;
-import hu.tosad2019.groep4.designer.application.domain.processing.ObjectService;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class DefineRule {
@@ -48,9 +48,9 @@ public class DefineRule {
 
         BusinessRuleFactory factory = new BusinessRuleFactory(type, properties);
 
-        ObjectService objectService = new ObjectService();
+        BusinessRuleService businessRuleService = new BusinessRuleService();
 
-        return  objectService.saveBusinessRule();
+        return  businessRuleService.saveBusinessRule(factory.makeBusinessRule());
     }
 
     public static Map<String, String> getProperties(String BusinessRuleType){

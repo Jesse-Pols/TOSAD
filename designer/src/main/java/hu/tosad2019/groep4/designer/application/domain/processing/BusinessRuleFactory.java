@@ -1,4 +1,5 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import java.util.Map;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
@@ -21,10 +22,8 @@ public class BusinessRuleFactory {
         this.attributes = attributes;
     }
 
-    public void MakeBusinessRule(){
-
-        /*
-        IBusinessRule rule = null;
+    public BusinessRule makeBusinessRule(){
+        BusinessRule rule = null;
 
         switch (this.type){
             case AttributeCompareRule:
@@ -41,7 +40,6 @@ public class BusinessRuleFactory {
 
         return rule;
 
-         */
     }
 
     private AttributeCompareRule createAttributeCompareRule(Map<String, String> attributes){
