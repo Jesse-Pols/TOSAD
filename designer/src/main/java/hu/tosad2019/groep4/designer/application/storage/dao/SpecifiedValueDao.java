@@ -2,8 +2,8 @@ package hu.tosad2019.groep4.designer.application.storage.dao;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.ISpecifiedValueDao;
 import hu.tosad2019.groep4.designer.application.storage.objects.SpecifiedValueModel;
-import hu.tosad2019.groep4.designer.dataaccess.hibernate.AbstractDao;
-import hu.tosad2019.groep4.designer.dataaccess.hibernate.DataAccessLayerException;
+import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
+import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 
 public class SpecifiedValueDao extends AbstractDao implements ISpecifiedValueDao {
     public SpecifiedValueDao() {}

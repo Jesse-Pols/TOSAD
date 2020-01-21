@@ -15,6 +15,7 @@ public class BusinessRuleModel {
 
     private String name;
     private String description;
+    private String failure;
     private int type_id;
     private int dbcolumn_id;
     private int specifiedvalue_id;
@@ -45,15 +46,4 @@ public class BusinessRuleModel {
         BusinessRuleTypeDao brtDao = new BusinessRuleTypeDao();
         return brtDao.find(this.type_id);
     }
-
-    /*
-    public String getName() {
-        return this.name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-     */
 }

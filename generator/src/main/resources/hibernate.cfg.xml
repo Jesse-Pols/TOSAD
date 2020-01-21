@@ -18,7 +18,6 @@
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.BusinessRuleCategoryModel"/>
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.BusinessRuleTypeModel"/>
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.DbColumnModel"/>
-        <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.FailureModel"/>
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.SpecifiedValueModel"/>
     </session-factory>
 </hibernate-configuration>

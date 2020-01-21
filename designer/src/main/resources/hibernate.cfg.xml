@@ -15,6 +15,5 @@
         <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRuleCategory"/>
         <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.BusinessRuleType"/>
         <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.DbColumn"/>
-        <mapping class="hu.tosad2019.groep4.generator.dataaccess.objects.dataaccesobjects.Failure"/>
     </session-factory>
 </hibernate-configuration>

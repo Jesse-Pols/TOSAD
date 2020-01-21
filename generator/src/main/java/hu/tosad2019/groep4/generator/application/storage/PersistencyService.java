@@ -8,6 +8,8 @@ import hu.tosad2019.groep4.generator.domain.objects.processed.Column;
 import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.application.storage.dao.BusinessRuleDao;
 import hu.tosad2019.groep4.generator.application.storage.interfaces.IBusinessRuleDao;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRule;
+import hu.tosad2019.groep4.generator.domain.objects.processed.businessrule.attributecomparerule.AttributeCompareRuleContext;
 
 import java.util.List;
 
@@ -33,6 +35,11 @@ public class PersistencyService implements IPersistencyService{
 
 
         BusinessRule businessRule = null;
+
+        if (businessRuleTypeModel.getName() == "attributecomparerule") {
+            AttributeCompareRuleContext context = new AttributeCompareRuleContext(null, false, null, null);
+            businessRule = new AttributeCompareRule(null, null, null, null);
+        }
 
 
 
