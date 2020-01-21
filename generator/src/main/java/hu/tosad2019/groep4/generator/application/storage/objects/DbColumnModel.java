@@ -1,7 +1,5 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
-import hu.tosad2019.groep4.generator.domain.objects.processed.Column;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,16 +11,13 @@ public class DbColumnModel {
 
     private String column_name;
     private String table_name;
+    private int rule_id;
 
-    public DbColumnModel(String column_name, String table_name) {
+    public DbColumnModel(String column_name, String table_name, int rule_id) {
         this.column_name = column_name;
         this.table_name = table_name;
+        this.rule_id = rule_id;
     }
 
     public DbColumnModel() {}
-
-    public Column getColumn() {
-        return new Column(this.table_name, this.column_name);
-    }
-
 }
