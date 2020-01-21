@@ -11,6 +11,9 @@ public class BusinessRuleContext {
     private String name;
     private String description;
     private String table;
+    private String column;
+    private String secondaryTable;
+    private String secondaryColumn;
     private Operator operator;
     private String specifiedValue;
     private String specifiedValueType;
@@ -25,10 +28,12 @@ public class BusinessRuleContext {
     }
     
     public BusinessRuleType getType() { return type; }
-
 	public String getName() { return name; }
 	public String getDescription() { return description; }
 	public String getTable() { return table; }
+    public String getColumn() {return column; }
+    public String getSecondaryTable() { return secondaryTable; }
+    public String getSecondaryColumn() { return secondaryColumn; }
 	public Operator getOperator() { return operator; }
 	public String getSpecifiedValue() { return specifiedValue; }
 	public String getSpecifiedValueType() { return specifiedValueType; }
@@ -42,6 +47,9 @@ public class BusinessRuleContext {
     public void setName(String name) { this.name = name; }
     public void setDescription(String description) { this.description = description; }
     public void setTable(String table) { this.table = table; }
+    public void setColumn(String column) {this.column = column; }
+    public void setSecondaryTable(String secondaryTable) { this.secondaryTable = secondaryTable; }
+    public void setSecondaryColumn(String secondaryColumn) { this.secondaryColumn = secondaryColumn; }
     public void setOperator(Operator operator) { this.operator = operator; }
     public void setSpecifiedValue(String specifiedValue) { this.specifiedValue = specifiedValue; }
     public void setSpecifiedValueType(String specifiedValueType) { this.specifiedValueType = specifiedValueType;}
@@ -51,7 +59,5 @@ public class BusinessRuleContext {
     public void setSqlQuery(String sqlQuery) { this.sqlQuery = sqlQuery; }
     public void setRange_between(boolean range_between) { this.range_between = range_between; }
 
-    public String toString() {
-    	return "BusinessRuleContext of type " + this.type;
-    }
+    public String toString() { return "BusinessRuleContext of type " + this.type; }
 }
