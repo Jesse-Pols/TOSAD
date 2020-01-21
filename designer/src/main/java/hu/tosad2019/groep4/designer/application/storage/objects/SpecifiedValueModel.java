@@ -9,12 +9,16 @@ public class SpecifiedValueModel {
     @Id
     private int id;
 
-    private String column1;
-    private String column2;
+    private String value;
+    private String type;
+    private int rule_id;
+    private int list_id;
 
-    public SpecifiedValueModel(String column1, String column2) {
-        this.column1 = column1;
-        this.column2 = column2;
+    public SpecifiedValueModel(String value, String type, int rule_id, int list_id) {
+        this.value = value;
+        this.type = type;
+        this.rule_id = rule_id;
+        this.list_id = list_id;
     }
 
     public SpecifiedValueModel() {}

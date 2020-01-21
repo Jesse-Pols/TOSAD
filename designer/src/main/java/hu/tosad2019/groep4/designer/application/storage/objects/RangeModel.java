@@ -9,16 +9,18 @@ public class RangeModel {
     @Id
     private int id;
 
-    private int min;
-    private int max;
-    private int column1;
-    private int column2;
+    private String min;
+    private String max;
+    private int min_value_operator;
+    private int max_value_operator;
+    private int rule_id;
 
-    public RangeModel(int min, int max, int column1, int column2) {
+    public RangeModel(String min, String max, int min_value_operator, int max_value_operator, int rule_id) {
         this.min = min;
         this.max = max;
-        this.column1 = column1;
-        this.column2 = column2;
+        this.min_value_operator = min_value_operator;
+        this.max_value_operator = max_value_operator;
+        this.rule_id = rule_id;
     }
 
     public RangeModel() {}
