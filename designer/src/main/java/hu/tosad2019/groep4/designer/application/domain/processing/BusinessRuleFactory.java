@@ -22,6 +22,15 @@ public class BusinessRuleFactory {
         this.attributes = attributes;
     }
 
+    private AttributeCompareRule createAttributeCompareRule(BusinessRuleContext context){
+        Column column = new Column(context.getTable(), context.getColumn());
+        SpecifiedValue specifiedValue = new SpecifiedValue(context.getSpecifiedValue());
+        AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, context.getOperator(), specifiedValue);
+
+        return new AttributeCompareRule(context.getName(), context.getDescription(), compareRuleContext);
+    }
+
+
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
 
@@ -52,7 +61,6 @@ public class BusinessRuleFactory {
                 attributes.containsKey(Attribute.operator.toString()) &&
                 attributes.containsKey(Attribute.specifiedvalue.toString())
         ){
-            String code = attributes.get(Attribute.code.toString());
             String name = attributes.get(Attribute.name.toString());
             String description = attributes.get(Attribute.description.toString());
 
@@ -71,7 +79,7 @@ public class BusinessRuleFactory {
 
             AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, specifiedValue);
 
-            rule = new AttributeCompareRule(code, name, description, context);
+            rule = new AttributeCompareRule(name, description, context);
 
 
         }
@@ -124,7 +132,7 @@ public class BusinessRuleFactory {
 
             AttributeRangeRuleContext context = new AttributeRangeRuleContext(Boolean.parseBoolean(foreachRowString), Boolean.parseBoolean(notString), columnn, range);
 
-            rule = new AttributeRangeRule(code, name, description, context);
+            rule = new AttributeRangeRule(name, description, context);
         }
 
         return rule;
