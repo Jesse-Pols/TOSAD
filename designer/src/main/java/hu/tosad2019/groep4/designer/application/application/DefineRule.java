@@ -103,10 +103,9 @@ public class DefineRule {
         properties.put("Name", "string");
         properties.put("Description", "string");
 
-        properties.put("Between", "combobox");
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Operator", "combobox");
+        properties.put("Operator", "operator");
         properties.put("Specified value", "string");
 
 
@@ -139,7 +138,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Operator", "combobox");
+        properties.put("Operator", "operator");
         properties.put("Value", "string");
 
         return properties;
@@ -168,7 +167,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Between", "boolean");
+        properties.put("Operator", "operator");
         properties.put("For each row", "boolean");
         properties.put("Min. value", "string");
         properties.put("Max. value", "string");
@@ -186,7 +185,7 @@ public class DefineRule {
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("Operator", "string");
-        properties.put("Column", "comobbox");
+        properties.put("Column", "string");
 
         return properties;
     }
