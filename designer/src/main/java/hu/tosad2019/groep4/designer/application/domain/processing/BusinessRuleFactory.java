@@ -1,5 +1,4 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
-import hu.tosad2019.groep4.designer.application.storage.objects.domainobjects.IBusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.Range;

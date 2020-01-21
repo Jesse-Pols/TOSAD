@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 import java.util.HashMap;
@@ -9,9 +10,8 @@ public class ObjectService {
         //return new BusinessRuleFactory(type, attributes).MakeBusinessRule();
     }
 
-    public boolean saveBusinessRule(){
-
+    public boolean saveBusinessRule(BusinessRule rule){
         return true;
-
     }
+
 }
