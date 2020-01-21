@@ -4,16 +4,20 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class AddRuleLoader {
 
     static Map<String, Node> loadUICompoent(String businessRule) {
+
     	Map<String, Node> result = new LinkedHashMap<String, Node>();
     	
     	ManageRuleFacade mrf = new ManageRuleFacade();
+
     	Map<String, String> properties = mrf.getProperties(businessRule.replace(" ", ""));
     	if(properties == null) {
     		System.err.println("Nothing");
@@ -29,9 +33,18 @@ public class AddRuleLoader {
     				result.put(name, tf);
     				break;
     			case "boolean":
-    				CheckBox cbs = new CheckBox();
-    				result.put(name, cbs);
-    				break;
+					CheckBox cbs = new CheckBox();
+					result.put(name, cbs);
+					break;
+				case "combobox":
+					ComboBox combo = new ComboBox();
+
+					for(Operator t : Operator.values()) {
+						combo.getItems().add(t.label);
+					}
+
+					result.put(name, combo);
+					break;
     		}
     	}
     	

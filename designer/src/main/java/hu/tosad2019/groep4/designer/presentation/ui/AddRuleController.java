@@ -47,6 +47,7 @@ public class AddRuleController {
 			lbl.setMinWidth(70);
 			lbl.setPadding(new Insets(5,0,0,0));
 			Node node = options.get(key);
+
 			HBox box = new HBox();
 			box.setSpacing(10);
 			box.getChildren().addAll(lbl, node);
@@ -58,18 +59,21 @@ public class AddRuleController {
 	@FXML private void btn_save_onclick() {
 
 		for (Node node : vbox_define_selection.getChildren()) {
+
 			if (!(node instanceof HBox)) continue;
+
 			HBox hbox = (HBox) node;
 
 			Node input = hbox.getChildren().get(1);
 			Node label = hbox.getChildren().get(0);
-			System.out.println(input);
+
 			if (input instanceof TextField) {
 
 				Label propertyNameLabel = (Label) label;
 				String propertyName = propertyNameLabel.getText();
 
 				this.currentProperties.put(propertyName, ((TextField) input).getText());
+				System.out.println("saved data");
 
 			} else if (input instanceof CheckBox) {
 				Label propertyNameLabel = (Label) label;
@@ -79,13 +83,25 @@ public class AddRuleController {
 				String isSelected = String.valueOf(checkbox);
 
 				this.currentProperties.put(propertyName, isSelected);
+				System.out.println("saved data");
+			} else if (input instanceof ComboBox) {
+				Label propertyNameLabel = (Label) label;
+				String propertyName = propertyNameLabel.getText();
+
+				ComboBox comboBox = (ComboBox) input;
+				String isSelected = comboBox.getSelectionModel().getSelectedItem().toString();
+
+				this.currentProperties.put(propertyName, isSelected);
+				System.out.println("saved data");
 			}
 
 			System.out.println(this.currentProperties.size());
 			System.out.println("SAVE");
 		}
 
-		manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
+		if(!(currentProperties.isEmpty())) {
+			manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
+		}
 	}
 	
 	private void clearOptions() {
