@@ -37,5 +37,9 @@ public class AddRuleWindow {
 		}
 	}
 	
+	void close() {
+		this.stage.close();
+	}
+	
 	
 }

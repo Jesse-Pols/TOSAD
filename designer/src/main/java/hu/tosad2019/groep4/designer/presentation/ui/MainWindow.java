@@ -32,6 +32,9 @@ public class MainWindow {
 			this.stage.setWidth(700);
 			this.stage.setHeight(500);
 			this.stage.show();
+			this.stage.setOnCloseRequest(event -> {
+				WindowManager.getInstance().closeall();
+			});
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
