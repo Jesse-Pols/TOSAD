@@ -1,6 +1,6 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
-import hu.tosad2019.groep4.designer.application.storage.objects.domainobjects.IBusinessRule;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import java.util.Map;
+
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
@@ -9,9 +9,8 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attr
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.*;
-
-import java.util.Map;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.Attribute;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleFactory {
     private BusinessRuleType type;

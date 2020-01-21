@@ -19,6 +19,4 @@ public class ManageRuleFacade {
         return DefineRule.getProperties(businessRuleType);
     }
 
-
-
 }
