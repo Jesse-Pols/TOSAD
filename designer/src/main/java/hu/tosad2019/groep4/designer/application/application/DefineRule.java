@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import oracle.net.aso.f;
 
 public class DefineRule {
     public static boolean saveBusinessRule(BusinessRuleContext context) {
@@ -41,7 +42,7 @@ public class DefineRule {
             case "TupleOtherRule":
                 properties = getTupleOtherRuleProperties();
                 break;
-            case "Inter-EntityComparerule":
+            case "InterEntityCompareRule":
                 properties = getInterEntityCompareRuleProperties();
                 break;
             case "EntityOtherRule":
@@ -85,7 +86,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Between", "boolean");
+        properties.put("Operator", "operator");
         properties.put("Value", "string");
 
         return properties;
@@ -113,7 +114,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("SQL statement", "string");
+        properties.put("SQL statement", "stringarea");
 
         return properties;
     }
@@ -140,7 +141,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Operator", "string");
+        properties.put("Operator", "operator");
         properties.put("Column 2", "string");
 
         return properties;
@@ -154,9 +155,9 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
+        properties.put("Operator", "operator");
         properties.put("Table 2", "string");
         properties.put("Column 2", "string");
-        properties.put("Operator", "string");
 
         return properties;
     }
@@ -169,9 +170,9 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Operator", "string");
+        properties.put("Table 2", "string");
         properties.put("Column 2", "comobox");
-        properties.put("SQL statement", "string");
+        properties.put("SQL statement", "stringarea");
 
         return properties;
     }
@@ -184,7 +185,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("SQL statement", "string");
+        properties.put("SQL statement", "stringarea");
 
         return properties;
     }

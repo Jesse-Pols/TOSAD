@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class MainWindow {
+public class  MainWindow {
 
 	private Stage stage;
 	MainController controller;
@@ -27,11 +27,16 @@ public class MainWindow {
 			Pane root = loader.load();
 			this.controller = (MainController) loader.getController();
 			Scene scene = new Scene(root, 1280, 720);
+			scene.getStylesheets().add("/application.css");
 			this.stage = new Stage();
 			this.stage.setScene(scene);
 			this.stage.setWidth(700);
 			this.stage.setHeight(500);
+			this.stage.setTitle("BusinessRuleGenerator");
 			this.stage.show();
+			this.stage.setOnCloseRequest(event -> {
+				WindowManager.getInstance().closeall();
+			});
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,12 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.entityotherrule.EntityOtherRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.modifyrule.ModifyRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tupleotherrule.TupleOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import java.util.Map;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
@@ -14,127 +21,121 @@ import hu.tosad2019.groep4.designer.application.domain.processing.enums.Attribut
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleFactory {
+    private BusinessRuleContext ruleContext;
     private BusinessRuleType type;
     private Map<String, String> attributes;
 
-    public BusinessRuleFactory(BusinessRuleType type, Map<String,String> attributes){
-        this.type = type;
-        this.attributes = attributes;
+    public BusinessRuleFactory(BusinessRuleContext ruleContext){
+        this.ruleContext = ruleContext;
     }
-
-    private AttributeCompareRule createAttributeCompareRule(BusinessRuleContext context){
-        Column column = new Column(context.getTable(), context.getColumn());
-        SpecifiedValue specifiedValue = new SpecifiedValue(context.getSpecifiedValue());
-        AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, context.getOperator(), specifiedValue);
-
-        return new AttributeCompareRule(context.getName(), context.getDescription(), compareRuleContext);
-    }
-
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
 
         switch (this.type){
             case AttributeCompareRule:
-                rule = createAttributeCompareRule(attributes);
+                rule = this.createAttributeCompareRule();
                 break;
             case AttributeRangeRule:
-                rule = createAttributeRangeRule(attributes);
+                rule = createAttributeRangeRule();
                 break;
+            case AttributeListRule:
+                rule = createAttributeListRule();
+                break;
+            case EntityOtherRule:
+                rule = createEntityOtherRule();
+                break;
+            case InterEntityCompareRule:
+                rule = createInterEntityCompareRule();
+                break;
+            case ModifyRule:
+                rule = createModifyRule();
+                break;
+            case TupleCompareRule:
+                rule = createTupleCompareRule();
+                break;
+            case TupleOtherRule:
+                rule = createTupleOtherRule();
             default:
                 System.out.println(this.type + " != iets");
                 break;
         }
 
-
-        return rule;
-
-    }
-
-    private AttributeCompareRule createAttributeCompareRule(Map<String, String> attributes){
-        AttributeCompareRule rule = null;
-        if (
-                this.containsBasicAttributes(attributes) &&
-                attributes.containsKey(Attribute.not.toString()) &&
-                attributes.containsKey(Attribute.table.toString()) &&
-                attributes.containsKey(Attribute.column.toString()) &&
-                attributes.containsKey(Attribute.operator.toString()) &&
-                attributes.containsKey(Attribute.specifiedvalue.toString())
-        ){
-            String name = attributes.get(Attribute.name.toString());
-            String description = attributes.get(Attribute.description.toString());
-
-            String notString = attributes.get(Attribute.not.toString());
-            String columnName = attributes.get(Attribute.column.toString());
-            String tableName = attributes.get(Attribute.table.toString());
-            String operatorString = attributes.get(Attribute.operator.toString());
-            String specifiedValueString = attributes.get(Attribute.specifiedvalue.toString());
-
-
-
-            boolean not = Boolean.parseBoolean(notString);
-            Column column = new Column(tableName, columnName);
-            Operator operator = Operator.valueOf(operatorString);
-            SpecifiedValue specifiedValue = new SpecifiedValue(specifiedValueString);
-
-            AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, specifiedValue);
-
-            rule = new AttributeCompareRule(name, description, context);
-
-
-        }
         return rule;
     }
 
-    private boolean containsBasicAttributes(Map<String, String> attributes){
-        if (
-                attributes.containsKey(Attribute.code.toString()) &&
-                attributes.containsKey(Attribute.name.toString()) &&
-                attributes.containsKey(Attribute.description.toString())
-        ){
-            return true;
-        }
-        return false;
+
+    private AttributeCompareRule createAttributeCompareRule(){
+        Column column = new Column(ruleContext.getTable(), ruleContext.getColumn());
+        SpecifiedValue specifiedValue = new SpecifiedValue(ruleContext.getSpecifiedValue());
+        AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, ruleContext.getOperator(), specifiedValue);
+
+        return new AttributeCompareRule(ruleContext.getName(), ruleContext.getDescription(), compareRuleContext);
     }
 
-    private AttributeRangeRule createAttributeRangeRule(Map<String, String> attributes){
-        AttributeRangeRule rule = null;
-        if (
-                this.containsBasicAttributes(attributes) &&
-                attributes.containsKey(Attribute.table.toString()) &&
-                attributes.containsKey(Attribute.column.toString()) &&
-                attributes.containsKey(Attribute.not.toString()) &&
-                attributes.containsKey(Attribute.foreachrow.toString()) &&
-                attributes.containsKey(Attribute.minvalue.toString()) &&
-                attributes.containsKey(Attribute.maxvalue.toString()) &&
-                attributes.containsKey(Attribute.minvalueoperator.toString()) &&
-                attributes.containsKey(Attribute.maxvalueoperator.toString())
-        ){
-            String code = attributes.get(Attribute.code.toString());
-            String name = attributes.get(Attribute.name.toString());
-            String description = attributes.get(Attribute.description.toString());
 
-            String notString = attributes.get(Attribute.not.toString());
-            String foreachRowString = attributes.get(Attribute.foreachrow.toString());
-            String columnName = attributes.get(Attribute.column.toString());
-            String tableName = attributes.get(Attribute.table.toString());
-            String minValueString = attributes.get(Attribute.minvalue.toString());
-            String maxValueString = attributes.get(Attribute.minvalue.toString());
-            String minValueOperatorString = attributes.get(Attribute.minvalueoperator.toString());
-            String maxValueOperatorString = attributes.get(Attribute.maxvalueoperator.toString());
+    private AttributeRangeRule createAttributeRangeRule(){
+        Column column = new Column(ruleContext.getTable(), ruleContext.getColumn());
 
+        Operator operator = ruleContext.getOperator();
+        Operator minValueOperator = null;
+        Operator maxValueOperator = null;
 
-            Column columnn = new Column(tableName, columnName);
+        int minValue;
+        int maxValue;
 
-            Operator minvalueOperator = Operator.valueOf(minValueOperatorString);
-            Operator maxValueOperator = Operator.valueOf(maxValueOperatorString);
-            Range range = new Range(Integer.parseInt(minValueString), Integer.parseInt(maxValueString), minvalueOperator, maxValueOperator);
-
-            AttributeRangeRuleContext context = new AttributeRangeRuleContext(Boolean.parseBoolean(foreachRowString), Boolean.parseBoolean(notString), columnn, range);
-
-            rule = new AttributeRangeRule(name, description, context);
+        try{
+            minValue = Integer.parseInt(ruleContext.getRange_minValue());
+            maxValue = Integer.parseInt(ruleContext.getRange_maxValue());
+        }
+        catch(Exception e){
+            System.out.println("cannot parse range values");
+            return null;
         }
 
-        return rule;
+
+
+        if (operator == Operator.NOTBETWEEN){
+            minValueOperator = Operator.LESSTHEN;
+            maxValueOperator = Operator.GREATERTHAN;
+        }
+        else if(operator == Operator.BETWEEN){
+            minValueOperator = Operator.GREATERTHAN;
+            maxValueOperator = Operator.LESSTHEN;
+        }
+
+        Range range = new Range(minValue, maxValue, minValueOperator, maxValueOperator);
+
+        AttributeRangeRuleContext attributeRangeRuleContext = new AttributeRangeRuleContext(true, false, column, range);
+
+        return new AttributeRangeRule(ruleContext.getName(), ruleContext.getDescription(), attributeRangeRuleContext);
+    }
+
+    private AttributeListRule createAttributeListRule(){
+        return null;
+    }
+
+    private AttributeOtherRule createAttributeOtherRule(){
+        return null;
+    }
+
+    private EntityOtherRule createEntityOtherRule(){
+        return null;
+    }
+
+    private InterEntityCompareRule createInterEntityCompareRule(){
+        return null;
+    }
+
+    private ModifyRule createModifyRule(){
+        return null;
+    }
+
+    private TupleCompareRule createTupleCompareRule(){
+        return null;
+    }
+
+    private TupleOtherRule createTupleOtherRule(){
+        return null;
     }
 }
