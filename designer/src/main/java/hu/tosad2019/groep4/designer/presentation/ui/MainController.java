@@ -1,22 +1,28 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
@@ -31,9 +37,8 @@ public class MainController {
 	@FXML private TextField txt_generate_host;
 	@FXML private TextField txt_generate_port;
 	@FXML private Button btn_generate_connect;
-	@FXML private Button btn_generate_run;
 	
-	private Map<String, String> tableitems = new HashMap<>();
+	private ObservableList<Map.Entry<String, String>> tableitems = FXCollections.observableArrayList();
 	
 	@FXML private void initialize() {
 		cb_generate_protocol.getItems().addAll("http://", "https://");
@@ -42,12 +47,13 @@ public class MainController {
 		
 //		Table
 		// sample data 
-        this.tableitems.put("businessrule_1", "AttributeRangeRule");
-        this.tableitems.put("businessrule_2", "AttributeCompareRule");
-        this.tableitems.put("businessrule_3", "AttributeRangeRule");
+        this.tableitems.add(Map.entry("businessrule_1", "AttributeRangeRule"));
+        this.tableitems.add(Map.entry("businessrule_2", "AttributeCompareRule"));
+        this.tableitems.add(Map.entry("businessrule_3", "AttributeRangeRule"));
+        this.tableitems.add(Map.entry("businessrule_3", "AttributeRangeRule"));
 
         this.setupTable();
-		
+        this.setupContextMenu();
 	}
 	
 	@FXML 
@@ -74,8 +80,50 @@ public class MainController {
         });
         this.tbl_businessrules.getColumns().add(column_name);
         this.tbl_businessrules.getColumns().add(column_type);
-        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(this.tableitems.entrySet());
-        this.tbl_businessrules.getItems().addAll(items);
+        this.tbl_businessrules.setItems(this.tableitems);
+	}
+	
+	private void setupContextMenu() {
+		// Create ContextMenu
+		ContextMenu contextMenu = new ContextMenu();
+
+		MenuItem item1 = new MenuItem("Remove");
+		item1.setOnAction(new EventHandler < ActionEvent > () {
+
+		    @Override
+		    public void handle(ActionEvent event) {
+		    	if(sendConfimation("Remove rule", "Are you sure you want to remove rule ..?")) {
+		    		tableitems.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
+		    	}
+		        
+		    }
+		});
+		MenuItem item2 = new MenuItem("Generate");
+		item2.setOnAction(new EventHandler < ActionEvent > () {
+
+		    @Override
+		    public void handle(ActionEvent event) {
+		    	String name = tbl_businessrules.getSelectionModel().getSelectedItem().getKey();
+		    	try {
+		    		generateBusinessRule(name);
+				} catch (Exception e) {
+					sendError(e.getMessage());
+				}
+		    }
+		});
+
+		// Add MenuItem to ContextMenu
+		contextMenu.getItems().addAll(item1, item2);
+
+		// When user right-click on Circle
+		tbl_businessrules.setOnContextMenuRequested(new EventHandler < ContextMenuEvent > () {
+
+		    @Override
+		    public void handle(ContextMenuEvent event) {
+		    	Map.Entry<String, String> selectedItem = tbl_businessrules.getSelectionModel().getSelectedItem();
+		    	if(selectedItem != null) contextMenu.show(tbl_businessrules, event.getScreenX(), event.getScreenY());
+		    }
+		});
 	}
 	
 	@FXML
@@ -101,21 +149,22 @@ public class MainController {
 		}
 	}
 	
-	@FXML
-	private void btn_generate_run_onclick() {
-		try {
-			this.generateBusinessRule(5);
-		} catch (Exception e) {
-			this.sendError(e.getMessage());
-		}
-	}
-	
 	public void sendError(String message) {
 		Alert alert = new Alert(AlertType.ERROR);
 	    alert.setTitle("Connection error");
 	    alert.setHeaderText(null);
 		if(message != null) alert.setContentText("Error: " + message);
 	    alert.showAndWait();
+	}
+	public boolean sendConfimation(String title, String body) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+	    alert.setTitle(title);
+	    alert.setHeaderText(null);
+		alert.setContentText(body);
+//	    alert.showAndWait();
+	    Optional<ButtonType> result = alert.showAndWait();
+	    if (result.get() == ButtonType.OK) return true;
+	    return false;
 	}
 	private void setDatabaseConnectionStatus(boolean status) {
 		if(status) {
@@ -136,7 +185,7 @@ public class MainController {
 		}
 	}
 	
-	public void generateBusinessRule(int id) throws Exception {
+	private void generateBusinessRule(String id) throws Exception {
 		MainFacade.generateBusinessRule(id);
 	}
 }

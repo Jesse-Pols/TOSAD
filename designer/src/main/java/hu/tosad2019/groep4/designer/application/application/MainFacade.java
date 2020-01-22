@@ -14,7 +14,7 @@ public class MainFacade {
 		return MessagingService.connectToServer(protocol, host, port);
 	}
 	
-	public static boolean generateBusinessRule(int ruleId) throws Exception{
+	public static boolean generateBusinessRule(String ruleId) throws Exception{
 		CommandSender sender = new CommandSender();
 		return sender.executeCommand(new GenerateCommand(ruleId));
 	}
