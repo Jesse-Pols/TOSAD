@@ -2,8 +2,8 @@ package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.att
 
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BaseRule;
 
-public class AttributeListRule extends BaseRule {
-    public AttributeListRule(String name, String description) {
+public class AttributeOtherRule extends BaseRule {
+    public AttributeOtherRule(String name, String description) {
         super(name, description);
     }
 }
