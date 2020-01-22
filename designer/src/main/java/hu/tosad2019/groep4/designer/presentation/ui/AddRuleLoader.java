@@ -8,6 +8,7 @@ import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AddRuleLoader {
@@ -45,6 +46,11 @@ public class AddRuleLoader {
 
 					result.put(name, combo);
 					break;
+    			case "stringarea":
+    				TextArea ta = new TextArea();
+    				ta.setPromptText(name + "..");
+    				result.put(name, ta);
+    				break;
     		}
     	}
     	
