@@ -2,57 +2,65 @@ package hu.tosad2019.groep4.designer.application.storage;
 
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
 import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
 import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.DbColumnModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
 import java.util.List;
 
 public class PersistencyService implements IPersistencyService {
+
+    BusinessRuleDao businessRuleDao = new BusinessRuleDao();
+    DbColumnDao dbColumnDao = new DbColumnDao();
+    BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
+
+
     public BusinessRuleContext getBusinessRuleById(int id) {
-
-        // DAO
-        BusinessRuleDao brDao = new BusinessRuleDao();
-        DbColumnDao dcDao = new DbColumnDao();
-
-        // Models
-        BusinessRuleModel businessRuleModel = brDao.find(id);
-        BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getType();
-        List<DbColumnModel> dbColumns = dcDao.findByRuleId(id);
-
-        // Context
-        BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
-
-        context.setName(businessRuleModel.getName());
-        context.setDescription(businessRuleModel.getDescription());
-
-        for (DbColumnModel column : dbColumns) {
-            if (column.getPosition() == 0) {
-                context.setFirstColumn(column.getColumn_name());
-                context.setFirstTable(column.getTable_name());
-                break;
-            }
-        }
-
-        // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
-
-
-
-        return context;
+        return this.convertIdToContext(id);
     }
 
     public List<BusinessRuleContext> getAllBusinessRules() {
-        return null;
+        List<BusinessRuleModel> businessRuleModels = businessRuleDao.findAll();
+        List<BusinessRuleContext> businessRuleContexts = null;
+        for (BusinessRuleModel businessRule : businessRuleModels) {
+            businessRuleContexts.add(convertIdToContext(businessRule.getId()));
+        }
+
+        return businessRuleContexts;
     }
 
-    public List<BusinessRuleContext> findBusinessRuleByName() {
-        return null;
+    public List<BusinessRuleContext> findBusinessRuleByName(String name) {
+        List<BusinessRuleModel> businessRuleModels = businessRuleDao.findAllByName(name);
+        List<BusinessRuleContext> businessRuleContexts = null;
+        for (BusinessRuleModel businessRule : businessRuleModels) {
+            businessRuleContexts.add(convertIdToContext(businessRule.getId()));
+        }
+
+        return businessRuleContexts;
     }
 
     // Insert if new update if exists
-    public boolean saveBusinessRule(BusinessRuleContext businessRuleContext){
+    public boolean saveBusinessRule(BusinessRuleContext context){
+
+        businessRuleCategoryDao.find(1);
+
+        BusinessRuleCategoryModel categoryModel = new BusinessRuleCategoryModel(null);
+
+
+        // TODO type_id? is_not?
+        BusinessRuleModel businessRuleModel = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), 0,0);
+
+        BusinessRuleTypeModel typeModel = null;
+
+        DbColumnModel dbColumnModel = null;
+        ListModel list = null;
+        OperatorModel operatorModel = null;
+        RangeModel rangeModel = null;
+        SpecifiedValueModel specifiedValueModel = null;
+        StatementModel statementModel = null;
+        TemplateModel templateModel = null;
+
         return false;
     }
 
@@ -69,5 +77,29 @@ public class PersistencyService implements IPersistencyService {
             }
         }
         return null;
+    }
+
+    private BusinessRuleContext convertIdToContext(int id) {
+
+        BusinessRuleModel businessRuleModel = businessRuleDao.find(id);
+        BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getType();
+        List<DbColumnModel> dbColumns = dbColumnDao.findByRuleId(id);
+
+        BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
+        context.setName(businessRuleModel.getName());
+        context.setDescription(businessRuleModel.getDescription());
+        context.setFailure(businessRuleModel.getFailure());
+
+        for (DbColumnModel column : dbColumns) {
+            if (column.getPosition() == 0) {
+                context.setFirstColumn(column.getColumn_name());
+                context.setFirstTable(column.getTable_name());
+                break;
+            }
+        }
+
+        // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
+
+        return context;
     }
 }

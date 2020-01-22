@@ -40,4 +40,8 @@ public class BusinessRuleModel {
         return this.description;
     }
 
+    public int getId() { return this.id; }
+
+    public String getFailure() { return this.failure; }
+
 }
