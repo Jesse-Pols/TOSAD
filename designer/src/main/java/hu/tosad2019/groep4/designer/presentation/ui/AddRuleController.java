@@ -6,7 +6,7 @@ import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing._BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -108,7 +108,7 @@ public class AddRuleController {
 	private void saveRule() {
 		BusinessRuleType type = this.cb_ruletype.getSelectionModel().getSelectedItem();
 		System.out.println("Saving " + type.label + "..");
-		BusinessRuleContext context = new BusinessRuleContext(type);
+		_BusinessRuleContext context = new _BusinessRuleContext(type);
 		
 		context.setName((String) this.currentProperties.get("Name"));
 		context.setDescription((String) this.currentProperties.get("Description"));

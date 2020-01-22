@@ -6,13 +6,12 @@ import hu.tosad2019.groep4.designer.application.domain.processing.enums.Business
 import hu.tosad2019.groep4.designer.application.storage.PersistencyService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class BusinessRuleService {
     private PersistencyService persistencyService;
 
-    public void getBusinessRule(BusinessRuleContext context){
+    public void getBusinessRule(_BusinessRuleContext context){
         this.persistencyService = new PersistencyService();
 
         //return new BusinessRuleFactory(type, attributes).MakeBusinessRule();

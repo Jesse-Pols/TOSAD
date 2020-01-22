@@ -17,15 +17,13 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attr
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.Attribute;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleFactory {
-    private BusinessRuleContext ruleContext;
+    private _BusinessRuleContext ruleContext;
     private BusinessRuleType type;
     private Map<String, String> attributes;
 
-    public BusinessRuleFactory(BusinessRuleContext ruleContext){
+    public BusinessRuleFactory(_BusinessRuleContext ruleContext){
         this.ruleContext = ruleContext;
     }
 

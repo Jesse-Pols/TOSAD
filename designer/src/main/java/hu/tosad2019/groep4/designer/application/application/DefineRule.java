@@ -3,11 +3,10 @@ package hu.tosad2019.groep4.designer.application.application;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import oracle.net.aso.f;
+import hu.tosad2019.groep4.designer.application.domain.processing._BusinessRuleContext;
 
 public class DefineRule {
-    public static boolean saveBusinessRule(BusinessRuleContext context) {
+    public static boolean saveBusinessRule(_BusinessRuleContext context) {
         
     	System.out.println("[DefineRule] TODO: Saving rule of type " + context.getType());
     	

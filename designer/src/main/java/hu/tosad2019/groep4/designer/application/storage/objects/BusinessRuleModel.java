@@ -32,4 +32,12 @@ public class BusinessRuleModel {
         return brtDao.find(this.type_id);
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
 }
