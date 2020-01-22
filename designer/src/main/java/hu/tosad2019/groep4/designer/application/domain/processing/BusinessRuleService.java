@@ -5,6 +5,7 @@ import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import hu.tosad2019.groep4.designer.application.storage.PersistencyService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +27,28 @@ public class BusinessRuleService {
     }
 
     public List<Operator> getOperator(BusinessRuleType ruleType){
-        return null;
+        List<Operator> operators = new ArrayList<Operator>();
+
+        switch(ruleType){
+            case AttributeCompareRule:{
+                operators.add(Operator.EQUALS);
+                operators.add(Operator.NOTEQUALS);
+                operators.add(Operator.GREATERTHAN);
+                operators.add(Operator.GREATERTHENOREQUAL);
+                operators.add(Operator.LESSTHEN);
+                operators.add(Operator.LESSTHENOREQUAL);
+                break;
+            }
+            case AttributeRangeRule:{
+                operators.add(Operator.BETWEEN);
+                operators.add(Operator.NOTBETWEEN);
+                break;
+            }
+            default:
+                break;
+        }
+
+
+        return operators;
     }
 }

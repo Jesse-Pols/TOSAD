@@ -2,7 +2,7 @@ package hu.tosad2019.groep4.designer.application.application;
 
 import hu.tosad2019.groep4.designer.application.application.messaging.CommandSender;
 import hu.tosad2019.groep4.designer.application.application.messaging.GenerateCommand;
-import hu.tosad2019.groep4.designer.application.domain.processing.MessagingService;
+import hu.tosad2019.groep4.designer.application.application.messaging.MessagingService;
 
 public class MainFacade {
 	
