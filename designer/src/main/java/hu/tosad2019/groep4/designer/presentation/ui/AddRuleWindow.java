@@ -32,6 +32,9 @@ public class AddRuleWindow {
 			this.stage.setWidth(600);
 			this.stage.setHeight(450);
 			this.stage.setTitle("BusinessRuleGenerator: Add Rule");
+			this.stage.setOnCloseRequest(event -> {
+				this.close();
+			});
 			this.stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -40,6 +43,7 @@ public class AddRuleWindow {
 	
 	void close() {
 		this.stage.close();
+		this.active = false;
 	}
 	
 	

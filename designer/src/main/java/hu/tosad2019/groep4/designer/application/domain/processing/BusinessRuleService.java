@@ -13,11 +13,11 @@ public class BusinessRuleService {
 
     public void getBusinessRule(_BusinessRuleContext context){
         this.persistencyService = new PersistencyService();
-
         //return new BusinessRuleFactory(type, attributes).MakeBusinessRule();
     }
 
     public boolean saveBusinessRule(BusinessRule rule){
+
         return false;
     }
 
@@ -25,11 +25,24 @@ public class BusinessRuleService {
         return false;
     }
 
+    public List<BusinessRule> getAll(){
+        return new ArrayList<BusinessRule>();
+    }
+
+    public List<BusinessRule> findByName(String name){
+        return new ArrayList<BusinessRule>();
+    }
+
     public List<Operator> getOperator(BusinessRuleType ruleType){
         List<Operator> operators = new ArrayList<Operator>();
 
         switch(ruleType){
-            case AttributeCompareRule:{
+            case AttributeRangeRule:{
+                operators.add(Operator.BETWEEN);
+                operators.add(Operator.NOTBETWEEN);
+                break;
+            }
+            default:{
                 operators.add(Operator.EQUALS);
                 operators.add(Operator.NOTEQUALS);
                 operators.add(Operator.GREATERTHAN);
@@ -38,13 +51,6 @@ public class BusinessRuleService {
                 operators.add(Operator.LESSTHENOREQUAL);
                 break;
             }
-            case AttributeRangeRule:{
-                operators.add(Operator.BETWEEN);
-                operators.add(Operator.NOTBETWEEN);
-                break;
-            }
-            default:
-                break;
         }
 
 
