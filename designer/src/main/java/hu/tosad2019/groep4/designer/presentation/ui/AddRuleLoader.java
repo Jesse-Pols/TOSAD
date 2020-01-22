@@ -3,6 +3,7 @@ package hu.tosad2019.groep4.designer.presentation.ui;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import javafx.scene.Node;
@@ -19,7 +20,7 @@ public class AddRuleLoader {
     	
     	ManageRuleFacade mrf = new ManageRuleFacade();
 
-    	Map<String, String> properties = mrf.getProperties(businessRule.replace(" ", ""));
+    	Map<String, String> properties = MainFacade.getProperties(businessRule.replace(" ", ""));
     	if(properties == null) {
     		System.err.println("Nothing");
     		return result;
