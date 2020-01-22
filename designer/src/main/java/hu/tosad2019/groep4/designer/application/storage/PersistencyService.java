@@ -43,6 +43,23 @@ public class PersistencyService implements IPersistencyService {
         return context;
     }
 
+    public List<BusinessRuleContext> getAllBusinessRules() {
+        return null;
+    }
+
+    public List<BusinessRuleContext> findBusinessRuleByName() {
+        return null;
+    }
+
+    // Insert if new update if exists
+    public boolean saveBusinessRule(BusinessRuleContext businessRuleContext){
+        return false;
+    }
+
+    public boolean deleteBusinessRule(int id) {
+        return false;
+    }
+
     private BusinessRuleContext getCorrectType(String businessRuleType) {
         for (BusinessRuleType typeEnum : BusinessRuleType.values()) {
             String type = typeEnum.toString().replaceAll("\\s+", "");
