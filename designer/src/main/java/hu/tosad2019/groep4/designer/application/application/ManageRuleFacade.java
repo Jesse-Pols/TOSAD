@@ -7,18 +7,4 @@ import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleCo
 
 //          application component interface
 public class ManageRuleFacade {
-
-    //code, name
-    public static HashMap<String, String> getAllBusinessRules(){
-        return null;
-    }
-
-    public static boolean saveBusinessRule(BusinessRuleContext context) {
-        return DefineRule.saveBusinessRule(context);
-    }
-
-    public  Map<String, String> getProperties(String businessRuleType){
-        return DefineRule.getProperties(businessRuleType);
-    }
-
 }

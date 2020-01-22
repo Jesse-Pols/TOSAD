@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
@@ -155,7 +156,7 @@ public class AddRuleController {
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
 				break;
 		}
-		ManageRuleFacade.saveBusinessRule(context);
+		MainFacade.saveBusinessRule(context);
 	}
 	
 	private void clearOptions() {
