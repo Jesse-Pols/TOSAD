@@ -26,6 +26,14 @@ public class BusinessRuleService {
         return false;
     }
 
+    public List<BusinessRule> getAll(){
+        return new ArrayList<BusinessRule>();
+    }
+
+    public List<BusinessRule> findByName(String name){
+        return new ArrayList<BusinessRule>();
+    }
+
     public List<Operator> getOperator(BusinessRuleType ruleType){
         List<Operator> operators = new ArrayList<Operator>();
 
