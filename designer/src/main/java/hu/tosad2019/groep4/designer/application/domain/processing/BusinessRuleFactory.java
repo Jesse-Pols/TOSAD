@@ -1,6 +1,7 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import java.util.Map;
-
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
@@ -21,10 +22,17 @@ public class BusinessRuleFactory {
         this.attributes = attributes;
     }
 
-    public void MakeBusinessRule(){
+    private AttributeCompareRule createAttributeCompareRule(BusinessRuleContext context){
+        Column column = new Column(context.getTable(), context.getColumn());
+        SpecifiedValue specifiedValue = new SpecifiedValue(context.getSpecifiedValue());
+        AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, context.getOperator(), specifiedValue);
 
-        /*
-        IBusinessRule rule = null;
+        return new AttributeCompareRule(context.getName(), context.getDescription(), compareRuleContext);
+    }
+
+
+    public BusinessRule makeBusinessRule(){
+        BusinessRule rule = null;
 
         switch (this.type){
             case AttributeCompareRule:
@@ -41,7 +49,6 @@ public class BusinessRuleFactory {
 
         return rule;
 
-         */
     }
 
     private AttributeCompareRule createAttributeCompareRule(Map<String, String> attributes){
@@ -54,7 +61,6 @@ public class BusinessRuleFactory {
                 attributes.containsKey(Attribute.operator.toString()) &&
                 attributes.containsKey(Attribute.specifiedvalue.toString())
         ){
-            String code = attributes.get(Attribute.code.toString());
             String name = attributes.get(Attribute.name.toString());
             String description = attributes.get(Attribute.description.toString());
 
@@ -73,7 +79,7 @@ public class BusinessRuleFactory {
 
             AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, specifiedValue);
 
-            rule = new AttributeCompareRule(code, name, description, context);
+            rule = new AttributeCompareRule(name, description, context);
 
 
         }
@@ -126,7 +132,7 @@ public class BusinessRuleFactory {
 
             AttributeRangeRuleContext context = new AttributeRangeRuleContext(Boolean.parseBoolean(foreachRowString), Boolean.parseBoolean(notString), columnn, range);
 
-            rule = new AttributeRangeRule(code, name, description, context);
+            rule = new AttributeRangeRule(name, description, context);
         }
 
         return rule;

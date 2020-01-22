@@ -3,6 +3,8 @@ package hu.tosad2019.groep4.designer.application.application;
 import java.util.HashMap;
 import java.util.Map;
 
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+
 //          application component interface
 public class ManageRuleFacade {
 
@@ -11,8 +13,8 @@ public class ManageRuleFacade {
         return null;
     }
 
-    public static boolean saveBusinessRule(String type, Map<String, String> properties) {
-        return DefineRule.saveBusinessRule(type, properties);
+    public static boolean saveBusinessRule(BusinessRuleContext context) {
+        return DefineRule.saveBusinessRule(context);
     }
 
     public  Map<String, String> getProperties(String businessRuleType){

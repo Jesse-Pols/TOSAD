@@ -56,7 +56,8 @@ public class MainController {
 	}
 	
 	private void setupTable() {
-		TableColumn<Map.Entry<String, String>, String> column_name = new TableColumn<>("Name");
+		TableColumn<Map.Entry<String, String>, String> column_name = new TableColumn<>("Rule name");
+
         column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
@@ -64,7 +65,7 @@ public class MainController {
             }
         });
 
-        TableColumn<Map.Entry<String, String>, String> column_type = new TableColumn<>("Type");
+        TableColumn<Map.Entry<String, String>, String> column_type = new TableColumn<>("Rule type");
         column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
