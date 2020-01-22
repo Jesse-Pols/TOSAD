@@ -32,6 +32,7 @@ public class  MainWindow {
 			this.stage.setScene(scene);
 			this.stage.setWidth(700);
 			this.stage.setHeight(500);
+			this.stage.setTitle("BusinessRuleGenerator");
 			this.stage.show();
 			this.stage.setOnCloseRequest(event -> {
 				WindowManager.getInstance().closeall();

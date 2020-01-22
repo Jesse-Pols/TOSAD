@@ -31,6 +31,7 @@ public class AddRuleWindow {
 			this.stage.setScene(scene);
 			this.stage.setWidth(600);
 			this.stage.setHeight(450);
+			this.stage.setTitle("BusinessRuleGenerator: Add Rule");
 			this.stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
