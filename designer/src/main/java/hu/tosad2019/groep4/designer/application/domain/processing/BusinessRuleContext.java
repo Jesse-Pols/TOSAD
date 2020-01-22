@@ -18,6 +18,8 @@ public class BusinessRuleContext {
     private String failure;
     // BusinessRule Type
     private BusinessRuleType businessRuleType;
+    // BusinessRule Category
+    private String category;
     // Range
     private String min_value;
     private String max_value;
@@ -78,5 +80,8 @@ public class BusinessRuleContext {
     public String getFailure() { return this.failure; }
     public List<String> getSpecifiedValues() {
         return this.specifiedValues;
+    }
+    public String getCategory() {
+        return this.category;
     }
 }

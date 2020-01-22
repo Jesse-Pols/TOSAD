@@ -43,7 +43,7 @@ public class PersistencyService implements IPersistencyService {
     // Insert if new update if exists
     public boolean saveBusinessRule(BusinessRuleContext context){
 
-        businessRuleCategoryDao.find(1);
+        List<BusinessRuleCategoryModel> categories = businessRuleCategoryDao.findByName(context.getCategory());
 
         BusinessRuleCategoryModel categoryModel = new BusinessRuleCategoryModel(null);
 
