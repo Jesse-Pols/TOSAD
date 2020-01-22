@@ -1,25 +1,20 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
-import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing._BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AddRuleController {
 
@@ -109,26 +104,26 @@ public class AddRuleController {
 	private void saveRule() {
 		BusinessRuleType type = this.cb_ruletype.getSelectionModel().getSelectedItem();
 		System.out.println("Saving " + type.label + "..");
-		_BusinessRuleContext context = new _BusinessRuleContext(type);
+		BusinessRuleContext context = new BusinessRuleContext(type);
 		
 		context.setName((String) this.currentProperties.get("Name"));
 		context.setDescription((String) this.currentProperties.get("Description"));
-		context.setTable((String) this.currentProperties.get("Table"));
-		context.setColumn((String) this.currentProperties.get("Column"));
+		context.setFirstTable((String) this.currentProperties.get("Table"));
+		context.setFirstColumn((String) this.currentProperties.get("Column"));
 		switch(type) {
 			case AttributeCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));		
-				context.setSpecifiedValue((String) this.currentProperties.get("Value"));
+				context.addSpecifiedValue((String) this.currentProperties.get("Value"));
 				break;
 			case AttributeRangeRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));		
-				context.setRange_minValue((String) this.currentProperties.get("Min value"));
-				context.setRange_maxValue((String) this.currentProperties.get("Max value"));
+				context.setMinValue((String) this.currentProperties.get("Min value"));
+				context.setMaxValue((String) this.currentProperties.get("Max value"));
 				break;
 			case AttributeListRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
 				List<String> values = List.of(((String) this.currentProperties.get("Values")).split(", "));
-				context.setListOfValues(values);
+				context.setSpecifiedValues(values);
 				break;
 			case AttributeOtherRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
@@ -136,20 +131,20 @@ public class AddRuleController {
 				break;
 			case TupleCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
-				context.setSecondaryColumn((String) this.currentProperties.get("Column"));
+				context.setSecondColumn((String) this.currentProperties.get("Column"));
 				break;
 			case TupleOtherRule:
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
-				context.setSecondaryColumn((String) this.currentProperties.get("Column"));
+				context.setSecondColumn((String) this.currentProperties.get("Column"));
 				break;
 			case InterEntityCompareRule:
-				context.setSecondaryTable((String) this.currentProperties.get("Table 2"));
-				context.setSecondaryColumn((String) this.currentProperties.get("Column 2"));
+				context.setSecondColumn((String) this.currentProperties.get("Table 2"));
+				context.setSecondColumn((String) this.currentProperties.get("Column 2"));
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
 				break;
 			case EntityOtherRule:
-				context.setSecondaryTable((String) this.currentProperties.get("Table 2"));
-				context.setSecondaryColumn((String) this.currentProperties.get("Column 2"));
+				context.setSecondTable((String) this.currentProperties.get("Table 2"));
+				context.setSecondColumn((String) this.currentProperties.get("Column 2"));
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
 				break;
 			case ModifyRule:

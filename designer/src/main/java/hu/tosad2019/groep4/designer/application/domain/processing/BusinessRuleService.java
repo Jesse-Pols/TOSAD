@@ -11,7 +11,7 @@ import java.util.List;
 public class BusinessRuleService {
     private PersistencyService persistencyService;
 
-    public void getBusinessRule(_BusinessRuleContext context){
+    public void getBusinessRule(BusinessRuleContext context){
         this.persistencyService = new PersistencyService();
         //return new BusinessRuleFactory(type, attributes).MakeBusinessRule();
     }

@@ -1,12 +1,12 @@
 package hu.tosad2019.groep4.designer.application.application;
 
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import hu.tosad2019.groep4.designer.application.domain.processing._BusinessRuleContext;
-
 public class DefineRule {
-    public static boolean saveBusinessRule(_BusinessRuleContext context) {
+    public static boolean saveBusinessRule(BusinessRuleContext context) {
         
     	System.out.println("[DefineRule] TODO: Saving rule of type " + context.getType());
     	
