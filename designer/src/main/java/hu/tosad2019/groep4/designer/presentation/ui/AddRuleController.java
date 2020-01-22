@@ -28,6 +28,7 @@ public class AddRuleController {
 	@FXML private ComboBox<String> cb_define_operator;
 	@FXML private VBox vbox_define_selection;
 	@FXML private Button btn_save;
+	@FXML private TextField messageBox;
 
 	
 	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
@@ -70,7 +71,6 @@ public class AddRuleController {
 			if (!(node instanceof HBox)) continue;
 
 			HBox hbox = (HBox) node;
-
 			Node input = hbox.getChildren().get(1);
 			Node label = hbox.getChildren().get(0);
 
@@ -92,6 +92,10 @@ public class AddRuleController {
 				Object isSelected = comboBox.getSelectionModel().getSelectedItem();
 				this.currentProperties.put(propertyName, isSelected);
 			}
+		}
+
+		if(!(messageBox.getText().isEmpty())) {
+			currentProperties.put("failureMessage", messageBox.getText());
 		}
 
 		if(this.cb_ruletype.getSelectionModel().getSelectedItem() != null) {

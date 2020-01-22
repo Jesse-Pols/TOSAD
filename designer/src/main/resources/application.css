@@ -10,7 +10,6 @@
 
 }
 
-
 .tab-pane .tab
 {
     -fx-background-color: rgba(0,0,0,1);
@@ -116,4 +115,38 @@
 
 .combo-box {
     -fx-background-color: #252625;
+}
+
+/*.text-area {*/
+    /*text-area-background: #3d3c3c;*/
+    /*-fx-border-color: #3d3c3c;*/
+/*}*/
+
+/*.text-area .content {*/
+    /*-fx-background-color: text-area-background ;*/
+    /*-fx-text-box-border: transparent;*/
+/*}*/
+
+
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, #3d3c3c, transparent, #3d3c3c;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, #3d3c3c, transparent, #3d3c3c;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, #3d3c3c, transparent, #3d3c3c;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: gray;
+    -fx-highlight-fill: #7ecfff;
 }
