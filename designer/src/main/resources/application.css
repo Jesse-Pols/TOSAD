@@ -102,7 +102,7 @@
     -fx-text-fill: #e1e1e1;
     -fx-highlight-fill: #e1e1e1;
     -fx-highlight-text-fill: #e1e1e1;
-    -fx-prompt-text-fill: #e1e1e1;
+    -fx-prompt-text-fill: #757575;
 }
 
 .label {
@@ -116,16 +116,6 @@
 .combo-box {
     -fx-background-color: #252625;
 }
-
-/*.text-area {*/
-    /*text-area-background: #3d3c3c;*/
-    /*-fx-border-color: #3d3c3c;*/
-/*}*/
-
-/*.text-area .content {*/
-    /*-fx-background-color: text-area-background ;*/
-    /*-fx-text-box-border: transparent;*/
-/*}*/
 
 
 .text-area {
