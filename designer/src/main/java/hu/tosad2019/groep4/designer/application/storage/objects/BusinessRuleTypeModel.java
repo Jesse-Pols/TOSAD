@@ -20,4 +20,8 @@ public class BusinessRuleTypeModel {
     }
 
     public BusinessRuleTypeModel() {}
+
+    public String getName() {
+        return this.name;
+    }
 }

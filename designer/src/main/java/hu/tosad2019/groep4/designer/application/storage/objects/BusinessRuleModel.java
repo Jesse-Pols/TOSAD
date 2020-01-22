@@ -1,5 +1,7 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -24,4 +26,10 @@ public class BusinessRuleModel {
     }
 
     public BusinessRuleModel() {}
+
+    public BusinessRuleTypeModel getType() {
+        BusinessRuleTypeDao brtDao = new BusinessRuleTypeDao();
+        return brtDao.find(this.type_id);
+    }
+
 }
