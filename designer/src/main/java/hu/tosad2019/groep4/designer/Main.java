@@ -10,9 +10,7 @@ public class Main extends Application
 {
 	public static void main(String[] args) {
 		System.out.println("Starting designer..");
-		//launch();
-		PersistencyService ps = new PersistencyService();
-		ps.getBusinessRuleById(21);
+		launch();
 	}
 
 	@Override
