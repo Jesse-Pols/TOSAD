@@ -57,6 +57,24 @@ public class AbstractDao {
         }
     }
 
+    /*
+    public Boolean exists (Object obj) {
+        try {
+            this.startOperation();
+            Query query = this.session.createQuery(" select 1 from DTOAny t where t.key = :key");
+            objects = query.list();
+            this.tx.commit();
+        } catch (HibernateException err) {
+            this.handleException(err);
+        } finally {
+            HibernateFactory.close(this.session);
+        }
+
+        return true;
+    }
+    
+     */
+
     protected List findAll(Class clazz) {
         List objects = null;
 

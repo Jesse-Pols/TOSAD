@@ -2,9 +2,7 @@ package hu.tosad2019.groep4.designer.application.storage;
 
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.*;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.DbColumnModel;
@@ -14,8 +12,10 @@ import java.util.List;
 public class AbstractPersistency {
 
     protected BusinessRuleDao businessRuleDao = new BusinessRuleDao();
-    protected DbColumnDao dbColumnDao = new DbColumnDao();
+    protected BusinessRuleTypeDao businessRuleTypeDao = new BusinessRuleTypeDao();
     protected BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
+    protected DbColumnDao dbColumnDao = new DbColumnDao();
+    protected TemplateDao templateDao = new TemplateDao();
 
     protected BusinessRuleContext convertIdToContext(int id) {
 

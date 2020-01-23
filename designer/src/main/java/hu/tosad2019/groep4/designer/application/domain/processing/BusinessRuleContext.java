@@ -18,6 +18,7 @@ public class BusinessRuleContext {
     private String failure;
     // BusinessRule Type
     private BusinessRuleType businessRuleType;
+    private int type_id;
     // BusinessRule Category
     private String category;
     // Range
@@ -32,6 +33,8 @@ public class BusinessRuleContext {
     private String second_table;
     // Specified Values
     private List<String> specifiedValues;
+    // Template
+    private String template;
     // Other
     private String sqlQuery;
 
@@ -51,6 +54,7 @@ public class BusinessRuleContext {
     public void setSecondColumn(String column) { this.second_column = column; }
     public void setSecondTable(String table) { this.second_table = table; }
     public void setFailure(String failure) { this.failure = failure; }
+    public void setCategory(String category) { this.category = category; }
 
     /* GETTERS */
     public Operator getOperator() {
@@ -77,11 +81,11 @@ public class BusinessRuleContext {
     public String getMaxValue() {
         return this.max_value;
     }
-    public String getFailure() { return this.failure; }
     public List<String> getSpecifiedValues() {
         return this.specifiedValues;
     }
     public String getCategory() {
         return this.category;
     }
+    public String getTemplate() { return this.template; }
 }
