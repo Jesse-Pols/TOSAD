@@ -113,6 +113,11 @@
     -fx-background-color: #3d3c3c;
 }
 
+.errorMessage {
+    /*-fx-text-fill: #EB5458 !important;*/
+    -fx-text-fill: #212121 !important;
+}
+
 .combo-box {
     -fx-background-color: #252625;
 }
