@@ -10,10 +10,14 @@ public class OracleDbConnection implements DbConnection {
     private final String baseConnectionString = "jdbc:oracle:@";
     private String connectionString = "jbdc:oracle:thin@localhost:1521:xe";
 
-    public OracleDbConnection(String hostName){
+    public OracleDbConnection(){
+        String hostName = "localhost";
         this.connectionString = baseConnectionString + hostName + ":1521:xe";
     }
 
+    public OracleDbConnection(String connectionString){
+        this.connectionString = connectionString;
+    }
 
     public Connection getConnection(String userName, String password) throws SQLException {
         return DriverManager.getConnection(connectionString, userName, password);
@@ -21,6 +25,6 @@ public class OracleDbConnection implements DbConnection {
 
     @Override
     public Connection getConnection() throws SQLException {
-        return getConnection("robert", "Oracle4Life");
+        return DriverManager.getConnection(connectionString);
     }
 }

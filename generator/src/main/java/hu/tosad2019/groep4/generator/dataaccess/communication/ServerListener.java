@@ -20,7 +20,6 @@ public class ServerListener {
 		this.server = HttpServer.create(new InetSocketAddress(this.port), 0);
 		this.server.createContext("/ping", new PingHandler());
 		this.server.createContext("/cmd", new CommandHandler());
-		this.server.createContext("/status", new StatusHandler());
         this.server.setExecutor(null); // Default handler
         return this;
 	}

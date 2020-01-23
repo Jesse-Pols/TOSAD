@@ -12,6 +12,16 @@ import java.time.LocalDateTime;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import hu.tosad2019.groep4.generator.application.application.Generator;
+import hu.tosad2019.groep4.generator.application.application.Main;
+import hu.tosad2019.groep4.generator.application.application.MainFacade;
+import hu.tosad2019.groep4.generator.application.application.TempGenerator;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.json.simple.parser.JSONParser;
+
 
 public class CommandHandler implements HttpHandler{
 	@Override
@@ -29,6 +39,20 @@ public class CommandHandler implements HttpHandler{
 		System.out.println(inputbody.toString());
 
 		try {
+			JSONObject jsonObject = (JSONObject) new JSONParser().parse(inputbody.toString());
+
+			String dbUrlString = jsonObject.get("db_url").toString();
+			String ruleIdString = jsonObject.get("rule_id").toString();
+
+
+			MainFacade facade = new MainFacade();
+
+			int ruleId = Integer.parseInt(ruleIdString);
+			facade.GenerateBusinessRule(ruleId, dbUrlString);
+
+
+
+
 			if(!TempGenerator.getInstance().getIsRunning()) {
 				TempGenerator.getInstance().startGeneration();
 				t.sendResponseHeaders(200, response.length());

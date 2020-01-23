@@ -15,11 +15,15 @@ public class Generator {
         this.rule = rule;
     }
 
-    public boolean generateBusinessRule(String dbHostName)
+    public boolean generateBusinessRuleOnHost(String dbHostName)
     {
+        return false;
+    }
+
+    public boolean generateBusinessRuleOnConnectionString(String connectionString){
         String trigger = createTrigger();
 
-        DatabaseExecution databaseExecution = new DatabaseExecution(dbHostName);
+        DatabaseExecution databaseExecution = new DatabaseExecution(connectionString);
 
         return databaseExecution.execute(trigger);
     }
