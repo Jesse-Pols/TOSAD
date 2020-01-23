@@ -1,4 +1,4 @@
-package hu.tosad2019.groep4.generator.dataaccess.communication;
+package hu.tosad2019.groep4.generator.application.application;
 
 import java.io.BufferedReader;
 import java.io.IOException;
