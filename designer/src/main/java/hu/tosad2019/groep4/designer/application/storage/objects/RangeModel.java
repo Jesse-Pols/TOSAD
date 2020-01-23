@@ -2,6 +2,8 @@ package hu.tosad2019.groep4.designer.application.storage.objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity (name="Range")
 public class RangeModel {
@@ -13,17 +15,18 @@ public class RangeModel {
     private String max;
     private int min_value_operator;
     private int max_value_operator;
-    private int rule_id;
 
-    public RangeModel(String min, String max, int min_value_operator, int max_value_operator, int rule_id) {
-        this.min = min;
-        this.max = max;
-        this.min_value_operator = min_value_operator;
-        this.max_value_operator = max_value_operator;
-        this.rule_id = rule_id;
+    @ManyToOne
+    @JoinColumn(name = "rule_id")
+    private BusinessRuleModel businessRule;
+
+    public String getMinValue() {
+        return this.min;
     }
 
-    public RangeModel() {}
+    public String getMaxValue() {
+        return this.max;
+    }
 
 }
 

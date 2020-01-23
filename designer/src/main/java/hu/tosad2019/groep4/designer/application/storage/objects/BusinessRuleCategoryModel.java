@@ -16,4 +16,7 @@ public class BusinessRuleCategoryModel {
     }
 
     public BusinessRuleCategoryModel() {}
+
+    public String getName() { return this.name; }
+    public int getId() { return this.id; }
 }

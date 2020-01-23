@@ -15,5 +15,6 @@ public class TemplateModel {
         this.value = value;
     }
 
-    public TemplateModel() { }
+    public String getValue() { return this.value; }
+    public int getId() { return this.id; }
 }

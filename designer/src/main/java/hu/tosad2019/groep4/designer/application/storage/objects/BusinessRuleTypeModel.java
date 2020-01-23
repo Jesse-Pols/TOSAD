@@ -1,7 +1,12 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.TemplateDao;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity (name="BusinessRuleType")
 public class BusinessRuleTypeModel {
@@ -10,18 +15,26 @@ public class BusinessRuleTypeModel {
     private int id;
 
     private String name;
-    private int template_id;
-    private int category_id;
 
-    public BusinessRuleTypeModel(String name, int template_id, int category_id) {
-        this.name = name;
-        this.template_id = template_id;
-        this.category_id = category_id;
+    @ManyToOne
+    @JoinColumn(name = "template_id")
+    private TemplateModel template;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private BusinessRuleCategoryModel category;
+
+    public BusinessRuleCategoryModel getCategory() {
+        return this.category;
     }
 
-    public BusinessRuleTypeModel() {}
+    public TemplateModel getTemplate() {
+        return this.template;
+    }
 
     public String getName() {
         return this.name;
     }
+
+    public int getId() { return this.id; }
 }

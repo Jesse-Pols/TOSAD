@@ -1,9 +1,12 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity (name="BusinessRule")
 public class BusinessRuleModel {
@@ -14,22 +17,19 @@ public class BusinessRuleModel {
     private String name;
     private String description;
     private String failure;
-    private int type_id;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private BusinessRuleTypeModel type;
+
     private int is_not;
 
-    public BusinessRuleModel(String name, String description, String failure, int type_id, int is_not) {
-        this.name = name;
-        this.description = description;
-        this.failure = failure;
-        this.type_id = type_id;
-        this.is_not = is_not;
+    public BusinessRuleTypeModel getType() {
+        return this.type;
     }
 
-    public BusinessRuleModel() {}
-
-    public BusinessRuleTypeModel getType() {
-        BusinessRuleTypeDao brtDao = new BusinessRuleTypeDao();
-        return brtDao.find(this.type_id);
+    public int getTypeId() {
+        return this.type.getId();
     }
 
     public String getName() {
@@ -43,5 +43,7 @@ public class BusinessRuleModel {
     public int getId() { return this.id; }
 
     public String getFailure() { return this.failure; }
+
+    public int getIsNot() { return this.is_not; }
 
 }
