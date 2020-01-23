@@ -11,13 +11,17 @@ public class BusinessRuleTypeModel {
 
     private String name;
     private int template_id;
-    private int category_type;
+    private int category_id;
 
-    public BusinessRuleTypeModel(String name, int template_id, int category_type) {
+    public BusinessRuleTypeModel(String name, int template_id, int category_id) {
         this.name = name;
         this.template_id = template_id;
-        this.category_type = category_type;
+        this.category_id = category_id;
     }
 
     public BusinessRuleTypeModel() {}
+
+    public String getName() {
+        return this.name;
+    }
 }

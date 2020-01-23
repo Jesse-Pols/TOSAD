@@ -74,6 +74,23 @@ public class AbstractDao {
         return objects;
     }
 
+    protected List findAll(Class clazz, String where) {
+        List objects = null;
+
+        try {
+            this.startOperation();
+            Query query = this.session.createQuery("from " + clazz.getName() + " where " + where);
+            objects = query.list();
+            this.tx.commit();
+        } catch (HibernateException err) {
+            this.handleException(err);
+        } finally {
+            HibernateFactory.close(this.session);
+        }
+
+        return objects;
+    }
+
     protected void handleException(HibernateException err) throws DataAccessLayerException {
         HibernateFactory.rollback(this.tx);
         throw new DataAccessLayerException(err);

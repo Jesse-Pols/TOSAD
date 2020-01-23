@@ -1,10 +1,9 @@
 package hu.tosad2019.groep4.designer.application.application;
 
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import oracle.net.aso.f;
 
 public class DefineRule {
     public static boolean saveBusinessRule(BusinessRuleContext context) {

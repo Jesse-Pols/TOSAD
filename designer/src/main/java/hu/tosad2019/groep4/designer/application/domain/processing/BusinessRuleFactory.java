@@ -17,8 +17,6 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attr
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.Attribute;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleFactory {
     private BusinessRuleContext ruleContext;
@@ -66,8 +64,8 @@ public class BusinessRuleFactory {
 
 
     private AttributeCompareRule createAttributeCompareRule(){
-        Column column = new Column(ruleContext.getTable(), ruleContext.getColumn());
-        SpecifiedValue specifiedValue = new SpecifiedValue(ruleContext.getSpecifiedValue());
+        Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
+        SpecifiedValue specifiedValue = new SpecifiedValue(ruleContext.getSpecifiedValues().get(0));
         AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, ruleContext.getOperator(), specifiedValue);
 
         return new AttributeCompareRule(ruleContext.getName(), ruleContext.getDescription(), compareRuleContext);
@@ -75,7 +73,7 @@ public class BusinessRuleFactory {
 
 
     private AttributeRangeRule createAttributeRangeRule(){
-        Column column = new Column(ruleContext.getTable(), ruleContext.getColumn());
+        Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
 
         Operator operator = ruleContext.getOperator();
         Operator minValueOperator = null;
@@ -85,8 +83,8 @@ public class BusinessRuleFactory {
         int maxValue;
 
         try{
-            minValue = Integer.parseInt(ruleContext.getRange_minValue());
-            maxValue = Integer.parseInt(ruleContext.getRange_maxValue());
+            minValue = Integer.parseInt(ruleContext.getMinValue());
+            maxValue = Integer.parseInt(ruleContext.getMaxValue());
         }
         catch(Exception e){
             System.out.println("cannot parse range values");

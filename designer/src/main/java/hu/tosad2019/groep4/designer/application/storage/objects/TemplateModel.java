@@ -9,5 +9,11 @@ public class TemplateModel {
     @Id
     private int id;
 
+    private String value;
+
+    public TemplateModel(String value) {
+        this.value = value;
+    }
+
     public TemplateModel() { }
 }
