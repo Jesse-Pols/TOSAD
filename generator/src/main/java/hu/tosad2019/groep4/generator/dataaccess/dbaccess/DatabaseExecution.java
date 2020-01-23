@@ -1,23 +1,20 @@
 package hu.tosad2019.groep4.generator.dataaccess.dbaccess;
 
-import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DbConnection;
-import hu.tosad2019.groep4.generator.dataaccess.dbaccess.OracleDbConnection;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseExecution {
-    String hostName;
-    public DatabaseExecution(String dbHostname){
-        this.hostName = dbHostname;
+    String connectionString;
+    public DatabaseExecution(String connectionString){
+        this.connectionString = connectionString;
     }
 
     public boolean execute(String trigger) {
         boolean result = false;
 
 
-        DbConnection dbConnectionObject = new OracleDbConnection(hostName);
+        DbConnection dbConnectionObject = new OracleDbConnection();
         Connection connection = null;
 
         try {

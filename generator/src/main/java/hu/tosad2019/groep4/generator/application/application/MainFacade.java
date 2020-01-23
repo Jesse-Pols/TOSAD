@@ -1,16 +1,16 @@
 package hu.tosad2019.groep4.generator.application.application;
 
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.generator.application.domain.processing.ObjectService;
+import hu.tosad2019.groep4.generator.application.domain.processing.BusinessRuleService;
 
 public class MainFacade {
-    boolean GenerateBusinessRule(int id, String dbHostName){
-        ObjectService objectService = new ObjectService();
+    public boolean GenerateBusinessRule(int id, String dbUrl){
+        BusinessRuleService businessRuleService = new BusinessRuleService();
 
-        BusinessRule rule = objectService.getBusinessRule(id);
+        BusinessRule rule = businessRuleService.getRule(id);
 
         Generator generator = new Generator(rule);
 
-        return generator.generateBusinessRule(dbHostName);
+        return generator.generateBusinessRuleOnConnectionString(dbUrl);
     }
 }
