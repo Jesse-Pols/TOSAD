@@ -56,7 +56,7 @@
                                              <children>
                                                 <ComboBox fx:id="cb_generate_protocol" minWidth="110.0" promptText="Protocol" style="-fx-background-color: #303030; -fx-color: white;" />
                                                 <TextField fx:id="txt_generate_host" minWidth="50.0" promptText="Database connection url" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
-                                                <TextField fx:id="txt_generate_port" alignment="CENTER" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
+                                                <TextField fx:id="txt_generate_port" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
                                                 <Button fx:id="btn_generate_connect" minWidth="70.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" style="-fx-background-color: #68B21E;" text="Connect" textFill="WHITE" />
                                              </children>
                                           </HBox>
@@ -86,9 +86,11 @@
                                           </HBox>
                                           <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
                                              <children>
-                                                <ComboBox fx:id="cb_generate_protocol1" minWidth="110.0" promptText="Protocol" style="-fx-background-color: #303030; -fx-color: white;" />
-                                                <TextField fx:id="txt_generate_host1" minWidth="50.0" promptText="Database connection url" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
-                                                <TextField fx:id="txt_generate_port1" alignment="CENTER" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
+                                                <TextField fx:id="txt_generate_host1" minWidth="50.0" prefHeight="27.0" prefWidth="182.0" promptText="Host name" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                <TextField fx:id="txt_generate_port1" maxWidth="131.0" minWidth="70.0" prefHeight="27.0" prefWidth="131.0" promptText="Username" style="-fx-background-color: #303030;" />
+                                                <TextField fx:id="txt_generate_host11" minWidth="50.0" prefHeight="27.0" prefWidth="252.0" promptText="Wachtwoord" style="-fx-background-color: #303030;" />
+                                                <TextField fx:id="txt_generate_port11" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
+                                                <ComboBox prefHeight="27.0" prefWidth="118.0" promptText="Type" />
                                                 <Button fx:id="btn_generate_connect1" minWidth="70.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" style="-fx-background-color: #68B21E;" text="Connect" textFill="WHITE" />
                                              </children>
                                           </HBox>
