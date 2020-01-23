@@ -7,6 +7,7 @@ import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleMode
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.DbColumnModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractPersistency {
@@ -20,14 +21,16 @@ public class AbstractPersistency {
     protected BusinessRuleContext convertIdToContext(int id) {
 
         BusinessRuleModel businessRuleModel = businessRuleDao.find(id);
-        BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getType();
-        List<DbColumnModel> dbColumns = dbColumnDao.findByRuleId(id);
+        //BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getType();
+        //List<DbColumnModel> dbColumns = dbColumnDao.findByRuleId(id);
 
-        BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
+        //BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
+        BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
         context.setName(businessRuleModel.getName());
-        context.setDescription(businessRuleModel.getDescription());
-        context.setFailure(businessRuleModel.getFailure());
+        //context.setDescription(businessRuleModel.getDescription());
+        //context.setFailure(businessRuleModel.getFailure());
 
+        /*
         for (DbColumnModel column : dbColumns) {
             if (column.getPosition() == 0) {
                 context.setFirstColumn(column.getColumn_name());
@@ -35,6 +38,7 @@ public class AbstractPersistency {
                 break;
             }
         }
+         */
 
         // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
 
@@ -42,7 +46,7 @@ public class AbstractPersistency {
     }
 
     protected List<BusinessRuleContext> loopThroughBusinessRules(List<BusinessRuleModel> businessRuleModels) {
-        List<BusinessRuleContext> businessRuleContexts = null;
+        List<BusinessRuleContext> businessRuleContexts = new ArrayList<>();
         for (BusinessRuleModel businessRule : businessRuleModels) {
             businessRuleContexts.add(this.convertIdToContext(businessRule.getId()));
         }

@@ -10,10 +10,6 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
 
     private static PersistencyService instance;
 
-    BusinessRuleDao businessRuleDao = new BusinessRuleDao();
-    DbColumnDao dbColumnDao = new DbColumnDao();
-    BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
-
     private PersistencyService() {}
 
     public static PersistencyService getInstance() {
@@ -29,7 +25,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
     }
 
     public List<BusinessRuleContext> getAllBusinessRules() {
-        return super.loopThroughBusinessRules(super.businessRuleDao.findAll());
+        List<BusinessRuleModel> businessRuleModels = super.businessRuleDao.findAll();
+        return super.loopThroughBusinessRules(businessRuleModels);
     }
 
     public List<BusinessRuleContext> findBusinessRuleByName(String name) {
