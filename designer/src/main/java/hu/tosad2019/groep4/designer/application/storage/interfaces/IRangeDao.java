@@ -6,7 +6,4 @@ import java.util.List;
 
 public interface IRangeDao {
     RangeModel find(int id);
-    void create(RangeModel range);
-    void delete(RangeModel range);
-    List findAll();
 }
