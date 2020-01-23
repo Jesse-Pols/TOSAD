@@ -48,6 +48,7 @@ public class MainController {
 		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));		
 
 		this.rules = FXCollections.observableArrayList(getBusinessrules());
+		System.out.println("hoi");
 		System.out.println(rules);
 		
         this.setupTable();
@@ -65,7 +66,8 @@ public class MainController {
         column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
-                return new SimpleStringProperty(Integer.toString(p.getValue().getId()));
+            	BusinessRule name = p.getValue();
+                return new SimpleStringProperty(name!=null?Integer.toString(name.getId()):"No ID");
             }
         });
 
@@ -73,11 +75,14 @@ public class MainController {
         column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
-                return new SimpleStringProperty(p.getValue().getName());
+            	BusinessRule name = p.getValue();
+                return new SimpleStringProperty(name!=null?name.getName():"No Name");
             }
         });
+//        this.tbl_businessrules.getColumns().add(column_name);
         this.tbl_businessrules.getColumns().add(column_name);
         this.tbl_businessrules.getColumns().add(column_type);
+        
         this.tbl_businessrules.setItems(this.rules);
 	}
 	
@@ -188,6 +193,7 @@ public class MainController {
 	}
 	private List<BusinessRule> getBusinessrules(){
 		BusinessRuleService brs = new BusinessRuleService();
-		return brs.getAll();
+		List<BusinessRule> rules = brs.getAll();
+		return rules;
 	}
 }

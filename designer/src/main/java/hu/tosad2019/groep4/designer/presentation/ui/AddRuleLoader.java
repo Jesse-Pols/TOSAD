@@ -16,8 +16,8 @@ public class AddRuleLoader {
     static Map<String, Node> loadUICompoent(String businessRule) {
 
     	Map<String, Node> result = new LinkedHashMap<String, Node>();
-
     	Map<String, String> properties = MainFacade.getInstance().getProperties(businessRule.replace(" ", ""));
+
     	if(properties == null) {
     		System.err.println("Nothing");
     		return result;
