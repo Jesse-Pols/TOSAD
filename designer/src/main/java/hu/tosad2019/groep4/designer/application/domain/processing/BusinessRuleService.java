@@ -3,28 +3,38 @@ package hu.tosad2019.groep4.designer.application.domain.processing;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.designer.application.storage.PersistencyService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessRuleService {
 
-    public void getBusinessRule(BusinessRuleContext context){
-//        this.persistencyService = new PersistencyService();
-        //return new BusinessRuleFactory(type, attributes).MakeBusinessRule();
+    public BusinessRule getBusinessRule(BusinessRuleContext context){
+        BusinessRuleFactory factory = new BusinessRuleFactory(context);
+
+        return factory.makeBusinessRule();
     }
 
     public boolean saveBusinessRule(BusinessRule rule){
+        BusinessRuleContextFactory factory = new BusinessRuleContextFactory(rule);
 
-        return false;
+        return PersistencyService.getInstance().saveBusinessRule(factory.make());
     }
 
     public boolean deleteBusinessRule(BusinessRule rule){
-        return false;
+        return PersistencyService.getInstance().deleteBusinessRule(rule.getId());
     }
 
     public List<BusinessRule> getAll(){
-        return new ArrayList<BusinessRule>();
+        List<BusinessRuleContext> ruleContextList = PersistencyService.getInstance().getAllBusinessRules();
+        List<BusinessRule> rules = new ArrayList<>();
+
+        for (BusinessRuleContext context : ruleContextList ) {
+            rules.add(new BusinessRuleFactory(context).makeBusinessRule());
+        }
+
+        return rules;
     }
 
     public List<BusinessRule> findByName(String name){

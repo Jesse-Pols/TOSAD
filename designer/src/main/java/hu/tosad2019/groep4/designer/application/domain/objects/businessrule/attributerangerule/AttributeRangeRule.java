@@ -5,6 +5,21 @@ import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BaseRule;
 
 public class AttributeRangeRule extends BaseRule {
+	public Column getColumn() {
+		return column;
+	}
+
+	public boolean isNot() {
+		return not;
+	}
+
+	public boolean isForEachRow() {
+		return forEachRow;
+	}
+
+	public Range getRange() {
+		return range;
+	}
 
 	private Column column;
 
