@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import com.sun.net.httpserver.HttpServer;
+import hu.tosad2019.groep4.generator.application.application.CommandHandler;
 
 public class ServerListener {
 
