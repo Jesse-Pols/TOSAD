@@ -1,13 +1,12 @@
 package hu.tosad2019.groep4.designer.application.application;
 
-import hu.tosad2019.groep4.designer.Main;
+import java.util.HashMap;
+import java.util.Map;
+
 import hu.tosad2019.groep4.designer.application.application.messaging.CommandSender;
 import hu.tosad2019.groep4.designer.application.application.messaging.GenerateCommand;
 import hu.tosad2019.groep4.designer.application.application.messaging.MessagingService;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainFacade {
 
@@ -28,9 +27,9 @@ public class MainFacade {
 		return MessagingService.connectToServer(protocol, host, port);
 	}
 	
-	public boolean generateBusinessRule(String ruleId) throws Exception{
+	public boolean generateBusinessRule(int id) throws Exception{
 		CommandSender sender = new CommandSender();
-		return sender.executeCommand(new GenerateCommand(ruleId));
+		return sender.executeCommand(new GenerateCommand(id));
 	}
 
 	//code, name

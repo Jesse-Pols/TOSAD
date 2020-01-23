@@ -1,9 +1,11 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -29,7 +31,7 @@ import javafx.util.Callback;
 public class MainController {
 
 	// Home
-	@FXML private TableView<Map.Entry<String,String>> tbl_businessrules;
+	@FXML private TableView<BusinessRule> tbl_businessrules;
 	@FXML private Button btn_home_add;	
 	// Generate
 	@FXML private Label lbl_generate_dbstatus;
@@ -38,20 +40,16 @@ public class MainController {
 	@FXML private TextField txt_generate_port;
 	@FXML private Button btn_generate_connect;
 	
-	private ObservableList<Map.Entry<String, String>> tableitems = FXCollections.observableArrayList();
+	private ObservableList<BusinessRule> rules; 
 	
 	@FXML private void initialize() {
 		cb_generate_protocol.getItems().addAll("http://", "https://");
 		cb_generate_protocol.getSelectionModel().selectFirst();
-		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));
-		
-//		Table
-		// sample data 
-        this.tableitems.add(Map.entry("businessrule_1", "AttributeRangeRule"));
-        this.tableitems.add(Map.entry("businessrule_2", "AttributeCompareRule"));
-        this.tableitems.add(Map.entry("businessrule_3", "AttributeRangeRule"));
-        this.tableitems.add(Map.entry("businessrule_3", "AttributeRangeRule"));
+		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));		
 
+		this.rules = FXCollections.observableArrayList(getBusinessrules());
+		System.out.println(rules);
+		
         this.setupTable();
         this.setupContextMenu();
 	}
@@ -62,25 +60,25 @@ public class MainController {
 	}
 	
 	private void setupTable() {
-		TableColumn<Map.Entry<String, String>, String> column_name = new TableColumn<>("Rule name");
+		TableColumn<BusinessRule, String> column_name = new TableColumn<>("ID");
 
-        column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>, String>, ObservableValue<String>>() {
+        column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
-                return new SimpleStringProperty(p.getValue().getKey());
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
+                return new SimpleStringProperty(Integer.toString(p.getValue().getId()));
             }
         });
 
-        TableColumn<Map.Entry<String, String>, String> column_type = new TableColumn<>("Rule type");
-        column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>, String>, ObservableValue<String>>() {
+        TableColumn<BusinessRule, String> column_type = new TableColumn<>("Name");
+        column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
-                return new SimpleStringProperty(p.getValue().getValue());
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
+                return new SimpleStringProperty(p.getValue().getName());
             }
         });
         this.tbl_businessrules.getColumns().add(column_name);
         this.tbl_businessrules.getColumns().add(column_type);
-        this.tbl_businessrules.setItems(this.tableitems);
+        this.tbl_businessrules.setItems(this.rules);
 	}
 	
 	private void setupContextMenu() {
@@ -93,7 +91,7 @@ public class MainController {
 		    @Override
 		    public void handle(ActionEvent event) {
 		    	if(sendConfimation("Remove rule", "Are you sure you want to remove rule ..?")) {
-		    		tableitems.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
+		    		rules.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
 		    	}
 		        
 		    }
@@ -103,7 +101,7 @@ public class MainController {
 
 		    @Override
 		    public void handle(ActionEvent event) {
-		    	String name = tbl_businessrules.getSelectionModel().getSelectedItem().getKey();
+		    	int name = tbl_businessrules.getSelectionModel().getSelectedItem().getId();
 		    	try {
 		    		generateBusinessRule(name);
 				} catch (Exception e) {
@@ -120,7 +118,7 @@ public class MainController {
 
 		    @Override
 		    public void handle(ContextMenuEvent event) {
-		    	Map.Entry<String, String> selectedItem = tbl_businessrules.getSelectionModel().getSelectedItem();
+		    	BusinessRule selectedItem = tbl_businessrules.getSelectionModel().getSelectedItem();
 		    	if(selectedItem != null) contextMenu.show(tbl_businessrules, event.getScreenX(), event.getScreenY());
 		    }
 		});
@@ -185,7 +183,11 @@ public class MainController {
 		}
 	}
 	
-	private void generateBusinessRule(String id) throws Exception {
-		MainFacade.getInstance().generateBusinessRule(id);
+	private void generateBusinessRule(int name) throws Exception {
+		MainFacade.getInstance().generateBusinessRule(name);
+	}
+	private List<BusinessRule> getBusinessrules(){
+		BusinessRuleService brs = new BusinessRuleService();
+		return brs.getAll();
 	}
 }

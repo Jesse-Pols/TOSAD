@@ -7,10 +7,10 @@ import hu.tosad2019.groep4.designer.dataaccess.communication.Server;
 
 public class GenerateCommand implements ServerCommand {
 
-	public final String ruleId;
+	public final int ruleId;
 	
-	public GenerateCommand(String ruleId) {
-		this.ruleId = ruleId;
+	public GenerateCommand(int id) {
+		this.ruleId = id;
 	}
 	
 	@Override
