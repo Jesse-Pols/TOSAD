@@ -16,6 +16,7 @@ public class BusinessRuleContext {
 
     /* PROPERTIES */
     // BusinessRule
+    private int id;
     private String name;
     private String description;
     private String failure;
@@ -58,6 +59,7 @@ public class BusinessRuleContext {
     public void setSecondTable(String table) { this.second_table = table; }
     public void setFailure(String failure) { this.failure = failure; }
     public void setCategory(String category) { this.category = category; }
+    public void setId(int id) { this.id = id; }
 
     /* GETTERS */
     public Operator getOperator() {
@@ -91,4 +93,5 @@ public class BusinessRuleContext {
         return this.category;
     }
     public String getTemplate() { return this.template; }
+    public int getId() { return this.id; }
 }

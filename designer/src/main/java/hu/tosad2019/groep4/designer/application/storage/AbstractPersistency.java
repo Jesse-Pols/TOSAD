@@ -27,6 +27,7 @@ public class AbstractPersistency {
         //BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
         BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
         context.setName(businessRuleModel.getName());
+        context.setId(businessRuleModel.getId());
         //context.setDescription(businessRuleModel.getDescription());
         //context.setFailure(businessRuleModel.getFailure());
 
