@@ -20,4 +20,20 @@ public class AttributeCompareRule extends BaseRule {
         this.operator = context.getOperator();
         this.value = context.getSpecifiedValue();
     }
+
+    public boolean isNot() {
+        return not;
+    }
+
+    public Column getColumn() {
+        return column;
+    }
+
+    public Operator getOperator() {
+        return operator;
+    }
+
+    public SpecifiedValue getValue() {
+        return value;
+    }
 }

@@ -151,7 +151,8 @@ public class AddRuleController {
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
 				break;
 		}
-		MainFacade.saveBusinessRule(context);
+//		MainFacade.saveBusinessRule(context);
+		MainFacade.getInstance().saveBusinessRule(context);
 	}
 	
 	private void clearOptions() {

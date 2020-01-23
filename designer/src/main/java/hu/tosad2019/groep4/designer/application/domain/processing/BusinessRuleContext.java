@@ -1,14 +1,17 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessRuleContext {
 
     public BusinessRuleContext(BusinessRuleType businessRuleType) {
         this.businessRuleType = businessRuleType;
+        this.specifiedValues = new ArrayList<String>();
     }
 
     /* PROPERTIES */

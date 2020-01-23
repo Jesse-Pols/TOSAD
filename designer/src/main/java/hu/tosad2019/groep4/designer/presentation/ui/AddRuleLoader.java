@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
-import hu.tosad2019.groep4.designer.application.application.ManageRuleFacade;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
@@ -17,10 +16,8 @@ public class AddRuleLoader {
     static Map<String, Node> loadUICompoent(String businessRule) {
 
     	Map<String, Node> result = new LinkedHashMap<String, Node>();
-    	
-    	ManageRuleFacade mrf = new ManageRuleFacade();
 
-    	Map<String, String> properties = MainFacade.getProperties(businessRule.replace(" ", ""));
+    	Map<String, String> properties = MainFacade.getInstance().getProperties(businessRule.replace(" ", ""));
     	if(properties == null) {
     		System.err.println("Nothing");
     		return result;

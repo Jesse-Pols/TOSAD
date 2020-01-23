@@ -20,8 +20,6 @@ import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 
 public class BusinessRuleFactory {
     private BusinessRuleContext ruleContext;
-    private BusinessRuleType type;
-    private Map<String, String> attributes;
 
     public BusinessRuleFactory(BusinessRuleContext ruleContext){
         this.ruleContext = ruleContext;
@@ -30,7 +28,7 @@ public class BusinessRuleFactory {
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
 
-        switch (this.type){
+        switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
                 break;
@@ -55,7 +53,7 @@ public class BusinessRuleFactory {
             case TupleOtherRule:
                 rule = createTupleOtherRule();
             default:
-                System.out.println(this.type + " != iets");
+                System.out.println(ruleContext.getType() + " != iets");
                 break;
         }
 
