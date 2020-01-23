@@ -48,8 +48,6 @@ public class MainController {
 		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));		
 
 		this.rules = FXCollections.observableArrayList(getBusinessrules());
-		System.out.println("hoi");
-		System.out.println(rules);
 		
         this.setupTable();
         this.setupContextMenu();
@@ -66,8 +64,8 @@ public class MainController {
         column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
-            	BusinessRule name = p.getValue();
-                return new SimpleStringProperty(name!=null?Integer.toString(name.getId()):"No ID");
+            	BusinessRule rule = p.getValue();
+                return new SimpleStringProperty(rule!=null?Integer.toString(rule.getId()):"No ID");
             }
         });
 
@@ -75,8 +73,8 @@ public class MainController {
         column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
-            	BusinessRule name = p.getValue();
-                return new SimpleStringProperty(name!=null?name.getName():"No Name");
+            	BusinessRule rule = p.getValue();
+                return new SimpleStringProperty(rule!=null?rule.getName():"No Name");
             }
         });
 //        this.tbl_businessrules.getColumns().add(column_name);
@@ -124,7 +122,7 @@ public class MainController {
 		    @Override
 		    public void handle(ContextMenuEvent event) {
 		    	BusinessRule selectedItem = tbl_businessrules.getSelectionModel().getSelectedItem();
-		    	if(selectedItem != null) contextMenu.show(tbl_businessrules, event.getScreenX(), event.getScreenY());
+		    	/* if(selectedItem != null) */ contextMenu.show(tbl_businessrules, event.getScreenX(), event.getScreenY());
 		    }
 		});
 	}
