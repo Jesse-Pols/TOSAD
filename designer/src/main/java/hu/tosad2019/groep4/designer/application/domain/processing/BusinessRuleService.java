@@ -3,16 +3,14 @@ package hu.tosad2019.groep4.designer.application.domain.processing;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.PersistencyService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessRuleService {
-    private PersistencyService persistencyService;
 
     public void getBusinessRule(BusinessRuleContext context){
-        this.persistencyService = new PersistencyService();
+//        this.persistencyService = new PersistencyService();
         //return new BusinessRuleFactory(type, attributes).MakeBusinessRule();
     }
 

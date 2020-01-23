@@ -177,7 +177,7 @@ public class MainController {
 	}
 	private boolean connectToServer(String protocol, String host, int port) {
 		try {
-			return MainFacade.connectToServer(protocol, host, port);
+			return MainFacade.getInstance().connectToServer(protocol, host, port);
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.sendError(e.getMessage());
@@ -186,6 +186,6 @@ public class MainController {
 	}
 	
 	private void generateBusinessRule(String id) throws Exception {
-		MainFacade.generateBusinessRule(id);
+		MainFacade.getInstance().generateBusinessRule(id);
 	}
 }

@@ -11,10 +11,21 @@ import java.util.List;
 
 public class PersistencyService implements IPersistencyService {
 
+    private static PersistencyService instance;
+
     BusinessRuleDao businessRuleDao = new BusinessRuleDao();
     DbColumnDao dbColumnDao = new DbColumnDao();
     BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
 
+    private PersistencyService() {}
+
+    public static PersistencyService getInstance() {
+        if(PersistencyService.instance == null) {
+            instance = new PersistencyService();
+        }
+
+        return instance;
+    }
 
     public BusinessRuleContext getBusinessRuleById(int id) {
         return this.convertIdToContext(id);
