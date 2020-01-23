@@ -1,10 +1,6 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
 import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
 import java.util.List;
@@ -13,10 +9,6 @@ import java.util.List;
 public class PersistencyService extends AbstractPersistency implements IPersistencyService {
 
     private static PersistencyService instance;
-
-    BusinessRuleDao businessRuleDao = new BusinessRuleDao();
-    DbColumnDao dbColumnDao = new DbColumnDao();
-    BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
 
     private PersistencyService() {}
 
@@ -33,7 +25,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
     }
 
     public List<BusinessRuleContext> getAllBusinessRules() {
-        return super.loopThroughBusinessRules(super.businessRuleDao.findAll());
+        List<BusinessRuleModel> businessRuleModels = super.businessRuleDao.findAll();
+        return super.loopThroughBusinessRules(businessRuleModels);
     }
 
     public List<BusinessRuleContext> findBusinessRuleByName(String name) {
@@ -45,10 +38,38 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         return true;
     }
 
-    // Insert if new update if exists
+    // Insert if new, update if exists
     public boolean saveBusinessRule(BusinessRuleContext context){
 
-        List<BusinessRuleCategoryModel> categories = super.businessRuleCategoryDao.findByName(context.getCategory());
+        BusinessRuleCategoryModel businessRuleCategoryModel = null;
+        TemplateModel templateModel = null;
+
+        if (context.getCategory() != null) {
+            businessRuleCategoryModel = new BusinessRuleCategoryModel(context.getCategory());
+            super.businessRuleCategoryDao.save(businessRuleCategoryModel);
+        }
+
+        if (context.getTemplate() != null) {
+            templateModel = new TemplateModel(context.getTemplate());
+            super.templateDao.save(templateModel);
+        }
+
+
+
+        /*
+
+
+
+        TemplateModel template = super.templateDao.find(context.getTemplateId());
+
+
+
+
+        String typeString = super.
+        BusinessRuleTypeModel businessRuleType = super.businessRuleTypeDao.find(context.getTypeId());
+
+
+
 
         BusinessRuleCategoryModel categoryModel = new BusinessRuleCategoryModel(null);
 
@@ -65,6 +86,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         SpecifiedValueModel specifiedValueModel = null;
         StatementModel statementModel = null;
         TemplateModel templateModel = null;
+
+         */
 
         return false;
     }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface IBusinessRuleCategoryDao  {
     BusinessRuleCategoryModel find(int id);
     List<BusinessRuleCategoryModel> findByName(String name);
+    void save(BusinessRuleCategoryModel businessRuleCategoryModel);
 }

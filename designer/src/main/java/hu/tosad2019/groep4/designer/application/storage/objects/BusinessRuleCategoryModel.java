@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class BusinessRuleCategoryModel {
 
     @Id
-    private int id;
+    private int id = 0;
 
     private String name;
 
