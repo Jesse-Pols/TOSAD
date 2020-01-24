@@ -10,6 +10,18 @@ import java.util.List;
 
 public class BusinessRuleService {
 
+    private static BusinessRuleService instance;
+
+    private BusinessRuleService() {}
+
+    public static BusinessRuleService getInstance() {
+        if(BusinessRuleService.instance == null) {
+            instance = new BusinessRuleService();
+        }
+
+        return instance;
+    }
+
     public BusinessRule getBusinessRule(BusinessRuleContext context){
         BusinessRuleFactory factory = new BusinessRuleFactory(context);
 

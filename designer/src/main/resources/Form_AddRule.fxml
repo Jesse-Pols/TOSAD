@@ -127,17 +127,17 @@
             </TabPane>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: #212121;">
                <children>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="errorMessage" text="Error message..." textFill="#ff4748" HBox.hgrow="ALWAYS">
-                     <padding>
+                  <Label fx:id="error_message" maxWidth="1.7976931348623157E308" text="Error message..." textFill="#212121" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
                         <Insets left="10.0" />
-                     </padding>
+                     </HBox.margin>
                   </Label>
-                  <Button fx:id="btn_save" mnemonicParsing="false" onAction="#btn_save_onclick" prefWidth="150.0" style="-fx-background-color: #68B21E;" text="Save" textFill="WHITE">
+                  <Button fx:id="btn_save" alignment="CENTER" mnemonicParsing="false" onAction="#btn_save_onclick" prefWidth="150.0" style="-fx-background-color: #68B21E;" text="Save" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" top="7.0" />
+                        <Insets bottom="10.0" right="10.0" top="8.0" />
                      </HBox.margin>
                      <font>
                         <Font name="System Italic" size="13.0" />
