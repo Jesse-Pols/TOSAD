@@ -11,9 +11,7 @@ public class DefineRule {
     public static boolean saveBusinessRule(BusinessRuleContext context) {
         BusinessRuleFactory factory = new BusinessRuleFactory(context);
 
-        BusinessRuleService businessRuleService = new BusinessRuleService();
-
-        return  businessRuleService.saveBusinessRule(factory.makeBusinessRule());
+        return  BusinessRuleService.getInstance().saveBusinessRule(factory.makeBusinessRule());
     }
 
     public static Map<String, String> getProperties(String BusinessRuleType){
