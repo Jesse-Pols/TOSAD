@@ -22,6 +22,7 @@ public class BusinessRuleService {
         return PersistencyService.getInstance().saveBusinessRule(factory.make());
     }
 
+
     public boolean deleteBusinessRule(BusinessRule rule){
         return PersistencyService.getInstance().deleteBusinessRule(rule.getId());
     }
