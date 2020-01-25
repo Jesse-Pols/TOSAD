@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
+import hu.tosad2019.groep4.designer.application.application.TargetDbConnection;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
@@ -52,6 +53,8 @@ public class MainController {
 
 
 	private ObservableList<BusinessRule> rules;
+
+	private TargetDbConnection targetDbConnection;
 
 	@FXML private void initialize() {
 
@@ -174,9 +177,8 @@ public class MainController {
 
 		int port_nr = Integer.parseInt(port);
 
-		// Connect to DB service   ==================================
-		// connection details      ==================================
 
+		this.targetDbConnection = new TargetDbConnection(type, host, port_nr, username, password);
 	}
 
 	@FXML
@@ -223,7 +225,7 @@ public class MainController {
 	}
 
 	private void generateBusinessRule(int name) throws Exception {
-		MainFacade.getInstance().generateBusinessRule(name);
+		MainFacade.getInstance().generateBusinessRule(name, targetDbConnection);
 	}
 	private List<BusinessRule> getBusinessrules(){
 		List<BusinessRule> rules = BusinessRuleService.getInstance().getAll();

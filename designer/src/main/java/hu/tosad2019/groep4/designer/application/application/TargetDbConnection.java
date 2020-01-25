@@ -3,11 +3,11 @@ package hu.tosad2019.groep4.designer.application.application;
 public class TargetDbConnection {
     private String dataBaseType;
     private String hostname;
-    private String port;
+    private int port;
     private String username;
     private String password;
 
-    public TargetDbConnection(String databaseType, String hostname, String port, String username, String password){
+    public TargetDbConnection(String databaseType, String hostname, int port, String username, String password){
         this.dataBaseType = databaseType;
         this.hostname = hostname;
         this.port = port;
@@ -27,9 +27,7 @@ public class TargetDbConnection {
         return hostname;
     }
 
-    public String getPort() {
-        if (port == null)
-            return "";
+    public int getPort() {
         return port;
     }
 
