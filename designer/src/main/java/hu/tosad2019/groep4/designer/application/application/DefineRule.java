@@ -1,19 +1,9 @@
 package hu.tosad2019.groep4.designer.application.application;
-
-<<<<<<< HEAD
-=======
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleFactory;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
-
->>>>>>> master
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleFactory;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 
 public class DefineRule {
     public static boolean saveBusinessRule(BusinessRuleContext context) {
