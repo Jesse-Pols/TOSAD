@@ -1,14 +1,23 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.*;
-import hu.tosad2019.groep4.designer.application.storage.objects.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.ListDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.RangeDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.SpecifiedValueDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.StatementDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.TemplateDao;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
 
 public class AbstractPersistency {
 
@@ -22,16 +31,15 @@ public class AbstractPersistency {
     protected SpecifiedValueDao specifiedValueDao = new SpecifiedValueDao();
     protected ListDao listDao = new ListDao();
 
-    protected BusinessRuleContext convertIdToContext(int id) {
+    protected BusinessRuleContext convertIdToContext(int id) throws Exception {
 
-        id = 20;
         // Get businessrule, return null if businessrule doesn't exist
         BusinessRuleModel businessRule = businessRuleDao.find(id);
-        if (businessRule == null) { return null; }
+        if (businessRule == null) throw new Exception("Given ID has no business rule match");
 
         // Get type, return null if type doesn't exist
         BusinessRuleTypeModel type = businessRule.getType();
-        if (type == null) { return null; }
+        if (type == null) throw new Exception("Given ID has no business rule type match");
 
         // Generate context object
         BusinessRuleContext context = this.getCorrectType(type.getName());
@@ -61,14 +69,16 @@ public class AbstractPersistency {
         //}
 
         // Statement
-        List<StatementModel> statements = statementDao.findAllByRuleId(id);
+        @SuppressWarnings("unchecked")
+		List<StatementModel> statements = (List<StatementModel>) statementDao.findAllByRuleId(id);
         StatementModel statement = null;
         if (!statements.isEmpty()) {
             statement = statements.get(0);
         }
 
         // Range
-        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
+        @SuppressWarnings("unchecked")
+		List<RangeModel> ranges = (List<RangeModel>) rangeDao.findAllByRuleId(id);
         RangeModel range = null;
         if (!ranges.isEmpty()) {
             range = ranges.get(0);
@@ -124,15 +134,18 @@ public class AbstractPersistency {
          */
 
         // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
-
+        System.out.println("HIERI" + context);
         return context;
     }
 
-    protected List<BusinessRuleContext> loopThroughBusinessRules(List<BusinessRuleModel> businessRuleModels) {
+    protected List<BusinessRuleContext> loopThroughBusinessRules(List<BusinessRuleModel> businessRuleModels) throws Exception {
+    	System.out.println("Loop " + businessRuleModels);
         List<BusinessRuleContext> businessRuleContexts = new ArrayList<>();
         for (BusinessRuleModel businessRule : businessRuleModels) {
-            businessRuleContexts.add(this.convertIdToContext(businessRule.getId()));
+        	BusinessRuleContext context = this.convertIdToContext(businessRule.getId());
+            businessRuleContexts.add(context);
         }
+        System.out.println("Loop " + businessRuleContexts);
         return businessRuleContexts;
     }
 

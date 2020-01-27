@@ -6,6 +6,8 @@ import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleCo
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
+import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
+import javassist.NotFoundException;
 
 
 public class PersistencyService extends AbstractPersistency implements IPersistencyService {
@@ -22,22 +24,22 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         return instance;
     }
 
-    public BusinessRuleContext getBusinessRuleById(int id) {
+    public BusinessRuleContext getBusinessRuleById(int id) throws Exception {
         return super.convertIdToContext(id);
     }
 
-    public List<BusinessRuleContext> getAllBusinessRules() {
+    public List<BusinessRuleContext> getAllBusinessRules() throws Exception {
         @SuppressWarnings("unchecked")
 		List<BusinessRuleModel> businessRuleModels = (List<BusinessRuleModel>) super.businessRuleDao.findAll();
         return super.loopThroughBusinessRules(businessRuleModels);
     }
 
     @SuppressWarnings("unchecked")
-	public List<BusinessRuleContext> findBusinessRuleByName(String name) {
+	public List<BusinessRuleContext> findBusinessRuleByName(String name) throws DataAccessLayerException, Exception {
         return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findAllByName(name));
     }
 
-    public boolean deleteBusinessRule(int id) {
+    public boolean deleteBusinessRule(int id) throws DataAccessLayerException, NotFoundException {
         super.businessRuleDao.delete(id);
         return true;
     }

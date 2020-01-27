@@ -1,36 +1,35 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
+import hu.tosad2019.groep4.designer.application.domain.objects.Column;
+import hu.tosad2019.groep4.designer.application.domain.objects.Range;
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.entityotherrule.EntityOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.modifyrule.ModifyRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tupleotherrule.TupleOtherRule;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import java.util.Map;
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.Range;
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 
 public class BusinessRuleFactory {
     private BusinessRuleContext ruleContext;
 
-    public BusinessRuleFactory(BusinessRuleContext ruleContext){
+    public BusinessRuleFactory(BusinessRuleContext ruleContext) throws Exception{
+    	if(ruleContext == null) throw new Exception("RuleContext may not be null");
         this.ruleContext = ruleContext;
     }
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
-        /*
         switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
+                System.out.println("Rule: " + rule);
                 break;
             case AttributeRangeRule:
                 rule = createAttributeRangeRule();
@@ -53,11 +52,11 @@ public class BusinessRuleFactory {
             case TupleOtherRule:
                 rule = createTupleOtherRule();
             default:
-                System.err.println(ruleContext.getType() + " != iets");
-                break;
+                System.err.println("Type not found");
 
         }
-         */
+        
+        if(rule == null) System.err.println("Business rule is null!");
         
         return rule;
     }

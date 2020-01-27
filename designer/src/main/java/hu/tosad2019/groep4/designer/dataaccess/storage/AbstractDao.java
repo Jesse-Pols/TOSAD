@@ -8,6 +8,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javassist.NotFoundException;
+
 public class AbstractDao {
     private Session session;
     private Transaction tx;
@@ -40,7 +42,7 @@ public class AbstractDao {
         }
     }
 
-    protected Object find(Class<?> clazz, int id) {
+    protected Object find(Class<?> clazz, int id) throws NotFoundException {
         Object obj = null;
 
         try {
@@ -51,7 +53,7 @@ public class AbstractDao {
             } catch (HibernateException err) {
                 this.handleException(err);
             }
-
+            if(obj == null) throw new NotFoundException("Not found!");
             return obj;
         } finally {
             HibernateFactory.close(this.session);

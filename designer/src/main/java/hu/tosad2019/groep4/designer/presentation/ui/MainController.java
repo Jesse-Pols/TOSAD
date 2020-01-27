@@ -55,7 +55,7 @@ public class MainController {
 
 	private TargetDbConnection targetDbConnection;
 
-	@FXML private void initialize() {
+	@FXML private void initialize() throws Exception {
 
 		//Generator server connection
 		cb_generate_protocol.getItems().addAll("http://", "https://");
@@ -225,7 +225,7 @@ public class MainController {
 	private void generateBusinessRule(int name) throws Exception {
 		MainFacade.getInstance().generateBusinessRule(name, targetDbConnection);
 	}
-	private List<BusinessRule> getBusinessrules(){
+	private List<BusinessRule> getBusinessrules() throws Exception{
 		List<BusinessRule> rules = BusinessRuleService.getInstance().getAll();
 		return rules;
 	}

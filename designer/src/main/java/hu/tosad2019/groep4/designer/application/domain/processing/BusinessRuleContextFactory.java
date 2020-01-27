@@ -10,7 +10,6 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.modi
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tupleotherrule.TupleOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.Attribute;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleContextFactory {
@@ -22,16 +21,16 @@ public class BusinessRuleContextFactory {
 
     public BusinessRuleContext make(){
         BusinessRuleContext newContext = null;
-        if (AttributeCompareRule.class.equals(rule.getClass())) {
+        if (rule instanceof AttributeCompareRule) {
             newContext = getContextFromCompareRule((AttributeCompareRule) rule);
-        } else if (AttributeRangeRule.class.equals(rule.getClass())) {
+        } else if (rule instanceof AttributeRangeRule) {
             newContext = getContextFromRangeRule((AttributeRangeRule) rule);
-        } else if (AttributeListRule.class.equals(rule.getClass())) {
-        } else if (EntityOtherRule.class.equals(rule.getClass())) {
-        } else if (InterEntityCompareRule.class.equals(rule.getClass())) {
-        } else if (ModifyRule.class.equals(rule.getClass())) {
-        } else if (TupleCompareRule.class.equals(rule.getClass())) {
-        } else if (TupleOtherRule.class.equals(rule.getClass())) {
+        } else if (rule instanceof AttributeListRule) {
+        } else if (rule instanceof EntityOtherRule) {
+        } else if (rule instanceof InterEntityCompareRule) {
+        } else if (rule instanceof ModifyRule) {
+        } else if (rule instanceof TupleCompareRule) {
+        } else if (rule instanceof TupleOtherRule) {
         }
 
 

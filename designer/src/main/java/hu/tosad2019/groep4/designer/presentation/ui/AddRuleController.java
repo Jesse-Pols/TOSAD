@@ -62,7 +62,7 @@ public class AddRuleController {
 		}
 	}
 
-	@FXML private void btn_save_onclick() {
+	@FXML private void btn_save_onclick() throws Exception {
 
 		for (Node node : vbox_define_selection.getChildren()) {
 
@@ -103,7 +103,7 @@ public class AddRuleController {
 	}
 	
 	// TODO place this elsewhere?
-	private void saveRule() {
+	private void saveRule() throws Exception {
 		BusinessRuleType type = this.cb_ruletype.getSelectionModel().getSelectedItem();
 		System.out.println("Saving " + type.label + "..");
 		BusinessRuleContext context = new BusinessRuleContext(type);

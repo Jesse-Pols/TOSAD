@@ -6,9 +6,10 @@ import hu.tosad2019.groep4.designer.application.storage.interfaces.IBusinessRule
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
+import javassist.NotFoundException;
 
 public class BusinessRuleCategoryDao extends AbstractDao implements IBusinessRuleCategoryDao {
-    public BusinessRuleCategoryModel find(int id) throws DataAccessLayerException {
+    public BusinessRuleCategoryModel find(int id) throws DataAccessLayerException, NotFoundException {
         return (BusinessRuleCategoryModel) super.find(BusinessRuleCategoryModel.class, id);
     }
     @SuppressWarnings("unchecked")
