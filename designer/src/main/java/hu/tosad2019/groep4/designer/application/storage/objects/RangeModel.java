@@ -33,7 +33,7 @@ public class RangeModel {
     public int getMaxValueOperator() { return this.max_value_operator; }
     public int getRuleID() { return this.rule_id; }
 
-    public Operator getMinOperator() {
+    public int getMinOperator() {
         return this.min_value_operator;
     }
 }

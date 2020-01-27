@@ -42,21 +42,21 @@ public class AbstractPersistency {
         context.setIsNot(businessRule.getIsNot());
 
         // Type
-        context.setTypeId(type.getId());
+        //context.setTypeId(type.getId());
 
         // Category
-        BusinessRuleCategoryModel category = type.getCategory();
-        if (category != null) {
-            context.setCategory(category.getName());
-            context.setCategoryId(category.getId());
-        }
+        //BusinessRuleCategoryModel category = type.getCategory();
+        //if (category != null) {
+          //  context.setCategory(category.getName());
+          //  context.setCategoryId(category.getId());
+        //}
 
         // Template
-        TemplateModel template = type.getTemplate();
-        if (template != null) {
-            context.setTemplate(template.getValue());
-            context.setTemplateId(template.getId());
-        }
+        //TemplateModel template = type.getTemplate();
+        //if (template != null) {
+          //  context.setTemplate(template.getValue());
+            //context.setTemplateId(template.getId());
+        //}
 
         // Statement
         List<StatementModel> statements = statementDao.findAllByRuleId(id);
@@ -71,18 +71,21 @@ public class AbstractPersistency {
         if (!ranges.isEmpty()) {
             range = ranges.get(0);
         }
-        context.setMaxValue(range.getMaxValue());
-        context.setMinValue(range.getMinValue());
-        context.setMaxOperator(range.getMaxOperator());
-        context.setMinOperator(range.getMinOperator());
+        //context.setMaxValue(range.getMaxValue());
+        //context.setMinValue(range.getMinValue());
+        //context.setMaxOperator(range.getMaxOperator());
+        //context.setMinOperator(range.getMinOperator());
 
         // List
+        /*
         List<ListModel> lists = listDao.findAllByRuleId(id);
         ListModel list = null;
         if (!lists.isEmpty()) {
             list = lists.get(0);
         }
         context.setListId(list.getId());
+
+         */
 
         // Specified Values
         
