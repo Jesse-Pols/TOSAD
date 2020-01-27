@@ -11,11 +11,8 @@ public class BusinessRuleCategoryModel {
 
     private String name;
 
-    public BusinessRuleCategoryModel(String name) {
-        this.name = name;
-    }
-
     public BusinessRuleCategoryModel() {}
     
     public String getName() { return this.name; }
+    public int getId() { return this.id; }
 }

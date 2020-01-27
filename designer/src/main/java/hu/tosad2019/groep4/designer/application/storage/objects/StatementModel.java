@@ -1,7 +1,11 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="Statement")
 public class StatementModel {
@@ -9,16 +13,13 @@ public class StatementModel {
     @Id
     private int id;
 
-    private int rule_id;
+    @ManyToOne
+    @JoinColumn(name="rule_id")
+    private BusinessRuleModel businessRuleModel;
+
     private String statement;
 
-    public StatementModel(int rule_id, String statement) {
-        this.rule_id = rule_id;
-        this.statement = statement;
-    }
-
     public StatementModel() { }
-    
-    public int getRuleId() { return this.rule_id; }
+
     public String getStatement() { return this.statement; }
 }
