@@ -40,8 +40,8 @@ public class AddRuleController {
 	@FXML
 	private void cb_ruletype_onselect() {
 		this.clearOptions();
-		String rulename = cb_ruletype.getSelectionModel().getSelectedItem().toString();
-		Map<String, Node> options = AddRuleLoader.loadUICompoent(rulename);
+		BusinessRuleType selectedType= cb_ruletype.getSelectionModel().getSelectedItem();
+		Map<String, Node> options = AddRuleLoader.loadUICompoent(selectedType);
 
 		if(options == null) {
 			return;
@@ -163,13 +163,11 @@ public class AddRuleController {
 		if(kindOfMessage.equals("Succes")) {
 			this.alert_message.setTextFill(Color.web("#68B21E"));
 			this.alert_message.setText(message);
-			System.out.println("Succes");
 		}
 
 		if(kindOfMessage.equals("Failure")) {
 			this.alert_message.setTextFill(Color.web("#FF0000"));
 			this.alert_message.setText(message);
-			System.out.println("Failure");
 		}
 	}
 

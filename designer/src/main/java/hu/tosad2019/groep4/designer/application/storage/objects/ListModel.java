@@ -14,4 +14,8 @@ public class ListModel {
     @ManyToOne
     @JoinColumn(name = "rule_id")
     private BusinessRuleModel businessRule;
+
+    public int getId() {
+        return this.id;
+    }
 }

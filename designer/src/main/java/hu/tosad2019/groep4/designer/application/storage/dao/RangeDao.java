@@ -1,7 +1,6 @@
 package hu.tosad2019.groep4.designer.application.storage.dao;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.IRangeDao;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;

@@ -58,12 +58,13 @@ public class BusinessRuleService {
         List<Operator> operators = new ArrayList<Operator>();
 
         switch(ruleType){
-            case AttributeRangeRule:{
+            case AttributeRangeRule:
                 operators.add(Operator.BETWEEN);
                 operators.add(Operator.NOTBETWEEN);
                 break;
-            }
-            default:{
+            case AttributeCompareRule:
+            case TupleCompareRule:
+            case InterEntityCompareRule:
                 operators.add(Operator.EQUALS);
                 operators.add(Operator.NOTEQUALS);
                 operators.add(Operator.GREATERTHAN);
@@ -71,7 +72,12 @@ public class BusinessRuleService {
                 operators.add(Operator.LESSTHEN);
                 operators.add(Operator.LESSTHENOREQUAL);
                 break;
-            }
+            case AttributeListRule:
+            	operators.add(Operator.EQUALS);
+                operators.add(Operator.NOTEQUALS);
+                break;
+            default:
+            	System.err.println("Businessrule \"" + ruleType + "\" has no operators.");
         }
 
 
