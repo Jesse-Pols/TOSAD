@@ -16,4 +16,6 @@ public class ListModel {
     }
 
     public ListModel() { }
+    
+    public int getRuleID() { return this.rule_id; }
 }

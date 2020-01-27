@@ -21,7 +21,7 @@ public class BusinessRuleTypeModel {
 
     public BusinessRuleTypeModel() {}
 
-    public String getName() {
-        return this.name;
-    }
+    public String getName() { return this.name; }
+    public int getTemplateID() { return this.template_id; }
+    public int getCategoryID() { return this.category_id; }
 }

@@ -1,6 +1,5 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -137,12 +136,11 @@ public class MainController {
 
 		// When user right-click on Circle
 		tbl_businessrules.setOnContextMenuRequested(new EventHandler < ContextMenuEvent > () {
-
-			@Override
-			public void handle(ContextMenuEvent event) {
-				BusinessRule selectedItem = tbl_businessrules.getSelectionModel().getSelectedItem();
-				if(selectedItem != null) contextMenu.show(tbl_businessrules, event.getScreenX(), event.getScreenY());
-			}
+		    @Override
+		    public void handle(ContextMenuEvent event) {
+//		    	BusinessRule selectedItem = tbl_businessrules.getSelectionModel().getSelectedItem();
+		    	/* if(selectedItem != null) */ contextMenu.show(tbl_businessrules, event.getScreenX(), event.getScreenY());
+		    }
 		});
 	}
 

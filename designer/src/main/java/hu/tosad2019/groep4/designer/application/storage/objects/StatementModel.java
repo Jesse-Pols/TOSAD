@@ -18,4 +18,7 @@ public class StatementModel {
     }
 
     public StatementModel() { }
+    
+    public int getRuleId() { return this.rule_id; }
+    public String getStatement() { return this.statement; }
 }

@@ -20,6 +20,14 @@ public class SpecifiedValueModel {
         this.rule_id = rule_id;
         this.list_id = list_id;
     }
-
+    
     public SpecifiedValueModel() {}
+
+    public int getId() { return id; }
+	public String getValue() { return value; }
+	public String getType() { return type; }
+	public int getRuleId() { return rule_id; }
+	public int getListId() { return list_id; }
+    
+    
 }

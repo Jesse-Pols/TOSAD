@@ -1,11 +1,11 @@
 package hu.tosad2019.groep4.designer.application.storage.dao;
 
+import java.util.List;
+
 import hu.tosad2019.groep4.designer.application.storage.interfaces.IDbColumnDao;
 import hu.tosad2019.groep4.designer.application.storage.objects.DbColumnModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
-
-import java.util.List;
 
 public class DbColumnDao extends AbstractDao implements IDbColumnDao {
     public DbColumnDao() {}
@@ -14,7 +14,8 @@ public class DbColumnDao extends AbstractDao implements IDbColumnDao {
         return (DbColumnModel) super.find(DbColumnModel.class, id);
     }
 
-    public List<DbColumnModel> findByRuleId(int rule_id) {
-        return super.findAll(DbColumnModel.class, "rule_id = 21");
+    @SuppressWarnings("unchecked")
+	public List<DbColumnModel> findByRuleId(int rule_id) {
+        return (List<DbColumnModel>) super.findAll(DbColumnModel.class, "rule_id = 21");
     }
 }

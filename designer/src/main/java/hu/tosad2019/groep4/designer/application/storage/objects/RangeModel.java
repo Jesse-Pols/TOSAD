@@ -24,6 +24,12 @@ public class RangeModel {
     }
 
     public RangeModel() {}
+    
+    public String getMin() { return this.min; }
+    public String getMax() { return this.max; }
+    public int getMinValueOperator() { return this.min_value_operator; }
+    public int getMaxValueOperator() { return this.max_value_operator; }
+    public int getRuleID() { return this.rule_id; }
 
 }
 
