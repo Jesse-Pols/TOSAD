@@ -14,7 +14,10 @@ public class Main extends Application
 {
 	public static void main(String[] args) {
 		System.out.println("Starting designer..");
-		launch();
+		//launch();
+		PersistencyService ps = PersistencyService.getInstance();
+		ps.getAllBusinessRules();
+		System.out.println("Done");
 
 
 

@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
@@ -43,6 +44,13 @@ public class BusinessRuleContext {
     private String range_max_value;
     private Operator range_min_operator;
     private Operator range_max_operator;
+
+    // List
+    private int list_id;
+
+    // Specified Values
+    private List<SpecifiedValue> business_rule_values;
+    private List<SpecifiedValue> list_values;
 
 
 
@@ -93,6 +101,11 @@ public class BusinessRuleContext {
     public void setMinOperator(Operator operator) { this.range_min_operator = operator; }
     public void setMaxOperator(Operator operator) { this.range_max_operator = operator; }
 
+    public void setListId(int id) { this.list_id = id; }
+
+    public void setBusinessRuleValues(List<SpecifiedValue> list) { this.business_rule_values = list; }
+    public void setListValues(List<SpecifiedValue> list) { this.list_values = list; }
+
 
 
     public void setFirstTable(String table) { this.first_table = table; }
@@ -132,6 +145,11 @@ public class BusinessRuleContext {
     public String getMaxValue() { return this.range_max_value; }
     public Operator getMinOperator() { return this.range_min_operator; }
     public Operator getMaxOperator() { return this.range_max_operator; }
+
+    public int getListId() { return this.list_id; }
+
+    public List<SpecifiedValue> getBusinessRuleValues() { return this.business_rule_values; }
+    public List<SpecifiedValue> getListValues() { return this.list_values; }
 
 
 

@@ -24,7 +24,7 @@ public class AbstractPersistency {
     protected BusinessRuleContext convertIdToContext(int id) {
 
         // Get businessrule, return null if businessrule doesn't exist
-        BusinessRuleModel businessRule = businessRuleDao.find(19);
+        BusinessRuleModel businessRule = businessRuleDao.find(id);
         if (businessRule == null) { return null; }
 
         // Get type, return null if type doesn't exist
@@ -44,6 +44,66 @@ public class AbstractPersistency {
         // Type
         context.setTypeId(type.getId());
 
+        // Category
+        BusinessRuleCategoryModel category = type.getCategory();
+        if (category != null) {
+            context.setCategory(category.getName());
+            context.setCategoryId(category.getId());
+        }
+
+        // Template
+        TemplateModel template = type.getTemplate();
+        if (template != null) {
+            context.setTemplate(template.getValue());
+            context.setTemplateId(template.getId());
+        }
+
+        // Statement
+        List<StatementModel> statements = statementDao.findAllByRuleId(id);
+        StatementModel statement = null;
+        if (!statements.isEmpty()) {
+            statement = statements.get(0);
+        }
+
+        // Range
+        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
+        RangeModel range = null;
+        if (!ranges.isEmpty()) {
+            range = ranges.get(0);
+        }
+        context.setMaxValue(range.getMaxValue());
+        context.setMinValue(range.getMinValue());
+        context.setMaxOperator(range.getMaxOperator());
+        context.setMinOperator(range.getMinOperator());
+
+        // List
+        List<ListModel> lists = listDao.findAllByRuleId(id);
+        ListModel list = null;
+        if (!lists.isEmpty()) {
+            list = lists.get(0);
+        }
+        context.setListId(list.getId());
+
+        // Specified Values
+        
+
+
+
+
+
+
+
+        /*
+        for (DbColumnModel column : dbColumns) {
+            if (column.getPosition() == 0) {
+                context.setFirstColumn(column.getColumn_name());
+                context.setFirstTable(column.getTable_name());
+                break;
+            }
+        }
+         */
+
+        // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
 
         return context;
     }
