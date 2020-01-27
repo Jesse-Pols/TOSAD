@@ -1,16 +1,13 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.TemplateDao;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.dao.*;
+import hu.tosad2019.groep4.designer.application.storage.objects.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class AbstractPersistency {
 
@@ -19,19 +16,82 @@ public class AbstractPersistency {
     protected BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
     protected DbColumnDao dbColumnDao = new DbColumnDao();
     protected TemplateDao templateDao = new TemplateDao();
+    protected StatementDao statementDao = new StatementDao();
+    protected RangeDao rangeDao = new RangeDao();
+    protected SpecifiedValueDao specifiedValueDao = new SpecifiedValueDao();
+    protected ListDao listDao = new ListDao();
 
     protected BusinessRuleContext convertIdToContext(int id) {
 
-        BusinessRuleModel businessRuleModel = businessRuleDao.find(id);
-        //BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getType();
-        //List<DbColumnModel> dbColumns = dbColumnDao.findByRuleId(id);
+        // Get businessrule, return null if businessrule doesn't exist
+        BusinessRuleModel businessRule = businessRuleDao.find(id);
+        if (businessRule == null) { return null; }
 
-        //BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
-        BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
-        context.setName(businessRuleModel.getName());
-        context.setId(businessRuleModel.getId());
-        //context.setDescription(businessRuleModel.getDescription());
-        //context.setFailure(businessRuleModel.getFailure());
+        // Get type, return null if type doesn't exist
+        BusinessRuleTypeModel type = businessRule.getType();
+        if (type == null) { return null; }
+
+        // Generate context object
+        BusinessRuleContext context = this.getCorrectType(type.getName());
+
+        // Business Rule
+        context.setName(businessRule.getName());
+        context.setId(businessRule.getId());
+        context.setDescription(businessRule.getDescription());
+        context.setFailure(businessRule.getFailure());
+        context.setIsNot(businessRule.getIsNot());
+
+        // Type
+        context.setTypeId(type.getId());
+
+        // Category
+        BusinessRuleCategoryModel category = type.getCategory();
+        if (category != null) {
+            context.setCategory(category.getName());
+            context.setCategoryId(category.getId());
+        }
+
+        // Template
+        TemplateModel template = type.getTemplate();
+        if (template != null) {
+            context.setTemplate(template.getValue());
+            context.setTemplateId(template.getId());
+        }
+
+        // Statement
+        List<StatementModel> statements = statementDao.findAllByRuleId(id);
+        StatementModel statement = null;
+        if (!statements.isEmpty()) {
+            statement = statements.get(0);
+        }
+
+        // Range
+        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
+        RangeModel range = null;
+        if (!ranges.isEmpty()) {
+            range = ranges.get(0);
+        }
+        context.setMaxValue(range.getMaxValue());
+        context.setMinValue(range.getMinValue());
+        context.setMaxOperator(range.getMaxOperator());
+        context.setMinOperator(range.getMinOperator());
+
+        // List
+        List<ListModel> lists = listDao.findAllByRuleId(id);
+        ListModel list = null;
+        if (!lists.isEmpty()) {
+            list = lists.get(0);
+        }
+        context.setListId(list.getId());
+
+        // Specified Values
+        
+
+
+
+
+
+
 
         /*
         for (DbColumnModel column : dbColumns) {
