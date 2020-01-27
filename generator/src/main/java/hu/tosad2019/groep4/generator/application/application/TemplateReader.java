@@ -15,8 +15,7 @@ public class TemplateReader {
 		URL url = getClass().getClassLoader().getResource("templates/RuleTemplates/" + templatename + ".template");
 
 //		Scanner in = new Scanner(new FileReader(templatename + ".template"));
-
-		File myObj = new File(url.getFile());
+		File myObj = new File(url.getFile().replaceAll("%20", " "));
 		Scanner reader = new Scanner(myObj);
 		return reader;
 	}

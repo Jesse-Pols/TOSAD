@@ -17,6 +17,7 @@ public class TemplateParser {
 		try {
 			sc = new TemplateReader().read(templatename);
 		} catch (FileNotFoundException e) {
+			System.err.println(e.getMessage());
 			System.err.println("Template with name " + templatename + " not found.");
 			return null;
 		}
@@ -38,3 +39,5 @@ public class TemplateParser {
 	}
 	
 }
+
+//"/Users/bartvantongeren/Desktop/School/Jaar 2/TOSAD/TOSAD/generator/src/main/resources/templates/RuleTemplates/ATTRIBUTE_COMPARE_RULE.template"
