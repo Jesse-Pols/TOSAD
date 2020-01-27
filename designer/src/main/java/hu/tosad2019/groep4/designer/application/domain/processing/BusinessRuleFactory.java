@@ -27,6 +27,7 @@ public class BusinessRuleFactory {
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
+        /*
         switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
@@ -54,15 +55,21 @@ public class BusinessRuleFactory {
             default:
                 System.err.println(ruleContext.getType() + " != iets");
                 break;
+
         }
+         */
         
         return rule;
     }
 
 
     private AttributeCompareRule createAttributeCompareRule(){
+        if (ruleContext.getFirstTable() == null || ruleContext.getFirstColumn() == null || ruleContext.getBusinessRuleValues().isEmpty()) {
+            return null;
+        }
+
         Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
-        SpecifiedValue specifiedValue = new SpecifiedValue(ruleContext.getSpecifiedValues().get(0));
+        SpecifiedValue specifiedValue = new SpecifiedValue(ruleContext.getBusinessRuleValues().get(0));
         AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, ruleContext.getOperator(), specifiedValue);
 
         return new AttributeCompareRule(ruleContext.getName(), ruleContext.getDescription(), compareRuleContext);

@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import hu.tosad2019.groep4.designer.application.storage.dao.*;
@@ -23,6 +24,7 @@ public class AbstractPersistency {
 
     protected BusinessRuleContext convertIdToContext(int id) {
 
+        id = 20;
         // Get businessrule, return null if businessrule doesn't exist
         BusinessRuleModel businessRule = businessRuleDao.find(id);
         if (businessRule == null) { return null; }
@@ -83,11 +85,26 @@ public class AbstractPersistency {
         if (!lists.isEmpty()) {
             list = lists.get(0);
         }
-        context.setListId(list.getId());
+
+        if (list != null) {
+            //context.setListId(list.getId());
+            // listvalues
+        }
+
+        /*
+        List<SpecifiedValue> businessRuleValues = specifiedValueDao.findAllByRuleId(id);
+        if (!businessRuleValues.isEmpty()) {
+            context.setBusinessRuleValues(businessRuleValues);
+        }
 
          */
 
+
+
+        
+
         // Specified Values
+
         
 
 
