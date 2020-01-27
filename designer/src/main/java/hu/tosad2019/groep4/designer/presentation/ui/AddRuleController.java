@@ -28,7 +28,6 @@ public class AddRuleController {
 	@FXML private TextField messageBox;
 	@FXML private Label alert_message;
 
-
 	private Map<String, Object> currentProperties = new LinkedHashMap<>();
 	private List<BusinessRuleType> rules = List.of(BusinessRuleType.values());
 
