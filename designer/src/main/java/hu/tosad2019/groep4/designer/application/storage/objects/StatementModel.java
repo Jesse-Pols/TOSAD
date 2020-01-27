@@ -2,14 +2,14 @@ package hu.tosad2019.groep4.designer.application.storage.objects;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Statement")
 public class StatementModel {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "rule_id")
     private BusinessRuleModel businessRule;
 

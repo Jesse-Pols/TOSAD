@@ -23,20 +23,16 @@ public class AbstractPersistency {
 
     protected BusinessRuleContext convertIdToContext(int id) {
 
-        /* MODELS */
-        BusinessRuleModel businessRule = businessRuleDao.find(id);
+        // Get businessrule, return null if businessrule doesn't exist
+        BusinessRuleModel businessRule = businessRuleDao.find(19);
+        if (businessRule == null) { return null; }
+
+        // Get type, return null if type doesn't exist
         BusinessRuleTypeModel type = businessRule.getType();
-        BusinessRuleCategoryModel category = type.getCategory();
-        TemplateModel template = type.getTemplate();
+        if (type == null) { return null; }
 
-        List<StatementModel> statements = statementDao.findAllByRuleId(id);
-        StatementModel statement = statements.get(0);
-
-        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
-        RangeModel range = ranges.get(0);
-
-        /* CONTEXT */
-        BusinessRuleContext context = this.getCorrectType(businessRule.getType().getName());
+        // Generate context object
+        BusinessRuleContext context = this.getCorrectType(type.getName());
 
         // Business Rule
         context.setName(businessRule.getName());
@@ -45,40 +41,9 @@ public class AbstractPersistency {
         context.setFailure(businessRule.getFailure());
         context.setIsNot(businessRule.getIsNot());
 
-        // Business Type
+        // Type
         context.setTypeId(type.getId());
 
-        // Business Category
-        context.setCategory(category.getName());
-        context.setCategoryId(category.getId());
-
-        // Template
-        context.setTemplate(template.getValue());
-        context.setTemplateId(template.getId());
-
-        // Statement
-        context.setStatement(statement.getStatement());
-        context.setStatementId(statement.getId());
-
-        // Range
-        context.setMaxValue(range.getMaxValue());
-        context.setMinValue(range.getMinValue());
-        context.setMaxOperator(range.getMaxOperator());
-        context.setMinOperator(range.getMinOperator());
-
-
-
-        /*
-        for (DbColumnModel column : dbColumns) {
-            if (column.getPosition() == 0) {
-                context.setFirstColumn(column.getColumn_name());
-                context.setFirstTable(column.getTable_name());
-                break;
-            }
-        }
-         */
-
-        // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
 
         return context;
     }
