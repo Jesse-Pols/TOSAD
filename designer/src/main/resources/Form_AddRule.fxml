@@ -127,7 +127,7 @@
             </TabPane>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: #212121;">
                <children>
-                  <Label fx:id="error_message" maxWidth="1.7976931348623157E308" text="Error message..." textFill="#212121" HBox.hgrow="ALWAYS">
+                  <Label fx:id="alert_message" maxWidth="1.7976931348623157E308" styleClass="alertMessage" text="Alert message..." textFill="#212121" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

@@ -105,10 +105,6 @@
     -fx-prompt-text-fill: #757575;
 }
 
-.label {
-    -fx-text-fill: #e1e1e1;
-}
-
 .text-field {
     -fx-background-color: #3d3c3c;
 }

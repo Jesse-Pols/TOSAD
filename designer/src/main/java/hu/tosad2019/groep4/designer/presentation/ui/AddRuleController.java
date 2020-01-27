@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,15 +26,16 @@ public class AddRuleController {
 	@FXML private VBox vbox_define_selection;
 	@FXML private Button btn_save;
 	@FXML private TextField messageBox;
+	@FXML private Label alert_message;
 
-	
-	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
+
 	private Map<String, Object> currentProperties = new LinkedHashMap<>();
 	private List<BusinessRuleType> rules = List.of(BusinessRuleType.values());
 
 	@FXML private void initialize() {
 		cb_ruletype.getItems().addAll(this.rules);
 		this.clearOptions();
+		this.alert_message.setTextFill(Color.web("#212121"));
 	}
 
 	@FXML
@@ -50,6 +52,7 @@ public class AddRuleController {
 			Label lbl = new Label(key);
 			lbl.setMinWidth(80);
 			lbl.setPadding(new Insets(5,0,0,0));
+			lbl.setTextFill(Color.web("#e1e1e1"));
 			Node node = options.get(key);
 
 			HBox box = new HBox();
@@ -155,8 +158,22 @@ public class AddRuleController {
 		MainFacade.getInstance().saveBusinessRule(context);
 	}
 	
-	private void clearOptions() {
-		vbox_define_selection.getChildren().clear();
+	private void clearOptions() { vbox_define_selection.getChildren().clear(); }
+
+	public void setAlertMessage(String message, String kindOfMessage) {
+		if(kindOfMessage.equals("Succes")) {
+			this.alert_message.setTextFill(Color.web("#68B21E"));
+			this.alert_message.setText(message);
+			System.out.println("Succes");
+		}
+
+		if(kindOfMessage.equals("Failure")) {
+			this.alert_message.setTextFill(Color.web("#FF0000"));
+			this.alert_message.setText(message);
+			System.out.println("Failure");
+		}
 	}
+
+	public void hideAlertMessage() { this.alert_message.setTextFill(Color.web("#212121")); }
 
 }
