@@ -27,6 +27,7 @@ public class BusinessRuleFactory {
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
+        /*
         switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
@@ -54,7 +55,9 @@ public class BusinessRuleFactory {
             default:
                 System.err.println(ruleContext.getType() + " != iets");
                 break;
+
         }
+         */
         
         return rule;
     }
