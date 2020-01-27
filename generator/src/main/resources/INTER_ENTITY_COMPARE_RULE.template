@@ -1,3 +1,0 @@
-IF NOT {{table_1}}.{{column_1}} {{operator}} {{table_2}}.{{column_2}} THEN
-   RAISE e_invalid;
-END IF;

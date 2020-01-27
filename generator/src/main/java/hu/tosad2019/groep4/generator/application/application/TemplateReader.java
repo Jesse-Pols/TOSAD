@@ -12,7 +12,7 @@ public class TemplateReader {
 	}
 	
 	public Scanner read(String templatename) throws FileNotFoundException {
-		URL url = getClass().getClassLoader().getResource(templatename + ".template");
+		URL url = getClass().getClassLoader().getResource("templates/RuleTemplates/" + templatename + ".template");
 
 //		Scanner in = new Scanner(new FileReader(templatename + ".template"));
 

@@ -1,4 +1,0 @@
-IF NOT {{column1}} IN {{listofvalues}}
-THEN
-  RAISE e_invalid;
-END IF
