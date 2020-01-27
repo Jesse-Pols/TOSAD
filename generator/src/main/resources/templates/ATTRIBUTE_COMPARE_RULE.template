@@ -10,5 +10,5 @@ THEN
 END IF
 EXCEPTION
   WHEN e_invalid THEN
-    DBMS_
+    DBMS_OUTPUT.PUT_LINE(“Not allowed to”);
 END;
