@@ -1,21 +1,15 @@
 package hu.tosad2019.groep4.designer.application.application;
-
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleFactory;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DefineRule {
     public static boolean saveBusinessRule(BusinessRuleContext context) {
-        
-    	System.out.println("[DefineRule] TODO: Saving rule of type " + context.getType());
-    	
-//        BusinessRuleFactory factory = new BusinessRuleFactory(type, properties);
-//
-//        BusinessRuleService businessRuleService = new BusinessRuleService();
-//
-//        return  businessRuleService.saveBusinessRule(factory.makeBusinessRule());
-		return false;
+        BusinessRuleFactory factory = new BusinessRuleFactory(context);
+
+        return  BusinessRuleService.getInstance().saveBusinessRule(factory.makeBusinessRule());
     }
 
     public static Map<String, String> getProperties(String BusinessRuleType){

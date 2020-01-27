@@ -105,12 +105,13 @@
     -fx-prompt-text-fill: #757575;
 }
 
-.label {
-    -fx-text-fill: #e1e1e1;
-}
-
 .text-field {
     -fx-background-color: #3d3c3c;
+}
+
+.errorMessage {
+    /*-fx-text-fill: #EB5458 !important;*/
+    -fx-text-fill: #212121 !important;
 }
 
 .combo-box {

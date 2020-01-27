@@ -27,7 +27,6 @@ public class BusinessRuleFactory {
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
-        System.out.println(ruleContext.getType());
         switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
@@ -57,7 +56,6 @@ public class BusinessRuleFactory {
                 break;
         }
         
-        System.out.println("meh4" + rule);
         return rule;
     }
 
@@ -86,8 +84,6 @@ public class BusinessRuleFactory {
             maxValue = Integer.parseInt(ruleContext.getMaxValue());
         }
         catch(Exception e){
-        	System.err.println(e);
-            System.out.println("cannot parse range values");
             return null;
         }
 
