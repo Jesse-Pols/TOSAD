@@ -230,14 +230,4 @@ public class MainController {
 		return rules;
 	}
 
-	//NOT TESTED
-	private void showError(String errorMessage) {
-		error_message.setStyle("-fx-text-fill: red;");
-		error_message.setText(errorMessage);
-	}
-
-	//NOT TESTED
-	private void closeError() { error_message.setStyle("-fx-text-fill: #212121;");}
-
-
 }
