@@ -32,6 +32,8 @@ public class TemplateParser {
 	    	replacedfile = replacedfile.replace("{{"+me.getKey()+"}}", me.getValue());
 	    }
 
+		System.out.println(replacedfile);
+
 		return replacedfile;
 	}
 	
