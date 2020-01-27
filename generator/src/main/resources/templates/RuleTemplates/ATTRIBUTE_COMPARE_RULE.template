@@ -1,14 +1,5 @@
-CREATE OR REPLACE TRIGGER {{trigger_name}}
-{{position}} INSERT, UP ON {{table_name}}
-{{for_each_row}}
-DECLARE
-  e_invalid EXCEPTION;
-BEGIN
-  IF NOT {{column1}} {{operator}} {{value}}
+IF NOT {{column1}} {{operator}} {{value}}
 THEN
   RAISE e_invalid;
 END IF
-EXCEPTION
-  WHEN e_invalid THEN
-    DBMS_OUTPUT.PUT_LINE(“Not allowed to”);
-END;
+
