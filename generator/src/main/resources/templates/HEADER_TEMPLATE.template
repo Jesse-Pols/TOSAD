@@ -3,3 +3,4 @@ CREATE OR REPLACE TRIGGER {{trigger_name}}
 {{for_each_row}}
 DECLARE
   e_invalid EXCEPTION;
+BEGIN
