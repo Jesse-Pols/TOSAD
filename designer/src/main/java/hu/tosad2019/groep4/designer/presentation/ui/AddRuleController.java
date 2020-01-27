@@ -41,8 +41,8 @@ public class AddRuleController {
 	@FXML
 	private void cb_ruletype_onselect() {
 		this.clearOptions();
-		String rulename = cb_ruletype.getSelectionModel().getSelectedItem().toString();
-		Map<String, Node> options = AddRuleLoader.loadUICompoent(rulename);
+		BusinessRuleType selectedType= cb_ruletype.getSelectionModel().getSelectedItem();
+		Map<String, Node> options = AddRuleLoader.loadUICompoent(selectedType);
 
 		if(options == null) {
 			return;
