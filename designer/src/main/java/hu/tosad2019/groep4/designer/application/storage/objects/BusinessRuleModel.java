@@ -33,7 +33,7 @@ public class BusinessRuleModel {
     }
 
     public int getId() { return this.id; }
-
+    public int getIs_not() { return this.is_not; }
     public String getFailure() { return this.failure; }
 
     public int getIsNot() { return this.is_not; }

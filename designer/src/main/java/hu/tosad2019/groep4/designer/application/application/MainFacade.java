@@ -7,6 +7,7 @@ import hu.tosad2019.groep4.designer.application.application.messaging.CommandSen
 import hu.tosad2019.groep4.designer.application.application.messaging.GenerateCommand;
 import hu.tosad2019.groep4.designer.application.application.messaging.MessagingService;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class MainFacade {
 
@@ -41,8 +42,8 @@ public class MainFacade {
 		return DefineRule.saveBusinessRule(context);
 	}
 
-	public Map<String, String> getProperties(String businessRuleType){
-		return DefineRule.getProperties(businessRuleType);
+	public Map<String, String> getProperties(BusinessRuleType ruleType){
+		return DefineRule.getProperties(ruleType);
 	}
 	
 }

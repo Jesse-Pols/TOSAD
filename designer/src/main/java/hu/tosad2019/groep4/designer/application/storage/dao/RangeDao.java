@@ -6,8 +6,6 @@ import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 
-import java.util.List;
-
 public class RangeDao extends AbstractDao implements IRangeDao {
 
     public RangeModel find(int id) throws DataAccessLayerException {

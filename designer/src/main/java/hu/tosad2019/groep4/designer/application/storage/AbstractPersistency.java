@@ -1,13 +1,16 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.*;
-import hu.tosad2019.groep4.designer.application.storage.objects.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.TemplateDao;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
 
 public class AbstractPersistency {
 
@@ -16,34 +19,31 @@ public class AbstractPersistency {
     protected BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
     protected DbColumnDao dbColumnDao = new DbColumnDao();
     protected TemplateDao templateDao = new TemplateDao();
-    protected StatementDao statementDao = new StatementDao();
-    protected RangeDao rangeDao = new RangeDao();
-    protected SpecifiedValueDao specifiedValueDao = new SpecifiedValueDao();
-    protected ListDao listDao = new ListDao();
 
     protected BusinessRuleContext convertIdToContext(int id) {
 
-        // Get businessrule, return null if businessrule doesn't exist
-        BusinessRuleModel businessRule = businessRuleDao.find(19);
-        if (businessRule == null) { return null; }
+        BusinessRuleModel businessRuleModel = businessRuleDao.find(id);
+        //BusinessRuleTypeModel businessRuleTypeModel = businessRuleModel.getType();
+        //List<DbColumnModel> dbColumns = dbColumnDao.findByRuleId(id);
 
-        // Get type, return null if type doesn't exist
-        BusinessRuleTypeModel type = businessRule.getType();
-        if (type == null) { return null; }
+        //BusinessRuleContext context = this.getCorrectType(businessRuleTypeModel.getName());
+        BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
+        context.setName(businessRuleModel.getName());
+        context.setId(businessRuleModel.getId());
+        //context.setDescription(businessRuleModel.getDescription());
+        //context.setFailure(businessRuleModel.getFailure());
 
-        // Generate context object
-        BusinessRuleContext context = this.getCorrectType(type.getName());
+        /*
+        for (DbColumnModel column : dbColumns) {
+            if (column.getPosition() == 0) {
+                context.setFirstColumn(column.getColumn_name());
+                context.setFirstTable(column.getTable_name());
+                break;
+            }
+        }
+         */
 
-        // Business Rule
-        context.setName(businessRule.getName());
-        context.setId(businessRule.getId());
-        context.setDescription(businessRule.getDescription());
-        context.setFailure(businessRule.getFailure());
-        context.setIsNot(businessRule.getIsNot());
-
-        // Type
-        context.setTypeId(type.getId());
-
+        // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
 
         return context;
     }
