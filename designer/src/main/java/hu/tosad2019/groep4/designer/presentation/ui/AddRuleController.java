@@ -164,13 +164,11 @@ public class AddRuleController {
 		if(kindOfMessage.equals("Succes")) {
 			this.alert_message.setTextFill(Color.web("#68B21E"));
 			this.alert_message.setText(message);
-			System.out.println("Succes");
 		}
 
 		if(kindOfMessage.equals("Failure")) {
 			this.alert_message.setTextFill(Color.web("#FF0000"));
 			this.alert_message.setText(message);
-			System.out.println("Failure");
 		}
 	}
 
