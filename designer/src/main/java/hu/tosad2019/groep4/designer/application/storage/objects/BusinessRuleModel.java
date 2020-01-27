@@ -1,35 +1,27 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity (name="BusinessRule")
+@Entity(name = "BusinessRule")
 public class BusinessRuleModel {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
     private String description;
     private String failure;
-    private int type_id;
     private int is_not;
 
-    public BusinessRuleModel(String name, String description, String failure, int type_id, int is_not) {
-        this.name = name;
-        this.description = description;
-        this.failure = failure;
-        this.type_id = type_id;
-        this.is_not = is_not;
-    }
-
-    public BusinessRuleModel() {}
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private BusinessRuleTypeModel type;
 
     public BusinessRuleTypeModel getType() {
-        BusinessRuleTypeDao brtDao = new BusinessRuleTypeDao();
-        return brtDao.find(this.type_id);
+        return this.type;
     }
 
     public String getName() {
@@ -41,7 +33,9 @@ public class BusinessRuleModel {
     }
 
     public int getId() { return this.id; }
-
+    public int getIs_not() { return this.is_not; }
     public String getFailure() { return this.failure; }
+
+    public int getIsNot() { return this.is_not; }
 
 }

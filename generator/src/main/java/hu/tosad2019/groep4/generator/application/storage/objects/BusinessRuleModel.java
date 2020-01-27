@@ -1,27 +1,39 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity (name="BusinessRule")
+@Entity(name = "BusinessRule")
 public class BusinessRuleModel {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
     private String description;
     private String failure;
-    private int type_id;
     private int is_not;
 
-    public BusinessRuleModel(String name, String description, String failure, int type_id, int is_not) {
-        this.name = name;
-        this.description = description;
-        this.failure = failure;
-        this.type_id = type_id;
-        this.is_not = is_not;
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private BusinessRuleTypeModel type;
+
+    public BusinessRuleTypeModel getType() {
+        return this.type;
     }
 
-    public BusinessRuleModel() {}
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public int getId() { return this.id; }
+
+    public String getFailure() { return this.failure; }
+
+    public int getIsNot() { return this.is_not; }
+
 }

@@ -2,14 +2,19 @@ package hu.tosad2019.groep4.designer.presentation.ui;
 
 public class WindowManager implements WindowManagerFacade {
 
-	private static WindowManager INSTANCE = new WindowManager();
+	private static WindowManager instance;
 	private MainWindow mainWindow = new MainWindow();
 	private AddRuleWindow addRuleWindow = new AddRuleWindow();
 	
 	private WindowManager() {}
-	
+
 	public static WindowManager getInstance() {
-		return WindowManager.INSTANCE; 
+
+		if (WindowManager.instance == null) {
+			instance = new WindowManager();
+		}
+
+		return instance;
 	}
 	
 	public void openMainWindow() {

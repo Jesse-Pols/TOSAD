@@ -1,5 +1,7 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -24,6 +26,15 @@ public class RangeModel {
     }
 
     public RangeModel() {}
+    
+    public String getMin() { return this.min; }
+    public String getMax() { return this.max; }
+    public int getMinValueOperator() { return this.min_value_operator; }
+    public int getMaxValueOperator() { return this.max_value_operator; }
+    public int getRuleID() { return this.rule_id; }
 
+    public int getMinOperator() {
+        return this.min_value_operator;
+    }
 }
 

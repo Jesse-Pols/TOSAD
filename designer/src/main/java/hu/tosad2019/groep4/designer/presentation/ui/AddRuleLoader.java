@@ -1,10 +1,13 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -13,11 +16,11 @@ import javafx.scene.control.TextField;
 
 public class AddRuleLoader {
 
-    static Map<String, Node> loadUICompoent(String businessRule) {
+    static Map<String, Node> loadUICompoent(BusinessRuleType ruleType) {
 
     	Map<String, Node> result = new LinkedHashMap<String, Node>();
+    	Map<String, String> properties = MainFacade.getInstance().getProperties(ruleType);
 
-    	Map<String, String> properties = MainFacade.getInstance().getProperties(businessRule.replace(" ", ""));
     	if(properties == null) {
     		System.err.println("Nothing");
     		return result;
@@ -38,7 +41,8 @@ public class AddRuleLoader {
 				case "operator":
 					ComboBox<Operator> combo = new ComboBox<Operator>();
 					combo.setStyle("-fx-font: 14px \"monospace\";");
-					for(Operator t : Operator.values()) {
+					List<Operator> operators = BusinessRuleService.getInstance().getOperator(ruleType);
+					for(Operator t : operators) {
 						combo.getItems().add(t);
 					}
 

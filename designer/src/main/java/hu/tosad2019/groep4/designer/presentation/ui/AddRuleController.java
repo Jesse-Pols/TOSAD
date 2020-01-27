@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,22 +26,22 @@ public class AddRuleController {
 	@FXML private VBox vbox_define_selection;
 	@FXML private Button btn_save;
 	@FXML private TextField messageBox;
+	@FXML private Label alert_message;
 
-	
-	// TODO We should place this somewhere else - I agree greetings from Bart - I agree too greetings from Jesse
 	private Map<String, Object> currentProperties = new LinkedHashMap<>();
 	private List<BusinessRuleType> rules = List.of(BusinessRuleType.values());
 
 	@FXML private void initialize() {
 		cb_ruletype.getItems().addAll(this.rules);
 		this.clearOptions();
+		this.alert_message.setTextFill(Color.web("#212121"));
 	}
 
 	@FXML
 	private void cb_ruletype_onselect() {
 		this.clearOptions();
-		String rulename = cb_ruletype.getSelectionModel().getSelectedItem().toString();
-		Map<String, Node> options = AddRuleLoader.loadUICompoent(rulename);
+		BusinessRuleType selectedType= cb_ruletype.getSelectionModel().getSelectedItem();
+		Map<String, Node> options = AddRuleLoader.loadUICompoent(selectedType);
 
 		if(options == null) {
 			return;
@@ -50,6 +51,7 @@ public class AddRuleController {
 			Label lbl = new Label(key);
 			lbl.setMinWidth(80);
 			lbl.setPadding(new Insets(5,0,0,0));
+			lbl.setTextFill(Color.web("#e1e1e1"));
 			Node node = options.get(key);
 
 			HBox box = new HBox();
@@ -151,12 +153,24 @@ public class AddRuleController {
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
 				break;
 		}
-//		MainFacade.saveBusinessRule(context);
+
 		MainFacade.getInstance().saveBusinessRule(context);
 	}
 	
-	private void clearOptions() {
-		vbox_define_selection.getChildren().clear();
+	private void clearOptions() { vbox_define_selection.getChildren().clear(); }
+
+	public void setAlertMessage(String message, String kindOfMessage) {
+		if(kindOfMessage.equals("Succes")) {
+			this.alert_message.setTextFill(Color.web("#68B21E"));
+			this.alert_message.setText(message);
+		}
+
+		if(kindOfMessage.equals("Failure")) {
+			this.alert_message.setTextFill(Color.web("#FF0000"));
+			this.alert_message.setText(message);
+		}
 	}
+
+	public void hideAlertMessage() { this.alert_message.setTextFill(Color.web("#212121")); }
 
 }

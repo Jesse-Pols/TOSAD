@@ -1,0 +1,4 @@
+IF NOT {{column_1}} {{operator_1}} {{value_min}} {{operator}} NOT {{column_1}} {{operator_1}} {{value_max}} THEN
+  RAISE e_invalid;
+END IF
+

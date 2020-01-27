@@ -13,4 +13,8 @@ public class RangeDao extends AbstractDao implements IRangeDao {
         return (RangeModel) super.find(RangeModel.class, id);
     }
 
+    public List findAllByRuleId(int id) throws DataAccessLayerException {
+        return super.findAll(RangeModel.class, "rule_id = " + id);
+    }
+
 }

@@ -27,6 +27,7 @@ public class TemplateParser {
 
 		replacedfile = rawfile;
 		Set<Map.Entry<String, String>> set = variables.entrySet();
+
 	    for (Entry<String, String> me : set) {
 	    	replacedfile = replacedfile.replace("{{"+me.getKey()+"}}", me.getValue());
 	    }

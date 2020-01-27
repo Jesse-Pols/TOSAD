@@ -1,7 +1,10 @@
 package hu.tosad2019.groep4.designer.dataaccess.storage;
 
 public class DataAccessLayerException extends RuntimeException {
-    public DataAccessLayerException() {}
+
+	private static final long serialVersionUID = 1L;
+
+	public DataAccessLayerException() {}
 
     public DataAccessLayerException(String message) { super(message); }
 

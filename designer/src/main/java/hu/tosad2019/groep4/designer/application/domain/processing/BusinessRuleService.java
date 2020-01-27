@@ -10,6 +10,18 @@ import java.util.List;
 
 public class BusinessRuleService {
 
+    private static BusinessRuleService instance;
+
+    private BusinessRuleService() {}
+
+    public static BusinessRuleService getInstance() {
+        if(BusinessRuleService.instance == null) {
+            instance = new BusinessRuleService();
+        }
+
+        return instance;
+    }
+
     public BusinessRule getBusinessRule(BusinessRuleContext context){
         BusinessRuleFactory factory = new BusinessRuleFactory(context);
 
@@ -21,6 +33,7 @@ public class BusinessRuleService {
 
         return PersistencyService.getInstance().saveBusinessRule(factory.make());
     }
+
 
     public boolean deleteBusinessRule(BusinessRule rule){
         return PersistencyService.getInstance().deleteBusinessRule(rule.getId());
@@ -45,12 +58,13 @@ public class BusinessRuleService {
         List<Operator> operators = new ArrayList<Operator>();
 
         switch(ruleType){
-            case AttributeRangeRule:{
+            case AttributeRangeRule:
                 operators.add(Operator.BETWEEN);
                 operators.add(Operator.NOTBETWEEN);
                 break;
-            }
-            default:{
+            case AttributeCompareRule:
+            case TupleCompareRule:
+            case InterEntityCompareRule:
                 operators.add(Operator.EQUALS);
                 operators.add(Operator.NOTEQUALS);
                 operators.add(Operator.GREATERTHAN);
@@ -58,7 +72,12 @@ public class BusinessRuleService {
                 operators.add(Operator.LESSTHEN);
                 operators.add(Operator.LESSTHENOREQUAL);
                 break;
-            }
+            case AttributeListRule:
+            	operators.add(Operator.EQUALS);
+                operators.add(Operator.NOTEQUALS);
+                break;
+            default:
+            	System.err.println("Businessrule \"" + ruleType + "\" has no operators.");
         }
 
 

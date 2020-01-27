@@ -23,15 +23,8 @@ public class DbColumnModel {
 
     public DbColumnModel() {}
 
-    public int getPosition() {
-        return this.position;
-    }
-
-    public String getColumn_name() {
-        return this.column_name;
-    }
-
-    public String getTable_name() {
-        return this.table_name;
-    }
+    public int getPosition() { return this.position;}
+    public String getColumn_name() { return this.column_name; }
+    public String getTable_name() { return this.table_name; }
+    public int getRuleID() { return this.rule_id; }
 }

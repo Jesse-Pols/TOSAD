@@ -10,17 +10,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import hu.tosad2019.groep4.generator.application.application.Generator;
-import hu.tosad2019.groep4.generator.application.application.Main;
-import hu.tosad2019.groep4.generator.application.application.MainFacade;
-import hu.tosad2019.groep4.generator.application.application.TempGenerator;
-
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
 
 
 public class CommandHandler implements HttpHandler{

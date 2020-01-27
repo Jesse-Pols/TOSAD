@@ -1,57 +1,53 @@
 package hu.tosad2019.groep4.designer.application.application;
-
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleFactory;
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DefineRule {
     public static boolean saveBusinessRule(BusinessRuleContext context) {
-        
-    	System.out.println("[DefineRule] TODO: Saving rule of type " + context.getType());
-    	
-//        BusinessRuleFactory factory = new BusinessRuleFactory(type, properties);
-//
-//        BusinessRuleService businessRuleService = new BusinessRuleService();
-//
-//        return  businessRuleService.saveBusinessRule(factory.makeBusinessRule());
-		return false;
+        BusinessRuleFactory factory = new BusinessRuleFactory(context);
+
+        return  BusinessRuleService.getInstance().saveBusinessRule(factory.makeBusinessRule());
     }
 
-    public static Map<String, String> getProperties(String BusinessRuleType){
+    public static Map<String, String> getProperties(BusinessRuleType ruleType){
 
         Map<String, String> properties;
 
-        switch (BusinessRuleType){
-            case "AttributeRangeRule":
+        switch (ruleType){
+            case AttributeRangeRule:
                 properties = getRangeRuleProperties();
                 break;
-            case "AttributeCompareRule":
+            case AttributeCompareRule:
                 properties = getAttributeCompareRuleProperties();
                 break;
-            case "AttributeListRule":
+            case AttributeListRule:
                 properties = getAttributeListRuleProperties();
                 break;
-            case "AttributeOtherRule":
+            case AttributeOtherRule:
                 properties = getAttributeOtherRuleProperties();
                 break;
-            case "TupleCompareRule":
+            case TupleCompareRule:
                 properties = getTupleCompareRuleProperties();
                 break;
-            case "TupleOtherRule":
+            case TupleOtherRule:
                 properties = getTupleOtherRuleProperties();
                 break;
-            case "InterEntityCompareRule":
+            case InterEntityCompareRule:
                 properties = getInterEntityCompareRuleProperties();
                 break;
-            case "EntityOtherRule":
+            case EntityOtherRule:
                 properties = getEntityOtherRuleProperties();
                 break;
-            case "ModifyRule":
+            case ModifyRule:
                 properties = getModifyRuleProperties();
                 break;
             default:
-            	System.err.println("Rule " + BusinessRuleType + " not found");
+            	System.err.println("Rule " + ruleType + " does not exists");
                 properties = null;
         }
 
@@ -140,8 +136,7 @@ public class DefineRule {
 
         properties.put("Table", "string");
         properties.put("Column", "string");
-        properties.put("Operator", "operator");
-        properties.put("Column 2", "string");
+        properties.put("SQL statement", "stringarea");
 
         return properties;
     }

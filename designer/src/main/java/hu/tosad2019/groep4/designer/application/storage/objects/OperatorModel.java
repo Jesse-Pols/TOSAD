@@ -18,5 +18,8 @@ public class OperatorModel {
     }
 
     public OperatorModel() { }
+    
+    public int getRuleID() { return this.rule_id; }
+    public String getOperator() { return this.operator; }
 
 }

@@ -9,7 +9,7 @@ public enum Operator {
     smallerThenOrEqualsTo("<="),
 	and("&"),
 	or("|");
-	
+
 
 
     public final String label;
