@@ -2,7 +2,6 @@ package hu.tosad2019.groep4.generator.application.application;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.Scanner;
 
