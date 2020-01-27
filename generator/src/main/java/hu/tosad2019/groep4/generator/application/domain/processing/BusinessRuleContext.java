@@ -1,7 +1,7 @@
-package hu.tosad2019.groep4.designer.application.domain.processing;
+package hu.tosad2019.groep4.generator.application.domain.processing;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.generator.application.domain.objects.enums.Operator;
+import hu.tosad2019.groep4.generator.application.domain.processing.enums.BusinessRuleType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,4 +19,6 @@ public class SpecifiedValueModel {
     private BusinessRuleModel businessRule;
 
     private int list_id;
+
+    public SpecifiedValueModel() { }
 }

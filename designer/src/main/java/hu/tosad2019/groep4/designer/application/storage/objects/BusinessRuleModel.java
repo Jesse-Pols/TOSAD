@@ -1,35 +1,27 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-@Entity (name="BusinessRule")
+@Entity(name = "BusinessRule")
 public class BusinessRuleModel {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
     private String description;
     private String failure;
+    private int is_not;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
     private BusinessRuleTypeModel type;
 
-    private int is_not;
-
     public BusinessRuleTypeModel getType() {
         return this.type;
-    }
-
-    public int getTypeId() {
-        return this.type.getId();
     }
 
     public String getName() {

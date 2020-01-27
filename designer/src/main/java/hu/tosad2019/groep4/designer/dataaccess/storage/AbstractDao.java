@@ -41,7 +41,6 @@ public class AbstractDao {
 
     protected Object find(Class clazz, int id) {
         Object obj = null;
-
         try {
             try {
                 this.startOperation();
@@ -56,24 +55,6 @@ public class AbstractDao {
             HibernateFactory.close(this.session);
         }
     }
-
-    /*
-    public Boolean exists (Object obj) {
-        try {
-            this.startOperation();
-            Query query = this.session.createQuery(" select 1 from DTOAny t where t.key = :key");
-            objects = query.list();
-            this.tx.commit();
-        } catch (HibernateException err) {
-            this.handleException(err);
-        } finally {
-            HibernateFactory.close(this.session);
-        }
-
-        return true;
-    }
-    
-     */
 
     protected List findAll(Class clazz) {
         List objects = null;
@@ -94,6 +75,7 @@ public class AbstractDao {
 
     protected List findAll(Class clazz, String where) {
         List objects = null;
+        System.out.println("Empty");
 
         try {
             this.startOperation();

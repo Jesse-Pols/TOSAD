@@ -17,4 +17,6 @@ public class OperatorModel {
 
     private String operator;
 
+    public String getOperator() { return this.operator; }
+
 }

@@ -1,13 +1,12 @@
-package hu.tosad2019.groep4.designer.application.storage;
+package hu.tosad2019.groep4.generator.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.*;
-import hu.tosad2019.groep4.designer.application.storage.objects.*;
+import hu.tosad2019.groep4.generator.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.generator.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.generator.application.storage.dao.*;
+import hu.tosad2019.groep4.generator.application.storage.objects.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class AbstractPersistency {
 
