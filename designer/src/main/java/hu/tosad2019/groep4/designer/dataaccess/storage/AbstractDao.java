@@ -75,7 +75,6 @@ public class AbstractDao {
 
     protected List findAll(Class clazz, String where) {
         List objects = null;
-        System.out.println("Empty");
 
         try {
             this.startOperation();
