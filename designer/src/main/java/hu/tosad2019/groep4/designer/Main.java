@@ -12,23 +12,6 @@ public class Main extends Application
 	public static void main(String[] args) {
 		System.out.println("Starting designer..");
 		launch();
-
-		/*
-		PersistencyService ps = PersistencyService.getInstance();
-
-		BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeCompareRule);
-		context.setCategory("testCategory");
-		context.setTemplate("testTemplate");
-		context.setName("testName");
-		context.setDescription("testDescription");
-		context.setFailure("testFailure");
-		context.setIsNot(2);
-		context.setStatement("testStatement");
-
-		ps.saveBusinessRule(context);
-		 */
-
-
 	}
 
 	@Override

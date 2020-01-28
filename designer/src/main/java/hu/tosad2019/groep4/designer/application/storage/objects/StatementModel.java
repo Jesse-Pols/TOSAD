@@ -2,15 +2,14 @@ package hu.tosad2019.groep4.designer.application.storage.objects;
 
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity(name="Statement")
 public class StatementModel {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "statement_id_sequence")
+    @SequenceGenerator(name = "statement_id_sequence", sequenceName = "STATEMENT_SEQUENCE", initialValue = 1, allocationSize = 1)
     private int id;
 
     @ManyToOne
