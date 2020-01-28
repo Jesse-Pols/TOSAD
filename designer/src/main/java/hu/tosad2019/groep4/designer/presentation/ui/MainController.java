@@ -9,7 +9,6 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.Busi
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,11 +43,12 @@ public class MainController {
 	@FXML private Label error_message;
 
 	// Target db connection
-	@FXML private TextField tdbHostNameTxt;
-	@FXML private TextField tdbUserNameTxt;
-	@FXML private TextField tdbPassTxt;
-	@FXML private TextField tdbPortTxt;
-	@FXML private ComboBox<String> tdbTypeCombo;
+	@FXML private TextField txt_targetdb_host;
+	@FXML private TextField txt_targetdb_port;
+	@FXML private TextField txt_targetdb_username;
+	@FXML private TextField txt_targetdb_password;
+	@FXML private ComboBox<String> cb_targetdb_type;
+	@FXML private Button button_targetdb_connect;
 
 
 	private ObservableList<BusinessRule> rules;
@@ -63,10 +63,12 @@ public class MainController {
 		tbl_businessrules.setPlaceholder(new Label("No business rules defined"));
 
 		//Target database server connection
-		tdbTypeCombo.getItems().addAll("Oracle");
+		cb_targetdb_type.getItems().addAll("Oracle");
+		cb_targetdb_type.getSelectionModel().select(0);
+		
 
-		this.rules = FXCollections.observableArrayList(getBusinessrules());
-		System.out.println(rules);
+//		this.rules = FXCollections.observableArrayList(getBusinessrules());
+//		System.out.println(rules);
 		this.setupTable();
 		this.setupContextMenu();
 	}
@@ -161,12 +163,12 @@ public class MainController {
 	}
 
 	@FXML
-	private void targetDbConnect_onclick() {
-		String host = this.tdbHostNameTxt.getText();
-		String username = this.tdbUserNameTxt.getText();
-		String password = this.tdbPassTxt.getText();
-		String port = this.tdbPortTxt.getText();
-		String type = this.tdbTypeCombo.getValue();
+	private void button_targetdb_connect_onclick() {
+		String host = this.txt_targetdb_host.getText();
+		String username = this.txt_targetdb_username.getText();
+		String password = this.txt_targetdb_password.getText();
+		String port = this.txt_targetdb_port.getText();
+		String type = this.cb_generate_protocol.getValue();
 
 		if(host.equals("") || username.equals("") || password.equals("") || port.equals("")) {
 			System.err.println("Empty");
@@ -175,7 +177,8 @@ public class MainController {
 
 		int port_nr = Integer.parseInt(port);
 
-
+		this.sendError("TODO: Connect");
+		
 		this.targetDbConnection = new TargetDbConnection(type, host, port_nr, username, password);
 	}
 
