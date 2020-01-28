@@ -47,8 +47,8 @@ public class BusinessRuleContext {
     private int list_id;
 
     // Specified Values
-    private List<String> business_rule_values;
-    private List<String> list_values;
+    private List<String> business_rule_values = new ArrayList<>();
+    private List<String> list_values = new ArrayList<>();
 
 
 

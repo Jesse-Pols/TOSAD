@@ -1,8 +1,10 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -111,6 +113,48 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         } else {
             System.err.println("Statement couldn't be saved: Already exists in the database. saveBusinessRule continues...");
             statement = statements.get(0);
+        }
+
+        // Check if there are any rulevalues in the context
+        List<String> ruleValues = context.getBusinessRuleValues();
+        List<SpecifiedValueModel> specifiedValues = new ArrayList<>();
+        if (ruleValues.isEmpty()) {
+            System.err.println("No rulevalues were found. saveBusinessRule continues...");
+        } else {
+            // Turn rulevalues into specified values
+            for (String value : ruleValues) {
+                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value);
+                specifiedValue.setRule(rule);
+                specifiedValues.add(specifiedValue);
+            }
+        }
+
+        // Check if there are any listvalues in the context
+        List<String> listValues = context.getListValues();
+        if (listValues.isEmpty()) {
+            System.err.println("No listvalues were found. saveBusinessRule continues...");
+        } else {
+            // Add list
+            List<ListModel> listModels = super.listDao.findAllByRuleId(rule.getId());
+            ListModel list = new ListModel(rule);
+            if (listModels.isEmpty()) {
+                list.setId(super.listDao.save(list));
+            } else {
+                System.err.println("List couldn't be saved: Already exists in the database. saveBusinessRule continues...");
+                list = listModels.get(0);
+            }
+
+            // Turn listvalues into specified values
+            for (String value : listValues) {
+                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value);
+                specifiedValue.setList(list);
+                specifiedValues.add(specifiedValue);
+            }
+        }
+
+        // Add every specified rule to the database
+        for (SpecifiedValueModel value : specifiedValues) {
+            value.setId(super.specifiedValueDao.save(value));
         }
 
         return true;
