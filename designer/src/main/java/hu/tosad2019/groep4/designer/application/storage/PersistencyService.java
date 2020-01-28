@@ -1,10 +1,7 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
 import java.util.List;
 
@@ -96,42 +93,25 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
             rule = businessRules.get(0);
         }
 
-        // Statements don't have to be unique
-        
-
-
-
-
-
-
-
-
-        // Check if businessrule exists
-        // Check what we need to add the businessrule
-        // Get what we need to add the businessrule
-        // Add the businessrule
-
-        /*
-        BusinessRuleModel businessRuleModel = super.businessRuleDao.find(context.getId());
-        if (businessRuleModel != null) {
-            // BusinessRule already exists
+        if (rule == null) {
+            System.err.println("Something went wrong: no business rule available. saveBusinessRule was aborted.");
             return false;
         }
 
-        if (context.getName() == null && context.getDescription() == null && context.getFailure() == null) {
+        if (context.getStatement() == null) {
+            System.err.println("Couldn't save statement: Missing statement value");
             return false;
         }
 
-        // TODO nullcheck for context.IsNot()
-        businessRuleModel = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot());
-
-        BusinessRuleTypeModel businessRuleTypeModel = super.businessRuleTypeDao.find(1);
-        businessRuleModel.setType(businessRuleTypeModel);
-
-        super.businessRuleDao.save(businessRuleModel);
-
-        return true;
-        */
+        // A businessrule can only have one statement
+        List<StatementModel> statements = super.statementDao.findByRuleId(rule.getId());
+        StatementModel statement = new StatementModel(context.getStatement(), rule);
+        if (statements.isEmpty()) {
+            statement.setId(super.statementDao.save(statement));
+        } else {
+            System.err.println("Statement couldn't be saved: Already exists in the database. saveBusinessRule continues...");
+            statement = statements.get(0);
+        }
 
         return true;
     }

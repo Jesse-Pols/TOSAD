@@ -15,12 +15,19 @@ public class StatementModel {
 
     @ManyToOne
     @JoinColumn(name="rule_id")
-    private BusinessRuleModel businessRuleModel;
+    private BusinessRuleModel businessRule;
 
     private String statement;
+
+    public StatementModel(String statement, BusinessRuleModel businessRuleModel) {
+        this.statement = statement;
+        this.businessRule = businessRuleModel;
+    }
 
     public StatementModel() { }
 
     public String getStatement() { return this.statement; }
     public int getId() { return this.id; }
+
+    public void setId(int id) { this.id = id; }
 }
