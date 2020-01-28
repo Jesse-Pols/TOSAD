@@ -64,6 +64,7 @@ public class BusinessRuleFactory {
 
 
     private AttributeCompareRule createAttributeCompareRule(){
+        /*
         if (ruleContext.getFirstTable() == null || ruleContext.getFirstColumn() == null || ruleContext.getBusinessRuleValues().isEmpty()) {
             return null;
         }
@@ -73,10 +74,14 @@ public class BusinessRuleFactory {
         AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, ruleContext.getOperator(), specifiedValue);
 
         return new AttributeCompareRule(ruleContext.getName(), ruleContext.getDescription(), compareRuleContext);
+        */
+        System.err.println("BusinessRuleFactory.createAttributeCompareRule uses nonexistant functions");
+        return null;
     }
 
 
     private AttributeRangeRule createAttributeRangeRule(){
+        /*
         Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
 
         Operator operator = ruleContext.getOperator();
@@ -110,6 +115,10 @@ public class BusinessRuleFactory {
         AttributeRangeRuleContext attributeRangeRuleContext = new AttributeRangeRuleContext(true, false, column, range);
 
         return new AttributeRangeRule(ruleContext.getName(), ruleContext.getDescription(), attributeRangeRuleContext);
+
+         */
+
+        return null;
     }
 
     private AttributeListRule createAttributeListRule(){

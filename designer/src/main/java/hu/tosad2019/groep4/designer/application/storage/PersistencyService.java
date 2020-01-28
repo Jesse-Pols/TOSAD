@@ -45,6 +45,7 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
     // Insert if new, update if exists
     public boolean saveBusinessRule(BusinessRuleContext context){
 
+        /*
         BusinessRuleCategoryModel businessRuleCategoryModel = null;
         TemplateModel templateModel = null;
 
@@ -57,6 +58,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
             templateModel = new TemplateModel(context.getTemplate());
             super.templateDao.save(templateModel);
         }
+
+         */
 
 
 
