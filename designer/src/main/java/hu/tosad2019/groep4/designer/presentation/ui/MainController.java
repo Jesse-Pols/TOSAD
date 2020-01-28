@@ -6,12 +6,7 @@ import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.TargetDbConnection;
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -56,6 +51,8 @@ public class MainController {
 	@FXML private TextField txt_targetdb_password;
 	@FXML private ComboBox<String> cb_targetdb_type;
 	@FXML private Button button_targetdb_connect;
+	
+	@FXML private Button btn_home_refresh;
 
 
 	private ObservableList<BusinessRule> rules;
@@ -74,8 +71,8 @@ public class MainController {
 		cb_targetdb_type.getSelectionModel().select(0);
 		
 
-		this.rules = FXCollections.observableArrayList(getBusinessrules());
-		System.out.println(rules);
+		this.rules = FXCollections.observableArrayList();
+		this.refreshRules();
 		this.setupTable();
 		this.setupContextMenu();
 	}
@@ -83,6 +80,16 @@ public class MainController {
 	@FXML
 	private void btn_home_add_onclick() {
 		WindowManager.getInstance().openAddRuleWindow();
+	}
+	
+	@FXML
+	private void btn_home_refresh_onclick() {
+		this.refreshRules();
+		this.sendSuccess("Refreshed rules");
+	}
+	
+	private void refreshRules() {
+		this.rules.setAll(getBusinessrules());
 	}
 
 	private void setupTable() {
@@ -201,6 +208,13 @@ public class MainController {
 		alert.setTitle("Connection error");
 		alert.setHeaderText(null);
 		if(message != null) alert.setContentText("Error: " + message);
+		alert.showAndWait();
+	}
+	public void sendSuccess(String message) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Success");
+		alert.setHeaderText(null);
+		if(message != null) alert.setContentText(message);
 		alert.showAndWait();
 	}
 	public boolean sendConfimation(String title, String body) {
