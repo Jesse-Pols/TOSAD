@@ -21,21 +21,16 @@ public class AbstractPersistency {
     protected ListDao listDao = new ListDao();
 
     protected BusinessRuleContext convertIdToContext(int id) {
-
-        /* MODELS */
+        // Get businessrule, return null if businessrule doesn't exist
         BusinessRuleModel businessRule = businessRuleDao.find(id);
+        if (businessRule == null) { return null; }
+
+        // Get type, return null if type doesn't exist
         BusinessRuleTypeModel type = businessRule.getType();
-        BusinessRuleCategoryModel category = type.getCategory();
-        TemplateModel template = type.getTemplate();
+        if (type == null) { return null; }
 
-        List<StatementModel> statements = statementDao.findAllByRuleId(id);
-        StatementModel statement = statements.get(0);
-
-        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
-        RangeModel range = ranges.get(0);
-
-        /* CONTEXT */
-        BusinessRuleContext context = this.getCorrectType(businessRule.getType().getName());
+        // Generate context object
+        BusinessRuleContext context = this.getCorrectType(type.getName());
 
         // Business Rule
         context.setName(businessRule.getName());
@@ -44,40 +39,71 @@ public class AbstractPersistency {
         context.setFailure(businessRule.getFailure());
         context.setIsNot(businessRule.getIsNot());
 
-        // Business Type
+        // Type
         context.setTypeId(type.getId());
 
-        // Business Category
-        context.setCategory(category.getName());
-        context.setCategoryId(category.getId());
+        // Category
+        BusinessRuleCategoryModel category = type.getCategory();
+        if (category != null) {
+            context.setCategory(category.getName());
+            context.setCategoryId(category.getId());
+        }
 
         // Template
-        context.setTemplate(template.getValue());
-        context.setTemplateId(template.getId());
+        TemplateModel template = type.getTemplate();
+        if (template != null) {
+            context.setTemplate(template.getValue());
+            context.setTemplateId(template.getId());
+        }
 
         // Statement
-        context.setStatement(statement.getStatement());
-        context.setStatementId(statement.getId());
+        List<StatementModel> statements = statementDao.findAllByRuleId(id);
+        if (!statements.isEmpty()) {
+            StatementModel statement = statements.get(0);
+            context.setStatement(statement.getStatement());
+            context.setStatementId(statement.getId());
+        }
 
         // Range
-        context.setMaxValue(range.getMaxValue());
-        context.setMinValue(range.getMinValue());
-        context.setMaxOperator(range.getMaxOperator());
-        context.setMinOperator(range.getMinOperator());
-
-
-
-        /*
-        for (DbColumnModel column : dbColumns) {
-            if (column.getPosition() == 0) {
-                context.setFirstColumn(column.getColumn_name());
-                context.setFirstTable(column.getTable_name());
-                break;
-            }
+        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
+        if (!ranges.isEmpty()) {
+            RangeModel range = ranges.get(0);
+            context.setMaxValue(range.getMaxValue());
+            context.setMinValue(range.getMinValue());
+            context.setMaxOperator(range.getMaxOperator().getOperator());
+            context.setMinOperator(range.getMinOperator().getOperator());
         }
-         */
 
-        // TODO: Operator isn't set; Which operator to set if there are two with the same rule_id?
+        // List
+        List<ListModel> lists = listDao.findAllByRuleId(id);
+        ListModel list = null;
+        if (!lists.isEmpty()) {
+            list = lists.get(0);
+        }
+
+        if (list != null) {
+            context.setListId(list.getId());
+
+            List<SpecifiedValueModel> listSpecifiedValues = specifiedValueDao.findAllByListId(list.getId());
+            List<String> stringList = new ArrayList<String>();
+
+            if (!listSpecifiedValues.isEmpty()) {
+                for (SpecifiedValueModel value : listSpecifiedValues) {
+                    stringList.add(value.getValue());
+                }
+            }
+            context.setListValues(stringList);
+        }
+
+        List<SpecifiedValueModel> businessRuleValues = specifiedValueDao.findAllByRuleId(id);
+        List<String> businessRuleValuesToString = new ArrayList<String>();
+
+        if (!businessRuleValues.isEmpty()) {
+            for (SpecifiedValueModel value : businessRuleValues) {
+                businessRuleValuesToString.add(value.getValue());
+            }
+            context.setBusinessRuleValues(businessRuleValuesToString);
+        }
 
         return context;
     }
@@ -90,8 +116,6 @@ public class AbstractPersistency {
         return businessRuleContexts;
     }
 
-    // Compare all enums to the database ruletype
-    // Returns correct businessrulecontext
     private BusinessRuleContext getCorrectType(String businessRuleType) {
         for (BusinessRuleType typeEnum : BusinessRuleType.values()) {
             String type = typeEnum.toString().replaceAll("\\s+", "");

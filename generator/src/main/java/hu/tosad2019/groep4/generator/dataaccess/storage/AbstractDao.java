@@ -1,11 +1,13 @@
 package hu.tosad2019.groep4.generator.dataaccess.storage;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import java.util.List;
 
 public class AbstractDao {
     private Session session;
@@ -15,16 +17,20 @@ public class AbstractDao {
         HibernateFactory.buildIfNeeded();
     }
 
-    protected void saveOrUpdate(Object obj) {
+    protected Serializable saveOrUpdate(Object obj) {
+        Serializable result = null;
+
         try {
             this.startOperation();
-            this.session.saveOrUpdate(obj);
+            result = this.session.save(obj);
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);
         } finally {
             HibernateFactory.close(this.session);
         }
+
+        return result;
     }
 
     protected void delete(Object obj) {
@@ -39,8 +45,9 @@ public class AbstractDao {
         }
     }
 
-    protected Object find(Class clazz, int id) {
+    protected Object find(Class<?> clazz, int id) {
         Object obj = null;
+
         try {
             try {
                 this.startOperation();
@@ -56,13 +63,13 @@ public class AbstractDao {
         }
     }
 
-    protected List findAll(Class clazz) {
-        List objects = null;
+    protected List<?> findAll(Class<?> clazz) {
+        List<?> objects = null;
 
         try {
             this.startOperation();
             Query query = this.session.createQuery("from " + clazz.getName());
-            objects = query.list();
+            objects = query.getResultList();
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);
@@ -73,14 +80,14 @@ public class AbstractDao {
         return objects;
     }
 
-    protected List findAll(Class clazz, String where) {
+    protected List<?> findAll(Class<?> clazz, String where) {
+        // Remember: put apostrophes around the where clause if it's a string -> 'where'
         List objects = null;
-        System.out.println("Empty");
 
         try {
             this.startOperation();
             Query query = this.session.createQuery("from " + clazz.getName() + " where " + where);
-            objects = query.list();
+            objects = query.getResultList();
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);

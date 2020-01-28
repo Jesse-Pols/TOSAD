@@ -1,22 +1,27 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
 
-@Entity(name="Template")
+import javax.persistence.*;
+
+@Entity(name="TEMPLATE")
 public class TemplateModel {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "template_id_sequence")
+    @SequenceGenerator(name = "template_id_sequence", sequenceName = "TEMPLATE_SEQUENCE", initialValue = 1, allocationSize = 1)
+    private int ID;
 
-    private String value;
+    private String VALUE;
 
-    public TemplateModel(String value) {
-        this.value = value;
+    public TemplateModel(String VALUE) {
+        this.VALUE = VALUE;
     }
 
     public TemplateModel() { }
+    
+    public String getValue() { return this.VALUE; }
+    public int getId() { return this.ID; }
 
-    public String getValue() { return this.value; }
-    public int getId() { return this.id; }
+    public void setId(int id) { this.ID = id;}
 }

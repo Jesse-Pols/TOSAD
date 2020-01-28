@@ -16,8 +16,9 @@ public class DbColumnModel {
 
     @ManyToOne
     @JoinColumn(name = "rule_id")
-    private BusinessRuleModel businessRule;
+    private BusinessRuleModel businessRuleModel;
 
     private int position;
 
+    public DbColumnModel() {}
 }

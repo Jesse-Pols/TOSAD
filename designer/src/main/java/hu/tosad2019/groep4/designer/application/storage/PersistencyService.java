@@ -3,7 +3,10 @@ package hu.tosad2019.groep4.designer.application.storage;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -42,16 +45,43 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
     // Insert if new, update if exists
     public boolean saveBusinessRule(BusinessRuleContext context){
 
-        if (context.getCategory() == null) {
+        if (context.getCategory() == null || context.getTemplate() == null) {
             return false;
         }
 
-        BusinessRuleCategoryModel category = new BusinessRuleCategoryModel(context.getCategory());
-        super.businessRuleCategoryDao.save(category);
+        // Check if category exists, save it if it doesn't
         List<BusinessRuleCategoryModel> categories = super.businessRuleCategoryDao.findByName(context.getCategory());
-        if (!categories.isEmpty()) {
+        BusinessRuleCategoryModel category = new BusinessRuleCategoryModel(context.getCategory());
+        if (categories.isEmpty()) {
+            super.businessRuleCategoryDao.save(category);
+        } else {
+            System.err.println("Category couldn't be saved: Already exists in the database.");
             category = categories.get(0);
         }
+
+        // Check if template exists, save it if it doesn't
+        List<TemplateModel> templates = super.templateDao.findByValue(context.getTemplate());
+        TemplateModel template = new TemplateModel(context.getTemplate());
+        if (templates.isEmpty()) {
+            template.setId(super.templateDao.save(template));
+        } else {
+            System.err.println("Template couldn't be saved: Already exists in the database.");
+            template = templates.get(0);
+        }
+
+        // Check if type exists, save it if it doesn't
+        /*
+        List<?> types = super.businessRuleTypeDao.findByName(context.getTypeAsString());
+        BusinessRuleTypeModel type = new BusinessRuleTypeModel(context.getTypeAsString(), template, category);
+        if (types.isEmpty()) {
+            super.businessRuleTypeDao.save(type);
+        } else {
+            System.err.println("Type couldn't be saved: Already exists in the database.");
+            type = (BusinessRuleTypeModel) types.get(0);
+        }
+
+         */
+
 
 
 
