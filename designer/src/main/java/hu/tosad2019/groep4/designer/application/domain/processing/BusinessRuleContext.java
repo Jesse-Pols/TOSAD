@@ -107,9 +107,8 @@ public class BusinessRuleContext {
     public String getName() {
 		/*
 		 * 	  TODO Rule naming
-		 *    BRG_VBMG_PRT_CNS_TCMP_01 
-		 * >> {APP}_            {ENTITY}_{OBJECT}_{RULETYPE}_{ID} 
-		 *    {APP}_{TARGETAPP}_{ENTITY}_{OBJECT}_{RULETYPE}_{AUTONUMBER} 
+		 * >> {APP}_            {ENTITY}_{OBJECT}_{RULETYPE}_{ID} : "BRG_PRODUCT_CNS_ACMP_01" 
+		 *    {APP}_{TARGETAPP}_{ENTITY}_{OBJECT}_{RULETYPE}_{AUTONUMBER} : "BRG_VBMG_PRT_CNS_TCMP_01" 
 		 */
 //    	return this.name;
     	//return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table, "CNS", this.businessRuleType.code, this.id);

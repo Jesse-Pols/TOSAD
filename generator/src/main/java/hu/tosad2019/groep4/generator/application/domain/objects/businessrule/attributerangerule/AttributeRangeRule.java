@@ -7,15 +7,12 @@ import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.Bas
 public class AttributeRangeRule extends BaseRule{
 
 	private Column column;
-
 	private boolean not;
-
 	private boolean forEachRow;
-
 	private Range range;
 
-	public AttributeRangeRule(String code, String name, String description, AttributeRangeRuleContext context) {
-		super(code, name, description);
+	public AttributeRangeRule(String code, String name, AttributeRangeRuleContext context) {
+		super(code, name);
 		this.column = context.getColumn();
 		this.not = context.getNot();
 		this.forEachRow = context.getForEachRow();
@@ -25,7 +22,6 @@ public class AttributeRangeRule extends BaseRule{
 	public Column getColumn() {
 		return this.column;
 	}
-
 	public Range getRange() {
 		return this.range;
 	}

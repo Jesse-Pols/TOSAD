@@ -1,8 +1,9 @@
-package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule;
+package hu.tosad2019.groep4.generator.application.domain.objects.businessrule.interentitycomparerule;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BaseRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+import com.mysql.cj.xdevapi.Table;
+import hu.tosad2019.groep4.generator.application.domain.objects.Column;
+import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.generator.application.domain.objects.enums.Operator;
 
 public class InterEntityCompareRule extends BaseRule {
 

@@ -1,14 +1,21 @@
 package hu.tosad2019.groep4.designer.presentation.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.TargetDbConnection;
+import hu.tosad2019.groep4.designer.application.domain.objects.Column;
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -67,8 +74,8 @@ public class MainController {
 		cb_targetdb_type.getSelectionModel().select(0);
 		
 
-//		this.rules = FXCollections.observableArrayList(getBusinessrules());
-//		System.out.println(rules);
+		this.rules = FXCollections.observableArrayList(getBusinessrules());
+		System.out.println(rules);
 		this.setupTable();
 		this.setupContextMenu();
 	}
@@ -79,22 +86,22 @@ public class MainController {
 	}
 
 	private void setupTable() {
-		TableColumn<BusinessRule, String> column_name = new TableColumn<>("ID");
+		TableColumn<BusinessRule, String> column_name = new TableColumn<>("Name");
 
 		column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
 				BusinessRule name = p.getValue();
-				return new SimpleStringProperty(name!=null?Integer.toString(name.getId()):"No ID");
+				return new SimpleStringProperty(name!=null?name.getName():"Unnamed");
 			}
 		});
 
-		TableColumn<BusinessRule, String> column_type = new TableColumn<>("Name");
+		TableColumn<BusinessRule, String> column_type = new TableColumn<>("Type");
 		column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
 				BusinessRule name = p.getValue();
-				return new SimpleStringProperty(name!=null?name.getName():"No Name");
+				return new SimpleStringProperty(name!=null?name.getCode():"No Type");
 			}
 		});
 //        this.tbl_businessrules.getColumns().add(column_name);
@@ -124,7 +131,7 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				int name = tbl_businessrules.getSelectionModel().getSelectedItem().getId();
+				String name = tbl_businessrules.getSelectionModel().getSelectedItem().getName();
 				try {
 					generateBusinessRule(name);
 				} catch (Exception e) {
@@ -168,7 +175,7 @@ public class MainController {
 		String username = this.txt_targetdb_username.getText();
 		String password = this.txt_targetdb_password.getText();
 		String port = this.txt_targetdb_port.getText();
-		String type = this.cb_generate_protocol.getValue();
+		String type = this.cb_targetdb_type.getValue();
 
 		if(host.equals("") || username.equals("") || password.equals("") || port.equals("")) {
 			System.err.println("Empty");
@@ -225,11 +232,23 @@ public class MainController {
 		}
 	}
 
-	private void generateBusinessRule(int name) throws Exception {
+	private void generateBusinessRule(String name) throws Exception {
 		MainFacade.getInstance().generateBusinessRule(name, targetDbConnection);
 	}
 	private List<BusinessRule> getBusinessrules(){
-		List<BusinessRule> rules = BusinessRuleService.getInstance().getAll();
+		List<BusinessRule> rules = new ArrayList<>();
+
+		//rules = BusinessRuleService.getInstance().getAll();
+
+		//START create example rule
+		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
+		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", context);
+
+//		attributeCompareRule.(100);
+		//END
+
+		rules.add(attributeCompareRule);
+
 		return rules;
 	}
 

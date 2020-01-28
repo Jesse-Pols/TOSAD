@@ -1,7 +1,7 @@
-package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule;
+package hu.tosad2019.groep4.generator.application.domain.objects.businessrule.tuplecomparerule;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+import hu.tosad2019.groep4.generator.application.domain.objects.Column;
+import hu.tosad2019.groep4.generator.application.domain.objects.enums.Operator;
 
 public class TupleCompareRuleContext {
 

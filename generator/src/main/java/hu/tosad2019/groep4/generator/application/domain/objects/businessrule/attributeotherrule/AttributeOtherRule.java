@@ -1,8 +1,8 @@
-package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule;
+package hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributeotherrule;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BaseRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+import hu.tosad2019.groep4.generator.application.domain.objects.Column;
+import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BaseRule;
+import hu.tosad2019.groep4.generator.application.domain.objects.enums.Operator;
 
 public class AttributeOtherRule extends BaseRule {
 

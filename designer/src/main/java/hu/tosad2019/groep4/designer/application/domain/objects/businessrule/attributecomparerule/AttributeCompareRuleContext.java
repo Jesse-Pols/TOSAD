@@ -1,8 +1,8 @@
 package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule;
 
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 
 public class AttributeCompareRuleContext {
     private Column column;

@@ -4,13 +4,9 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.Busi
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.entityotherrule.EntityOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.modifyrule.ModifyRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tupleotherrule.TupleOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.Attribute;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleContextFactory {
@@ -27,13 +23,9 @@ public class BusinessRuleContextFactory {
         } else if (AttributeRangeRule.class.equals(rule.getClass())) {
             newContext = getContextFromRangeRule((AttributeRangeRule) rule);
         } else if (AttributeListRule.class.equals(rule.getClass())) {
-        } else if (EntityOtherRule.class.equals(rule.getClass())) {
         } else if (InterEntityCompareRule.class.equals(rule.getClass())) {
-        } else if (ModifyRule.class.equals(rule.getClass())) {
         } else if (TupleCompareRule.class.equals(rule.getClass())) {
-        } else if (TupleOtherRule.class.equals(rule.getClass())) {
         }
-
 
         return newContext;
     }
@@ -44,7 +36,7 @@ public class BusinessRuleContextFactory {
         newContext.setOperator(rule.getOperator());
         newContext.setFirstColumn(rule.getColumn().getName());
         newContext.setFirstTable(rule.getColumn().getTableName());
-        newContext.addSpecifiedValue(rule.getValue().get().toString());
+        newContext.addSpecifiedValue(rule.getSpecifiedValue().get().toString());
         return newContext;
     }
 
