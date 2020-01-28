@@ -1,14 +1,13 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity (name="SpecifiedValue")
 public class SpecifiedValueModel {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "specifiedvalue_id_sequence")
+    @SequenceGenerator(name = "specifiedvalue_id_sequence", sequenceName = "SPECIFIEDVALUE_SEQUENCE", initialValue = 1, allocationSize = 1)
     private int id;
 
     private String value;

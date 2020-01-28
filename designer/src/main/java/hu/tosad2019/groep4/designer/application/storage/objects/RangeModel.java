@@ -1,16 +1,13 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity (name="Range")
 public class RangeModel {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "range_id_sequence")
+    @SequenceGenerator(name = "range_id_sequence", sequenceName = "RANGE_SEQUENCE", initialValue = 1, allocationSize = 1)
     private int id;
 
     private String min;

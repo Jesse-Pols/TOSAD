@@ -14,6 +14,8 @@ public class ListModel {
     @JoinColumn(name = "rule_id")
     private BusinessRuleModel businessRule;
 
+    public ListModel() {}
+
     public ListModel(BusinessRuleModel businessRuleModel) {
         this.businessRule = businessRuleModel;
     }
