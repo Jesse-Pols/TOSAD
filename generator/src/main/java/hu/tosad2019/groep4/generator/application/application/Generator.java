@@ -1,7 +1,5 @@
 package hu.tosad2019.groep4.generator.application.application;
 
-import hu.tosad2019.groep4.generator.application.application.TemplateData;
-import hu.tosad2019.groep4.generator.application.application.TemplateParser;
 import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DatabaseExecution;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
@@ -41,8 +39,6 @@ public class Generator {
 
     private String generateAttributeCompareRuleTrigger(AttributeCompareRule compareRule){
 
-        String templateName = "ATTRIBUTE_COMPARE_RULE";
-
         HashMap<String, String> variables = new HashMap<>();
         variables.put("trigger_name", TemplateData.getTriggerName(compareRule));
         variables.put("position", "BEFORE");
@@ -51,14 +47,13 @@ public class Generator {
         variables.put("column1", compareRule.getColumn().getName());
         variables.put("operator", compareRule.getOperator().toString());
         variables.put("value", compareRule.getSpecifiedValue().toString());
-        String filledTemplate = TemplateParser.parse(templateName, variables);
+        String filledTemplate = TemplateParser.parse(compareRule, variables);
         System.out.println(filledTemplate);
 
         return filledTemplate;
     }
 
     private String generateAttributeRangeRuleTrigger(AttributeRangeRule rangeRule){
-        String templateName = "ATTRIBUTE_RANGE_RULE";
 
         HashMap<String, String> variables = new HashMap<>();
 
@@ -75,7 +70,7 @@ public class Generator {
         variables.put("operator_2", rangeRule.getRange().getMaxValueOperator().toString());
         variables.put("value_max", Integer.toString(rangeRule.getRange().getMaxValue()));
 
-        String filledTemplate = TemplateParser.parse(templateName, variables);
+        String filledTemplate = TemplateParser.parse(rangeRule, variables);
         System.out.println(filledTemplate);
 
         return filledTemplate;
