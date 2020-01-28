@@ -44,9 +44,7 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
     public boolean saveBusinessRule(BusinessRuleContext context){
 
         if (context.getCategory() == null || context.getTemplate() == null || context.getTypeAsString() == null) {
-            System.err.println("Couldn't save business type: Missing category, template or type");
-            System.err.println("Can't save business rule without a business type, saveBusinessRule was aborted");
-            return false;
+            throw new NullPointerException("Couldn't save business type: Missing category, template or type\nCan't save business rule without a business type, saveBusinessRule was aborted");
         }
 
         // Check if category exists, save it if it doesn't
@@ -80,9 +78,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         }
 
         // Extra nullcheck for businessrule
-        if (context.getName() == null || context.getDescription() == null || context.getFailure() == null || type == null) {
-            System.err.println("Couldn't save business rule: Missing name, description, failure or type");
-            return false;
+        if (context.getName() == null || context.getFailure() == null || type == null) {
+            throw new NullPointerException("Couldn't save business rule: Missing name, description, failure or type");
         }
 
         // Check if businessrule exists, save it if it doesn't
@@ -96,13 +93,11 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         }
 
         if (rule == null) {
-            System.err.println("Something went wrong: no business rule available. saveBusinessRule was aborted.");
-            return false;
+            throw new NullPointerException("Rule may not be null");
         }
 
         if (context.getStatement() == null) {
-            System.err.println("Couldn't save statement: Missing statement value");
-            return false;
+        	throw new NullPointerException("Statement may not be null");
         }
 
         // A businessrule can only have one statement

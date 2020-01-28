@@ -45,6 +45,8 @@ public class BusinessRuleContextFactory {
         newContext.setFirstColumn(rule.getColumn().getName());
         newContext.setFirstTable(rule.getColumn().getTableName());
         newContext.addSpecifiedValue(rule.getSpecifiedValue().get().toString());
+        newContext.setCategory("STATIC");
+        newContext.setTemplate(newContext.getType().code);
         return newContext;
     }
 
@@ -55,7 +57,8 @@ public class BusinessRuleContextFactory {
         newContext.setFirstColumn(rule.getColumn().getName());
         newContext.setMinValue(Integer.toString(rule.getRange().getMinValue()));
         newContext.setMaxValue(Integer.toString(rule.getRange().getMaxValue()));
-
+        newContext.setCategory("STATIC");
+        newContext.setTemplate(newContext.getType().code);
         Operator minValueOperator = rule.getRange().getMinValueOperator();
 
         Operator operator = Operator.BETWEEN;
