@@ -10,7 +10,7 @@ public class TupleCompareRule extends BaseRule {
     private Column column1;
     private Column column2;
     private Operator operator;
-    private String SQLContraint;
+
 
 
 
