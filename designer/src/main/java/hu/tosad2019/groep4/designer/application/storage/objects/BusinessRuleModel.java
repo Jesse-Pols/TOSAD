@@ -32,6 +32,8 @@ public class BusinessRuleModel {
         this.id = 24;
     }
 
+    public BusinessRuleModel() {}
+
     public BusinessRuleTypeModel getType() {
         return this.type;
     }

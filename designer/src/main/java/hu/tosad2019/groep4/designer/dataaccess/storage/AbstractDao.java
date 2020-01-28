@@ -76,12 +76,12 @@ public class AbstractDao {
     }
 
     protected List<?> findAll(Class<?> clazz, String where) {
+        // Remember: put apostrophes around the where clause if it's a string -> 'where'
         List<?> objects = null;
 
         try {
             this.startOperation();
             Query query = this.session.createQuery("from " + clazz.getName() + " where " + where);
-            // TODO verander dit
             objects = query.getResultList();
             this.tx.commit();
         } catch (HibernateException err) {

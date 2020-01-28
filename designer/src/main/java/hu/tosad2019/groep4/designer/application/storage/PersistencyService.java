@@ -1,14 +1,10 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import java.util.List;
-
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
+
+import java.util.List;
 
 
 public class PersistencyService extends AbstractPersistency implements IPersistencyService {

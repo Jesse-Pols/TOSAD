@@ -58,12 +58,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         }
 
 
-
         /*
-
-
-
-        TemplateModel template = super.templateDao.find(context.getTemplateId());
+               TemplateModel template = super.templateDao.find(context.getTemplateId());
 
 
 
