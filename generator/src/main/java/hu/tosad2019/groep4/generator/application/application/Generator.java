@@ -1,11 +1,14 @@
 package hu.tosad2019.groep4.generator.application.application;
 
-import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DatabaseExecution;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-
-import java.util.HashMap;
+import hu.tosad2019.groep4.generator.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DatabaseExecution;
 
 public class Generator {
     private BusinessRule rule;
@@ -74,5 +77,20 @@ public class Generator {
         System.out.println(filledTemplate);
 
         return filledTemplate;
+    }
+    
+    
+    public static String getTemplateFromName(String name) {
+        String regex = "(?![A-Z]+_[A-Z]+_[A-Z]+_)[A-Z]{4}";
+
+        Pattern pattern = Pattern.compile(regex);
+//        pattern.
+        Matcher matcher = pattern.matcher(name);
+        if(matcher.find()) {
+        	String templatename = matcher.group(0);
+        	return templatename;
+        }
+        System.err.println("Couldn't get template name from rule name: " + name);
+        return null;
     }
 }

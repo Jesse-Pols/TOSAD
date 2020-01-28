@@ -46,5 +46,8 @@ public class Main
 
 		String filledTemplate = TemplateParser.parse(acr, variables);
 		System.out.println(filledTemplate);
+		
+//		Regex template names @Bart
+//		System.out.println("Template: " +Generator.getTemplateFromName("BRG_PRODUCT_CNS_ACMP_01"));
 	}
 }
