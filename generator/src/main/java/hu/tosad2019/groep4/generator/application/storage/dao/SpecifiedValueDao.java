@@ -5,9 +5,19 @@ import hu.tosad2019.groep4.generator.application.storage.objects.SpecifiedValueM
 import hu.tosad2019.groep4.generator.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.generator.dataaccess.storage.DataAccessLayerException;
 
+import java.util.List;
+
 public class SpecifiedValueDao extends AbstractDao implements ISpecifiedValueDao {
 
     public SpecifiedValueModel find(int id) throws DataAccessLayerException {
         return (SpecifiedValueModel) super.find(SpecifiedValueModel.class, id);
+    }
+
+    public List findAllByRuleId(int id) throws DataAccessLayerException {
+        return super.findAll(SpecifiedValueModel.class, "rule_id = " + id);
+    }
+
+    public List findAllByListId(int id) throws DataAccessLayerException {
+        return super.findAll(SpecifiedValueModel.class, "list_id = " + id);
     }
 }

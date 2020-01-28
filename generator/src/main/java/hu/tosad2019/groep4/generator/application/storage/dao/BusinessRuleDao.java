@@ -14,15 +14,19 @@ public class BusinessRuleDao extends AbstractDao implements IBusinessRuleDao {
         return (BusinessRuleModel) super.find(BusinessRuleModel.class, id);
     }
 
-    public List findAll() throws DataAccessLayerException {
+    public List<?> findAll() throws DataAccessLayerException {
         return super.findAll(BusinessRuleModel.class);
     }
 
-    public List findAllByName(String name) throws DataAccessLayerException {
-        return super.findAll(BusinessRuleModel.class, "name = " + name);
+    public List<?> findAllByName(String name) throws DataAccessLayerException {
+        return super.findAll(BusinessRuleModel.class, "name = '" + name + "'");
     }
 
     public void delete(int id) throws DataAccessLayerException {
         super.delete(this.find(id));
+    }
+
+    public int save(BusinessRuleModel businessRuleModel) {
+        return (Integer) super.saveOrUpdate(businessRuleModel);
     }
 }

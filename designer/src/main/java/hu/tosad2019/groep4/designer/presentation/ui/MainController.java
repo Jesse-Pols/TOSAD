@@ -86,22 +86,22 @@ public class MainController {
 	}
 
 	private void setupTable() {
-		TableColumn<BusinessRule, String> column_name = new TableColumn<>("ID");
+		TableColumn<BusinessRule, String> column_name = new TableColumn<>("Name");
 
 		column_name.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
 				BusinessRule name = p.getValue();
-				return new SimpleStringProperty(name!=null?Integer.toString(name.getId()):"No ID");
+				return new SimpleStringProperty(name!=null?name.getName():"Unnamed");
 			}
 		});
 
-		TableColumn<BusinessRule, String> column_type = new TableColumn<>("Name");
+		TableColumn<BusinessRule, String> column_type = new TableColumn<>("Type");
 		column_type.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BusinessRule, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<BusinessRule, String> p) {
 				BusinessRule name = p.getValue();
-				return new SimpleStringProperty(name!=null?name.getName():"No Name");
+				return new SimpleStringProperty(name!=null?name.getCode():"No Type");
 			}
 		});
 //        this.tbl_businessrules.getColumns().add(column_name);
@@ -131,7 +131,7 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				int name = tbl_businessrules.getSelectionModel().getSelectedItem().getId();
+				String name = tbl_businessrules.getSelectionModel().getSelectedItem().getName();
 				try {
 					generateBusinessRule(name);
 				} catch (Exception e) {
@@ -232,7 +232,7 @@ public class MainController {
 		}
 	}
 
-	private void generateBusinessRule(int name) throws Exception {
+	private void generateBusinessRule(String name) throws Exception {
 		MainFacade.getInstance().generateBusinessRule(name, targetDbConnection);
 	}
 	private List<BusinessRule> getBusinessrules(){

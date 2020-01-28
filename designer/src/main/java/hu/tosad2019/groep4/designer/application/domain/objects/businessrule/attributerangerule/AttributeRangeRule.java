@@ -1,39 +1,29 @@
 package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule;
 
+
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BaseRule;
 
 public class AttributeRangeRule extends BaseRule {
-	public Column getColumn() {
-		return column;
-	}
-
-	public boolean isNot() {
-		return not;
-	}
-
-	public boolean isForEachRow() {
-		return forEachRow;
-	}
-
-	public Range getRange() {
-		return range;
-	}
 
 	private Column column;
-
 	private boolean not;
-
 	private boolean forEachRow;
-
 	private Range range;
 
-	public AttributeRangeRule(String name, String description, AttributeRangeRuleContext context) {
-		super(name, description);
+	public AttributeRangeRule(String code, String name, AttributeRangeRuleContext context) {
+		super(code, name);
 		this.column = context.getColumn();
 		this.not = context.getNot();
 		this.forEachRow = context.getForEachRow();
 		this.range = context.getRange();
+	}
+
+	public Column getColumn() {
+		return this.column;
+	}
+	public Range getRange() {
+		return this.range;
 	}
 }

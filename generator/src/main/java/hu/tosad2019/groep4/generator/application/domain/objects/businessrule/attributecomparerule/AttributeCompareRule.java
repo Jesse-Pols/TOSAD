@@ -12,8 +12,8 @@ public class AttributeCompareRule extends BaseRule {
     private Operator operator;
     private SpecifiedValue value;
 
-    public AttributeCompareRule(String code, String name, String description, AttributeCompareRuleContext context){
-        super(code, name, description);
+    public AttributeCompareRule(String code, String name, AttributeCompareRuleContext context){
+        super(code, name);
 
         this.not = context.getNot();
         this.column = context.getColumn();

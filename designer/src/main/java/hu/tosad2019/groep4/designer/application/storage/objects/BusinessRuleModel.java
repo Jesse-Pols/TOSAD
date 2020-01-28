@@ -12,7 +12,8 @@ import java.util.List;
 public class BusinessRuleModel {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "businessrule_id_sequence")
+    @SequenceGenerator(name = "businessrule_id_sequence", sequenceName = "BUSINESSRULE_SEQUENCE")
     private int id;
 
     private String name;
@@ -24,12 +25,12 @@ public class BusinessRuleModel {
     @JoinColumn(name = "type_id")
     private BusinessRuleTypeModel type;
 
-    public BusinessRuleModel(String name, String description, String failure, int is_not) {
+    public BusinessRuleModel(String name, String description, String failure, int is_not, BusinessRuleTypeModel type) {
         this.name = name;
         this.description = description;
         this.failure = failure;
         this.is_not = is_not;
-        this.id = 24;
+        this.type = type;
     }
 
     public BusinessRuleModel() {}
@@ -58,5 +59,7 @@ public class BusinessRuleModel {
     public void setType(BusinessRuleTypeModel type) {
         this.type = type;
     }
+
+    public void setId(int id) { this.id = id; }
 
 }

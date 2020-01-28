@@ -2,9 +2,11 @@ package hu.tosad2019.groep4.designer.application.storage.dao;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.IBusinessRuleDao;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class BusinessRuleDao extends AbstractDao implements IBusinessRuleDao {
@@ -18,15 +20,15 @@ public class BusinessRuleDao extends AbstractDao implements IBusinessRuleDao {
         return super.findAll(BusinessRuleModel.class);
     }
 
-    public List<?> findAllByName(String name) throws DataAccessLayerException {
-        return super.findAll(BusinessRuleModel.class, "name = " + name);
+    public List<BusinessRuleModel> findByName(String name) throws DataAccessLayerException {
+        return (List<BusinessRuleModel>) super.findAll(BusinessRuleModel.class, "name = '" + name + "'");
     }
 
     public void delete(int id) throws DataAccessLayerException {
         super.delete(this.find(id));
     }
 
-    public void save(BusinessRuleModel businessRuleModel) {
-        super.saveOrUpdate(businessRuleModel);
+    public int save(BusinessRuleModel businessRuleModel) {
+        return (Integer) super.saveOrUpdate(businessRuleModel);
     }
 }
