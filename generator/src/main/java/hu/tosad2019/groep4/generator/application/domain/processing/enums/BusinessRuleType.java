@@ -1,7 +1,7 @@
 package hu.tosad2019.groep4.generator.application.domain.processing.enums;
 
 public enum BusinessRuleType {
-    AttributeCompareRule("AttributeCompareRule", "Attribute Compare Rule"), 
+    AttributeCompareRule("AttributeListRuleContext", "Attribute Compare Rule"),
     AttributeRangeRule("AttributeRangeRule", "Attribute Range Rule"), 
     AttributeListRule("AttributeListRule", "Attribute List Rule"), 
     AttributeOtherRule("AttributeOtherRule", "Attribute Other Rule"), 

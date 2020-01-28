@@ -78,19 +78,4 @@ public class Generator {
 
         return filledTemplate;
     }
-    
-    
-    public static String getTemplateFromName(String name) {
-        String regex = "(?![A-Z]+_[A-Z]+_[A-Z]+_)[A-Z]{4}";
-
-        Pattern pattern = Pattern.compile(regex);
-//        pattern.
-        Matcher matcher = pattern.matcher(name);
-        if(matcher.find()) {
-        	String templatename = matcher.group(0);
-        	return templatename;
-        }
-        System.err.println("Couldn't get template name from rule name: " + name);
-        return null;
-    }
 }

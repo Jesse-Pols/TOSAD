@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TemplateParser {
 
@@ -18,34 +20,7 @@ public class TemplateParser {
 		Scanner headerSc;
 		Scanner footerSc;
 
-//		try {
-////			ruleSc = new TemplateReader().read(templatename);
-//			headerSc = new TemplateHeaderFooterReader().readHeader(variables);
-//			footerSc = new TemplateHeaderFooterReader().readHeader(variables);
-//
-//
-//
-//
-//       } //catch (FileNotFoundException e) {
-//			System.err.println(e.getMessage());
-////			System.err.println("Template with name " + templatename + " not found.");
-//			return null;
-//		}
-
-//		rawfile += fillRawFile(ruleSc, headerSc, footerSc);
-//
-//		replacedfile = rawfile;
-//		Set<Map.Entry<String, String>> set = variables.entrySet();
-//
-//	    for (Entry<String, String> me : set) {
-//	    	replacedfile = replacedfile.replace("{{"+me.getKey()+"}}", me.getValue());
-//	    }
-//
-//		System.out.println(replacedfile);
-//
-//		return replacedfile;
-
-		return fillTemplate(businessRule.getName(), variables);
+		return fillTemplate(businessRule.getCode(), variables);
 	}
 
 	public static String fillTemplate(String templatename, HashMap<String, String> variables) {
@@ -58,9 +33,7 @@ public class TemplateParser {
 			Scanner footerSc = new TemplateHeaderFooterReader().readFooter();
 
 			templateCode = fillRawFile(ruleSc, headerSc, footerSc);
-
 			Set<Map.Entry<String, String>> set = variables.entrySet();
-
 			templateCode = loopThoughVariables(set, templateCode);
 
 		} catch (FileNotFoundException e) {
@@ -83,7 +56,7 @@ public class TemplateParser {
 			rawFile += ruleSc.nextLine() + "\n";
 		}
 
-		while(headerSc.hasNextLine()) {
+		while(footerSc.hasNextLine()) {
 			rawFile += footerSc.nextLine() + "\n";
 		}
 
