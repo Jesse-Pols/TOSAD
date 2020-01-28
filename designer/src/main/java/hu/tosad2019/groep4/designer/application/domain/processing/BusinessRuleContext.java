@@ -1,9 +1,7 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
@@ -49,8 +47,10 @@ public class BusinessRuleContext {
     private int list_id;
 
     // Specified Values
-    private List<SpecifiedValue> business_rule_values;
-    private List<SpecifiedValue> list_values;
+    private List<String> business_rule_values;
+    private List<String> list_values;
+
+
 
     // DbColumn
     private int dbcolumn_id;
@@ -92,13 +92,18 @@ public class BusinessRuleContext {
 
     public void setMinValue(String value) { this.range_min_value = min_value; }
     public void setMaxValue(String value) { this.range_max_value = max_value; }
-    public void setMinOperator(Operator operator) { this.range_min_operator = operator; }
-    public void setMaxOperator(Operator operator) { this.range_max_operator = operator; }
+    public void setMinOperator(String operator) { this.range_min_operator = this.convertStringToOperator(operator); }
+    public void setMaxOperator(String operator) { this.range_max_operator = this.convertStringToOperator(operator); }
 
     public void setListId(int id) { this.list_id = id; }
 
-    public void setBusinessRuleValues(List<SpecifiedValue> list) { this.business_rule_values = list; }
-    public void setListValues(List<SpecifiedValue> list) { this.list_values = list; }
+    public void setBusinessRuleValues(List<String> list) { this.business_rule_values = list; }
+    public void setListValues(List<String> list) { this.list_values = list; }
+
+
+
+
+
 
     public void setFirstTable(String table) { this.first_table = table; }
     public void setFirstColumn(String column) { this.first_column = column; }
@@ -146,8 +151,21 @@ public class BusinessRuleContext {
     public int getListId() { return this.list_id; }
     public String getSQLQuery() { return this.sqlQuery; }
 
-    public List<SpecifiedValue> getBusinessRuleValues() { return this.business_rule_values; }
-    public List<SpecifiedValue> getListValues() { return this.list_values; }
+    public List<String> getBusinessRuleValues() { return this.business_rule_values; }
+    public List<String> getListValues() { return this.list_values; }
+
+    /* PRIVATE FUNCTIONS */
+    private Operator convertStringToOperator(String operatorString) {
+        for (Operator operator : Operator.values()) {
+            if (operator.label.equals(operatorString)) {
+                return operator;
+            }
+        }
+        return null;
+    }
+    private String convertOperatorToString(Operator operator) {
+        return operator.label;
+    }
 
     public Operator getOperator() { return this.operator; }
     public String getFirstTable() { return this.first_table; }

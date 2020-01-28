@@ -23,19 +23,14 @@ public class BusinessRuleModel {
     public BusinessRuleTypeModel getType() {
         return this.type;
     }
-
     public String getName() {
         return this.name;
     }
-
     public String getDescription() {
         return this.description;
     }
-
     public int getId() { return this.id; }
-    public int getIs_not() { return this.is_not; }
     public String getFailure() { return this.failure; }
-
     public int getIsNot() { return this.is_not; }
 
 }

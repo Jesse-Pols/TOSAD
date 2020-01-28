@@ -23,4 +23,6 @@ public class SpecifiedValueModel {
     private ListModel list;
 
     public SpecifiedValueModel() { }
+
+    public String getValue() { return this.value; }
 }
