@@ -25,6 +25,13 @@ public class RangeModel {
     @JoinColumn(name = "rule_id")
     private BusinessRuleModel businessRule;
 
+    public RangeModel(String min, String max, OperatorModel min_operator, OperatorModel max_operator, BusinessRuleModel businessRule) {
+        this.min = min;
+        this.max = max;
+        this.min_operator = min_operator;
+        this.max_operator = max_operator;
+        this.businessRule = businessRule;
+    }
 
     public RangeModel() {}
 

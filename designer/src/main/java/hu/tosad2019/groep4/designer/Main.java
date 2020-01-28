@@ -19,7 +19,7 @@ public class Main extends Application
 		PersistencyService ps = PersistencyService.getInstance();
 
 		BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
-		context.setCategory("testCategory");
+		context.setCategory("testCategoryyy");
 		context.setTemplate("testTemplate");
 		context.setName("testName2");
 		context.setDescription("testDescription");
@@ -29,8 +29,6 @@ public class Main extends Application
 
 		List<String> values = new ArrayList<>();
 		values.add("value1");
-		values.add("value2");
-		values.add("value3");
 		context.setBusinessRuleValues(values);
 		context.setListValues(values);
 

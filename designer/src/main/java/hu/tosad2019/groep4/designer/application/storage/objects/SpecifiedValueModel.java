@@ -1,5 +1,7 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
+
 import javax.persistence.*;
 
 @Entity (name="SpecifiedValue")
@@ -33,8 +35,8 @@ public class SpecifiedValueModel {
         this.list = list;
     }
 
-    public void setRule(BusinessRuleModel rule) {
-        this.businessRule = rule;
+    public void setRule(BasicModel rule) {
+        this.businessRule = (BusinessRuleModel) rule;
     }
 
     public void setType(String type) {
