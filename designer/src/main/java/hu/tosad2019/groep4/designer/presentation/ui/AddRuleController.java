@@ -98,12 +98,18 @@ public class AddRuleController {
 
 		if(this.cb_ruletype.getSelectionModel().getSelectedItem() != null) {
 //			manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
-			this.saveRule();
+			try {
+				this.saveRule();
+			}catch(Exception e) {
+				this.setAlertMessage(e.getMessage(), "Failure");
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	
 	// TODO place this elsewhere?
-	private void saveRule() {
+	private void saveRule() throws Exception {
 		BusinessRuleType type = this.cb_ruletype.getSelectionModel().getSelectedItem();
 		System.out.println("Saving " + type.label + "..");
 		BusinessRuleContext context = new BusinessRuleContext(type);

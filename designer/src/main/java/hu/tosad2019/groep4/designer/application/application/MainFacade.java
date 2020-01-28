@@ -38,7 +38,7 @@ public class MainFacade {
 		return null;
 	}
 
-	public boolean saveBusinessRule(BusinessRuleContext context) {
+	public boolean saveBusinessRule(BusinessRuleContext context) throws Exception {
 		return DefineRule.saveBusinessRule(context);
 	}
 
