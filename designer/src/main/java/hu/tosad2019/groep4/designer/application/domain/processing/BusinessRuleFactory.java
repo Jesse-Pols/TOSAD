@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
+import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
@@ -7,6 +8,7 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attr
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
@@ -21,8 +23,6 @@ public class BusinessRuleFactory {
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
-        System.out.println(this.ruleContext);
-        
         switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
@@ -58,49 +58,44 @@ public class BusinessRuleFactory {
 
 
     private AttributeCompareRule createAttributeCompareRule(){
-        /*
-        if (ruleContext.getFirstTable() == null || ruleContext.getFirstColumn() == null || ruleContext.getBusinessRuleValues().isEmpty()) {
-            return null;
-        }
-
-        Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
-        SpecifiedValue specifiedValue = new SpecifiedValue(ruleContext.getBusinessRuleValues().get(0));
-        AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(column, false, ruleContext.getOperator(), specifiedValue);
-
-        return new AttributeCompareRule(ruleContext.getName(), ruleContext.getDescription(), compareRuleContext);
-        */
+    	String name = this.ruleContext.getName();
+    	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	
 		Column column = new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn());
     	boolean not = this.ruleContext.getIsNot()==1;
     	Operator operator = this.ruleContext.getOperator();
     	SpecifiedValue value = null;
     	if(this.ruleContext.getSpecifiedValues().size() > 0) value = new SpecifiedValue(this.ruleContext.getSpecifiedValues().get(0));
+    	else {
+    		System.err.println("[BusinessRuleFactory][ACMP] Error while filling value:");
+        	System.err.println("> " + ruleContext.getSpecifiedValues());
+    	}
     	AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, value);
-    	AttributeCompareRule rule = new AttributeCompareRule(BusinessRuleType.AttributeCompareRule.code, this.ruleContext.getName(), context);
-        return rule;
+    	return new AttributeCompareRule(type, name, context);
     }
 
 
     private AttributeRangeRule createAttributeRangeRule(){
-//    	AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, true, new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn()), new Range(Integer.parseFloat(this.ruleContext.getMinValue()), Integer.parseInt(this.ruleContext.getMaxValue()) this.ruleContext.getOperator(), this.ruleContext.getOperator()));
-        /*
-        Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
+    	String name = this.ruleContext.getName();
+    	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	
+        Column column = new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn());
 
         Operator operator = ruleContext.getOperator();
         Operator minValueOperator = null;
         Operator maxValueOperator = null;
 
-        int minValue;
-        int maxValue;
+        Integer minValue = 0;
+        Integer maxValue = 0;
 
         try{
             minValue = Integer.parseInt(ruleContext.getMinValue());
             maxValue = Integer.parseInt(ruleContext.getMaxValue());
         }
         catch(Exception e){
-            return null;
+        	System.err.println("[BusinessRuleFactory][ARNG] Error while converting values from AttributeRangeRule:");
+        	System.err.println("> " + ruleContext.getMinValue() + " - " + ruleContext.getMaxValue());
         }
-
-
 
         if (operator == Operator.NOTBETWEEN){
             minValueOperator = Operator.LESSTHEN;
@@ -112,14 +107,9 @@ public class BusinessRuleFactory {
         }
 
         Range range = new Range(minValue, maxValue, minValueOperator, maxValueOperator);
-
-        AttributeRangeRuleContext attributeRangeRuleContext = new AttributeRangeRuleContext(true, false, column, range);
-
-        return new AttributeRangeRule(ruleContext.getName(), ruleContext.getDescription(), attributeRangeRuleContext);
-
-         */
-
-        return null;
+        AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, false, column, range);
+        System.out.println(context);
+        return new AttributeRangeRule(type, name, context);
     }
 
     private AttributeListRule createAttributeListRule(){
@@ -136,5 +126,9 @@ public class BusinessRuleFactory {
 
     private TupleCompareRule createTupleCompareRule(){
         return null;
+    }
+    
+    private String toFriendlyType(String basic) {
+    	return null;
     }
 }
