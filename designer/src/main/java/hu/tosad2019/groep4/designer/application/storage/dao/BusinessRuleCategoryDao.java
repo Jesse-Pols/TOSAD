@@ -16,6 +16,6 @@ public class BusinessRuleCategoryDao extends AbstractDao implements IBusinessRul
         return (List<BusinessRuleCategoryModel>) findAll(BusinessRuleCategoryModel.class, "name = '" + name + "'");
     }
     public int save(BusinessRuleCategoryModel businessRuleCategoryModel) throws DataAccessLayerException {
-        return (Integer) super.saveOrUpdate(businessRuleCategoryModel);
+        return super.saveOrUpdate(businessRuleCategoryModel);
     }
 }

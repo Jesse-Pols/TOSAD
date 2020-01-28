@@ -16,7 +16,7 @@ public class TemplateDao extends AbstractDao implements ITemplateDao {
     }
 
     public int save(TemplateModel templateModel) throws DataAccessLayerException {
-        return (Integer) super.saveOrUpdate(templateModel);
+        return super.saveOrUpdate(templateModel);
     }
 
     public List<TemplateModel> findByValue(String value) throws DataAccessLayerException {

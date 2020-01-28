@@ -17,12 +17,12 @@ public class AbstractDao {
         HibernateFactory.buildIfNeeded();
     }
 
-    protected Serializable saveOrUpdate(Object obj) {
-        Serializable result = null;
+    protected int saveOrUpdate(Object obj) {
+        int result = 0;
 
         try {
             this.startOperation();
-            result = this.session.save(obj);
+            result = (Integer) this.session.save(obj);
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);

@@ -9,7 +9,7 @@ import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 public interface IBusinessRuleDao {
     BusinessRuleModel find(int id);
     List<?> findAll();
-    List<?> findAllByName(String name);
+    List<?> findByName(String name);
 
     void delete(int id);
     int save(BusinessRuleModel businessRuleModel);
