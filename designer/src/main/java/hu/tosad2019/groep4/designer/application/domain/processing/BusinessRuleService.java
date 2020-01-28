@@ -36,7 +36,9 @@ public class BusinessRuleService {
 
 
     public boolean deleteBusinessRule(BusinessRule rule){
-        return PersistencyService.getInstance().deleteBusinessRule(rule.getId());
+    	System.err.println("Cannot delete rule, IT HAS NO ID!!");
+    	return false;
+//        return PersistencyService.getInstance().deleteBusinessRule(rule.getName());
     }
 
     public List<BusinessRule> getAll(){

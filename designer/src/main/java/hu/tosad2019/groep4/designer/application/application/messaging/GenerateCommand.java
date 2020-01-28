@@ -6,14 +6,12 @@ import javax.json.JsonObject;
 import hu.tosad2019.groep4.designer.application.application.TargetDbConnection;
 import hu.tosad2019.groep4.designer.dataaccess.communication.Server;
 
-import java.lang.annotation.Target;
-
 public class GenerateCommand implements ServerCommand {
 
-	public final int ruleId;
+	public final String ruleId;
 	private TargetDbConnection targetDbConnection;
 	
-	public GenerateCommand(int id, TargetDbConnection targetDbConnection) {
+	public GenerateCommand(String id, TargetDbConnection targetDbConnection) {
 		this.ruleId = id;
 		this.targetDbConnection = targetDbConnection;
 	}
