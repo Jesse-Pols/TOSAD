@@ -18,16 +18,18 @@ public class BusinessRuleContextFactory {
 
     public BusinessRuleContext make(){
         BusinessRuleContext newContext = null;
-        if (AttributeCompareRule.class.equals(rule.getClass())) {
+        if (rule instanceof AttributeCompareRule) {
             newContext = getContextFromCompareRule((AttributeCompareRule) rule);
-        } else if (AttributeRangeRule.class.equals(rule.getClass())) {
+        } else if (rule instanceof AttributeRangeRule) {
             newContext = getContextFromRangeRule((AttributeRangeRule) rule);
-        } else if (AttributeListRule.class.equals(rule.getClass())) {
-        } else if (InterEntityCompareRule.class.equals(rule.getClass())) {
-        } else if (TupleCompareRule.class.equals(rule.getClass())) {
+        } else if (rule instanceof AttributeListRule) {
+        } else if (rule instanceof InterEntityCompareRule) {
+        } else if (rule instanceof TupleCompareRule) {
         }
 
         return newContext;
+        
+        
     }
 
     private BusinessRuleContext getContextFromCompareRule(AttributeCompareRule rule){
