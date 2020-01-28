@@ -35,25 +35,28 @@ public class CommandHandler implements HttpHandler{
 		try {
 			JSONObject jsonObject = (JSONObject) new JSONParser().parse(inputbody.toString());
 
-			String dbUrlString = jsonObject.get("db_url").toString();
-			String ruleIdString = jsonObject.get("rule_id").toString();
+			String ruleIdString = jsonObject.get("id").toString();
 
+			String databaseType = jsonObject.get("databaseType").toString();
+			String hostname = jsonObject.get("hostname").toString();
+			int port = Integer.parseInt(jsonObject.get("port").toString());
+			String username = jsonObject.get("username").toString();
+			String password = jsonObject.get("password").toString();
+
+			TargetDbContext targetDbContext = new TargetDbContext(databaseType, hostname, port, username, password);
 
 			MainFacade facade = new MainFacade();
 
 			int ruleId = Integer.parseInt(ruleIdString);
-			facade.GenerateBusinessRule(ruleId, dbUrlString);
+			boolean success = facade.GenerateBusinessRule(ruleId, targetDbContext);
 
-
-
-
-			if(!TempGenerator.getInstance().getIsRunning()) {
-				TempGenerator.getInstance().startGeneration();
+			if (success){
 				t.sendResponseHeaders(200, response.length());
-				response = String.format("{ \"status\": \"started\", \"sent\": \"%s\" } ", LocalDateTime.now());
-			}else {
+				response = String.format("{ \"result\": \"success\" } ", LocalDateTime.now());
+			}
+			else{
 				t.sendResponseHeaders(400, response.length());
-				response = String.format("{ \"status\": \"already running\", \"sent\": \"%s\" } ", LocalDateTime.now());
+				response = String.format("{ \"result\": \"failed to generate\" } ", LocalDateTime.now());
 			}
 
 			os.write(response.getBytes());
