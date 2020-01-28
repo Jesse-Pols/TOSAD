@@ -3,8 +3,6 @@ package hu.tosad2019.groep4.generator.application.domain.objects.businessrule.at
 import hu.tosad2019.groep4.generator.application.domain.objects.Column;
 import hu.tosad2019.groep4.generator.application.domain.objects.enums.Operator;
 
-import java.util.List;
-
 public class AttributeOtherRuleContext {
 
     private Column column;

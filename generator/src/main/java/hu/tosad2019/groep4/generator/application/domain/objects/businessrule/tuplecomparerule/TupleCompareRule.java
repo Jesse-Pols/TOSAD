@@ -11,7 +11,7 @@ public class TupleCompareRule extends BaseRule {
     private Column column2;
     private Operator operator;
 
-    public TupleCompareRule(String name, String code, TupleCompareRuleContext context) {
+    public TupleCompareRule(String code, String name, TupleCompareRuleContext context) {
 
         super(code, name);
         this.not = context.getNot();

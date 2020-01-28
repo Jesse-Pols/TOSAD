@@ -11,7 +11,7 @@ public class InterEntityCompareRule extends BaseRule {
     private Column column1;
     private Column column2;
     private Operator operator;
-    private Table table2;
+    private String table2;
 
     public InterEntityCompareRule(String name, String code, InterEntityCompareRuleContext context) {
         super(code, name);
@@ -19,5 +19,6 @@ public class InterEntityCompareRule extends BaseRule {
         this.column1 = context.getColumn1();
         this.column2 = context.getColumn2();
         this.operator = context.getOperator();
+        this.table2 = context.getTable2();
     }
 }

@@ -22,7 +22,6 @@ public class AttributeRangeRule extends BaseRule{
 	public Column getColumn() {
 		return this.column;
 	}
-
 	public Range getRange() {
 		return this.range;
 	}

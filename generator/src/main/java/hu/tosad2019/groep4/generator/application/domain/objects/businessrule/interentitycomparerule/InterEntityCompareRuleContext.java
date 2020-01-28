@@ -10,7 +10,7 @@ public class InterEntityCompareRuleContext {
     private Column column2;
     private boolean not;
     private Operator operator;
-    private Table table2;
+    private String table2;
 
     public Column getColumn1() {
         return column1;
@@ -27,12 +27,12 @@ public class InterEntityCompareRuleContext {
         return operator;
     }
 
-    public Table getTable2() {
+    public String getTable2() {
         return table2;
     }
 
 
-    public InterEntityCompareRuleContext(Column column1,Column column2, boolean not, Operator operator, Table table2) {
+    public InterEntityCompareRuleContext(Column column1,Column column2, boolean not, Operator operator, String table2) {
         this.column1 = column1;
         this.column2 = column2;
         this.not = not;
