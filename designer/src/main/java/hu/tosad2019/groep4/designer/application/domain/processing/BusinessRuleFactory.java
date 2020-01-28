@@ -1,24 +1,17 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import java.util.Map;
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.Range;
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 
 public class BusinessRuleFactory {
     private BusinessRuleContext ruleContext;
 
     public BusinessRuleFactory(BusinessRuleContext ruleContext){
+    	if(ruleContext == null) throw new NullPointerException("RuleContext may not be null");
         this.ruleContext = ruleContext;
     }
 

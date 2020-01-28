@@ -13,18 +13,24 @@ public class BusinessRuleContextFactory {
     private BusinessRule rule;
 
     public BusinessRuleContextFactory(BusinessRule rule){
+    	if(rule == null) throw new NullPointerException("Rule may not be null");
         this.rule = rule;
     }
 
-    public BusinessRuleContext make(){
+    public BusinessRuleContext make() throws Exception {
         BusinessRuleContext newContext = null;
         if (rule instanceof AttributeCompareRule) {
             newContext = getContextFromCompareRule((AttributeCompareRule) rule);
         } else if (rule instanceof AttributeRangeRule) {
             newContext = getContextFromRangeRule((AttributeRangeRule) rule);
         } else if (rule instanceof AttributeListRule) {
+        	throw new Exception("Rule not implemented");
         } else if (rule instanceof InterEntityCompareRule) {
+        	throw new Exception("Rule not implemented");
         } else if (rule instanceof TupleCompareRule) {
+        	throw new Exception("Rule not implemented");
+        }else {
+        	throw new Exception("Rule not supported");
         }
 
         return newContext;
