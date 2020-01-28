@@ -1,19 +1,16 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import java.util.Map;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleFactory {
     private BusinessRuleContext ruleContext;
@@ -24,7 +21,8 @@ public class BusinessRuleFactory {
 
     public BusinessRule makeBusinessRule(){
         BusinessRule rule = null;
-        /*
+        System.out.println(this.ruleContext);
+        
         switch (ruleContext.getType()){
             case AttributeCompareRule:
                 rule = this.createAttributeCompareRule();
@@ -35,26 +33,25 @@ public class BusinessRuleFactory {
             case AttributeListRule:
                 rule = createAttributeListRule();
                 break;
-            case EntityOtherRule:
-                rule = createEntityOtherRule();
-                break;
+//            case EntityOtherRule:
+//                rule = createEntityOtherRule();
+//                break;
             case InterEntityCompareRule:
                 rule = createInterEntityCompareRule();
                 break;
-            case ModifyRule:
-                rule = createModifyRule();
-                break;
+//            case ModifyRule:
+//                rule = createModifyRule();
+//                break;
             case TupleCompareRule:
                 rule = createTupleCompareRule();
                 break;
-            case TupleOtherRule:
-                rule = createTupleOtherRule();
+//            case TupleOtherRule:
+//                rule = createTupleOtherRule();
             default:
-                System.err.println(ruleContext.getType() + " != iets");
+                System.err.println(ruleContext.getType() + " does not exists!");
                 break;
 
         }
-         */
         
         return rule;
     }
@@ -72,12 +69,19 @@ public class BusinessRuleFactory {
 
         return new AttributeCompareRule(ruleContext.getName(), ruleContext.getDescription(), compareRuleContext);
         */
-        System.err.println("BusinessRuleFactory.createAttributeCompareRule uses nonexistant functions");
-        return null;
+		Column column = new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn());
+    	boolean not = this.ruleContext.getIsNot()==1;
+    	Operator operator = this.ruleContext.getOperator();
+    	SpecifiedValue value = null;
+    	if(this.ruleContext.getSpecifiedValues().size() > 0) value = new SpecifiedValue(this.ruleContext.getSpecifiedValues().get(0));
+    	AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, value);
+    	AttributeCompareRule rule = new AttributeCompareRule(BusinessRuleType.AttributeCompareRule.code, this.ruleContext.getName(), context);
+        return rule;
     }
 
 
     private AttributeRangeRule createAttributeRangeRule(){
+//    	AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, true, new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn()), new Range(Integer.parseFloat(this.ruleContext.getMinValue()), Integer.parseInt(this.ruleContext.getMaxValue()) this.ruleContext.getOperator(), this.ruleContext.getOperator()));
         /*
         Column column = new Column(ruleContext.getFirstTable(), ruleContext.getFirstColumn());
 
