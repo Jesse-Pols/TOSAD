@@ -4,4 +4,7 @@ public interface BusinessRule {
     String getDescription();
     String getName();
     int getId();
+
+    //to be deleted later
+    void setId(int id);
 }
