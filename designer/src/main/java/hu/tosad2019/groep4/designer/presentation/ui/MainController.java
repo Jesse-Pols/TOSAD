@@ -244,7 +244,7 @@ public class MainController {
 		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
 		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", context);
 
-		attributeCompareRule.setId(100);
+//		attributeCompareRule.(100);
 		//END
 
 		rules.add(attributeCompareRule);
