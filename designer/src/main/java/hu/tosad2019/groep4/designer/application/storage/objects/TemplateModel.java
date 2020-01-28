@@ -11,6 +11,10 @@ public class TemplateModel {
 
     private String value;
 
+    public TemplateModel(String value) {
+        this.value = value;
+    }
+
     public TemplateModel() { }
     
     public String getValue() { return this.value; }

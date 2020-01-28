@@ -25,4 +25,8 @@ public class BusinessRuleDao extends AbstractDao implements IBusinessRuleDao {
     public void delete(int id) throws DataAccessLayerException {
         super.delete(this.find(id));
     }
+
+    public void save(BusinessRuleModel businessRuleModel) {
+        super.saveOrUpdate(businessRuleModel);
+    }
 }

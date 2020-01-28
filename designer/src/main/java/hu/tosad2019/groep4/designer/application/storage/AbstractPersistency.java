@@ -122,8 +122,6 @@ public class AbstractPersistency {
         return businessRuleContexts;
     }
 
-    // Compare all enums to the ruletype
-    // Returns correct enum
     private BusinessRuleContext getCorrectType(String businessRuleType) {
         for (BusinessRuleType typeEnum : BusinessRuleType.values()) {
             String type = typeEnum.toString().replaceAll("\\s+", "");
