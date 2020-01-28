@@ -1,30 +1,31 @@
 package hu.tosad2019.groep4.generator.application.application;
 
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DatabaseExecution;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
-import hu.tosad2019.groep4.generator.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DatabaseExecution;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DbConnection;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.OracleDbConnection;
+
+import java.util.HashMap;
 
 public class Generator {
     private BusinessRule rule;
-    public Generator(BusinessRule rule){
+    private DbConnection connection;
+
+    public Generator(BusinessRule rule, TargetDbContext targetDbContext){
         this.rule = rule;
+
+        if (targetDbContext.getDataBaseType() == "Oracle"){
+            connection = new OracleDbConnection(targetDbContext.getHostname(), targetDbContext.getPort());
+            connection.SetCredentials(targetDbContext.getUsername(), targetDbContext.getPassword());
+        }
     }
 
-    public boolean generateBusinessRuleOnHost(String dbHostName)
-    {
-        return false;
-    }
-
-    public boolean generateBusinessRuleOnConnectionString(String connectionString){
+    public boolean generate(){
         String trigger = createTrigger();
 
-        DatabaseExecution databaseExecution = new DatabaseExecution(connectionString);
+        DatabaseExecution databaseExecution = new DatabaseExecution(connection);
 
         return databaseExecution.execute(trigger);
     }
@@ -42,6 +43,8 @@ public class Generator {
 
     private String generateAttributeCompareRuleTrigger(AttributeCompareRule compareRule){
 
+        String templateName = "ATTRIBUTE_COMPARE_RULE";
+
         HashMap<String, String> variables = new HashMap<>();
         variables.put("trigger_name", TemplateData.getTriggerName(compareRule));
         variables.put("position", "BEFORE");
@@ -50,13 +53,14 @@ public class Generator {
         variables.put("column1", compareRule.getColumn().getName());
         variables.put("operator", compareRule.getOperator().toString());
         variables.put("value", compareRule.getSpecifiedValue().toString());
-        String filledTemplate = TemplateParser.parse(compareRule, variables);
+        String filledTemplate = TemplateParser.parse(templateName, variables);
         System.out.println(filledTemplate);
 
         return filledTemplate;
     }
 
     private String generateAttributeRangeRuleTrigger(AttributeRangeRule rangeRule){
+        String templateName = "ATTRIBUTE_RANGE_RULE";
 
         HashMap<String, String> variables = new HashMap<>();
 
@@ -73,7 +77,7 @@ public class Generator {
         variables.put("operator_2", rangeRule.getRange().getMaxValueOperator().toString());
         variables.put("value_max", Integer.toString(rangeRule.getRange().getMaxValue()));
 
-        String filledTemplate = TemplateParser.parse(rangeRule, variables);
+        String filledTemplate = TemplateParser.parse(templateName, variables);
         System.out.println(filledTemplate);
 
         return filledTemplate;

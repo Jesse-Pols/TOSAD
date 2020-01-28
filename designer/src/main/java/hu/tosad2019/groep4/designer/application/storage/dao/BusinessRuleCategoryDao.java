@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.storage.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.IBusinessRuleCategoryDao;
@@ -11,11 +12,10 @@ public class BusinessRuleCategoryDao extends AbstractDao implements IBusinessRul
     public BusinessRuleCategoryModel find(int id) throws DataAccessLayerException {
         return (BusinessRuleCategoryModel) super.find(BusinessRuleCategoryModel.class, id);
     }
-    @SuppressWarnings("unchecked")
 	public List<BusinessRuleCategoryModel> findByName(String name) throws DataAccessLayerException {
-        return (List<BusinessRuleCategoryModel>) findAll(BusinessRuleCategoryModel.class, "name = " + name);
+        return (List<BusinessRuleCategoryModel>) findAll(BusinessRuleCategoryModel.class, "name = '" + name + "'");
     }
-    public void save(BusinessRuleCategoryModel businessRuleCategoryModel) throws DataAccessLayerException {
-        super.saveOrUpdate(businessRuleCategoryModel);
+    public int save(BusinessRuleCategoryModel businessRuleCategoryModel) throws DataAccessLayerException {
+        return (Integer) super.saveOrUpdate(businessRuleCategoryModel);
     }
 }

@@ -1,18 +1,25 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity (name="BusinessRuleCategory")
+@Entity (name="BUSINESSRULECATEGORY")
 public class BusinessRuleCategoryModel {
 
     @Id
-    private int id = 0;
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "category_id_sequence")
+    @SequenceGenerator(name = "category_id_sequence", sequenceName = "BUSINESSRULECATEGORY_SEQUENCE")
+    private int ID;
 
-    private String name;
+    private String NAME;
+
+    public BusinessRuleCategoryModel(String name) {
+        this.NAME = name;
+    }
 
     public BusinessRuleCategoryModel() {}
     
-    public String getName() { return this.name; }
-    public int getId() { return this.id; }
+    public String getName() { return this.NAME; }
+    public int getId() { return this.ID; }
+
+    public void setId(int id) { this.ID = id; }
 }

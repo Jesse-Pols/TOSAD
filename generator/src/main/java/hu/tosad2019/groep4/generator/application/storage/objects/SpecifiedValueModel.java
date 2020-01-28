@@ -18,7 +18,11 @@ public class SpecifiedValueModel {
     @JoinColumn(name = "rule_id")
     private BusinessRuleModel businessRule;
 
-    private int list_id;
+    @ManyToOne
+    @JoinColumn(name = "list_id")
+    private ListModel list;
 
     public SpecifiedValueModel() { }
+
+    public String getValue() { return this.value; }
 }

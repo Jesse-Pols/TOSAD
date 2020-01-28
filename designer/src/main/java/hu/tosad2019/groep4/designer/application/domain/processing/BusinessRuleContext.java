@@ -132,6 +132,7 @@ public class BusinessRuleContext {
 
     public BusinessRuleType getType() { return this.businessRuleType; }
     public int getTypeId() { return this.type_id; }
+    public String getTypeAsString() { return this.businessRuleType.label; }
 
     public String getCategory() { return this.category; }
     public int getCategoryId() { return this.category_id; }

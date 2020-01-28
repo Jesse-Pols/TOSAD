@@ -11,10 +11,10 @@ public class BusinessRuleCategoryDao extends AbstractDao implements IBusinessRul
     public BusinessRuleCategoryModel find(int id) throws DataAccessLayerException {
         return (BusinessRuleCategoryModel) super.find(BusinessRuleCategoryModel.class, id);
     }
-    public List<BusinessRuleCategoryModel> findByName(String name) throws DataAccessLayerException {
-        return findAll(BusinessRuleCategoryModel.class, "name = " + name);
+	public List<BusinessRuleCategoryModel> findByName(String name) throws DataAccessLayerException {
+        return (List<BusinessRuleCategoryModel>) findAll(BusinessRuleCategoryModel.class, "name = '" + name + "'");
     }
-    public void save(BusinessRuleCategoryModel businessRuleCategoryModel) throws DataAccessLayerException {
-        super.saveOrUpdate(businessRuleCategoryModel);
+    public int save(BusinessRuleCategoryModel businessRuleCategoryModel) throws DataAccessLayerException {
+        return (Integer) super.saveOrUpdate(businessRuleCategoryModel);
     }
 }

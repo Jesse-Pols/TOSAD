@@ -86,12 +86,12 @@
                                                         </HBox>
                                                         <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
                                                             <children>
-                                                                <TextField fx:id="tdbHostNameTxt" minWidth="50.0" prefHeight="27.0" prefWidth="182.0" promptText="Host" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
-                                                                <TextField fx:id="tdbUserNameTxt" maxWidth="131.0" minWidth="70.0" prefHeight="27.0" prefWidth="131.0" promptText="Username" style="-fx-background-color: #303030;" />
-                                                                <TextField fx:id="tdbPassTxt" minWidth="50.0" prefHeight="27.0" prefWidth="252.0" promptText="Wachtwoord" style="-fx-background-color: #303030;" />
-                                                                <TextField fx:id="tdbPortTxt" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
-                                                                <ComboBox fx:id="tdbTypeCombo" prefHeight="27.0" prefWidth="118.0" promptText="Type" />
-                                                                <Button fx:id="tDbConnect" minWidth="70.0" mnemonicParsing="false" onAction="#targetDbConnect_onclick" style="-fx-background-color: #68B21E;" text="Connect" textFill="WHITE" />
+                                                                <TextField fx:id="txt_targetdb_host" minWidth="50.0" prefWidth="120.0" promptText="Host" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                                <TextField fx:id="txt_targetdb_port" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
+                                                                <TextField fx:id="txt_targetdb_username" minWidth="100.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                                <TextField fx:id="txt_targetdb_password" minWidth="100.0" prefWidth="100.0" promptText="Password" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                                <ComboBox fx:id="cb_targetdb_type" prefHeight="27.0" prefWidth="118.0" promptText="Type" />
+                                                                <Button fx:id="button_targetdb_connect" minWidth="70.0" mnemonicParsing="false" onAction="#button_targetdb_connect_onclick" style="-fx-background-color: #68B21E;" text="Connect" textFill="WHITE" />
                                                             </children>
                                                         </HBox>
                                                     </children>

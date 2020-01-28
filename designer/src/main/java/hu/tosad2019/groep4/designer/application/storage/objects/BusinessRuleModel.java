@@ -1,5 +1,9 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,16 @@ public class BusinessRuleModel {
     @JoinColumn(name = "type_id")
     private BusinessRuleTypeModel type;
 
+    public BusinessRuleModel(String name, String description, String failure, int is_not) {
+        this.name = name;
+        this.description = description;
+        this.failure = failure;
+        this.is_not = is_not;
+        this.id = 24;
+    }
+
+    public BusinessRuleModel() {}
+
     public BusinessRuleTypeModel getType() {
         return this.type;
     }
@@ -32,5 +46,17 @@ public class BusinessRuleModel {
     public int getId() { return this.id; }
     public String getFailure() { return this.failure; }
     public int getIsNot() { return this.is_not; }
+
+    public void setType(int id) {
+        BusinessRuleTypeDao businessRuleTypeDao = new BusinessRuleTypeDao();
+        BusinessRuleTypeModel businessRuleTypeModel = businessRuleTypeDao.find(id);
+        if (businessRuleTypeModel != null) {
+            this.type = businessRuleTypeModel;
+        }
+    }
+
+    public void setType(BusinessRuleTypeModel type) {
+        this.type = type;
+    }
 
 }

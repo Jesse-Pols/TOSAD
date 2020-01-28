@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.dataaccess.storage;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -16,16 +17,20 @@ public class AbstractDao {
         HibernateFactory.buildIfNeeded();
     }
 
-    protected void saveOrUpdate(Object obj) {
+    protected Serializable saveOrUpdate(Object obj) {
+        Serializable result = null;
+
         try {
             this.startOperation();
-            this.session.saveOrUpdate(obj);
+            result = this.session.save(obj);
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);
         } finally {
             HibernateFactory.close(this.session);
         }
+
+        return result;
     }
 
     protected void delete(Object obj) {
@@ -58,24 +63,6 @@ public class AbstractDao {
         }
     }
 
-    /*
-    public Boolean exists (Object obj) {
-        try {
-            this.startOperation();
-            Query query = this.session.createQuery(" select 1 from DTOAny t where t.key = :key");
-            objects = query.list();
-            this.tx.commit();
-        } catch (HibernateException err) {
-            this.handleException(err);
-        } finally {
-            HibernateFactory.close(this.session);
-        }
-
-        return true;
-    }
-    
-     */
-
     protected List<?> findAll(Class<?> clazz) {
         List<?> objects = null;
 
@@ -94,12 +81,12 @@ public class AbstractDao {
     }
 
     protected List<?> findAll(Class<?> clazz, String where) {
-        List<?> objects = null;
+        // Remember: put apostrophes around the where clause if it's a string -> 'where'
+        List objects = null;
 
         try {
             this.startOperation();
             Query query = this.session.createQuery("from " + clazz.getName() + " where " + where);
-            // TODO verander dit
             objects = query.getResultList();
             this.tx.commit();
         } catch (HibernateException err) {

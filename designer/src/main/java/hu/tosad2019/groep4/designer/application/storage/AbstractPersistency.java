@@ -61,19 +61,16 @@ public class AbstractPersistency {
 
         // Statement
         List<StatementModel> statements = statementDao.findAllByRuleId(id);
-        StatementModel statement = null;
         if (!statements.isEmpty()) {
-            statement = statements.get(0);
+            StatementModel statement = statements.get(0);
+            context.setStatement(statement.getStatement());
+            context.setStatementId(statement.getId());
         }
 
         // Range
         List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
-        RangeModel range = null;
         if (!ranges.isEmpty()) {
-            range = ranges.get(0);
-        }
-
-        if (range != null) {
+            RangeModel range = ranges.get(0);
             context.setMaxValue(range.getMaxValue());
             context.setMinValue(range.getMinValue());
             context.setMaxOperator(range.getMaxOperator().getOperator());
@@ -122,8 +119,6 @@ public class AbstractPersistency {
         return businessRuleContexts;
     }
 
-    // Compare all enums to the ruletype
-    // Returns correct enum
     private BusinessRuleContext getCorrectType(String businessRuleType) {
         for (BusinessRuleType typeEnum : BusinessRuleType.values()) {
             String type = typeEnum.toString().replaceAll("\\s+", "");
