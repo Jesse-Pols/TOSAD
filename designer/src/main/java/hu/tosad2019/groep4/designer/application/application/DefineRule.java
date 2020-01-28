@@ -60,9 +60,6 @@ public class DefineRule {
     private static Map<String, String> getRangeRuleProperties(){    	
         Map<String, String> properties = new LinkedHashMap<String, String>();
 
-        properties.put("Name", "string");
-        properties.put("Description", "string");
-
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("Operator", "operator");
@@ -76,9 +73,6 @@ public class DefineRule {
     private static Map<String, String> getAttributeCompareRuleProperties(){
     	Map<String, String> properties = new LinkedHashMap<String, String>();
 
-        properties.put("Name", "string");
-        properties.put("Description", "string");
-
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("Operator", "operator");
@@ -89,9 +83,6 @@ public class DefineRule {
 
     private static Map<String, String> getAttributeListRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
-
-        properties.put("Name", "string");
-        properties.put("Description", "string");
 
         properties.put("Table", "string");
         properties.put("Column", "string");
@@ -104,9 +95,6 @@ public class DefineRule {
     private static Map<String, String> getAttributeOtherRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
 
-        properties.put("Name", "string");
-        properties.put("Description", "string");
-
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("SQL statement", "stringarea");
@@ -116,9 +104,6 @@ public class DefineRule {
 
     private static Map<String, String> getTupleCompareRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
-
-        properties.put("Name", "string");
-        properties.put("Description", "string");
 
         properties.put("Table", "string");
         properties.put("Column", "string");
@@ -131,9 +116,6 @@ public class DefineRule {
     private static Map<String, String> getTupleOtherRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
 
-        properties.put("Name", "string");
-        properties.put("Description", "string");
-
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("SQL statement", "stringarea");
@@ -143,9 +125,6 @@ public class DefineRule {
 
     private static Map<String, String> getInterEntityCompareRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
-
-        properties.put("Name", "string");
-        properties.put("Description", "string");
 
         properties.put("Table", "string");
         properties.put("Column", "string");
@@ -159,9 +138,6 @@ public class DefineRule {
     private static Map<String, String> getEntityOtherRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
 
-        properties.put("Name", "string");
-        properties.put("Description", "string");
-
         properties.put("Table", "string");
         properties.put("Column", "string");
         properties.put("Table 2", "string");
@@ -173,9 +149,6 @@ public class DefineRule {
 
     private static Map<String, String> getModifyRuleProperties(){
         Map<String, String> properties = new LinkedHashMap<String, String>();
-
-        properties.put("Name", "string");
-        properties.put("Description", "string");
 
         properties.put("Table", "string");
         properties.put("Column", "string");
