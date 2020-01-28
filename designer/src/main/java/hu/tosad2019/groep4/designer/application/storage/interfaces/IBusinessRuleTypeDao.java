@@ -4,4 +4,5 @@ import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleType
 
 public interface IBusinessRuleTypeDao {
     BusinessRuleTypeModel find(int id);
+    int save(BusinessRuleTypeModel businessRuleTypeModel);
 }

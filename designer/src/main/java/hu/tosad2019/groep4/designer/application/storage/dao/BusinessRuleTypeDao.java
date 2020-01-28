@@ -15,8 +15,8 @@ public class BusinessRuleTypeDao extends AbstractDao implements IBusinessRuleTyp
         return (BusinessRuleTypeModel) super.find(BusinessRuleTypeModel.class, id);
     }
 
-    public void save(BusinessRuleTypeModel businessRuleTypeModel) {
-        super.saveOrUpdate(businessRuleTypeModel);
+    public int save(BusinessRuleTypeModel businessRuleTypeModel) {
+        return super.saveOrUpdate(businessRuleTypeModel);
     }
 
     public List<?> findByName(String name) throws DataAccessLayerException {

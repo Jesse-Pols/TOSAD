@@ -101,20 +101,6 @@ public class BusinessRuleContext {
     public void setListValues(List<String> list) { this.list_values = list; }
 
 
-
-
-
-
-    public void setFirstTable(String table) { this.first_table = table; }
-    public void setFirstColumn(String column) { this.first_column = column; }
-    public void setOperator(Operator operator) { this.operator = operator; }
-    public void addSpecifiedValue(String value) { this.specifiedValues.add(value); }
-    public void setSpecifiedValues(List<String> values) { this.specifiedValues = values; }
-    public void setSqlQuery(String query) { this.sqlQuery = query; }
-    public void setSecondColumn(String column) { this.second_column = column; }
-    public void setSecondTable(String table) { this.second_table = table; }
-
-
     /* GETTERS */
     public int getId() { return this.id; }
     public int getIsNot() { return this.is_not; }
@@ -126,14 +112,15 @@ public class BusinessRuleContext {
 		 *    {APP}_{TARGETAPP}_{ENTITY}_{OBJECT}_{RULETYPE}_{AUTONUMBER} 
 		 */
 //    	return this.name;
-    	return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table, "CNS", this.businessRuleType.code, this.id);
+    	//return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table, "CNS", this.businessRuleType.code, this.id);
+        return this.name;
     }
     public String getDescription() { return this.description; }
     public String getFailure() { return this.failure; }
 
     public BusinessRuleType getType() { return this.businessRuleType; }
     public int getTypeId() { return this.type_id; }
-    public String getTypeAsString() { return this.businessRuleType.label; }
+    public String getTypeAsString() { return this.businessRuleType.label.toLowerCase(); }
 
     public String getCategory() { return this.category; }
     public int getCategoryId() { return this.category_id; }
@@ -174,5 +161,14 @@ public class BusinessRuleContext {
     public String getSecondTable() { return this.second_table; }
     public String getSecondColumn() { return this.second_column; }
     public List<String> getSpecifiedValues() { return this.specifiedValues; }
+
+    public void setFirstTable(String table) { this.first_table = table; }
+    public void setFirstColumn(String column) { this.first_column = column; }
+    public void setOperator(Operator operator) { this.operator = operator; }
+    public void addSpecifiedValue(String value) { this.specifiedValues.add(value); }
+    public void setSpecifiedValues(List<String> values) { this.specifiedValues = values; }
+    public void setSqlQuery(String query) { this.sqlQuery = query; }
+    public void setSecondColumn(String column) { this.second_column = column; }
+    public void setSecondTable(String table) { this.second_table = table; }
 
 }
