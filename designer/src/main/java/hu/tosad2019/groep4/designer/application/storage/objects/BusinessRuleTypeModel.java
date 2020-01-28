@@ -21,6 +21,12 @@ public class BusinessRuleTypeModel {
     @JoinColumn(name = "category_id")
     private BusinessRuleCategoryModel category;
 
+    public BusinessRuleTypeModel(String name, TemplateModel template, BusinessRuleCategoryModel category) {
+        this.name = name;
+        this.template = template;
+        this.category = category;
+    }
+
     public BusinessRuleTypeModel() {}
 
     public String getName() { return this.name; }

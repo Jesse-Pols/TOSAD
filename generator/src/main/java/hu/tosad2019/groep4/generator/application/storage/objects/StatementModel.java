@@ -1,23 +1,24 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="Statement")
 public class StatementModel {
 
     @Id
-    @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rule_id")
-    private BusinessRuleModel businessRule;
+    @ManyToOne
+    @JoinColumn(name="rule_id")
+    private BusinessRuleModel businessRuleModel;
 
     private String statement;
 
     public StatementModel() { }
 
-    public int getId() { return this.id; }
-
     public String getStatement() { return this.statement; }
+    public int getId() { return this.id; }
 }

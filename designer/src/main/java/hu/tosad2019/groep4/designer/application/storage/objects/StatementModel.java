@@ -22,4 +22,5 @@ public class StatementModel {
     public StatementModel() { }
 
     public String getStatement() { return this.statement; }
+    public int getId() { return this.id; }
 }

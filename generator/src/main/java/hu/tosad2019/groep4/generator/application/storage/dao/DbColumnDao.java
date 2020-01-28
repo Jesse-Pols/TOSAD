@@ -14,7 +14,8 @@ public class DbColumnDao extends AbstractDao implements IDbColumnDao {
         return (DbColumnModel) super.find(DbColumnModel.class, id);
     }
 
-    public List<DbColumnModel> findByRuleId(int rule_id) {
-        return super.findAll(DbColumnModel.class, "rule_id = 21");
+    @SuppressWarnings("unchecked")
+	public List<DbColumnModel> findByRuleId(int rule_id) {
+        return (List<DbColumnModel>) super.findAll(DbColumnModel.class, "rule_id = " + rule_id);
     }
 }

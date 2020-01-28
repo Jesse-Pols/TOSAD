@@ -21,17 +21,16 @@ public class BusinessRuleTypeModel {
     @JoinColumn(name = "category_id")
     private BusinessRuleCategoryModel category;
 
-    public BusinessRuleCategoryModel getCategory() {
-        return this.category;
+    public BusinessRuleTypeModel(String name, TemplateModel template, BusinessRuleCategoryModel category) {
+        this.name = name;
+        this.template = template;
+        this.category = category;
     }
 
-    public TemplateModel getTemplate() {
-        return this.template;
-    }
+    public BusinessRuleTypeModel() {}
 
-    public String getName() {
-        return this.name;
-    }
-
+    public String getName() { return this.name; }
     public int getId() { return this.id; }
+    public TemplateModel getTemplate() { return this.template; }
+    public BusinessRuleCategoryModel getCategory() { return this.category; }
 }

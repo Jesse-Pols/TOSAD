@@ -20,4 +20,6 @@ public class BusinessRuleCategoryModel {
     
     public String getName() { return this.NAME; }
     public int getId() { return this.ID; }
+
+    public void setId(int id) { this.ID = id; }
 }
