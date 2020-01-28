@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule;
 
+
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BaseRule;
@@ -12,8 +13,8 @@ public class AttributeCompareRule extends BaseRule {
     private Operator operator;
     private SpecifiedValue value;
 
-    public AttributeCompareRule(String name, String description, AttributeCompareRuleContext context) {
-        super(name, description);
+    public AttributeCompareRule(String code, String name, AttributeCompareRuleContext context){
+        super(code, name);
 
         this.not = context.getNot();
         this.column = context.getColumn();
@@ -21,19 +22,20 @@ public class AttributeCompareRule extends BaseRule {
         this.value = context.getSpecifiedValue();
     }
 
-    public boolean isNot() {
-        return not;
-    }
-
     public Column getColumn() {
-        return column;
+        return this.column;
     }
 
-    public Operator getOperator() {
-        return operator;
+    public Operator getOperator(){
+        return this.operator;
     }
 
-    public SpecifiedValue getValue() {
-        return value;
+    public SpecifiedValue getSpecifiedValue(){
+        return this.value;
+    }
+
+    public boolean getNot(){
+        return not;
+
     }
 }

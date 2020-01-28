@@ -8,7 +8,6 @@ import java.util.List;
 
 public class AttributeListRuleContext {
 
-
     private Column column;
     private boolean not;
     private Operator operator;
@@ -37,7 +36,4 @@ public class AttributeListRuleContext {
         this.operator = operator;
         this.specifiedValuelist = specifiedValuelist;
     }
-
-
-
 }

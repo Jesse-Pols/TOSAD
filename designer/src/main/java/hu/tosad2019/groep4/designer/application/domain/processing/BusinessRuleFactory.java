@@ -2,11 +2,8 @@ package hu.tosad2019.groep4.designer.application.domain.processing;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.entityotherrule.EntityOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.modifyrule.ModifyRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tupleotherrule.TupleOtherRule;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import java.util.Map;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
@@ -129,23 +126,11 @@ public class BusinessRuleFactory {
         return null;
     }
 
-    private EntityOtherRule createEntityOtherRule(){
-        return null;
-    }
-
     private InterEntityCompareRule createInterEntityCompareRule(){
         return null;
     }
 
-    private ModifyRule createModifyRule(){
-        return null;
-    }
-
     private TupleCompareRule createTupleCompareRule(){
-        return null;
-    }
-
-    private TupleOtherRule createTupleOtherRule(){
         return null;
     }
 }
