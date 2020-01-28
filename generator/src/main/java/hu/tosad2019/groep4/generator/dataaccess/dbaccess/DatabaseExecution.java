@@ -5,20 +5,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseExecution {
-    String connectionString;
-    public DatabaseExecution(String connectionString){
-        this.connectionString = connectionString;
+    DbConnection dbConnection;
+    public DatabaseExecution(DbConnection connection){
+        dbConnection = connection;
     }
 
     public boolean execute(String trigger) {
         boolean result = false;
 
-
-        DbConnection dbConnectionObject = new OracleDbConnection();
         Connection connection = null;
 
         try {
-            connection = dbConnectionObject.getConnection();
+            connection = dbConnection.getConnection();
             Statement statement = connection.createStatement();
 
             result = statement.execute(trigger);

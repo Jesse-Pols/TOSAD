@@ -20,6 +20,8 @@ public class GenerateCommand implements ServerCommand {
 	
 	@Override
 	public boolean execute(Server server) {
+		if (targetDbConnection == null)
+			return false;
 		try {
 			System.out.println("Generating..");
 			JsonObject data = Json.createObjectBuilder()

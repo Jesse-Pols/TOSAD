@@ -4,13 +4,13 @@ import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.Bus
 import hu.tosad2019.groep4.generator.application.domain.processing.BusinessRuleService;
 
 public class MainFacade {
-    public boolean GenerateBusinessRule(int id, String dbUrl){
+    public boolean GenerateBusinessRule(int id, TargetDbContext targetDbContext){
         BusinessRuleService businessRuleService = new BusinessRuleService();
 
         BusinessRule rule = businessRuleService.getRule(id);
 
-        Generator generator = new Generator(rule);
+        Generator generator = new Generator(rule, targetDbContext);
 
-        return generator.generateBusinessRuleOnConnectionString(dbUrl);
+        return generator.generate();
     }
 }

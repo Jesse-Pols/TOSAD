@@ -1,29 +1,31 @@
 package hu.tosad2019.groep4.generator.application.application;
 
-import hu.tosad2019.groep4.generator.application.application.TemplateData;
-import hu.tosad2019.groep4.generator.application.application.TemplateParser;
 import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DatabaseExecution;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DbConnection;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.OracleDbConnection;
 
 import java.util.HashMap;
 
 public class Generator {
     private BusinessRule rule;
-    public Generator(BusinessRule rule){
+    private DbConnection connection;
+
+    public Generator(BusinessRule rule, TargetDbContext targetDbContext){
         this.rule = rule;
+
+        if (targetDbContext.getDataBaseType() == "Oracle"){
+            connection = new OracleDbConnection(targetDbContext.getHostname(), targetDbContext.getPort());
+            connection.SetCredentials(targetDbContext.getUsername(), targetDbContext.getPassword());
+        }
     }
 
-    public boolean generateBusinessRuleOnHost(String dbHostName)
-    {
-        return false;
-    }
-
-    public boolean generateBusinessRuleOnConnectionString(String connectionString){
+    public boolean generate(){
         String trigger = createTrigger();
 
-        DatabaseExecution databaseExecution = new DatabaseExecution(connectionString);
+        DatabaseExecution databaseExecution = new DatabaseExecution(connection);
 
         return databaseExecution.execute(trigger);
     }
