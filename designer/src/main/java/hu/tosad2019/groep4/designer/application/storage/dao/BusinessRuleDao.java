@@ -29,6 +29,6 @@ public class BusinessRuleDao extends AbstractDao implements IBusinessRuleDao {
     }
 
     public int save(BusinessRuleModel businessRuleModel) {
-        return (Integer) super.saveOrUpdate(businessRuleModel);
+        return super.saveOrUpdate(businessRuleModel);
     }
 }

@@ -60,7 +60,7 @@ public class AbstractPersistency {
         }
 
         // Statement
-        List<StatementModel> statements = statementDao.findAllByRuleId(id);
+        List<StatementModel> statements = statementDao.findByRuleId(id);
         if (!statements.isEmpty()) {
             StatementModel statement = statements.get(0);
             context.setStatement(statement.getStatement());
