@@ -1,13 +1,11 @@
 package hu.tosad2019.groep4.generator.dataaccess.storage;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Query;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import javax.persistence.Query;
+import java.util.List;
 
 public class AbstractDao {
     private Session session;
@@ -17,12 +15,12 @@ public class AbstractDao {
         HibernateFactory.buildIfNeeded();
     }
 
-    protected Serializable saveOrUpdate(Object obj) {
-        Serializable result = null;
+    protected int saveOrUpdate(Object obj) {
+        int result = 0;
 
         try {
             this.startOperation();
-            result = this.session.save(obj);
+            result = (Integer) this.session.save(obj);
             this.tx.commit();
         } catch (HibernateException err) {
             this.handleException(err);

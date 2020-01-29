@@ -3,6 +3,8 @@ package hu.tosad2019.groep4.generator.application.storage;
 import hu.tosad2019.groep4.generator.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.generator.application.domain.processing.enums.BusinessRuleType;
 import hu.tosad2019.groep4.generator.application.storage.dao.*;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicDao;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicModel;
 import hu.tosad2019.groep4.generator.application.storage.objects.*;
 
 import java.util.ArrayList;
@@ -12,13 +14,14 @@ public class AbstractPersistency {
 
     protected BusinessRuleDao businessRuleDao = new BusinessRuleDao();
     protected BusinessRuleTypeDao businessRuleTypeDao = new BusinessRuleTypeDao();
-    protected BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
+    protected BasicDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
     protected DbColumnDao dbColumnDao = new DbColumnDao();
-    protected TemplateDao templateDao = new TemplateDao();
+    protected BasicDao templateDao = new TemplateDao();
     protected StatementDao statementDao = new StatementDao();
     protected RangeDao rangeDao = new RangeDao();
     protected SpecifiedValueDao specifiedValueDao = new SpecifiedValueDao();
     protected ListDao listDao = new ListDao();
+    protected OperatorDao operatorDao = new OperatorDao();
 
     protected BusinessRuleContext convertIdToContext(int id) {
         // Get businessrule, return null if businessrule doesn't exist
@@ -57,7 +60,7 @@ public class AbstractPersistency {
         }
 
         // Statement
-        List<StatementModel> statements = statementDao.findAllByRuleId(id);
+        List<StatementModel> statements = statementDao.findByRuleId(id);
         if (!statements.isEmpty()) {
             StatementModel statement = statements.get(0);
             context.setStatement(statement.getStatement());
@@ -114,6 +117,18 @@ public class AbstractPersistency {
             businessRuleContexts.add(this.convertIdToContext(businessRule.getId()));
         }
         return businessRuleContexts;
+    }
+
+    // Checks if the object exists. Sets the generated or retreived ID
+    protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, String where) {
+        List<?> objects = dao.findWhere(where);
+        if (objects.isEmpty()) {
+            object.setId(dao.save(object));
+        } else {
+            System.err.println("Object couldn't be added. Already exists in the database.");
+            object = (BasicModel) objects.get(0);
+        }
+        return object;
     }
 
     private BusinessRuleContext getCorrectType(String businessRuleType) {
