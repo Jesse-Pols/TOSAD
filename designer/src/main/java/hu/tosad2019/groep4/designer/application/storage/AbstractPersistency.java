@@ -1,27 +1,43 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.*;
-import hu.tosad2019.groep4.designer.application.storage.objects.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.DbColumnDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.ListDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.OperatorDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.RangeDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.SpecifiedValueDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.StatementDao;
+import hu.tosad2019.groep4.designer.application.storage.dao.TemplateDao;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicDao;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.ListModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.SpecifiedValueModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
 
 public class AbstractPersistency {
 
     protected BusinessRuleDao businessRuleDao = new BusinessRuleDao();
     protected BusinessRuleTypeDao businessRuleTypeDao = new BusinessRuleTypeDao();
-    protected BusinessRuleCategoryDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
+    protected BasicDao businessRuleCategoryDao = new BusinessRuleCategoryDao();
     protected DbColumnDao dbColumnDao = new DbColumnDao();
-    protected TemplateDao templateDao = new TemplateDao();
+    protected BasicDao templateDao = new TemplateDao();
     protected StatementDao statementDao = new StatementDao();
     protected RangeDao rangeDao = new RangeDao();
     protected SpecifiedValueDao specifiedValueDao = new SpecifiedValueDao();
     protected ListDao listDao = new ListDao();
+    protected OperatorDao operatorDao = new OperatorDao();
 
     protected BusinessRuleContext convertIdToContext(int id) {
         // Get businessrule, return null if businessrule doesn't exist
@@ -117,6 +133,18 @@ public class AbstractPersistency {
             businessRuleContexts.add(this.convertIdToContext(businessRule.getId()));
         }
         return businessRuleContexts;
+    }
+
+    // Checks if the object exists. Sets the generated or retreived ID
+    protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, String context) {
+        List<?> objects = dao.findByName(context);
+        if (objects.isEmpty()) {
+            object.setId(dao.save(object));
+        } else {
+            System.err.println("Object couldn't be added. Already exists in the database.");
+            object = (BasicModel) objects.get(0);
+        }
+        return object;
     }
 
     private BusinessRuleContext getCorrectType(String businessRuleType) {

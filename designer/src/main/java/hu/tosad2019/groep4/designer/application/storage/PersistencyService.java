@@ -1,14 +1,13 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class PersistencyService extends AbstractPersistency implements IPersistencyService {
+public class PersistencyService extends AbstractPersistency {
 
     private static PersistencyService instance;
 
@@ -47,70 +46,30 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
             throw new NullPointerException("Couldn't save business type: Missing category, template or type\nCan't save business rule without a business type, saveBusinessRule was aborted");
         }
 
-        // Check if category exists, save it if it doesn't
-        List<BusinessRuleCategoryModel> categories = super.businessRuleCategoryDao.findByName(context.getCategory());
-        BusinessRuleCategoryModel category = new BusinessRuleCategoryModel(context.getCategory());
-        if (categories.isEmpty()) {
-            super.businessRuleCategoryDao.save(category);
-        } else {
-            System.err.println("Category couldn't be saved: Already exists in the database.");
-            category = categories.get(0);
-        }
+        BasicModel category = new BusinessRuleCategoryModel(context.getCategory());
+        category = super.checkAndSaveObject(category, super.businessRuleCategoryDao, context.getCategory());
 
-        // Check if template exists, save it if it doesn't
-        List<TemplateModel> templates = super.templateDao.findByValue(context.getTemplate());
-        TemplateModel template = new TemplateModel(context.getTemplate());
-        if (templates.isEmpty()) {
-            template.setId(super.templateDao.save(template));
-        } else {
-            System.err.println("Template couldn't be saved: Already exists in the database. saveBusinessRule continues...");
-            template = templates.get(0);
-        }
+        BasicModel template = new TemplateModel(context.getTemplate());
+        template = super.checkAndSaveObject(template, super.templateDao, context.getTemplate());
 
-        // Check if type exists, save it if it doesn't
-        List<?> types = super.businessRuleTypeDao.findByName(context.getTypeAsString());
-        BusinessRuleTypeModel type = new BusinessRuleTypeModel(context.getTypeAsString(), template, category);
-        if (types.isEmpty()) {
-            type.setId(super.businessRuleTypeDao.save(type));
-        } else {
-            System.err.println("Type couldn't be saved: Already exists in the database. saveBusinessRule continues...");
-            type = (BusinessRuleTypeModel) types.get(0);
-        }
+        BasicModel type = new BusinessRuleTypeModel(context.getTypeAsString(), template, category);
+        type = super.checkAndSaveObject(type, super.businessRuleTypeDao, context.getTypeAsString());
 
         // Extra nullcheck for businessrule
         if (context.getName() == null || context.getFailure() == null || type == null) {
             throw new NullPointerException("Couldn't save business rule: Missing name, description, failure or type");
         }
 
-        // Check if businessrule exists, save it if it doesn't
-        List<BusinessRuleModel> businessRules = super.businessRuleDao.findByName(context.getName());
-        BusinessRuleModel rule = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot(), type);
-        if (businessRules.isEmpty()) {
-            rule.setId(super.businessRuleDao.save(rule));
-        } else {
-            System.err.println("Business Rule couldn't be saved: Already exists in the database. saveBusinessRule continues...");
-            rule = businessRules.get(0);
-        }
+        BasicModel rule = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot(), type);
+        rule = super.checkAndSaveObject(rule, super.businessRuleDao, context.getName());
 
-        if (rule == null) {
-            throw new NullPointerException("Rule may not be null");
-        }
-
-        if (context.getStatement() == null) {
-        	throw new NullPointerException("Statement may not be null");
-        }
-
-        // A businessrule can only have one statement
-        List<StatementModel> statements = super.statementDao.findByRuleId(rule.getId());
-        StatementModel statement = new StatementModel(context.getStatement(), rule);
-        if (statements.isEmpty()) {
-            statement.setId(super.statementDao.save(statement));
-        } else {
-            System.err.println("Statement couldn't be saved: Already exists in the database. saveBusinessRule continues...");
-            statement = statements.get(0);
+        if (context.getStatement() != null) {
+            BasicModel statement = new StatementModel(context.getStatement(), rule);
+            //statement = super.checkAndSaveObject(statement, super.statementDao, context.getStatement());
         }
 
         // Check if there are any rulevalues in the context
+        /*
         List<String> ruleValues = context.getBusinessRuleValues();
         List<SpecifiedValueModel> specifiedValues = new ArrayList<>();
         if (ruleValues.isEmpty()) {
@@ -151,6 +110,31 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         for (SpecifiedValueModel value : specifiedValues) {
             value.setId(super.specifiedValueDao.save(value));
         }
+
+        // Check if there are min and max operator
+        if (context.getMinOperator() == null || context.getMaxValue() == null || context.getMinValue() == null || context.getMaxValue() == null) {
+            System.err.println("Missing: minOperator, maxOperator, minValue or maxValue. saveBusinessRule continues...");
+        } else {
+            // Check if operators exist
+            // Turn operators in operatormodels
+            // Build rangemodel
+
+            // Check if operators exist
+            //List<OperatorModel> minOperators = super.operatorDao.findByName(context.getMinOperatorAsString());
+            //List<OperatorModel> maxOperators = super.operatorDao.findByName(context.getMaxOperatorAsString());
+            //OperatorModel minOperator = ;
+            //OperatorModel maxOperator;
+            //if (minOperators.isEmpty()) {
+              //  System.err.println("The minOperator wasn't found in the database and will be added. saveBusinessRule continues...");
+
+            //}
+
+
+            //RangeModel range = new RangeModel(context.getMinValue(), context.getMaxValue(), context.getMinOperator(), context.getMaxOperator(), rule);
+        }
+
+         */
+
 
         return true;
     }
