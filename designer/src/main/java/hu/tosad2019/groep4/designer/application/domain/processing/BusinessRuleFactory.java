@@ -1,4 +1,5 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
+import java.util.ArrayList;
 import java.util.List;
 
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
@@ -115,12 +116,13 @@ public class BusinessRuleFactory {
     	String failure = this.ruleContext.getFailure();
     	Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
     	boolean isNot = this.ruleContext.getIsNot()==1;
-    	List<String> specifiedValuelist = this.ruleContext.getListValues();
+    	List<String> specifieStringList = this.ruleContext.getListValues();
+    	List<SpecifiedValue> specifiedValueList = new ArrayList<SpecifiedValue>();
     	Operator operator = this.ruleContext.getOperator();
-//    	TODO: SPECIFIEDVALUES ARE ZERO
-    	System.err.println("SPECIFIEDVALUES ARE ZEROO!!");
-//    	AttributeListRuleContext context = new AttributeListRuleContext(column, isNot, operator, specifiedValuelist);
-    	AttributeListRuleContext context = null;
+    	for(String s : specifieStringList) {
+    		specifiedValueList.add(new SpecifiedValue(s));
+    	}
+    	AttributeListRuleContext context = new AttributeListRuleContext(column, isNot, operator, specifiedValueList);
         return new AttributeListRule(type, name, failure, context);
     }
 

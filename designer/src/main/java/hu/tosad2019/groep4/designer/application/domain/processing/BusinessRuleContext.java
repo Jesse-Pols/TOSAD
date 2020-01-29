@@ -143,8 +143,8 @@ public class BusinessRuleContext {
     public String getMaxValue() { return this.range_max_value; }
     public Operator getMinOperator() { return this.range_min_operator; }
     public Operator getMaxOperator() { return this.range_max_operator; }
-    public String getMinOperatorAsString() { return this.range_min_operator.label; }
-    public String getMaxOperatorAsString() { return this.range_max_operator.label; }
+    public String getMinOperatorAsString() { return this.range_min_operator!=null?this.range_min_operator.label:null; }
+    public String getMaxOperatorAsString() { return this.range_max_operator!=null?this.range_max_operator.label:null; }
 
     public int getListId() { return this.list_id; }
     public String getSQLQuery() { return this.sqlQuery; }

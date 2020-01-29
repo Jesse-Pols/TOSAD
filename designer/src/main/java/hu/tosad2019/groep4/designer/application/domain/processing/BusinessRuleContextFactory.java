@@ -49,7 +49,7 @@ public class BusinessRuleContextFactory {
 	private BusinessRuleContext getContextFromCompareRule(AttributeCompareRule rule){
         BusinessRuleContext newContext = new BusinessRuleContext(BusinessRuleType.AttributeCompareRule);
 
-        newContext.setName("TODO NAME");
+        newContext.setName(rule.getName());
         newContext.setOperator(rule.getOperator());
         newContext.setFirstColumnName(rule.getColumn().getName());
         newContext.setFirstTableName(rule.getColumn().getTableName());
@@ -63,7 +63,7 @@ public class BusinessRuleContextFactory {
     private BusinessRuleContext getContextFromRangeRule(AttributeRangeRule rule){
         BusinessRuleContext newContext = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
 
-        newContext.setName("TODO NAME");
+        newContext.setName(rule.getName());
         newContext.setFirstTableName(rule.getColumn().getTableName());
         newContext.setFirstColumnName(rule.getColumn().getName());
         newContext.setMinValue(Integer.toString(rule.getRange().getMinValue()));
