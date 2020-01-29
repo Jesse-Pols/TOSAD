@@ -1,4 +1,4 @@
 EXCEPTION
   WHEN e_invalid THEN
-    DBMS_OUTPUT.PUT_LINE(“Not allowed to”);
+    DBMS_OUTPUT.PUT_LINE('Not allowed to');
 END;
