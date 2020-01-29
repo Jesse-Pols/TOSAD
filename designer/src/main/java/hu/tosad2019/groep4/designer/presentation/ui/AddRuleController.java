@@ -116,8 +116,8 @@ public class AddRuleController {
 		
 		context.setName((String) this.currentProperties.get("Name"));
 		context.setDescription((String) this.currentProperties.get("Description"));
-		context.setFirstTable((String) this.currentProperties.get("Table"));
-		context.setFirstColumn((String) this.currentProperties.get("Column"));
+		context.setFirstTableName((String) this.currentProperties.get("Table"));
+		context.setFirstColumnName((String) this.currentProperties.get("Column"));
 		switch(type) {
 			case AttributeCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));		
@@ -139,20 +139,20 @@ public class AddRuleController {
 				break;
 			case TupleCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
-				context.setSecondColumn((String) this.currentProperties.get("Column"));
+				context.setSecondColumnName((String) this.currentProperties.get("Column"));
 				break;
 			case TupleOtherRule:
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
-				context.setSecondColumn((String) this.currentProperties.get("Column"));
+				context.setSecondColumnName((String) this.currentProperties.get("Column"));
 				break;
 			case InterEntityCompareRule:
-				context.setSecondColumn((String) this.currentProperties.get("Table 2"));
-				context.setSecondColumn((String) this.currentProperties.get("Column 2"));
+				context.setSecondTableName((String) this.currentProperties.get("Table 2"));
+				context.setSecondColumnName((String) this.currentProperties.get("Column 2"));
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
 				break;
 			case EntityOtherRule:
-				context.setSecondTable((String) this.currentProperties.get("Table 2"));
-				context.setSecondColumn((String) this.currentProperties.get("Column 2"));
+				context.setSecondTableName((String) this.currentProperties.get("Table 2"));
+				context.setSecondColumnName((String) this.currentProperties.get("Column 2"));
 				context.setSqlQuery((String) this.currentProperties.get("SQL statement"));
 				break;
 			case ModifyRule:

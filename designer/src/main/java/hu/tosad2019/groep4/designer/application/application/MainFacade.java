@@ -28,7 +28,7 @@ public class MainFacade {
 		return MessagingService.connectToServer(protocol, host, port);
 	}
 	
-	public boolean generateBusinessRule(String id, TargetDbConnection targetDbConnection) throws Exception{
+	public boolean generateBusinessRule(int id, TargetDbConnection targetDbConnection) throws Exception{
 		CommandSender sender = new CommandSender();
 		return sender.executeCommand(new GenerateCommand(id, targetDbConnection));
 	}

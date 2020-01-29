@@ -7,6 +7,10 @@ import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.int
 import hu.tosad2019.groep4.generator.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRuleContext;
 import hu.tosad2019.groep4.generator.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.generator.dataaccess.communication.ServerListener;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.DbConnection;
+import hu.tosad2019.groep4.generator.dataaccess.dbaccess.OracleDbConnection;
+
+import java.sql.SQLException;
 import java.util.HashMap;
 
 
@@ -20,29 +24,5 @@ public class Main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-//		Column column1 = new Column("TABLE_1", "COLUMN_1");
-//		Column column2 = new Column("TABLE_2", "COLUMN_2");
-//		Range range1 = new Range(0, 2, Operator.greaterThen, Operator.greaterThen);
-//
-//		InterEntityCompareRuleContext iecrc = new InterEntityCompareRuleContext(column1, column2, true, Operator.greaterThen, column2.getTableName());
-//		InterEntityCompareRule tcr = new InterEntityCompareRule("ICMP", "TUPLE_COMPARE_RULE", iecrc);
-//
-//		HashMap<String, String> variables = new HashMap<>();
-//		variables.put("trigger_name", "TupleCompareRule");
-//		variables.put("position", "BEFORE");
-//		variables.put("table_name", "TABLE_1");
-//		variables.put("for_each_row", "FOR EACH ROW");
-//		variables.put("column_1", "COLUMN_1");
-//		variables.put("column_2", "COLUMN_2");
-//		variables.put("table_1", "TABLE_1");
-//		variables.put("table_2", "TABLE_2");
-//		variables.put("operator", ">");
-//
-//		String filledTemplate = TemplateParser.parse(tcr, variables);
-//		System.out.println(filledTemplate);
-
-
-
 	}
 }

@@ -16,7 +16,7 @@ public class Generator {
     public Generator(BusinessRule rule, TargetDbContext targetDbContext){
         this.rule = rule;
 
-        if (targetDbContext.getDataBaseType() == "Oracle"){
+        if (targetDbContext.getDataBaseType().equals("Oracle")){
             connection = new OracleDbConnection(targetDbContext.getHostname(), targetDbContext.getPort());
             connection.SetCredentials(targetDbContext.getUsername(), targetDbContext.getPassword());
         }
