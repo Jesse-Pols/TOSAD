@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+
 public class DatabaseExecution {
     DbConnection dbConnection;
     public DatabaseExecution(DbConnection connection){
@@ -11,7 +13,7 @@ public class DatabaseExecution {
     }
 
     public boolean execute(String trigger) {
-        boolean result = false;
+        boolean result = true;
 
         Connection connection = null;
 
@@ -19,15 +21,12 @@ public class DatabaseExecution {
             connection = dbConnection.getConnection();
             Statement statement = connection.createStatement();
 
-            result = statement.execute(trigger);
+            statement.execute(trigger);
             connection.close();
         } catch (SQLException e) {
+            result = false;
             e.printStackTrace();
         }
-
-
-
-
         return result;
     }
 }
