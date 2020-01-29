@@ -4,4 +4,6 @@ public interface BusinessRule {
     public String getCode();
 
     public String getName();
+
+    public int id();
 }
