@@ -36,8 +36,8 @@ public class BusinessRuleService {
 
 
     public boolean deleteBusinessRule(BusinessRule rule) throws Exception{
-    	throw new Exception("Rule deletion not supported, because it has no ID");
-//        return PersistencyService.getInstance().deleteBusinessRule(rule.getName());
+
+        return PersistencyService.getInstance().deleteBusinessRule(rule.id());
     }
 
     public List<BusinessRule> getAll(){
@@ -52,8 +52,18 @@ public class BusinessRuleService {
     }
 
     public List<BusinessRule> findByName(String name){
-        return new ArrayList<BusinessRule>();
+//
+        List<BusinessRuleContext> businessRuleContextList =  PersistencyService.getInstance().findBusinessRuleByName(name);
+        List<BusinessRule> businessRuleList = new ArrayList<>();
+
+        for(BusinessRuleContext context : businessRuleContextList) {
+            businessRuleList.add(new BusinessRuleFactory(context).makeBusinessRule());
+        }
+
+        return businessRuleList;
+
     }
+
 
     public List<Operator> getOperator(BusinessRuleType ruleType){
         List<Operator> operators = new ArrayList<Operator>();

@@ -179,4 +179,6 @@ public class AddRuleController {
 
 	public void hideAlertMessage() { this.alert_message.setTextFill(Color.web("#212121")); }
 
+
+
 }
