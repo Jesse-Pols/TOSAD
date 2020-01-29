@@ -1,12 +1,11 @@
 package hu.tosad2019.groep4.designer.application.storage.dao;
 
+import java.util.List;
+
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicDao;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
-
-import java.util.List;
 
 public class BusinessRuleTypeDao extends AbstractDao implements BasicDao {
     public BusinessRuleTypeDao() { }

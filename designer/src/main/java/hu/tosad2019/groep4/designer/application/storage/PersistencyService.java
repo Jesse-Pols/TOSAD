@@ -1,15 +1,20 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.ListModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.SpecifiedValueModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
 
-public class PersistencyService extends AbstractPersistency implements IPersistencyService {
+
+public class PersistencyService extends AbstractPersistency {
 
     private static PersistencyService instance;
 
