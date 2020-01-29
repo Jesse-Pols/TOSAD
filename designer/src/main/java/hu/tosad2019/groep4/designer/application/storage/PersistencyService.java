@@ -1,12 +1,19 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
-import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.DbColumnModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.ListModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.OperatorModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.SpecifiedValueModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
 
 
 public class PersistencyService extends AbstractPersistency {
@@ -23,17 +30,15 @@ public class PersistencyService extends AbstractPersistency {
         return instance;
     }
 
-    public BusinessRuleContext getBusinessRuleById(int id) {
-        return super.convertIdToContext(id);
-    }
-
     public List<BusinessRuleContext> getAllBusinessRules() {
+		@SuppressWarnings("unchecked")
 		List<BusinessRuleModel> businessRuleModels = (List<BusinessRuleModel>) super.businessRuleDao.findAll();
         return super.loopThroughBusinessRules(businessRuleModels);
     }
 
+	@SuppressWarnings("unchecked")
 	public List<BusinessRuleContext> findBusinessRuleByName(String name) {
-        return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findWhere("name=" + name));
+        return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findWhere("name='" + name + "'"));
     }
 
     public boolean deleteBusinessRule(int id) throws Exception {
@@ -41,7 +46,6 @@ public class PersistencyService extends AbstractPersistency {
         return true;
     }
 
-    // Insert if new, update if exists
     public boolean saveBusinessRule(BusinessRuleContext context){
 
         if (context.getCategory() == null || context.getTemplate() == null || context.getTypeAsString() == null) {
@@ -59,10 +63,11 @@ public class PersistencyService extends AbstractPersistency {
 
         // Extra nullcheck for businessrule
         if (context.getName() == null || context.getFailure() == null || type == null) {
-            throw new NullPointerException("Couldn't save business rule: Missing name, description, failure or type");
+        	System.err.println(String.format("See: \n> %s \n> %s \n> %s", context.getName(), context.getFailure(), type));
+            throw new NullPointerException("Couldn't save business rule: Missing name, failure or type");
         }
 
-        BasicModel rule = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot(), type);
+        BasicModel rule = new BusinessRuleModel(context.getName(), context.getFailure(), context.getIsNot(), type);
         rule = super.checkAndSaveObject(rule, super.businessRuleDao, "name='" + context.getName() + "'");
 
         // DBCOLUMN

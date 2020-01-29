@@ -20,7 +20,6 @@ public class BusinessRuleModel implements BasicModel {
     private int id;
 
     private String name;
-    private String description;
     private String failure;
     private int is_not;
 
@@ -28,9 +27,8 @@ public class BusinessRuleModel implements BasicModel {
     @JoinColumn(name = "type_id")
     private BusinessRuleTypeModel type;
 
-    public BusinessRuleModel(String name, String description, String failure, int is_not, BasicModel type) {
+    public BusinessRuleModel(String name, String failure, int is_not, BasicModel type) {
         this.name = name;
-        this.description = description;
         this.failure = failure;
         this.is_not = is_not;
         this.type = (BusinessRuleTypeModel) type;
@@ -43,9 +41,6 @@ public class BusinessRuleModel implements BasicModel {
     }
     public String getName() {
         return this.name;
-    }
-    public String getDescription() {
-        return this.description;
     }
     public int getId() { return this.id; }
     public String getFailure() { return this.failure; }

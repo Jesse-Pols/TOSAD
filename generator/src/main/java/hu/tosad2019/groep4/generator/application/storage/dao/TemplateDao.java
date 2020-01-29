@@ -1,24 +1,26 @@
 package hu.tosad2019.groep4.generator.application.storage.dao;
 
-import hu.tosad2019.groep4.generator.application.storage.interfaces.ITemplateDao;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicDao;
 import hu.tosad2019.groep4.generator.application.storage.objects.TemplateModel;
 import hu.tosad2019.groep4.generator.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.generator.dataaccess.storage.DataAccessLayerException;
 
 import java.util.List;
 
-public class TemplateDao extends AbstractDao implements ITemplateDao {
+public class TemplateDao extends AbstractDao implements BasicDao {
 
     public TemplateModel find(int id) throws DataAccessLayerException {
         return (TemplateModel) super.find(TemplateModel.class, id);
     }
 
-    public int save(TemplateModel templateModel) throws DataAccessLayerException {
-        return (Integer) super.saveOrUpdate(templateModel);
+    public List<?> findWhere(String where) throws DataAccessLayerException {
+        return findAll(TemplateModel.class, where);
     }
-
-    public List<TemplateModel> findByValue(String value) throws DataAccessLayerException {
-        return (List<TemplateModel>) findAll(TemplateModel.class, "value = '" + value + "'");
+    public int save(Object obj) throws DataAccessLayerException {
+        return super.saveOrUpdate(obj);
+    }
+    public void delete(int id) throws DataAccessLayerException {
+        super.delete(this.find(id));
     }
 
 }

@@ -1,13 +1,13 @@
 package hu.tosad2019.groep4.designer.application.application;
 
-public class TargetDbConnection {
+public class TargetDbContext {
     private String dataBaseType;
     private String hostname;
     private int port;
     private String username;
     private String password;
 
-    public TargetDbConnection(String databaseType, String hostname, int port, String username, String password){
+    public TargetDbContext(String databaseType, String hostname, int port, String username, String password){
         this.dataBaseType = databaseType;
         this.hostname = hostname;
         this.port = port;

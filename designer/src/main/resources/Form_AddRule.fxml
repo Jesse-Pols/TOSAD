@@ -109,7 +109,7 @@
                                                 <Insets top="10.0" />
                                              </padding>
                                              <children>
-                                                <TextField fx:id="messageBox" alignment="TOP_LEFT" prefHeight="167.0" prefWidth="463.0" promptText="Enter failure message..." style="-fx-background-color: #282727; -fx-border-radius: 0;">
+                                                <TextField fx:id="txt_failure" alignment="TOP_LEFT" prefHeight="167.0" prefWidth="463.0" promptText="Enter failure message..." style="-fx-background-color: #282727; -fx-border-radius: 0;">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>

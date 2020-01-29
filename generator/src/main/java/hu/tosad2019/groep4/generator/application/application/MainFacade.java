@@ -10,20 +10,20 @@ import hu.tosad2019.groep4.generator.application.domain.processing.BusinessRuleS
 
 public class MainFacade {
     public boolean GenerateBusinessRule(int id, TargetDbContext targetDbContext){
-       //BusinessRuleService businessRuleService = new BusinessRuleService();
+       BusinessRuleService businessRuleService = new BusinessRuleService();
 
 
-        //START create example rule
-        AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
-        BusinessRule attributeCompareRule = new AttributeCompareRule("ACMP", "id > 0", context);
+//        //START create example rule
+//        AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
+//        BusinessRule attributeCompareRule = new AttributeCompareRule("ACMP", "id > 0", context);
+//
+//        attributeCompareRule.setId(100);
+//        //END
 
-        attributeCompareRule.setId(100);
-        //END
 
+        BusinessRule rule = businessRuleService.getRule(id);
 
-        //BusinessRule rule = businessRuleService.getRule(id);
-
-        BusinessRule rule = attributeCompareRule;
+//        BusinessRule rule = attributeCompareRule;
 
         Generator generator = new Generator(rule, targetDbContext);
 

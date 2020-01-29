@@ -24,7 +24,6 @@ public class BusinessRuleDao extends AbstractDao implements BasicDao {
     }
 
     public List<?> findWhere(String where) throws DataAccessLayerException {
-        //return findAll(BusinessRuleModel.class, "name = '" + name + "'");
         return findAll(BusinessRuleModel.class, where);
     }
     public int save(Object obj) throws DataAccessLayerException {

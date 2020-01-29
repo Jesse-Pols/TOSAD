@@ -1,14 +1,15 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicModel;
+
+import javax.persistence.*;
 
 @Entity(name="Operator")
-public class OperatorModel {
+public class OperatorModel implements BasicModel {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "operator_id_sequence")
+    @SequenceGenerator(name = "operator_id_sequence", sequenceName = "OPERATOR_SEQUENCE", initialValue = 1, allocationSize = 1)
     private int id;
 
     @ManyToOne
@@ -17,8 +18,16 @@ public class OperatorModel {
 
     private String operator;
 
+    public OperatorModel(String operator, BasicModel businessRule) {
+        this.operator = operator;
+        this.businessRule = (BusinessRuleModel) businessRule;
+    }
+
     public OperatorModel() { }
 
     public String getOperator() { return this.operator; }
+
+    public int getId() { return this.id; }
+    public void setId(int id) { this.id = id; }
 
 }

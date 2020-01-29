@@ -15,8 +15,8 @@ public class AttributeListRule extends BaseRule {
     private Operator operator;
     private List<SpecifiedValue> list;
 
-    public AttributeListRule(String code, String name, AttributeListRuleContext context) {
-        super(code, name);
+    public AttributeListRule(String code, String name, String failure, AttributeListRuleContext context) {
+        super(code, name, failure);
         this.not = context.getNot();
         this.column = context.getColumn();
         this.operator = context.getOperator();

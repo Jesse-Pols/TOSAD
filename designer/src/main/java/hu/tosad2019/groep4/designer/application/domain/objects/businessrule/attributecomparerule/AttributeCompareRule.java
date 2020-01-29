@@ -13,8 +13,8 @@ public class AttributeCompareRule extends BaseRule {
     private Operator operator;
     private SpecifiedValue value;
 
-    public AttributeCompareRule(String code, String name, AttributeCompareRuleContext context){
-        super(code, name);
+    public AttributeCompareRule(String code, String name, String failure, AttributeCompareRuleContext context){
+        super(code, name, failure);
 
         this.not = context.getNot();
         this.column = context.getColumn();

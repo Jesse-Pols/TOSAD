@@ -19,4 +19,7 @@ public class BusinessRuleTypeDao extends AbstractDao implements BasicDao {
     public int save(Object obj) throws DataAccessLayerException {
         return super.saveOrUpdate(obj);
     }
+    public void delete(int id) throws DataAccessLayerException {
+        super.delete(this.find(id));
+    }
 }
