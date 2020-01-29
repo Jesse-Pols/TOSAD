@@ -28,16 +28,15 @@ public class BusinessRuleService {
         return factory.makeBusinessRule();
     }
 
-    public boolean saveBusinessRule(BusinessRule rule){
+    public boolean saveBusinessRule(BusinessRule rule) throws Exception{
         BusinessRuleContextFactory factory = new BusinessRuleContextFactory(rule);
 
         return PersistencyService.getInstance().saveBusinessRule(factory.make());
     }
 
 
-    public boolean deleteBusinessRule(BusinessRule rule){
-    	System.err.println("Cannot delete rule, IT HAS NO ID!!");
-    	return false;
+    public boolean deleteBusinessRule(BusinessRule rule) throws Exception{
+    	throw new Exception("Rule deletion not supported, because it has no ID");
 //        return PersistencyService.getInstance().deleteBusinessRule(rule.getName());
     }
 

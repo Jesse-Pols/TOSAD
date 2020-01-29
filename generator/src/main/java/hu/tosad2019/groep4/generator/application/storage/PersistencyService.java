@@ -81,11 +81,6 @@ public class PersistencyService extends AbstractPersistency {
          */
 
 
-
-
-
-
-
         // Check if businessrule exists
         // Check what we need to add the businessrule
         // Get what we need to add the businessrule

@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DefineRule {
-    public static boolean saveBusinessRule(BusinessRuleContext context) {
+    public static boolean saveBusinessRule(BusinessRuleContext context) throws Exception {
         BusinessRuleFactory factory = new BusinessRuleFactory(context);
 
         return  BusinessRuleService.getInstance().saveBusinessRule(factory.makeBusinessRule());

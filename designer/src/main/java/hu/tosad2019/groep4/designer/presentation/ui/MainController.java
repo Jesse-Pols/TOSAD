@@ -75,8 +75,9 @@ public class MainController {
 		try {
 			this.refreshRules();
 		}catch(Exception e) {
-			e.printStackTrace();
+			System.err.println("Could not load rules");
 		}
+		
 		this.setupTable();
 		this.setupContextMenu();
 	}

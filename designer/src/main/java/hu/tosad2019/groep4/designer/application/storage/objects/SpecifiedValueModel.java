@@ -22,7 +22,27 @@ public class SpecifiedValueModel {
     @JoinColumn(name = "list_id")
     private ListModel list;
 
+    public SpecifiedValueModel(String value) {
+        this.value = value;
+    }
+
     public SpecifiedValueModel() { }
 
     public String getValue() { return this.value; }
+
+    public void setList(ListModel list) {
+        this.list = list;
+    }
+
+    public void setRule(BusinessRuleModel rule) {
+        this.businessRule = rule;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
