@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
-import hu.tosad2019.groep4.designer.application.application.TargetDbConnection;
+import hu.tosad2019.groep4.designer.application.application.TargetDbContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
@@ -59,10 +59,9 @@ public class MainController {
 	@FXML private Button button_targetdb_connect;
 	@FXML private Button btn_home_refresh;
 
-
 	private ObservableList<BusinessRule> rules;
 
-	private TargetDbConnection targetDbConnection;
+	private TargetDbContext targetDbContext;
 
 	@FXML private void initialize() {
 
@@ -209,7 +208,7 @@ public class MainController {
 
 		this.sendError("TODO: Connect");
 		
-		this.targetDbConnection = new TargetDbConnection(type, host, port_nr, username, password);
+		this.targetDbContext = new TargetDbContext(type, host, port_nr, username, password);
 	}
 
 	@FXML
@@ -263,7 +262,7 @@ public class MainController {
 	}
 
 	private void generateBusinessRule(int id) throws Exception {
-		MainFacade.getInstance().generateBusinessRule(id, targetDbConnection);
+		MainFacade.getInstance().generateBusinessRule(id, targetDbContext);
 	}
 	private List<BusinessRule> getBusinessrules(){
 		List<BusinessRule> rules = new ArrayList<>();
@@ -296,9 +295,6 @@ public class MainController {
 		}
 		this.tbl_businessrules.refresh();
 
-
-
 	}
-
 
 }

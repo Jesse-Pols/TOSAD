@@ -33,7 +33,7 @@ public class PersistencyService extends AbstractPersistency {
     }
 
 	public List<BusinessRuleContext> findBusinessRuleByName(String name) {
-        return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findWhere("name=" + name));
+        return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findWhere("name='" + name + "'"));
     }
 
     public boolean deleteBusinessRule(int id) throws Exception {

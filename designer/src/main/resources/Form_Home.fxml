@@ -121,7 +121,7 @@
                                                                 <TextField fx:id="txt_targetdb_host" minWidth="50.0" prefWidth="120.0" promptText="Host" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
                                                                 <TextField fx:id="txt_targetdb_port" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
                                                                 <TextField fx:id="txt_targetdb_username" minWidth="100.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
-                                                                <TextField fx:id="txt_targetdb_password" minWidth="100.0" prefWidth="100.0" promptText="Password" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                <PasswordField fx:id="txt_targetdb_password" promptText="Password..." scaleShape="false" style="-fx-background-color: #303030;" />
                                                                 <ComboBox fx:id="cb_targetdb_type" prefHeight="27.0" prefWidth="118.0" promptText="Type" />
                                                                 <Button fx:id="button_targetdb_connect" minWidth="70.0" mnemonicParsing="false" onAction="#button_targetdb_connect_onclick" style="-fx-background-color: #68B21E;" text="Connect" textFill="WHITE" />
                                                             </children>
