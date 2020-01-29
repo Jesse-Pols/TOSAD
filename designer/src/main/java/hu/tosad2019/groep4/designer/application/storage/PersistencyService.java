@@ -35,7 +35,7 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findByName(name));
     }
 
-    public boolean deleteBusinessRule(int id) {
+    public boolean deleteBusinessRule(int id) throws Exception {
         super.businessRuleDao.delete(id);
         return true;
     }

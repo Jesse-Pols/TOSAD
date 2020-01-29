@@ -11,6 +11,6 @@ public interface IBusinessRuleDao {
     List<?> findAll();
     List<?> findByName(String name);
 
-    void delete(int id);
+    void delete(int id) throws Exception;
     int save(BusinessRuleModel businessRuleModel);
 }

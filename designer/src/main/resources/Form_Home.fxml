@@ -26,7 +26,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="searchBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: #1d5daf;" text="Search" textFill="WHITE">
+                              <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnOnClick" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: #1d5daf;" text="Search" textFill="WHITE">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>

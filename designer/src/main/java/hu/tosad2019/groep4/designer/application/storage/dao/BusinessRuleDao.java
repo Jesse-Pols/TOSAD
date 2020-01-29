@@ -24,8 +24,14 @@ public class BusinessRuleDao extends AbstractDao implements IBusinessRuleDao {
         return (List<BusinessRuleModel>) super.findAll(BusinessRuleModel.class, "name = '" + name + "'");
     }
 
-    public void delete(int id) throws DataAccessLayerException {
+    public void delete(int id) throws DataAccessLayerException, Exception {
+//        super.delete(this.find(id));
+
+        BusinessRuleModel model = this.find(id);
+        if(model == null) throw new Exception("Object not found");
+
         super.delete(this.find(id));
+
     }
 
     public int save(BusinessRuleModel businessRuleModel) {
