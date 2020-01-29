@@ -24,11 +24,11 @@ public class BusinessRuleContextFactory {
         } else if (rule instanceof AttributeRangeRule) {
             newContext = getContextFromRangeRule((AttributeRangeRule) rule);
         } else if (rule instanceof AttributeListRule) {
-        	throw new Exception("Rule not implemented");
+        	newContext = getContextFromListRule((AttributeListRule) rule);
         } else if (rule instanceof InterEntityCompareRule) {
-        	throw new Exception("Rule not implemented");
+        	newContext = getContextFromInterEntityRule((AttributeListRule) rule);
         } else if (rule instanceof TupleCompareRule) {
-        	throw new Exception("Rule not implemented");
+        	newContext = getContextFromTupleCompareRule((AttributeListRule) rule);
         }else {
         	throw new Exception("Rule not supported");
         }
@@ -38,27 +38,39 @@ public class BusinessRuleContextFactory {
         
     }
 
-    private BusinessRuleContext getContextFromCompareRule(AttributeCompareRule rule){
+    private BusinessRuleContext getContextFromTupleCompareRule(AttributeListRule rule) throws Exception {
+		throw new Exception("Rule not supported");
+	}
+
+	private BusinessRuleContext getContextFromInterEntityRule(AttributeListRule rule) throws Exception {
+		throw new Exception("Rule not supported");
+	}
+
+	private BusinessRuleContext getContextFromCompareRule(AttributeCompareRule rule){
         BusinessRuleContext newContext = new BusinessRuleContext(BusinessRuleType.AttributeCompareRule);
 
+        newContext.setName("TODO NAME");
         newContext.setOperator(rule.getOperator());
         newContext.setFirstColumnName(rule.getColumn().getName());
         newContext.setFirstTableName(rule.getColumn().getTableName());
         newContext.addSpecifiedValue(rule.getSpecifiedValue().get().toString());
         newContext.setCategory("STATIC");
         newContext.setTemplate(newContext.getType().code);
+        newContext.setFailure(rule.getFailure());
         return newContext;
     }
 
     private BusinessRuleContext getContextFromRangeRule(AttributeRangeRule rule){
         BusinessRuleContext newContext = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
 
+        newContext.setName("TODO NAME");
         newContext.setFirstTableName(rule.getColumn().getTableName());
         newContext.setFirstColumnName(rule.getColumn().getName());
         newContext.setMinValue(Integer.toString(rule.getRange().getMinValue()));
         newContext.setMaxValue(Integer.toString(rule.getRange().getMaxValue()));
         newContext.setCategory("STATIC");
         newContext.setTemplate(newContext.getType().code);
+        newContext.setFailure(rule.getFailure());
         Operator minValueOperator = rule.getRange().getMinValueOperator();
 
         Operator operator = Operator.BETWEEN;
@@ -68,8 +80,10 @@ public class BusinessRuleContextFactory {
 
         newContext.setOperator(operator);
 
-
-
         return newContext;
+    }
+    
+    private BusinessRuleContext getContextFromListRule(AttributeListRule rule) {
+    	return null;
     }
 }

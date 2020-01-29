@@ -1,6 +1,5 @@
 package hu.tosad2019.groep4.designer.dataaccess.storage;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -82,7 +81,7 @@ public class AbstractDao {
 
     protected List<?> findAll(Class<?> clazz, String where) {
         // Remember: put apostrophes around the where clause if it's a string -> 'where'
-        List objects = null;
+        List<?> objects = null;
 
         try {
             this.startOperation();

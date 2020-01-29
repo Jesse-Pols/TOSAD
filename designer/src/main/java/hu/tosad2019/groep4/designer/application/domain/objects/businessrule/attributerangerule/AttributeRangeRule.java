@@ -12,8 +12,8 @@ public class AttributeRangeRule extends BaseRule {
 	private boolean forEachRow;
 	private Range range;
 
-	public AttributeRangeRule(String code, String name, AttributeRangeRuleContext context) {
-		super(code, name);
+	public AttributeRangeRule(String code, String name, String failure, AttributeRangeRuleContext context) {
+		super(code, name, failure);
 		this.column = context.getColumn();
 		this.not = context.getNot();
 		this.forEachRow = context.getForEachRow();

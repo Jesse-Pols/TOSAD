@@ -8,4 +8,6 @@ public interface BusinessRule {
     public int id();
 
     public void setId(int id);
+    
+    public String getFailure();
 }

@@ -12,7 +12,6 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attr
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleFactory {
     private BusinessRuleContext ruleContext;
@@ -60,6 +59,7 @@ public class BusinessRuleFactory {
     private AttributeCompareRule createAttributeCompareRule(){
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	String failure = this.ruleContext.getFailure();
     	
 		Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
     	boolean not = this.ruleContext.getIsNot()==1;
@@ -71,13 +71,14 @@ public class BusinessRuleFactory {
         	System.err.println("> " + ruleContext.getSpecifiedValues());
     	}
     	AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, value);
-    	return new AttributeCompareRule(type, name, context);
+    	return new AttributeCompareRule(type, name, failure, context);
     }
 
 
     private AttributeRangeRule createAttributeRangeRule(){
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	String failure = this.ruleContext.getFailure();
     	
         Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
 
@@ -109,7 +110,7 @@ public class BusinessRuleFactory {
         Range range = new Range(minValue, maxValue, minValueOperator, maxValueOperator);
         AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, false, column, range);
         System.out.println(context);
-        return new AttributeRangeRule(type, name, context);
+        return new AttributeRangeRule(type, name, failure, context);
     }
 
     private AttributeListRule createAttributeListRule(){

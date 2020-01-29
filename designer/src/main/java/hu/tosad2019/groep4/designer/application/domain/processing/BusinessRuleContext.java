@@ -19,7 +19,6 @@ public class BusinessRuleContext {
     private int id;
     private int is_not;
     private String name;
-    private String description;
     private String failure;
 
     // BusinessRule Type
@@ -76,7 +75,6 @@ public class BusinessRuleContext {
     public void setId(int id) { this.id = id; }
     public void setIsNot(int is_not) { this.is_not = is_not; }
     public void setName(String name) { this.name = name; }
-    public void setDescription(String description) { this.description = description; }
     public void setFailure(String failure) { this.failure = failure; }
 
     public void setType(BusinessRuleType type) { this.businessRuleType = type;}
@@ -126,7 +124,6 @@ public class BusinessRuleContext {
     	//return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table, "CNS", this.businessRuleType.code, this.id);
         return this.name;
     }
-    public String getDescription() { return this.description; }
     public String getFailure() { return this.failure; }
 
     public BusinessRuleType getType() { return this.businessRuleType; }

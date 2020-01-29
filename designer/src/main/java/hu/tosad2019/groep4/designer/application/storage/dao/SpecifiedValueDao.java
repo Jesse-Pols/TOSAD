@@ -16,11 +16,11 @@ public class SpecifiedValueDao extends AbstractDao implements ISpecifiedValueDao
         return (SpecifiedValueModel) super.find(SpecifiedValueModel.class, id);
     }
 
-    public List findAllByRuleId(int id) throws DataAccessLayerException {
+    public List<?> findAllByRuleId(int id) throws DataAccessLayerException {
         return super.findAll(SpecifiedValue.class, "rule_id = " + id);
     }
 
-    public List findAllByListId(int id) throws DataAccessLayerException {
+    public List<?> findAllByListId(int id) throws DataAccessLayerException {
         return super.findAll(SpecifiedValue.class, "list_id = " + id);
     }
 

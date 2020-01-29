@@ -270,7 +270,7 @@ public class MainController {
 
 		//START create example rule
 		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
-		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", context);
+		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", "FAILING!!", context);
 
 		attributeCompareRule.setId(100);
 		//END

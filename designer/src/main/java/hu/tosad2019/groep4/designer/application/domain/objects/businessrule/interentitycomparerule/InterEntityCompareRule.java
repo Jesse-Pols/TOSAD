@@ -12,8 +12,8 @@ public class InterEntityCompareRule extends BaseRule {
     private Operator operator;
     private String table2;
 
-    public InterEntityCompareRule(String code, String name, InterEntityCompareRuleContext context) {
-        super(code, name);
+    public InterEntityCompareRule(String code, String name, String failure, InterEntityCompareRuleContext context) {
+        super(code, name, failure);
         this.not = context.getNot();
         this.column1 = context.getColumn1();
         this.column2 = context.getColumn2();
