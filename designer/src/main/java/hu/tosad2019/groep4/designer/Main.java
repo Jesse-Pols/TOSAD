@@ -13,19 +13,6 @@ public class Main extends Application
 		System.out.println("Starting designer..");
 		launch();
 
-		PersistencyService ps = PersistencyService.getInstance();
-		BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeCompareRule);
-		context.setCategory("testCategory");
-		context.setTemplate("testTemplate");
-
-		context.setName("testName");
-		context.setDescription("description");
-		context.setFailure("testFailure");
-		context.setIsNot(1);
-
-
-
-		ps.saveBusinessRule(context);
 	}
 
 	@Override
