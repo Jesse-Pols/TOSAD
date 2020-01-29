@@ -61,7 +61,7 @@ public class PersistencyService extends AbstractPersistency {
             throw new NullPointerException("Couldn't save business rule: Missing name, description, failure or type");
         }
 
-        BasicModel rule = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot(), type);
+        BasicModel rule = new BusinessRuleModel(context.getName(), context.getFailure(), context.getIsNot(), type);
         rule = super.checkAndSaveObject(rule, super.businessRuleDao, "name='" + context.getName() + "'");
 
         // DBCOLUMN

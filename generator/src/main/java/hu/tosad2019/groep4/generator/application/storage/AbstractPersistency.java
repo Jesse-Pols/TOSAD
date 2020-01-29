@@ -87,7 +87,7 @@ public class AbstractPersistency {
             context.setListId(list.getId());
 
             List<SpecifiedValueModel> listSpecifiedValues = specifiedValueDao.findAllByListId(list.getId());
-            List<String> stringList = new ArrayList<String>();
+            List<String> stringList = new ArrayList<>();
 
             if (!listSpecifiedValues.isEmpty()) {
                 for (SpecifiedValueModel value : listSpecifiedValues) {
