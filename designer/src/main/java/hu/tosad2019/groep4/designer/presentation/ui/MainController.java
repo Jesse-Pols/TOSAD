@@ -72,7 +72,11 @@ public class MainController {
 		
 
 		this.rules = FXCollections.observableArrayList();
-		this.refreshRules();
+		try {
+			this.refreshRules();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		this.setupTable();
 		this.setupContextMenu();
 	}
