@@ -31,7 +31,9 @@ public class BusinessRuleService {
     public boolean saveBusinessRule(BusinessRule rule) throws Exception{
         BusinessRuleContextFactory factory = new BusinessRuleContextFactory(rule);
 
-        return PersistencyService.getInstance().saveBusinessRule(factory.make());
+        BusinessRuleContext context = factory.make();
+        
+        return PersistencyService.getInstance().saveBusinessRule(context);
     }
 
 

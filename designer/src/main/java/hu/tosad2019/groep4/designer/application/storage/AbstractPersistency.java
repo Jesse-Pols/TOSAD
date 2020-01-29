@@ -54,7 +54,6 @@ public class AbstractPersistency {
         // Business Rule
         context.setName(businessRule.getName());
         context.setId(businessRule.getId());
-        context.setDescription(businessRule.getDescription());
         context.setFailure(businessRule.getFailure());
         context.setIsNot(businessRule.getIsNot());
 
@@ -76,7 +75,8 @@ public class AbstractPersistency {
         }
 
         // Statement
-        List<StatementModel> statements = statementDao.findByRuleId(id);
+        @SuppressWarnings("unchecked")
+		List<StatementModel> statements = (List<StatementModel>) statementDao.findByRuleId(id);
         if (!statements.isEmpty()) {
             StatementModel statement = statements.get(0);
             context.setStatement(statement.getStatement());
@@ -84,7 +84,8 @@ public class AbstractPersistency {
         }
 
         // Range
-        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
+        @SuppressWarnings("unchecked")
+		List<RangeModel> ranges = (List<RangeModel>) rangeDao.findAllByRuleId(id);
         if (!ranges.isEmpty()) {
             RangeModel range = ranges.get(0);
             context.setMaxValue(range.getMaxValue());
@@ -94,7 +95,8 @@ public class AbstractPersistency {
         }
 
         // List
-        List<ListModel> lists = listDao.findAllByRuleId(id);
+        @SuppressWarnings("unchecked")
+		List<ListModel> lists = (List<ListModel>) listDao.findAllByRuleId(id);
         ListModel list = null;
         if (!lists.isEmpty()) {
             list = lists.get(0);
@@ -103,7 +105,8 @@ public class AbstractPersistency {
         if (list != null) {
             context.setListId(list.getId());
 
-            List<SpecifiedValueModel> listSpecifiedValues = specifiedValueDao.findAllByListId(list.getId());
+            @SuppressWarnings("unchecked")
+			List<SpecifiedValueModel> listSpecifiedValues = (List<SpecifiedValueModel>) specifiedValueDao.findAllByListId(list.getId());
             List<String> stringList = new ArrayList<String>();
 
             if (!listSpecifiedValues.isEmpty()) {
@@ -114,7 +117,8 @@ public class AbstractPersistency {
             context.setListValues(stringList);
         }
 
-        List<SpecifiedValueModel> businessRuleValues = specifiedValueDao.findAllByRuleId(id);
+        @SuppressWarnings("unchecked")
+		List<SpecifiedValueModel> businessRuleValues = (List<SpecifiedValueModel>) specifiedValueDao.findAllByRuleId(id);
         List<String> businessRuleValuesToString = new ArrayList<String>();
 
         if (!businessRuleValues.isEmpty()) {

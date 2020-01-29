@@ -1,11 +1,12 @@
 package hu.tosad2019.groep4.designer.dataaccess.storage;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import javax.persistence.Query;
-import java.util.List;
 
 public class AbstractDao {
     private Session session;
@@ -80,7 +81,7 @@ public class AbstractDao {
 
     protected List<?> findAll(Class<?> clazz, String where) {
         // Remember: put apostrophes around the where clause if it's a string -> 'where'
-        List objects = null;
+        List<?> objects = null;
 
         try {
             this.startOperation();

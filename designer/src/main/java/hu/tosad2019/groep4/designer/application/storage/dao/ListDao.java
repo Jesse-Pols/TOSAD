@@ -8,7 +8,7 @@ import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 import java.util.List;
 
 public class ListDao extends AbstractDao implements BasicDao {
-    public List findAllByRuleId(int id) throws DataAccessLayerException {
+    public List<?> findAllByRuleId(int id) throws DataAccessLayerException {
         return super.findAll(ListModel.class, "rule_id = " + id);
     }
     public List<?> findWhere(String where) {

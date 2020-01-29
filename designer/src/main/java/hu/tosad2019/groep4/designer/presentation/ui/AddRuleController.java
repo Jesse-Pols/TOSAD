@@ -25,7 +25,7 @@ public class AddRuleController {
 	@FXML private ComboBox<String> cb_define_operator;
 	@FXML private VBox vbox_define_selection;
 	@FXML private Button btn_save;
-	@FXML private TextField messageBox;
+	@FXML private TextField txt_failure;
 	@FXML private Label alert_message;
 
 	private Map<String, Object> currentProperties = new LinkedHashMap<>();
@@ -92,8 +92,8 @@ public class AddRuleController {
 			}
 		}
 
-		if(!(messageBox.getText().isEmpty())) {
-			currentProperties.put("failureMessage", messageBox.getText());
+		if(!txt_failure.getText().isEmpty()) {
+			currentProperties.put("failureMessage", txt_failure.getText());
 		}
 
 		if(this.cb_ruletype.getSelectionModel().getSelectedItem() != null) {
@@ -115,9 +115,9 @@ public class AddRuleController {
 		BusinessRuleContext context = new BusinessRuleContext(type);
 		
 		context.setName((String) this.currentProperties.get("Name"));
-		context.setDescription((String) this.currentProperties.get("Description"));
 		context.setFirstTableName((String) this.currentProperties.get("Table"));
 		context.setFirstColumnName((String) this.currentProperties.get("Column"));
+		context.setFailure((String) txt_failure.getText());
 		switch(type) {
 			case AttributeCompareRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));		

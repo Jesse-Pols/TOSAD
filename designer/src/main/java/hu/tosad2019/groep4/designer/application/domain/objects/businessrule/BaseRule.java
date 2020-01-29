@@ -5,15 +5,17 @@ public abstract class BaseRule implements BusinessRule{
     private String code;
     private String name;
     private int id;
+    private String failure;
 
-    public BaseRule(String code, String name){
-        this(code, name, 0);
+    public BaseRule(String code, String name, String failure){
+        this(code, name, failure, 0);
     }
 
-    public BaseRule(String code, String name, int id) {
+    public BaseRule(String code, String name, String failure, int id) {
         this.code = code;
         this.name = name;
         this.id = id;
+        this.failure = failure;
     }
 
     @Override
@@ -32,6 +34,11 @@ public abstract class BaseRule implements BusinessRule{
     @Override
     public void setId(int id){
         this.id = id;
+    }
+    
+    @Override
+    public String getFailure() {
+    	return this.failure;
     }
 }
 

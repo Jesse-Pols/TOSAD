@@ -41,18 +41,6 @@ public class SpecifiedValueModel implements BasicModel {
 
     public String getValue() { return this.value; }
 
-    public void setList(ListModel list) {
-        this.list = list;
-    }
-
-    public void setRule(BasicModel rule) {
-        this.businessRule = (BusinessRuleModel) rule;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void setId(int id) {
         this.id = id;
     }

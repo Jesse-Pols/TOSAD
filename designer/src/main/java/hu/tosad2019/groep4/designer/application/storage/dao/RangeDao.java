@@ -13,7 +13,7 @@ public class RangeDao extends AbstractDao implements BasicDao {
         return (RangeModel) super.find(RangeModel.class, id);
     }
 
-    public List findAllByRuleId(int id) throws DataAccessLayerException {
+    public List<?> findAllByRuleId(int id) throws DataAccessLayerException {
         return super.findAll(RangeModel.class, "rule_id = " + id);
     }
     public List<?> findWhere(String where) throws DataAccessLayerException {

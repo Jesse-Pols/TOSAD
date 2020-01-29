@@ -23,10 +23,6 @@ public class SpecifiedValueModel implements BasicModel {
     @JoinColumn(name = "list_id")
     private ListModel list;
 
-    public SpecifiedValueModel(String value) {
-        this.value = value;
-    }
-
     public SpecifiedValueModel(String value, BusinessRuleModel rule) {
         this.value = value;
         this.businessRule = rule;
@@ -40,18 +36,6 @@ public class SpecifiedValueModel implements BasicModel {
     public SpecifiedValueModel() { }
 
     public String getValue() { return this.value; }
-
-    public void setList(ListModel list) {
-        this.list = list;
-    }
-
-    public void setRule(BasicModel rule) {
-        this.businessRule = (BusinessRuleModel) rule;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public void setId(int id) {
         this.id = id;
