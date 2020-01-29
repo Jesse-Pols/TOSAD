@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class OracleDbConnection implements DbConnection {
-    private final String baseConnectionString = "jdbc:oracle:@";
-    private final String editionPart = ":xepdb1";
-    private String connectionString = "jbdc:oracle:thin@localhost:1521:xe";
+    private final String baseConnectionString = "jdbc:oracle:thin:@";
+    private final String editionPart = "/xepdb1";
+    private String connectionString = "jbdc:oracle:thin:@localhost:1521/xepdb1";
 
     private String hostName;
     private int port;
@@ -40,5 +40,6 @@ public class OracleDbConnection implements DbConnection {
     @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(connectionString, username, password);
+
     }
 }

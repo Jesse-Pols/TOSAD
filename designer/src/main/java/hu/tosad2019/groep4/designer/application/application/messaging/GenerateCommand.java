@@ -8,10 +8,10 @@ import hu.tosad2019.groep4.designer.dataaccess.communication.Server;
 
 public class GenerateCommand implements ServerCommand {
 
-	public final String ruleId;
+	public final int ruleId;
 	private TargetDbConnection targetDbConnection;
 	
-	public GenerateCommand(String id, TargetDbConnection targetDbConnection) {
+	public GenerateCommand(int id, TargetDbConnection targetDbConnection) {
 		this.ruleId = id;
 		this.targetDbConnection = targetDbConnection;
 	}

@@ -10,4 +10,10 @@ public class SpecifiedValue {
     public Object get(){
         return value;
     }
+
+    public String toString(){
+        if (value instanceof String)
+            return (String) value;
+        return value.toString();
+    }
 }

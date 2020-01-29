@@ -30,4 +30,8 @@ public abstract class BaseRule implements BusinessRule{
     public int id() {
         return id;
     }
+
+    public void setId(int id){
+        this.id = id;
+    }
 }
