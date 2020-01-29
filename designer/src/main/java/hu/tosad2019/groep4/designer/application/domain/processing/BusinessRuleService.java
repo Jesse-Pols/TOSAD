@@ -22,7 +22,7 @@ public class BusinessRuleService {
         return instance;
     }
 
-    public BusinessRule getBusinessRule(BusinessRuleContext context){
+    public BusinessRule getBusinessRule(BusinessRuleContext context) throws Exception{
         BusinessRuleFactory factory = new BusinessRuleFactory(context);
 
         return factory.makeBusinessRule();
@@ -42,7 +42,7 @@ public class BusinessRuleService {
         return PersistencyService.getInstance().deleteBusinessRule(rule.id());
     }
 
-    public List<BusinessRule> getAll(){
+    public List<BusinessRule> getAll() throws Exception{
         List<BusinessRuleContext> ruleContextList = PersistencyService.getInstance().getAllBusinessRules();
         List<BusinessRule> rules = new ArrayList<>();
 
@@ -53,7 +53,7 @@ public class BusinessRuleService {
         return rules;
     }
 
-    public List<BusinessRule> findByName(String name){
+    public List<BusinessRule> findByName(String name) throws Exception{
 //
         List<BusinessRuleContext> businessRuleContextList =  PersistencyService.getInstance().findBusinessRuleByName(name);
         List<BusinessRule> businessRuleList = new ArrayList<>();
