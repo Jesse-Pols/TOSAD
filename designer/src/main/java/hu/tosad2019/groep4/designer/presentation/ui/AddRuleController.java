@@ -27,6 +27,8 @@ public class AddRuleController {
 	@FXML private Button btn_save;
 	@FXML private TextField messageBox;
 	@FXML private Label alert_message;
+	@FXML private TextField searchTextField;
+	@FXML private Button searchBtn;
 
 	private Map<String, Object> currentProperties = new LinkedHashMap<>();
 	private List<BusinessRuleType> rules = List.of(BusinessRuleType.values());
@@ -178,5 +180,10 @@ public class AddRuleController {
 	}
 
 	public void hideAlertMessage() { this.alert_message.setTextFill(Color.web("#212121")); }
+
+	@FXML private void search_onclick() {
+
+	}
+
 
 }
