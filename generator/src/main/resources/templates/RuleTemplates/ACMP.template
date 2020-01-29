@@ -1,4 +1,4 @@
-IF NOT {{column1}} {{operator}} {{value}}
+IF NOT :NEW.{{column1}} {{operator}} {{value}}
 THEN
   RAISE e_invalid;
 END IF;

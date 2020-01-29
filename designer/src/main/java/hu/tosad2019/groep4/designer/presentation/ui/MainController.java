@@ -284,21 +284,18 @@ public class MainController {
 
 	@FXML
 	private void searchBtnOnClick() {
-		if(this.searchTextField.equals("")) return;
 
 		List<BusinessRule> businessruleList = BusinessRuleService.getInstance().findByName(searchTextField.getText());
 
-		if(businessruleList.isEmpty()) return;
+		if(!(this.searchTextField.equals(""))) {
 
-		this.rules.clear();
-		for(BusinessRule businessRule : businessruleList) {
-			this.rules.add(businessRule);
+			if(!(businessruleList.isEmpty())) {
+				this.rules.clear();
+				for(BusinessRule businessRule : businessruleList) {
+					this.rules.add(businessRule);
+				}
+				this.tbl_businessrules.refresh();
+			}
 		}
-		this.tbl_businessrules.refresh();
-
-
-
 	}
-
-
 }
