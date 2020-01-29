@@ -11,15 +11,27 @@ public class AttributeListRule extends BaseRule {
 
     private boolean not;
     private Column column;
-    private Operator operator;
     private List<SpecifiedValue> list;
 
     public AttributeListRule(String code, String name, String failureMessage, AttributeListRuleContext context) {
         super(code, name, failureMessage);
         this.not = context.getNot();
         this.column = context.getColumn();
-        this.operator = context.getOperator();
         this.list = context.getSpecifiedValuelist();
     }
 
+    public Column getColumn() {
+        return this.column;
+    }
+
+    public String getSpecifiedValue() {
+
+        String allValues = "";
+
+        for (SpecifiedValue value : list) {
+            allValues += value.toString() + ", ";
+        }
+
+        return allValues;
+    }
 }

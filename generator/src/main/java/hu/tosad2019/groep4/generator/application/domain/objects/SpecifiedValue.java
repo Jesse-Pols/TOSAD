@@ -12,6 +12,7 @@ public class SpecifiedValue {
     }
 
     public String toString(){
+
         if (value instanceof String)
             return (String) value;
         return value.toString();

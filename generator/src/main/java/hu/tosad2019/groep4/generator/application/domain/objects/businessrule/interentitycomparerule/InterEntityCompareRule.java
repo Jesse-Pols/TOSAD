@@ -21,4 +21,20 @@ public class InterEntityCompareRule extends BaseRule {
         this.operator = context.getOperator();
         this.table2 = context.getTable2();
     }
+
+    public Column getColumn1() {
+        return column1;
+    }
+
+    public Column getColumn2() {
+        return column2;
+    }
+
+    public Operator getOperator() {
+        return operator;
+    }
+
+    public String getTable2() {
+        return table2;
+    }
 }

@@ -19,4 +19,16 @@ public class TupleCompareRule extends BaseRule {
         this.column2 = context.getColumn2();
         this.operator = context.getOperator();
     }
+
+    public Column getColumn1() {
+        return column1;
+    }
+
+    public Column getColumn2() {
+        return column2;
+    }
+
+    public Operator getOperator() {
+        return operator;
+    }
 }
