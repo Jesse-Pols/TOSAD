@@ -38,7 +38,7 @@ public class Generator {
             trigger = generateAttributeRangeRuleTrigger((AttributeRangeRule) rule);
         }
 
-        return trigger;
+        return trigger.replaceAll("\n", " ");
     }
 
     private String generateAttributeCompareRuleTrigger(AttributeCompareRule compareRule){
