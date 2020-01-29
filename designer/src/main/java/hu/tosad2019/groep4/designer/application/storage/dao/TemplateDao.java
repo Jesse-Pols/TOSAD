@@ -14,8 +14,8 @@ public class TemplateDao extends AbstractDao implements BasicDao {
         return (TemplateModel) super.find(TemplateModel.class, id);
     }
 
-    public List<?> findByName(String name) throws DataAccessLayerException {
-        return findAll(TemplateModel.class, "value = '" + name + "'");
+    public List<?> findWhere(String where) throws DataAccessLayerException {
+        return findAll(TemplateModel.class, where);
     }
     public int save(Object obj) throws DataAccessLayerException {
         return super.saveOrUpdate(obj);

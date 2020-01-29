@@ -54,9 +54,9 @@ public class MainController {
 	@FXML private TextField txt_targetdb_port;
 	@FXML private TextField txt_targetdb_username;
 	@FXML private TextField txt_targetdb_password;
+	@FXML private TextField searchTextField;
 	@FXML private ComboBox<String> cb_targetdb_type;
 	@FXML private Button button_targetdb_connect;
-	
 	@FXML private Button btn_home_refresh;
 
 
@@ -139,6 +139,12 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				if(sendConfimation("Remove rule", "Are you sure you want to remove rule ..?")) {
 					rules.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
+
+					try {
+						BusinessRuleService.getInstance().deleteBusinessRule(tbl_businessrules.getSelectionModel().getSelectedItem());
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
 				}
 
 			}
@@ -275,5 +281,24 @@ public class MainController {
 
 		return rules;
 	}
+
+	@FXML
+	private void searchBtnOnClick() {
+		if(this.searchTextField.equals("")) return;
+
+		List<BusinessRule> businessruleList = BusinessRuleService.getInstance().findByName(searchTextField.getText());
+
+		if(businessruleList.isEmpty()) return;
+
+		this.rules.clear();
+		for(BusinessRule businessRule : businessruleList) {
+			this.rules.add(businessRule);
+		}
+		this.tbl_businessrules.refresh();
+
+
+
+	}
+
 
 }

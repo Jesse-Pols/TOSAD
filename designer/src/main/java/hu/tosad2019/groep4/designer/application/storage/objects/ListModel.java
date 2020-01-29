@@ -5,7 +5,7 @@ import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
 import javax.persistence.*;
 
 @Entity(name="List")
-public class ListModel {
+public class ListModel implements BasicModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "list_id_sequence")

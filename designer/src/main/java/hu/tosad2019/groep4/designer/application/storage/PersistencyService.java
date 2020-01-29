@@ -1,9 +1,11 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,10 +33,10 @@ public class PersistencyService extends AbstractPersistency {
     }
 
 	public List<BusinessRuleContext> findBusinessRuleByName(String name) {
-        return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findByName(name));
+        return super.loopThroughBusinessRules((List<BusinessRuleModel>) super.businessRuleDao.findWhere("name=" + name));
     }
 
-    public boolean deleteBusinessRule(int id) {
+    public boolean deleteBusinessRule(int id) throws Exception {
         super.businessRuleDao.delete(id);
         return true;
     }
@@ -47,13 +49,13 @@ public class PersistencyService extends AbstractPersistency {
         }
 
         BasicModel category = new BusinessRuleCategoryModel(context.getCategory());
-        category = super.checkAndSaveObject(category, super.businessRuleCategoryDao, context.getCategory());
+        category = super.checkAndSaveObject(category, super.businessRuleCategoryDao, "name='" + context.getCategory() + "'");
 
         BasicModel template = new TemplateModel(context.getTemplate());
-        template = super.checkAndSaveObject(template, super.templateDao, context.getTemplate());
+        template = super.checkAndSaveObject(template, super.templateDao, "value='" + context.getTemplate() + "'");
 
         BasicModel type = new BusinessRuleTypeModel(context.getTypeAsString(), template, category);
-        type = super.checkAndSaveObject(type, super.businessRuleTypeDao, context.getTypeAsString());
+        type = super.checkAndSaveObject(type, super.businessRuleTypeDao, "name='" + context.getTypeAsString() + "'");
 
         // Extra nullcheck for businessrule
         if (context.getName() == null || context.getFailure() == null || type == null) {
@@ -61,47 +63,37 @@ public class PersistencyService extends AbstractPersistency {
         }
 
         BasicModel rule = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot(), type);
-        rule = super.checkAndSaveObject(rule, super.businessRuleDao, context.getName());
+        rule = super.checkAndSaveObject(rule, super.businessRuleDao, "name='" + context.getName() + "'");
 
-        if (context.getStatement() != null) {
-            BasicModel statement = new StatementModel(context.getStatement(), rule);
-            //statement = super.checkAndSaveObject(statement, super.statementDao, context.getStatement());
+        // DBCOLUMN
+        if (context.getFirstColumnName() != null && context.getFirstTableName() != null) {
+            BasicModel firstColumn = new DbColumnModel(context.getFirstColumnName(), context.getFirstTableName(), rule, 0);
+            firstColumn = super.checkAndSaveObject(firstColumn, super.dbColumnDao, "rule_id=" + rule.getId() + "AND position=0");
         }
 
-        // Check if there are any rulevalues in the context
-        /*
-        List<String> ruleValues = context.getBusinessRuleValues();
+        if (context.getSecondColumnName() != null && context.getSecondTableName() != null) {
+            BasicModel secondColumn = new DbColumnModel(context.getSecondColumnName(), context.getSecondTableName(), rule, 1);
+            secondColumn = super.checkAndSaveObject(secondColumn, super.dbColumnDao, "rule_id=" + rule.getId() + "AND position=1");
+        }
+
+        // All specified Values:
         List<SpecifiedValueModel> specifiedValues = new ArrayList<>();
-        if (ruleValues.isEmpty()) {
-            System.err.println("No rulevalues were found. saveBusinessRule continues...");
-        } else {
-            // Turn rulevalues into specified values
+
+        // Are there any rulevalues or listvalues?
+        List<String> ruleValues = context.getBusinessRuleValues();
+        List<String> listValues = context.getListValues();
+
+        if (!ruleValues.isEmpty()) {
             for (String value : ruleValues) {
-                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value);
-                specifiedValue.setRule(rule);
-                specifiedValues.add(specifiedValue);
+                specifiedValues.add(new SpecifiedValueModel(value, (BusinessRuleModel) rule));
             }
         }
 
-        // Check if there are any listvalues in the context
-        List<String> listValues = context.getListValues();
-        if (listValues.isEmpty()) {
-            System.err.println("No listvalues were found. saveBusinessRule continues...");
-        } else {
-            // Add list
-            List<ListModel> listModels = super.listDao.findAllByRuleId(rule.getId());
-            ListModel list = new ListModel(rule);
-            if (listModels.isEmpty()) {
-                list.setId(super.listDao.save(list));
-            } else {
-                System.err.println("List couldn't be saved: Already exists in the database. saveBusinessRule continues...");
-                list = listModels.get(0);
-            }
-
-            // Turn listvalues into specified values
+        if (!listValues.isEmpty()) {
+            BasicModel list = new ListModel(rule);
+            list = super.checkAndSaveObject(list, super.listDao, "rule_id=" + rule.getId());
             for (String value : listValues) {
-                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value);
-                specifiedValue.setList(list);
+                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value, (ListModel) list);
                 specifiedValues.add(specifiedValue);
             }
         }
@@ -111,30 +103,23 @@ public class PersistencyService extends AbstractPersistency {
             value.setId(super.specifiedValueDao.save(value));
         }
 
-        // Check if there are min and max operator
-        if (context.getMinOperator() == null || context.getMaxValue() == null || context.getMinValue() == null || context.getMaxValue() == null) {
-            System.err.println("Missing: minOperator, maxOperator, minValue or maxValue. saveBusinessRule continues...");
-        } else {
-            // Check if operators exist
-            // Turn operators in operatormodels
-            // Build rangemodel
+        if (context.getMinOperatorAsString() != null || context.getMaxOperatorAsString() != null) {
+            BasicModel minOperator = new OperatorModel(context.getMinOperatorAsString(), rule);
+            minOperator = super.checkAndSaveObject(minOperator, super.operatorDao, "operator='" + context.getMinOperatorAsString() + "'");
 
-            // Check if operators exist
-            //List<OperatorModel> minOperators = super.operatorDao.findByName(context.getMinOperatorAsString());
-            //List<OperatorModel> maxOperators = super.operatorDao.findByName(context.getMaxOperatorAsString());
-            //OperatorModel minOperator = ;
-            //OperatorModel maxOperator;
-            //if (minOperators.isEmpty()) {
-              //  System.err.println("The minOperator wasn't found in the database and will be added. saveBusinessRule continues...");
+            BasicModel maxOperator = new OperatorModel(context.getMaxOperatorAsString(), rule);
+            maxOperator = super.checkAndSaveObject(maxOperator, super.operatorDao, "operator='" + context.getMaxOperatorAsString() + "'");
 
-            //}
-
-
-            //RangeModel range = new RangeModel(context.getMinValue(), context.getMaxValue(), context.getMinOperator(), context.getMaxOperator(), rule);
+            if (context.getMaxValue() != null || context.getMinValue() != null) {
+                BasicModel range = new RangeModel(context.getMinValue(), context.getMaxValue(), minOperator, maxOperator, rule);
+                range = super.checkAndSaveObject(range, super.rangeDao, "rule_id=" + rule.getId());
+            }
         }
 
-         */
-
+        if (context.getOperator() != null) {
+            BasicModel operator = new OperatorModel(context.getOperatorAsString(), rule);
+            operator = super.checkAndSaveObject(operator, super.operatorDao, "operator='" + context.getOperatorAsString() + "'");
+        }
 
         return true;
     }

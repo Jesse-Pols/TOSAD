@@ -141,3 +141,12 @@
     -fx-text-fill: gray;
     -fx-highlight-fill: #7ecfff;
 }
+
+.searchBar {
+    -fx-background-color: #2b2b2b !important;
+}
+
+.searchBox {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: #3F3F3F;
+}

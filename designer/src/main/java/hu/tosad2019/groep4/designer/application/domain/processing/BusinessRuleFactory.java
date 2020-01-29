@@ -61,7 +61,7 @@ public class BusinessRuleFactory {
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	
-		Column column = new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn());
+		Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
     	boolean not = this.ruleContext.getIsNot()==1;
     	Operator operator = this.ruleContext.getOperator();
     	SpecifiedValue value = null;
@@ -79,7 +79,7 @@ public class BusinessRuleFactory {
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	
-        Column column = new Column(this.ruleContext.getFirstTable(), this.ruleContext.getFirstColumn());
+        Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
 
         Operator operator = ruleContext.getOperator();
         Operator minValueOperator = null;

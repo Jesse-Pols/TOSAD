@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
+
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 
 public class BusinessRuleContext {
@@ -50,24 +51,24 @@ public class BusinessRuleContext {
     private List<String> business_rule_values = new ArrayList<>();
     private List<String> list_values = new ArrayList<>();
 
-
-
     // DbColumn
-    private int dbcolumn_id;
+    private int first_dbcolumn_id;
+    private String first_table_name;
+    private String first_column_name;
 
-    // Range
-    private String min_value;
-    private String max_value;
+    private int second_dbcolumn_id;
+    private String second_table_name;
+    private String second_column_name;
+
+
+
+
+
+
     // Operator
     private Operator operator;
-    // DbColumn
-    private String first_column;
-    private String second_column;
-    private String first_table;
-    private String second_table;
     // Specified Values
     private List<String> specifiedValues;
-
     // Other
     private String sqlQuery;
 
@@ -90,16 +91,27 @@ public class BusinessRuleContext {
     public void setStatement(String statement) { this.statement = statement; }
     public void setStatementId(int id) { this.statement_id = id; }
 
-    public void setMinValue(String value) { this.range_min_value = min_value; }
-    public void setMaxValue(String value) { this.range_max_value = max_value; }
+    public void setMinValue(String value) { this.range_min_value = value; }
+    public void setMaxValue(String value) { this.range_max_value = value; }
     public void setMinOperator(String operator) { this.range_min_operator = this.convertStringToOperator(operator); }
     public void setMaxOperator(String operator) { this.range_max_operator = this.convertStringToOperator(operator); }
+
+    public void setOperator(String operator) { this.operator = this.convertStringToOperator(operator); }
 
     public void setListId(int id) { this.list_id = id; }
 
     public void setBusinessRuleValues(List<String> list) { this.business_rule_values = list; }
     public void setListValues(List<String> list) { this.list_values = list; }
 
+    public void setFirstDbColumnId(int id) { this.first_dbcolumn_id = id; }
+    public void setFirstTableName(String name) { this.first_table_name = name; }
+    public void setFirstColumnName(String name) { this.first_column_name = name; }
+
+    public void setSecondDbColumnId(int id) { this.second_dbcolumn_id = id; }
+    public void setSecondTableName(String name) { this.second_table_name = name; }
+    public void setSecondColumnName(String name) { this.second_column_name = name; }
+
+    public void setOperator(Operator operator) { this.operator = operator; }
 
     /* GETTERS */
     public int getId() { return this.id; }
@@ -143,6 +155,17 @@ public class BusinessRuleContext {
     public List<String> getBusinessRuleValues() { return this.business_rule_values; }
     public List<String> getListValues() { return this.list_values; }
 
+    public int getFirstDbColumnId() { return this.first_dbcolumn_id; }
+    public String getFirstTableName() { return this.first_table_name; }
+    public String getFirstColumnName() { return this.first_column_name; }
+
+    public int getSecondDbColumnId() { return this.second_dbcolumn_id; }
+    public String getSecondTableName() { return this.second_table_name; }
+    public String getSecondColumnName() { return this.second_column_name; }
+
+    public Operator getOperator() { return this.operator; }
+    public String getOperatorAsString() { return this.operator.label; }
+
     /* PRIVATE FUNCTIONS */
     private Operator convertStringToOperator(String operatorString) {
         for (Operator operator : Operator.values()) {
@@ -156,20 +179,8 @@ public class BusinessRuleContext {
         return operator.label;
     }
 
-    public Operator getOperator() { return this.operator; }
-    public String getFirstTable() { return this.first_table; }
-    public String getFirstColumn() { return this.first_column; }
-    public String getSecondTable() { return this.second_table; }
-    public String getSecondColumn() { return this.second_column; }
     public List<String> getSpecifiedValues() { return this.specifiedValues; }
-
-    public void setFirstTable(String table) { this.first_table = table; }
-    public void setFirstColumn(String column) { this.first_column = column; }
-    public void setOperator(Operator operator) { this.operator = operator; }
     public void addSpecifiedValue(String value) { this.specifiedValues.add(value); }
-    public void setSpecifiedValues(List<String> values) { this.specifiedValues = values; }
     public void setSqlQuery(String query) { this.sqlQuery = query; }
-    public void setSecondColumn(String column) { this.second_column = column; }
-    public void setSecondTable(String table) { this.second_table = table; }
 
 }

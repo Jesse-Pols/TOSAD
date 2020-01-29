@@ -136,8 +136,8 @@ public class AbstractPersistency {
     }
 
     // Checks if the object exists. Sets the generated or retreived ID
-    protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, String context) {
-        List<?> objects = dao.findByName(context);
+    protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, String where) {
+        List<?> objects = dao.findWhere(where);
         if (objects.isEmpty()) {
             object.setId(dao.save(object));
         } else {
