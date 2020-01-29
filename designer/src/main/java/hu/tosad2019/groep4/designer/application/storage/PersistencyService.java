@@ -1,17 +1,10 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.ListModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.SpecifiedValueModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.*;
+
+import java.util.List;
 
 
 public class PersistencyService extends AbstractPersistency {
@@ -76,6 +69,7 @@ public class PersistencyService extends AbstractPersistency {
         }
 
         // Check if there are any rulevalues in the context
+        /*
         List<String> ruleValues = context.getBusinessRuleValues();
         List<SpecifiedValueModel> specifiedValues = new ArrayList<>();
         if (ruleValues.isEmpty()) {
@@ -138,6 +132,8 @@ public class PersistencyService extends AbstractPersistency {
 
             //RangeModel range = new RangeModel(context.getMinValue(), context.getMaxValue(), context.getMinOperator(), context.getMaxOperator(), rule);
         }
+
+         */
 
 
         return true;

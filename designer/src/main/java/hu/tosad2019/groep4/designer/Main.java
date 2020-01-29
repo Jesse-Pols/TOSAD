@@ -7,14 +7,25 @@ import hu.tosad2019.groep4.designer.presentation.ui.WindowManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main extends Application
 {
 	public static void main(String[] args) {
 		System.out.println("Starting designer..");
 		launch();
+
+		PersistencyService ps = PersistencyService.getInstance();
+		BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeCompareRule);
+		context.setCategory("testCategory");
+		context.setTemplate("testTemplate");
+
+		context.setName("testName");
+		context.setDescription("description");
+		context.setFailure("testFailure");
+		context.setIsNot(1);
+
+
+
+		ps.saveBusinessRule(context);
 	}
 
 	@Override
