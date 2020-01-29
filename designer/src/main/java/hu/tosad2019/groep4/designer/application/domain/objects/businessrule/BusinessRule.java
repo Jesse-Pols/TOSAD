@@ -6,4 +6,6 @@ public interface BusinessRule {
     public String getName();
 
     public int id();
+
+    public void setId(int id);
 }

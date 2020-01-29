@@ -28,5 +28,10 @@ public abstract class BaseRule implements BusinessRule{
 
     @Override
     public int id() { return id; }
+
+    @Override
+    public void setId(int id){
+        this.id = id;
+    }
 }
 
