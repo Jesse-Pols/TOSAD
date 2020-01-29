@@ -1,13 +1,11 @@
 package hu.tosad2019.groep4.designer.dataaccess.storage;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Query;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import javax.persistence.Query;
+import java.util.List;
 
 public class AbstractDao {
     private Session session;

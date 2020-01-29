@@ -1,11 +1,11 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
-import org.hibernate.annotations.Type;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicModel;
 
 import javax.persistence.*;
 
 @Entity(name="TEMPLATE")
-public class TemplateModel {
+public class TemplateModel implements BasicModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "template_id_sequence")
@@ -22,6 +22,5 @@ public class TemplateModel {
     
     public String getValue() { return this.VALUE; }
     public int getId() { return this.ID; }
-
     public void setId(int id) { this.ID = id;}
 }

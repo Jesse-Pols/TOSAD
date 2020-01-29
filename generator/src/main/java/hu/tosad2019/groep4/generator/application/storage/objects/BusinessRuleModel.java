@@ -1,14 +1,16 @@
 package hu.tosad2019.groep4.generator.application.storage.objects;
 
 import hu.tosad2019.groep4.generator.application.storage.dao.BusinessRuleTypeDao;
+import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicModel;
 
 import javax.persistence.*;
 
 @Entity(name = "BusinessRule")
-public class BusinessRuleModel {
+public class BusinessRuleModel implements BasicModel {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "businessrule_id_sequence")
+    @SequenceGenerator(name = "businessrule_id_sequence", sequenceName = "BUSINESSRULE_SEQUENCE")
     private int id;
 
     private String name;
@@ -20,12 +22,12 @@ public class BusinessRuleModel {
     @JoinColumn(name = "type_id")
     private BusinessRuleTypeModel type;
 
-    public BusinessRuleModel(String name, String description, String failure, int is_not) {
+    public BusinessRuleModel(String name, String description, String failure, int is_not, BasicModel type) {
         this.name = name;
         this.description = description;
         this.failure = failure;
         this.is_not = is_not;
-        this.id = 24;
+        this.type = (BusinessRuleTypeModel) type;
     }
 
     public BusinessRuleModel() {}
@@ -54,5 +56,7 @@ public class BusinessRuleModel {
     public void setType(BusinessRuleTypeModel type) {
         this.type = type;
     }
+
+    public void setId(int id) { this.id = id; }
 
 }

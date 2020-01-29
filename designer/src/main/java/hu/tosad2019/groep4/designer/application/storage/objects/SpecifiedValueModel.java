@@ -5,7 +5,7 @@ import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
 import javax.persistence.*;
 
 @Entity (name="SpecifiedValue")
-public class SpecifiedValueModel {
+public class SpecifiedValueModel implements BasicModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "specifiedvalue_id_sequence")
@@ -56,4 +56,5 @@ public class SpecifiedValueModel {
     public void setId(int id) {
         this.id = id;
     }
+    public int getId() { return this.id; }
 }

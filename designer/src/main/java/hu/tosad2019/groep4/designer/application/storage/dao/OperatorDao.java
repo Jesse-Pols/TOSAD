@@ -1,11 +1,7 @@
 package hu.tosad2019.groep4.designer.application.storage.dao;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicDao;
-import hu.tosad2019.groep4.designer.application.storage.interfaces.IOperatorDao;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.OperatorModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 
@@ -21,7 +17,6 @@ public class OperatorDao extends AbstractDao implements BasicDao {
         return super.findAll(OperatorModel.class, "operator = '" + name + "'");
     }
     public List<?> findWhere(String where) throws DataAccessLayerException {
-        //return findAll(BusinessRuleModel.class, "name = '" + name + "'");
         return findAll(OperatorModel.class, where);
     }
     public int save(Object obj) throws DataAccessLayerException {
