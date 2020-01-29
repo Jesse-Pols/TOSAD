@@ -76,7 +76,7 @@ public class AbstractPersistency {
         }
 
         // Statement
-        List<StatementModel> statements = statementDao.findByRuleId(id);
+        List<StatementModel> statements = (List<StatementModel>) statementDao.findByRuleId(id);
         if (!statements.isEmpty()) {
             StatementModel statement = statements.get(0);
             context.setStatement(statement.getStatement());
@@ -115,7 +115,7 @@ public class AbstractPersistency {
         }
 
         List<SpecifiedValueModel> businessRuleValues = specifiedValueDao.findByRuleId(id);
-        List<String> businessRuleValuesToString = new ArrayList<String>();
+        List<String> businessRuleValuesToString = new ArrayList<>();
 
         if (!businessRuleValues.isEmpty()) {
             for (SpecifiedValueModel value : businessRuleValues) {

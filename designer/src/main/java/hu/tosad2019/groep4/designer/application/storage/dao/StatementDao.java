@@ -13,7 +13,7 @@ public class StatementDao extends AbstractDao implements BasicDao {
         return this.findWhere("rule_id = " + rule_id);
     }
     public List<?> findWhere(String where) throws DataAccessLayerException {
-        return findAll(BusinessRuleTypeModel.class, where);
+        return findAll(StatementModel.class, where);
     }
     public int save(Object obj) throws DataAccessLayerException {
         return super.saveOrUpdate(obj);

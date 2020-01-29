@@ -30,10 +30,6 @@ public class PersistencyService extends AbstractPersistency {
         return instance;
     }
 
-    public BusinessRuleContext getBusinessRuleById(int id) {
-        return super.convertIdToContext(id);
-    }
-
     public List<BusinessRuleContext> getAllBusinessRules() {
 		@SuppressWarnings("unchecked")
 		List<BusinessRuleModel> businessRuleModels = (List<BusinessRuleModel>) super.businessRuleDao.findAll();
@@ -50,7 +46,6 @@ public class PersistencyService extends AbstractPersistency {
         return true;
     }
 
-    // Insert if new, update if exists
     public boolean saveBusinessRule(BusinessRuleContext context){
 
         if (context.getCategory() == null || context.getTemplate() == null || context.getTypeAsString() == null) {
