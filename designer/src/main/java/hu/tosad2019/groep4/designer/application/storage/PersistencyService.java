@@ -49,13 +49,13 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         }
 
         BasicModel category = new BusinessRuleCategoryModel(context.getCategory());
-        category = super.checkAndSaveObject(category, super.businessRuleCategoryDao, context);
+        category = super.checkAndSaveObject(category, super.businessRuleCategoryDao, context.getCategory());
 
         BasicModel template = new TemplateModel(context.getTemplate());
-        template = super.checkAndSaveObject(template, super.templateDao, context);
+        template = super.checkAndSaveObject(template, super.templateDao, context.getTemplate());
 
         BasicModel type = new BusinessRuleTypeModel(context.getTypeAsString(), template, category);
-        type = super.checkAndSaveObject(type, super.businessRuleTypeDao, context);
+        type = super.checkAndSaveObject(type, super.businessRuleTypeDao, context.getTypeAsString());
 
         // Extra nullcheck for businessrule
         if (context.getName() == null || context.getFailure() == null || type == null) {
@@ -63,12 +63,11 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         }
 
         BasicModel rule = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot(), type);
-        rule = super.checkAndSaveObject(rule, super.businessRuleDao, context);
+        rule = super.checkAndSaveObject(rule, super.businessRuleDao, context.getName());
 
-        BasicModel statement;
         if (context.getStatement() != null) {
-            statement = new StatementModel(context.getStatement(), rule);
-            statement = super.checkAndSaveObject(statement, super.statementDao, context);
+            BasicModel statement = new StatementModel(context.getStatement(), rule);
+            //statement = super.checkAndSaveObject(statement, super.statementDao, context.getStatement());
         }
 
         // Check if there are any rulevalues in the context

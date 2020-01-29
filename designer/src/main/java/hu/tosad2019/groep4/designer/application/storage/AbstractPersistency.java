@@ -123,8 +123,8 @@ public class AbstractPersistency {
     }
 
     // Checks if the object exists. Sets the generated or retreived ID
-    protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, BusinessRuleContext context) {
-        List<?> objects = dao.findByName(context.getCategory());
+    protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, String context) {
+        List<?> objects = dao.findByName(context);
         if (objects.isEmpty()) {
             object.setId(dao.save(object));
         } else {

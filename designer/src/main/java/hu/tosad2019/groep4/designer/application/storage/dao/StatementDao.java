@@ -1,8 +1,6 @@
 package hu.tosad2019.groep4.designer.application.storage.dao;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicDao;
-import hu.tosad2019.groep4.designer.application.storage.interfaces.IStatementDao;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
 import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
@@ -15,7 +13,7 @@ public class StatementDao extends AbstractDao implements BasicDao {
         return super.findAll(StatementModel.class, "rule_id = " + rule_id);
     }
     public List<?> findByName(String name) throws DataAccessLayerException {
-        return findAll(BusinessRuleTypeModel.class, "rule_id = '" + name + "'");
+        return findAll(BusinessRuleTypeModel.class, "rule_id = " + Integer.parseInt(name));
     }
     public int save(Object obj) throws DataAccessLayerException {
         return super.saveOrUpdate(obj);
