@@ -59,7 +59,6 @@ public class MainController {
 	@FXML private Button button_targetdb_connect;
 	@FXML private Button btn_home_refresh;
 
-
 	private ObservableList<BusinessRule> rules;
 
 	private TargetDbContext targetDbContext;
@@ -296,9 +295,6 @@ public class MainController {
 		}
 		this.tbl_businessrules.refresh();
 
-
-
 	}
-
 
 }
