@@ -1,11 +1,12 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
 
 import javax.persistence.*;
 
 @Entity(name="Statement")
-public class StatementModel {
+public class StatementModel implements BasicModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "statement_id_sequence")
@@ -18,9 +19,9 @@ public class StatementModel {
 
     private String statement;
 
-    public StatementModel(String statement, BusinessRuleModel businessRuleModel) {
+    public StatementModel(String statement, BasicModel businessRuleModel) {
         this.statement = statement;
-        this.businessRule = businessRuleModel;
+        this.businessRule = (BusinessRuleModel) businessRuleModel;
     }
 
     public StatementModel() { }

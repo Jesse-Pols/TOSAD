@@ -1,5 +1,7 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
+
 import javax.persistence.*;
 
 @Entity(name="List")
@@ -15,9 +17,9 @@ public class ListModel {
     private BusinessRuleModel businessRule;
 
     public ListModel() {}
-    
-    public ListModel(BusinessRuleModel businessRuleModel) {
-        this.businessRule = businessRuleModel;
+
+    public ListModel(BasicModel businessRuleModel) {
+        this.businessRule = (BusinessRuleModel) businessRuleModel;
     }
 
     public int getId() {

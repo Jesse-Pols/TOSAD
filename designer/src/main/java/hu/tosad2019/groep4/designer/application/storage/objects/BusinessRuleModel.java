@@ -1,15 +1,18 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
-import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleTypeDao;
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
 
 @Entity(name = "BusinessRule")
-public class BusinessRuleModel {
+public class BusinessRuleModel implements BasicModel {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "businessrule_id_sequence")
@@ -25,12 +28,12 @@ public class BusinessRuleModel {
     @JoinColumn(name = "type_id")
     private BusinessRuleTypeModel type;
 
-    public BusinessRuleModel(String name, String description, String failure, int is_not, BusinessRuleTypeModel type) {
+    public BusinessRuleModel(String name, String description, String failure, int is_not, BasicModel type) {
         this.name = name;
         this.description = description;
         this.failure = failure;
         this.is_not = is_not;
-        this.type = type;
+        this.type = (BusinessRuleTypeModel) type;
     }
 
     public BusinessRuleModel() {}
