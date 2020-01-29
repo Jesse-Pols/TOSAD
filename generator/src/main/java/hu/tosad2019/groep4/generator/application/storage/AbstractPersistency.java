@@ -38,7 +38,6 @@ public class AbstractPersistency {
         // Business Rule
         context.setName(businessRule.getName());
         context.setId(businessRule.getId());
-        context.setDescription(businessRule.getDescription());
         context.setFailure(businessRule.getFailure());
         context.setIsNot(businessRule.getIsNot());
 
@@ -78,7 +77,7 @@ public class AbstractPersistency {
         }
 
         // List
-        List<ListModel> lists = listDao.findAllByRuleId(id);
+        List<ListModel> lists = (List<ListModel>) listDao.findByRuleId(id);
         ListModel list = null;
         if (!lists.isEmpty()) {
             list = lists.get(0);
