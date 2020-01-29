@@ -6,7 +6,12 @@ import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.TargetDbConnection;
+import hu.tosad2019.groep4.designer.application.domain.objects.Column;
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -147,9 +152,9 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				String name = tbl_businessrules.getSelectionModel().getSelectedItem().getName();
+				int id = tbl_businessrules.getSelectionModel().getSelectedItem().id();
 				try {
-					generateBusinessRule(name);
+					generateBusinessRule(id);
 				} catch (Exception e) {
 					sendError(e.getMessage());
 				}
@@ -255,8 +260,8 @@ public class MainController {
 		}
 	}
 
-	private void generateBusinessRule(String name) throws Exception {
-		MainFacade.getInstance().generateBusinessRule(name, targetDbConnection);
+	private void generateBusinessRule(int id) throws Exception {
+		MainFacade.getInstance().generateBusinessRule(id, targetDbConnection);
 	}
 	private List<BusinessRule> getBusinessrules(){
 		List<BusinessRule> rules = new ArrayList<>();
@@ -264,13 +269,13 @@ public class MainController {
 		rules = BusinessRuleService.getInstance().getAll();
 
 		//START create example rule
-//		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
-//		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", context);
+		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
+		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", context);
 
-//		attributeCompareRule.(100);
+		attributeCompareRule.setId(100);
 		//END
 
-//		rules.add(attributeCompareRule);
+		rules.add(attributeCompareRule);
 
 		return rules;
 	}
