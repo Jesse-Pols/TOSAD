@@ -87,7 +87,7 @@
                                                         <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
                                                             <children>
                                                                 <ComboBox fx:id="cb_generate_protocol" minWidth="110.0" promptText="Protocol" style="-fx-background-color: #303030; -fx-color: white;" />
-                                                                <TextField fx:id="txt_generate_host" minWidth="50.0" promptText="Database connection url" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                                <TextField fx:id="txt_generate_host" minWidth="50.0" promptText="Hostname" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
                                                                 <TextField fx:id="txt_generate_port" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
                                                                 <Button fx:id="btn_generate_connect" minWidth="70.0" mnemonicParsing="false" onAction="#btn_generate_connect_onclick" style="-fx-background-color: #68B21E;" text="Connect" textFill="WHITE" />
                                                             </children>
@@ -102,7 +102,7 @@
                                                 <Insets />
                                             </VBox.margin>
                                         </TitledPane>
-                                        <TitledPane maxWidth="1.7976931348623157E308" text="Server connection to target database" textFill="#e1e1e1">
+                                        <TitledPane maxWidth="1.7976931348623157E308" text="Connection to target database" textFill="#e1e1e1">
                                             <content>
                                                 <VBox maxWidth="1.7976931348623157E308" spacing="10.0" style="-fx-background-color: #1d1d1d;">
                                                     <children>
@@ -118,7 +118,7 @@
                                                         </HBox>
                                                         <HBox maxWidth="1.7976931348623157E308" spacing="10.0">
                                                             <children>
-                                                                <TextField fx:id="txt_targetdb_host" minWidth="50.0" prefWidth="120.0" promptText="Host" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
+                                                                <TextField fx:id="txt_targetdb_host" minWidth="50.0" prefWidth="120.0" promptText="Hostname" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
                                                                 <TextField fx:id="txt_targetdb_port" maxWidth="70.0" minWidth="70.0" promptText="Port" style="-fx-background-color: #303030;" />
                                                                 <TextField fx:id="txt_targetdb_username" minWidth="100.0" prefWidth="100.0" promptText="Username" style="-fx-background-color: #303030;" HBox.hgrow="ALWAYS" />
                                                 <PasswordField fx:id="txt_targetdb_password" promptText="Password..." scaleShape="false" style="-fx-background-color: #303030;" />

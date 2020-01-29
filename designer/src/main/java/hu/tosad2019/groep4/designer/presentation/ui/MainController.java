@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.TargetDbContext;
+import hu.tosad2019.groep4.designer.application.application.TargetDbController;
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
@@ -43,6 +44,7 @@ public class MainController {
 
 	// Generate
 	@FXML private Label lbl_generate_dbstatus;
+	@FXML private Label tdb_generateStatus;
 	@FXML private ComboBox<String> cb_generate_protocol;
 	@FXML private TextField txt_generate_host;
 	@FXML private TextField txt_generate_port;
@@ -188,11 +190,13 @@ public class MainController {
 		int port_nr = Integer.parseInt(port);
 
 		boolean result = this.connectToServer(protocol, host, port_nr);
-		this.setDatabaseConnectionStatus(result);
+		this.setDatabaseConnectionStatus(result, lbl_generate_dbstatus);
 	}
 
 	@FXML
 	private void button_targetdb_connect_onclick() {
+		boolean connectionSucces = false;
+
 		String host = this.txt_targetdb_host.getText();
 		String username = this.txt_targetdb_username.getText();
 		String password = this.txt_targetdb_password.getText();
@@ -206,9 +210,15 @@ public class MainController {
 
 		int port_nr = Integer.parseInt(port);
 
-		this.sendError("TODO: Connect");
-		
 		this.targetDbContext = new TargetDbContext(type, host, port_nr, username, password);
+
+		connectionSucces = TargetDbController.testConnection(targetDbContext);
+
+		if (!connectionSucces)
+			this.sendError("Could not connect to database");
+
+
+		this.setDatabaseConnectionStatus(connectionSucces, tdb_generateStatus);
 	}
 
 	@FXML
@@ -242,13 +252,13 @@ public class MainController {
 		if (result.get() == ButtonType.OK) return true;
 		return false;
 	}
-	private void setDatabaseConnectionStatus(boolean status) {
+	private void setDatabaseConnectionStatus(boolean status, Label label) {
 		if(status) {
-			lbl_generate_dbstatus.setText("Connected");
-			lbl_generate_dbstatus.setStyle("-fx-background-color:green;-fx-font-weight:bold");
+			label.setText("Connected");
+			label.setStyle("-fx-background-color:green;-fx-font-weight:bold");
 		} else {
-			lbl_generate_dbstatus.setText("Not connected");
-			lbl_generate_dbstatus.setStyle("-fx-background-color:red;-fx-font-weight:bold");
+			label.setText("Not connected");
+			label.setStyle("-fx-background-color:red;-fx-font-weight:bold");
 		}
 	}
 	private boolean connectToServer(String protocol, String host, int port) {
@@ -262,7 +272,12 @@ public class MainController {
 	}
 
 	private void generateBusinessRule(int id) throws Exception {
-		MainFacade.getInstance().generateBusinessRule(id, targetDbContext);
+		boolean success = MainFacade.getInstance().generateBusinessRule(id, targetDbContext);
+
+		if (success)
+			this.sendSuccess("Businessrule succesfully applied on " + targetDbContext.getHostname());
+		else
+			this.sendError("Could not apply businessrule on " + targetDbContext.getHostname());
 	}
 	private List<BusinessRule> getBusinessrules(){
 		List<BusinessRule> rules = new ArrayList<>();
