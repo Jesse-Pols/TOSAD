@@ -16,14 +16,12 @@ public class SpecifiedValueDao extends AbstractDao implements BasicDao {
         return findAll(SpecifiedValueModel.class, where);
     }
 
-    public List findAllByRuleId(int id) throws DataAccessLayerException {
-        return super.findAll(SpecifiedValueModel.class, "rule_id = " + id);
+    public List findByRuleId(int id) throws DataAccessLayerException {
+        return this.findWhere("rule_id = " + id);
     }
-
     public List findAllByListId(int id) throws DataAccessLayerException {
-        return super.findAll(SpecifiedValueModel.class, "list_id = " + id);
+        return this.findWhere("list_id = " + id);
     }
-
     public int save(Object obj) throws DataAccessLayerException {
         return super.saveOrUpdate(obj);
     }

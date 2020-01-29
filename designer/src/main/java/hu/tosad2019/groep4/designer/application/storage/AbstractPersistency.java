@@ -114,7 +114,7 @@ public class AbstractPersistency {
             context.setListValues(stringList);
         }
 
-        List<SpecifiedValueModel> businessRuleValues = specifiedValueDao.findAllByRuleId(id);
+        List<SpecifiedValueModel> businessRuleValues = specifiedValueDao.findByRuleId(id);
         List<String> businessRuleValuesToString = new ArrayList<String>();
 
         if (!businessRuleValues.isEmpty()) {

@@ -12,10 +12,6 @@ public class OperatorDao extends AbstractDao implements BasicDao {
     public OperatorModel find(int id) throws DataAccessLayerException {
         return (OperatorModel) super.find(OperatorModel.class, id);
     }
-
-    public List findByName(String name) throws DataAccessLayerException {
-        return super.findAll(OperatorModel.class, "operator = '" + name + "'");
-    }
     public List<?> findWhere(String where) throws DataAccessLayerException {
         return findAll(OperatorModel.class, where);
     }

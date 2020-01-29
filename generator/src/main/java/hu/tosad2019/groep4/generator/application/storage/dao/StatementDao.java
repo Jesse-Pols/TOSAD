@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StatementDao extends AbstractDao implements BasicDao {
     public List findByRuleId(int rule_id) throws DataAccessLayerException {
-        return super.findAll(StatementModel.class, "rule_id = " + rule_id);
+        return this.findWhere("rule_id = " + rule_id);
     }
     public List<?> findWhere(String where) throws DataAccessLayerException {
         return findAll(BusinessRuleTypeModel.class, where);
