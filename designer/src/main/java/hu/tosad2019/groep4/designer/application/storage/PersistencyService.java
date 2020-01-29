@@ -103,31 +103,23 @@ public class PersistencyService extends AbstractPersistency {
             value.setId(super.specifiedValueDao.save(value));
         }
 
-        /*
-        // Check if there are min and max operator
-        if (context.getMinOperator() == null || context.getMaxValue() == null || context.getMinValue() == null || context.getMaxValue() == null) {
-            System.err.println("Missing: minOperator, maxOperator, minValue or maxValue. saveBusinessRule continues...");
-        } else {
-            // Check if operators exist
-            // Turn operators in operatormodels
-            // Build rangemodel
+        if (context.getMinOperatorAsString() != null || context.getMaxOperatorAsString() != null) {
+            BasicModel minOperator = new OperatorModel(context.getMinOperatorAsString(), rule);
+            minOperator = super.checkAndSaveObject(minOperator, super.operatorDao, "operator='" + context.getMinOperatorAsString() + "'");
 
-            // Check if operators exist
-            //List<OperatorModel> minOperators = super.operatorDao.findByName(context.getMinOperatorAsString());
-            //List<OperatorModel> maxOperators = super.operatorDao.findByName(context.getMaxOperatorAsString());
-            //OperatorModel minOperator = ;
-            //OperatorModel maxOperator;
-            //if (minOperators.isEmpty()) {
-              //  System.err.println("The minOperator wasn't found in the database and will be added. saveBusinessRule continues...");
+            BasicModel maxOperator = new OperatorModel(context.getMaxOperatorAsString(), rule);
+            maxOperator = super.checkAndSaveObject(maxOperator, super.operatorDao, "operator='" + context.getMaxOperatorAsString() + "'");
 
-            //}
-
-
-            //RangeModel range = new RangeModel(context.getMinValue(), context.getMaxValue(), context.getMinOperator(), context.getMaxOperator(), rule);
+            if (context.getMaxValue() != null || context.getMinValue() != null) {
+                BasicModel range = new RangeModel(context.getMinValue(), context.getMaxValue(), minOperator, maxOperator, rule);
+                range = super.checkAndSaveObject(range, super.rangeDao, "rule_id=" + rule.getId());
+            }
         }
 
-         */
-
+        if (context.getOperator() != null) {
+            BasicModel operator = new OperatorModel(context.getOperatorAsString(), rule);
+            operator = super.checkAndSaveObject(operator, super.operatorDao, "operator='" + context.getOperatorAsString() + "'");
+        }
 
         return true;
     }

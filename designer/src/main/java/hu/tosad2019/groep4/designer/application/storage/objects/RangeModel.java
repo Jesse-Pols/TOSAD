@@ -1,9 +1,11 @@
 package hu.tosad2019.groep4.designer.application.storage.objects;
 
+import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
+
 import javax.persistence.*;
 
 @Entity (name="Range")
-public class RangeModel {
+public class RangeModel implements BasicModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "range_id_sequence")
@@ -25,12 +27,12 @@ public class RangeModel {
     @JoinColumn(name = "rule_id")
     private BusinessRuleModel businessRule;
 
-    public RangeModel(String min, String max, OperatorModel min_operator, OperatorModel max_operator, BusinessRuleModel businessRule) {
+    public RangeModel(String min, String max, BasicModel min_operator, BasicModel max_operator, BasicModel businessRule) {
         this.min = min;
         this.max = max;
-        this.min_operator = min_operator;
-        this.max_operator = max_operator;
-        this.businessRule = businessRule;
+        this.min_operator = (OperatorModel) min_operator;
+        this.max_operator = (OperatorModel) max_operator;
+        this.businessRule = (BusinessRuleModel) businessRule;
     }
 
     public RangeModel() {}
@@ -41,5 +43,8 @@ public class RangeModel {
     public OperatorModel getMaxOperator() { return this.min_operator; }
     public String getMinValue() { return this.min; }
     public String getMaxValue() { return this.max; }
+
+    public int getId() { return this.id; }
+    public void setId(int id) { this.id = id; }
 }
 

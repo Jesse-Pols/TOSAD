@@ -131,7 +131,7 @@ public class AddRuleController {
 			case AttributeListRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
 				List<String> values = List.of(((String) this.currentProperties.get("Values")).split(", "));
-				context.setSpecifiedValues(values);
+				context.setBusinessRuleValues(values);
 				break;
 			case AttributeOtherRule:
 				context.setOperator((Operator) this.currentProperties.get("Operator"));
