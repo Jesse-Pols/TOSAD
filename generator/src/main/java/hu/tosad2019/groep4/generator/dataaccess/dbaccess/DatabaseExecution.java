@@ -20,7 +20,6 @@ public class DatabaseExecution {
             Statement statement = connection.createStatement();
 
             result = statement.execute(trigger);
-            connection.commit();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
