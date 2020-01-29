@@ -100,7 +100,12 @@ public class MainController {
 	}
 	
 	private void refreshRules() {
-		this.rules.setAll(getBusinessrules());
+		try {
+			this.rules.setAll(getBusinessrules());
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.sendError(e.getMessage());
+		}
 	}
 
 	private void setupTable() {
@@ -279,7 +284,7 @@ public class MainController {
 		else
 			this.sendError("Could not apply businessrule on " + targetDbContext.getHostname());
 	}
-	private List<BusinessRule> getBusinessrules(){
+	private List<BusinessRule> getBusinessrules() throws Exception{
 		List<BusinessRule> rules = new ArrayList<>();
 
 		rules = BusinessRuleService.getInstance().getAll();
@@ -300,7 +305,15 @@ public class MainController {
 	private void searchBtnOnClick() {
 		if(this.searchTextField.equals("")) return;
 
-		List<BusinessRule> businessruleList = BusinessRuleService.getInstance().findByName(searchTextField.getText());
+		List<BusinessRule> businessruleList;
+		
+		try {
+			businessruleList = BusinessRuleService.getInstance().findByName(searchTextField.getText());
+		}catch(Exception e) {
+			e.printStackTrace();
+			this.sendError(e.getMessage());
+			return;
+		}
 
 		if(businessruleList.isEmpty()) return;
 
