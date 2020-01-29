@@ -72,7 +72,12 @@ public class MainController {
 		
 
 		this.rules = FXCollections.observableArrayList();
-		this.refreshRules();
+		try {
+			this.refreshRules();
+		}catch(Exception e) {
+			System.err.println("Could not load rules");
+		}
+		
 		this.setupTable();
 		this.setupContextMenu();
 	}
