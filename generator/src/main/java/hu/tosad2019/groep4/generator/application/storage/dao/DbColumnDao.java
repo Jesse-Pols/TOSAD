@@ -13,10 +13,6 @@ public class DbColumnDao extends AbstractDao implements BasicDao {
     public DbColumnModel find(int id) throws DataAccessLayerException {
         return (DbColumnModel) super.find(DbColumnModel.class, id);
     }
-
-	public List<DbColumnModel> findByRuleId(int rule_id) {
-        return (List<DbColumnModel>) super.findAll(DbColumnModel.class, "rule_id = " + rule_id);
-    }
     public List<?> findWhere(String where) {
         return findAll(DbColumnModel.class, where);
     }
