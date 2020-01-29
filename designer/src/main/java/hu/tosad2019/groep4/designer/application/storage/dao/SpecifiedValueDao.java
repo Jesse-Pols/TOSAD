@@ -27,4 +27,7 @@ public class SpecifiedValueDao extends AbstractDao implements ISpecifiedValueDao
     public int save(SpecifiedValueModel specifiedValueModel) {
         return super.saveOrUpdate(specifiedValueModel);
     }
+    public void delete(int id) throws DataAccessLayerException {
+        super.delete(this.find(id));
+    }
 }
