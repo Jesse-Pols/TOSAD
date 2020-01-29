@@ -13,8 +13,8 @@ public class BusinessRuleTypeDao extends AbstractDao implements BasicDao {
     public BusinessRuleTypeModel find(int id) {
         return (BusinessRuleTypeModel) super.find(BusinessRuleTypeModel.class, id);
     }
-    public List<?> findByName(String name) throws DataAccessLayerException {
-        return findAll(BusinessRuleTypeModel.class, "name = '" + name + "'");
+    public List<?> findWhere(String where) throws DataAccessLayerException {
+        return findAll(BusinessRuleTypeModel.class, where);
     }
     public int save(Object obj) throws DataAccessLayerException {
         return super.saveOrUpdate(obj);

@@ -42,8 +42,8 @@ public class BusinessRuleContextFactory {
         BusinessRuleContext newContext = new BusinessRuleContext(BusinessRuleType.AttributeCompareRule);
 
         newContext.setOperator(rule.getOperator());
-        newContext.setFirstColumn(rule.getColumn().getName());
-        newContext.setFirstTable(rule.getColumn().getTableName());
+        newContext.setFirstColumnName(rule.getColumn().getName());
+        newContext.setFirstTableName(rule.getColumn().getTableName());
         newContext.addSpecifiedValue(rule.getSpecifiedValue().get().toString());
         newContext.setCategory("STATIC");
         newContext.setTemplate(newContext.getType().code);
@@ -53,8 +53,8 @@ public class BusinessRuleContextFactory {
     private BusinessRuleContext getContextFromRangeRule(AttributeRangeRule rule){
         BusinessRuleContext newContext = new BusinessRuleContext(BusinessRuleType.AttributeRangeRule);
 
-        newContext.setFirstTable(rule.getColumn().getTableName());
-        newContext.setFirstColumn(rule.getColumn().getName());
+        newContext.setFirstTableName(rule.getColumn().getTableName());
+        newContext.setFirstColumnName(rule.getColumn().getName());
         newContext.setMinValue(Integer.toString(rule.getRange().getMinValue()));
         newContext.setMaxValue(Integer.toString(rule.getRange().getMaxValue()));
         newContext.setCategory("STATIC");

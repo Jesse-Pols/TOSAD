@@ -27,6 +27,16 @@ public class SpecifiedValueModel {
         this.value = value;
     }
 
+    public SpecifiedValueModel(String value, BusinessRuleModel rule) {
+        this.value = value;
+        this.businessRule = rule;
+    }
+
+    public SpecifiedValueModel(String value, ListModel list) {
+        this.value = value;
+        this.list = list;
+    }
+
     public SpecifiedValueModel() { }
 
     public String getValue() { return this.value; }
