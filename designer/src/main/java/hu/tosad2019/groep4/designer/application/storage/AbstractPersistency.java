@@ -3,6 +3,7 @@ package hu.tosad2019.groep4.designer.application.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
 import hu.tosad2019.groep4.designer.application.storage.dao.BusinessRuleCategoryDao;
@@ -54,7 +55,6 @@ public class AbstractPersistency {
         // Business Rule
         context.setName(businessRule.getName());
         context.setId(businessRule.getId());
-        context.setDescription(businessRule.getDescription());
         context.setFailure(businessRule.getFailure());
         context.setIsNot(businessRule.getIsNot());
 
@@ -84,7 +84,7 @@ public class AbstractPersistency {
         }
 
         // Range
-        List<RangeModel> ranges = rangeDao.findAllByRuleId(id);
+        List<RangeModel> ranges = (List<RangeModel>)rangeDao.findAllByRuleId(id);
         if (!ranges.isEmpty()) {
             RangeModel range = ranges.get(0);
             context.setMaxValue(range.getMaxValue());
@@ -94,7 +94,7 @@ public class AbstractPersistency {
         }
 
         // List
-        List<ListModel> lists = listDao.findAllByRuleId(id);
+        List<ListModel> lists = (List<ListModel>)listDao.findAllByRuleId(id);
         ListModel list = null;
         if (!lists.isEmpty()) {
             list = lists.get(0);
