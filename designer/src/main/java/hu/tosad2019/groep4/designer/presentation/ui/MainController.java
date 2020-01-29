@@ -289,21 +289,11 @@ public class MainController {
 
 		rules = BusinessRuleService.getInstance().getAll();
 
-		//START create example rule
-//		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
-//		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", "FAILING!!", context);
-
-//		attributeCompareRule.setId(100);
-		//END
-
-//		rules.add(attributeCompareRule);
-
 		return rules;
 	}
 
 	@FXML
 	private void searchBtnOnClick() {
-		if(this.searchTextField.equals("")) return;
 
 		List<BusinessRule> businessruleList;
 		
@@ -315,14 +305,15 @@ public class MainController {
 			return;
 		}
 
-		if(businessruleList.isEmpty()) return;
+		if(!(this.searchTextField.equals(""))) {
 
-		this.rules.clear();
-		for(BusinessRule businessRule : businessruleList) {
-			this.rules.add(businessRule);
+			if(!(businessruleList.isEmpty())) {
+				this.rules.clear();
+				for(BusinessRule businessRule : businessruleList) {
+					this.rules.add(businessRule);
+				}
+				this.tbl_businessrules.refresh();
+			}
 		}
-		this.tbl_businessrules.refresh();
-
 	}
-
 }
