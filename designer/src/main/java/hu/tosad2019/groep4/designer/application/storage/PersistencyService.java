@@ -1,11 +1,10 @@
 package hu.tosad2019.groep4.designer.application.storage;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleContext;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -45,9 +44,7 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
     public boolean saveBusinessRule(BusinessRuleContext context){
 
         if (context.getCategory() == null || context.getTemplate() == null || context.getTypeAsString() == null) {
-            System.err.println("Couldn't save business type: Missing category, template or type");
-            System.err.println("Can't save business rule without a business type, saveBusinessRule was aborted");
-            return false;
+            throw new NullPointerException("Couldn't save business type: Missing category, template or type\nCan't save business rule without a business type, saveBusinessRule was aborted");
         }
 
         // Check if category exists, save it if it doesn't
@@ -81,9 +78,8 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
         }
 
         // Extra nullcheck for businessrule
-        if (context.getName() == null || context.getDescription() == null || context.getFailure() == null || type == null) {
-            System.err.println("Couldn't save business rule: Missing name, description, failure or type");
-            return false;
+        if (context.getName() == null || context.getFailure() == null || type == null) {
+            throw new NullPointerException("Couldn't save business rule: Missing name, description, failure or type");
         }
 
         // Check if businessrule exists, save it if it doesn't
@@ -96,42 +92,65 @@ public class PersistencyService extends AbstractPersistency implements IPersiste
             rule = businessRules.get(0);
         }
 
-        // Statements don't have to be unique
-        
-
-
-
-
-
-
-
-
-        // Check if businessrule exists
-        // Check what we need to add the businessrule
-        // Get what we need to add the businessrule
-        // Add the businessrule
-
-        /*
-        BusinessRuleModel businessRuleModel = super.businessRuleDao.find(context.getId());
-        if (businessRuleModel != null) {
-            // BusinessRule already exists
-            return false;
+        if (rule == null) {
+            throw new NullPointerException("Rule may not be null");
         }
 
-        if (context.getName() == null && context.getDescription() == null && context.getFailure() == null) {
-            return false;
+        if (context.getStatement() == null) {
+        	throw new NullPointerException("Statement may not be null");
         }
 
-        // TODO nullcheck for context.IsNot()
-        businessRuleModel = new BusinessRuleModel(context.getName(), context.getDescription(), context.getFailure(), context.getIsNot());
+        // A businessrule can only have one statement
+        List<StatementModel> statements = super.statementDao.findByRuleId(rule.getId());
+        StatementModel statement = new StatementModel(context.getStatement(), rule);
+        if (statements.isEmpty()) {
+            statement.setId(super.statementDao.save(statement));
+        } else {
+            System.err.println("Statement couldn't be saved: Already exists in the database. saveBusinessRule continues...");
+            statement = statements.get(0);
+        }
 
-        BusinessRuleTypeModel businessRuleTypeModel = super.businessRuleTypeDao.find(1);
-        businessRuleModel.setType(businessRuleTypeModel);
+        // Check if there are any rulevalues in the context
+        List<String> ruleValues = context.getBusinessRuleValues();
+        List<SpecifiedValueModel> specifiedValues = new ArrayList<>();
+        if (ruleValues.isEmpty()) {
+            System.err.println("No rulevalues were found. saveBusinessRule continues...");
+        } else {
+            // Turn rulevalues into specified values
+            for (String value : ruleValues) {
+                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value);
+                specifiedValue.setRule(rule);
+                specifiedValues.add(specifiedValue);
+            }
+        }
 
-        super.businessRuleDao.save(businessRuleModel);
+        // Check if there are any listvalues in the context
+        List<String> listValues = context.getListValues();
+        if (listValues.isEmpty()) {
+            System.err.println("No listvalues were found. saveBusinessRule continues...");
+        } else {
+            // Add list
+            List<ListModel> listModels = super.listDao.findAllByRuleId(rule.getId());
+            ListModel list = new ListModel(rule);
+            if (listModels.isEmpty()) {
+                list.setId(super.listDao.save(list));
+            } else {
+                System.err.println("List couldn't be saved: Already exists in the database. saveBusinessRule continues...");
+                list = listModels.get(0);
+            }
 
-        return true;
-        */
+            // Turn listvalues into specified values
+            for (String value : listValues) {
+                SpecifiedValueModel specifiedValue = new SpecifiedValueModel(value);
+                specifiedValue.setList(list);
+                specifiedValues.add(specifiedValue);
+            }
+        }
+
+        // Add every specified rule to the database
+        for (SpecifiedValueModel value : specifiedValues) {
+            value.setId(super.specifiedValueDao.save(value));
+        }
 
         return true;
     }

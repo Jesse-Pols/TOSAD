@@ -13,21 +13,29 @@ public class BusinessRuleContextFactory {
     private BusinessRule rule;
 
     public BusinessRuleContextFactory(BusinessRule rule){
+    	if(rule == null) throw new NullPointerException("Rule may not be null");
         this.rule = rule;
     }
 
-    public BusinessRuleContext make(){
+    public BusinessRuleContext make() throws Exception {
         BusinessRuleContext newContext = null;
-        if (AttributeCompareRule.class.equals(rule.getClass())) {
+        if (rule instanceof AttributeCompareRule) {
             newContext = getContextFromCompareRule((AttributeCompareRule) rule);
-        } else if (AttributeRangeRule.class.equals(rule.getClass())) {
+        } else if (rule instanceof AttributeRangeRule) {
             newContext = getContextFromRangeRule((AttributeRangeRule) rule);
-        } else if (AttributeListRule.class.equals(rule.getClass())) {
-        } else if (InterEntityCompareRule.class.equals(rule.getClass())) {
-        } else if (TupleCompareRule.class.equals(rule.getClass())) {
+        } else if (rule instanceof AttributeListRule) {
+        	throw new Exception("Rule not implemented");
+        } else if (rule instanceof InterEntityCompareRule) {
+        	throw new Exception("Rule not implemented");
+        } else if (rule instanceof TupleCompareRule) {
+        	throw new Exception("Rule not implemented");
+        }else {
+        	throw new Exception("Rule not supported");
         }
 
         return newContext;
+        
+        
     }
 
     private BusinessRuleContext getContextFromCompareRule(AttributeCompareRule rule){
@@ -37,6 +45,8 @@ public class BusinessRuleContextFactory {
         newContext.setFirstColumn(rule.getColumn().getName());
         newContext.setFirstTable(rule.getColumn().getTableName());
         newContext.addSpecifiedValue(rule.getSpecifiedValue().get().toString());
+        newContext.setCategory("STATIC");
+        newContext.setTemplate(newContext.getType().code);
         return newContext;
     }
 
@@ -47,7 +57,8 @@ public class BusinessRuleContextFactory {
         newContext.setFirstColumn(rule.getColumn().getName());
         newContext.setMinValue(Integer.toString(rule.getRange().getMinValue()));
         newContext.setMaxValue(Integer.toString(rule.getRange().getMaxValue()));
-
+        newContext.setCategory("STATIC");
+        newContext.setTemplate(newContext.getType().code);
         Operator minValueOperator = rule.getRange().getMinValueOperator();
 
         Operator operator = Operator.BETWEEN;
