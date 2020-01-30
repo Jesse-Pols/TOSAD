@@ -8,7 +8,7 @@ public class BusinessRuleService {
 
     public BusinessRule getRule(int id){
         BusinessRule businessRule = null;
-        //persistencyService.getBusinessRuleById(id);
+        persistencyService.getBusinessRuleById(id);
         return businessRule;
     }
 }

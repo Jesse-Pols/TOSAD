@@ -53,6 +53,7 @@ public class Generator {
         variables.put("column1", compareRule.getColumn().getName());
         variables.put("operator", compareRule.getOperator().toString());
         variables.put("value", compareRule.getSpecifiedValue().toString());
+        variables.put("failure_message", compareRule.getFailureMessage());
         String filledTemplate = TemplateParser.parse(compareRule, variables);
         System.out.println(filledTemplate);
 
@@ -76,6 +77,7 @@ public class Generator {
         variables.put("column_2", rangeRule.getColumn().getName());
         variables.put("operator_2", rangeRule.getRange().getMaxValueOperator().toString());
         variables.put("value_max", Integer.toString(rangeRule.getRange().getMaxValue()));
+        variables.put("failure_message", rangeRule.getFailureMessage());
 
         String filledTemplate = TemplateParser.parse(rangeRule, variables);
         System.out.println(filledTemplate);
