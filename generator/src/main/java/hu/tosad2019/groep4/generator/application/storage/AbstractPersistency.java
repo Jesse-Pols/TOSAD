@@ -112,6 +112,11 @@ public class AbstractPersistency {
             context.setBusinessRuleValues(businessRuleValuesToString);
         }
 
+        List<OperatorModel> operators = (List<OperatorModel>) operatorDao.findWhere("rule_id=" + id);
+        if (!operators.isEmpty()) {
+            context.setOperator(operators.get(0).getOperator());
+        }
+
         return context;
     }
 
