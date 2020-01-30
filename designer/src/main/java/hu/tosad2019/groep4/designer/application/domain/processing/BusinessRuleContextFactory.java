@@ -96,6 +96,16 @@ public class BusinessRuleContextFactory {
     }
     
     private BusinessRuleContext getContextFromListRule(AttributeListRule rule) {
-    	return null;
+    	BusinessRuleContext context = new BusinessRuleContext(BusinessRuleType.AttributeListRule);
+
+        context.setId(rule.getId());
+        context.setName(rule.getName());
+        context.setFirstTableName(rule.getColumn().getTableName());
+        context.setFirstColumnName(rule.getColumn().getName());
+        context.setCategory("STATIC");
+        context.setTemplate(context.getType().code);
+        context.setFailure(rule.getFailure());
+
+        return context;
     }
 }

@@ -26,4 +26,8 @@ public class AttributeListRule extends BaseRule {
         this.list = context.getSpecifiedValuelist();
     }
 
+    public Column getColumn() {
+        return this.column;
+    }
+
 }
