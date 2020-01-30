@@ -63,10 +63,10 @@ public class BusinessRuleFactory {
     	boolean not = this.ruleContext.getIsNot()==1;
     	Operator operator = this.ruleContext.getOperator();
     	SpecifiedValue value = null;
-    	if(this.ruleContext.getSpecifiedValues().size() > 0) value = new SpecifiedValue(this.ruleContext.getSpecifiedValues().get(0));
+    	if(this.ruleContext.getBusinessRuleValues().size() > 0) value = new SpecifiedValue(this.ruleContext.getBusinessRuleValues().get(0));
     	else {
     		System.err.println("[BusinessRuleFactory][ACMP] Error while filling value:");
-        	System.err.println("> " + ruleContext.getSpecifiedValues());
+        	System.err.println("> " + ruleContext.getBusinessRuleValues());
     	}
     	AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, value);
     	return new AttributeCompareRule(type, name, failure, context, id);
