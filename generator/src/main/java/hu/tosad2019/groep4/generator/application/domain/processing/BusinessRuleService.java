@@ -8,7 +8,15 @@ public class BusinessRuleService {
 
     public BusinessRule getRule(int id){
         BusinessRule businessRule = null;
-        persistencyService.getBusinessRuleById(id);
+        BusinessRuleContext ruleContext = persistencyService.getBusinessRuleById(id);
+
+        try{
+            businessRule = new BusinessRuleFactory(ruleContext).makeBusinessRule();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+
         return businessRule;
     }
 }

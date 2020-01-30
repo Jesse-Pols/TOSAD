@@ -23,6 +23,9 @@ public class MainFacade {
 
         BusinessRule rule = businessRuleService.getRule(id);
 
+        if (rule == null)
+            return false;
+
 //        BusinessRule rule = attributeCompareRule;
 
         Generator generator = new Generator(rule, targetDbContext);
