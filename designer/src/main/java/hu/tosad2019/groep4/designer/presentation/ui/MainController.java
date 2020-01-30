@@ -100,7 +100,12 @@ public class MainController {
 	}
 	
 	private void refreshRules() {
-		this.rules.setAll(getBusinessrules());
+		try {
+			this.rules.setAll(getBusinessrules());
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.sendError(e.getMessage());
+		}
 	}
 
 	private void setupTable() {
@@ -279,20 +284,10 @@ public class MainController {
 		else
 			this.sendError("Could not apply businessrule on " + targetDbContext.getHostname());
 	}
-	private List<BusinessRule> getBusinessrules(){
+	private List<BusinessRule> getBusinessrules() throws Exception{
 		List<BusinessRule> rules = new ArrayList<>();
 
 		rules = BusinessRuleService.getInstance().getAll();
-
-
-//		//START create example rule
-//		AttributeCompareRuleContext context = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
-//		BusinessRule attributeCompareRule = new AttributeCompareRule("hardcodedrule", "id > 0", "FAILING!!", context);
-//
-//		attributeCompareRule.setId(100);
-//		//END
-//
-//		rules.add(attributeCompareRule);
 
 		return rules;
 	}
@@ -300,7 +295,15 @@ public class MainController {
 	@FXML
 	private void searchBtnOnClick() {
 
-		List<BusinessRule> businessruleList = BusinessRuleService.getInstance().findByName(searchTextField.getText());
+		List<BusinessRule> businessruleList;
+		
+		try {
+			businessruleList = BusinessRuleService.getInstance().findByName(searchTextField.getText());
+		}catch(Exception e) {
+			e.printStackTrace();
+			this.sendError(e.getMessage());
+			return;
+		}
 
 		if(!(this.searchTextField.equals(""))) {
 

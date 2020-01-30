@@ -1,4 +1,7 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
+import java.util.ArrayList;
+import java.util.List;
+
 import hu.tosad2019.groep4.designer.application.domain.objects.Column;
 import hu.tosad2019.groep4.designer.application.domain.objects.Range;
 import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
@@ -6,11 +9,15 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.Busi
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributeotherrule.AttributeOtherRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.interentitycomparerule.InterEntityCompareRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRuleContext;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 
 public class BusinessRuleFactory {
@@ -20,39 +27,29 @@ public class BusinessRuleFactory {
         this.ruleContext = ruleContext;
     }
 
-    public BusinessRule makeBusinessRule(){
-        BusinessRule rule = null;
+    public BusinessRule makeBusinessRule() throws Exception{
         switch (ruleContext.getType()){
             case AttributeCompareRule:
-                rule = this.createAttributeCompareRule();
-                break;
+                return this.createAttributeCompareRule();
             case AttributeRangeRule:
-                rule = createAttributeRangeRule();
-                break;
+                return createAttributeRangeRule();
             case AttributeListRule:
-                rule = createAttributeListRule();
-                break;
+                return createAttributeListRule();
+            case AttributeOtherRule:
+            	return createAttributeOtherRule();
 //            case EntityOtherRule:
-//                rule = createEntityOtherRule();
-//                break;
+//                return createEntityOtherRule();;
             case InterEntityCompareRule:
-                rule = createInterEntityCompareRule();
-                break;
+                return createInterEntityCompareRule();
 //            case ModifyRule:
-//                rule = createModifyRule();
-//                break;
+//                return createModifyRule();
             case TupleCompareRule:
-                rule = createTupleCompareRule();
-                break;
+                return createTupleCompareRule();
 //            case TupleOtherRule:
 //                rule = createTupleOtherRule();
             default:
-                System.err.println(ruleContext.getType() + " does not exists!");
-                break;
-
+                throw new Exception(ruleContext.getType() + " does not exists!");
         }
-        
-        return rule;
     }
 
 
@@ -81,7 +78,7 @@ public class BusinessRuleFactory {
     	String failure = this.ruleContext.getFailure();
     	
         Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
-
+        boolean isNot = this.ruleContext.getIsNot()==1;
         Operator operator = ruleContext.getOperator();
         Operator minValueOperator = null;
         Operator maxValueOperator = null;
@@ -108,28 +105,60 @@ public class BusinessRuleFactory {
         }
 
         Range range = new Range(minValue, maxValue, minValueOperator, maxValueOperator);
-        AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, false, column, range);
+        AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, isNot, column, range);
         System.out.println(context);
         return new AttributeRangeRule(type, name, failure, context);
     }
 
     private AttributeListRule createAttributeListRule(){
-        return null;
+    	String name = this.ruleContext.getName();
+    	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	String failure = this.ruleContext.getFailure();
+    	Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
+    	boolean isNot = this.ruleContext.getIsNot()==1;
+    	List<String> specifieStringList = this.ruleContext.getListValues();
+    	List<SpecifiedValue> specifiedValueList = new ArrayList<SpecifiedValue>();
+    	Operator operator = this.ruleContext.getOperator();
+    	for(String s : specifieStringList) {
+    		specifiedValueList.add(new SpecifiedValue(s));
+    	}
+    	AttributeListRuleContext context = new AttributeListRuleContext(column, isNot, operator, specifiedValueList);
+        return new AttributeListRule(type, name, failure, context);
     }
 
     private AttributeOtherRule createAttributeOtherRule(){
-        return null;
+    	String name = this.ruleContext.getName();
+    	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	String failure = this.ruleContext.getFailure();
+    	Column column = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
+    	String sqlConstraint = this.ruleContext.getSQLQuery();
+    	Operator operator = this.ruleContext.getOperator();
+    	AttributeOtherRuleContext context = new AttributeOtherRuleContext(column, operator, sqlConstraint);
+        return new AttributeOtherRule(type, name, failure, context);
+    }
+    
+    private TupleCompareRule createTupleCompareRule(){
+    	String name = this.ruleContext.getName();
+    	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	String failure = this.ruleContext.getFailure();
+    	Column column1 = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
+    	Column column2 = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getSecondColumnName());
+    	boolean isNot = this.ruleContext.getIsNot()==1;
+    	Operator operator = this.ruleContext.getOperator();
+    	TupleCompareRuleContext context = new TupleCompareRuleContext(column1, column2, isNot, operator);
+        return new TupleCompareRule(type, name, failure, context);
     }
 
     private InterEntityCompareRule createInterEntityCompareRule(){
-        return null;
-    }
-
-    private TupleCompareRule createTupleCompareRule(){
-        return null;
-    }
-    
-    private String toFriendlyType(String basic) {
-    	return null;
+    	String name = this.ruleContext.getName();
+    	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
+    	String failure = this.ruleContext.getFailure();
+    	Column column1 = new Column(this.ruleContext.getFirstTableName(), this.ruleContext.getFirstColumnName());
+    	Column column2 = new Column(this.ruleContext.getSecondTableName(), this.ruleContext.getSecondColumnName());
+    	String table2 = this.ruleContext.getSecondTableName();
+    	boolean isNot = this.ruleContext.getIsNot()==1;
+    	Operator operator = this.ruleContext.getOperator();
+    	InterEntityCompareRuleContext context = new InterEntityCompareRuleContext(column1, column2, isNot, operator, table2);
+        return new InterEntityCompareRule(type, name, failure, context);
     }
 }
