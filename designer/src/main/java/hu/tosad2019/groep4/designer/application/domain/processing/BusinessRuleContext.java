@@ -121,8 +121,12 @@ public class BusinessRuleContext {
 		 *    {APP}_{TARGETAPP}_{ENTITY}_{OBJECT}_{RULETYPE}_{AUTONUMBER} : "BRG_VBMG_PRT_CNS_TCMP_01" 
 		 */
 //    	return this.name;
-    	//return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table, "CNS", this.businessRuleType.code, this.id);
+        if (this.name == null) {
+            return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table_name, "CNS", this.businessRuleType.code, this.id);
+        }
         return this.name;
+
+        //return this.name;
     }
     public String getFailure() { return this.failure; }
 
