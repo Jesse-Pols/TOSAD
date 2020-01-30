@@ -4,7 +4,6 @@ import java.util.List;
 
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicDao;
 import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
 import hu.tosad2019.groep4.designer.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.designer.dataaccess.storage.DataAccessLayerException;
 
@@ -19,8 +18,10 @@ public class BusinessRuleDao extends AbstractDao implements BasicDao {
         return super.findAll(BusinessRuleModel.class);
     }
 
-    public void delete(int id) throws DataAccessLayerException {
-        super.delete(this.find(id));
+    public void delete(int id) throws Exception {
+    	BusinessRuleModel model = this.find(id);
+    	if(model == null) throw new Exception("Cant delete null");
+        super.delete(model);
     }
 
     public List<?> findWhere(String where) throws DataAccessLayerException {

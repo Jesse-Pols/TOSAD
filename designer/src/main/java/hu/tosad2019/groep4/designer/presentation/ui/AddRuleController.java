@@ -100,6 +100,7 @@ public class AddRuleController {
 //			manageRuleFacade.saveBusinessRule(cb_ruletype.getSelectionModel().getSelectedItem().replace(" ", ""), currentProperties);
 			try {
 				this.saveRule();
+				WindowManager.getInstance().closeAddRuleWindow();
 			}catch(Exception e) {
 				this.setAlertMessage(e.getMessage(), "Failure");
 				e.printStackTrace();

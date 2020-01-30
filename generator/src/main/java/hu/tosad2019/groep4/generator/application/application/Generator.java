@@ -46,7 +46,7 @@ public class Generator {
         String templateName = "ATTRIBUTE_COMPARE_RULE";
 
         HashMap<String, String> variables = new HashMap<>();
-        variables.put("trigger_name", TemplateData.getTriggerName(compareRule));
+        variables.put("trigger_name", compareRule.getName());
         variables.put("position", "BEFORE");
         variables.put("table_name", compareRule.getColumn().getTableName());
         variables.put("for_each_row", "FOR EACH ROW");
@@ -64,7 +64,7 @@ public class Generator {
 
         HashMap<String, String> variables = new HashMap<>();
 
-        variables.put("trigger_name", TemplateData.getTriggerName(rangeRule));
+        variables.put("trigger_name", rangeRule.getName());
         variables.put("position", "BEFORE");
         variables.put("table_name", rangeRule.getColumn().getTableName());
         variables.put("for_each_row", "FOR EACH ROW");

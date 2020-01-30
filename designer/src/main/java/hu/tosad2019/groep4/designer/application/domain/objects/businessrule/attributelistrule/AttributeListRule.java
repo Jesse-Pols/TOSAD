@@ -16,7 +16,10 @@ public class AttributeListRule extends BaseRule {
     private List<SpecifiedValue> list;
 
     public AttributeListRule(String code, String name, String failure, AttributeListRuleContext context) {
-        super(code, name, failure);
+    	this(code, name, failure, context, 0);
+    }
+    public AttributeListRule(String code, String name, String failure, AttributeListRuleContext context, int id) {
+        super(code, name, failure, id);
         this.not = context.getNot();
         this.column = context.getColumn();
         this.operator = context.getOperator();

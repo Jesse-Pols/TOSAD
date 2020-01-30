@@ -143,10 +143,9 @@ public class AbstractPersistency {
     protected BasicModel checkAndSaveObject(BasicModel object, BasicDao dao, String where) {
         List<?> objects = dao.findWhere(where);
         if (objects.isEmpty()) {
-        	// Empty
-        	System.err.println("Object couldn't be added. Already exists in the database.");
             object.setId(dao.save(object));
         } else {
+        	System.out.println("[DESIGNER] Object " + object.getClass().getName() + "couldn't be added. Already exists in the database.");
             object = (BasicModel) objects.get(0);
         }
         return object;

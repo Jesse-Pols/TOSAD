@@ -117,12 +117,12 @@ public class BusinessRuleContext {
     public String getName() {
 		/*
 		 * 	  TODO Rule naming
-		 * >> {APP}_            {ENTITY}_{OBJECT}_{RULETYPE}_{ID} : "BRG_PRODUCT_CNS_ACMP_01" 
+		 * >> {APP}_            {ENTITY}_{OBJECT}_{RULETYPE}_{ID} : "BRG_TABLE_CNS_ACMP_01" 
 		 *    {APP}_{TARGETAPP}_{ENTITY}_{OBJECT}_{RULETYPE}_{AUTONUMBER} : "BRG_VBMG_PRT_CNS_TCMP_01" 
 		 */
-//    	return this.name;
-    	//return String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table, "CNS", this.businessRuleType.code, this.id);
-        return this.name;
+    	return this.name==null?String.format("%s_%s_%s_%s_%s", "TOSADBRG", this.first_table_name, "CNS", this.businessRuleType.code, this.id):this.name;
+//    	return ;
+//        return this.name;
     }
     public String getFailure() { return this.failure; }
 

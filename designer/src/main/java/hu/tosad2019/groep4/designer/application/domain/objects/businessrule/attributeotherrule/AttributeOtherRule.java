@@ -12,7 +12,10 @@ public class AttributeOtherRule extends BaseRule {
     private Operator operator;
 
     public AttributeOtherRule(String code, String name, String failure, AttributeOtherRuleContext context) {
-        super(code, name, failure);
+    	this(code, name, failure, context, -1);
+    }
+    public AttributeOtherRule(String code, String name, String failure, AttributeOtherRuleContext context, int id) {
+        super(code, name, failure, id);
         this.column = context.getColumn();
         this.SQLContraint = context.getSqlConstraint();
         this.operator = context.getOperator();

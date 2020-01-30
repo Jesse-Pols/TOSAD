@@ -39,7 +39,7 @@ public class BusinessRuleService {
 
     public boolean deleteBusinessRule(BusinessRule rule) throws Exception{
 
-        return PersistencyService.getInstance().deleteBusinessRule(rule.id());
+        return PersistencyService.getInstance().deleteBusinessRule(rule.getId());
     }
 
     public List<BusinessRule> getAll() throws Exception{

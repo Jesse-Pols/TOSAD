@@ -5,7 +5,7 @@ public interface BusinessRule {
 
     public String getName();
 
-    public int id();
+    public int getId();
 
     public void setId(int id);
     

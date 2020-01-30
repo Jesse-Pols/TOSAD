@@ -7,12 +7,7 @@ import java.util.Optional;
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.TargetDbContext;
 import hu.tosad2019.groep4.designer.application.application.TargetDbController;
-import hu.tosad2019.groep4.designer.application.domain.objects.Column;
-import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
-import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
-import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -145,9 +140,10 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				if(sendConfimation("Remove rule", "Are you sure you want to remove rule ..?")) {
 					rules.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
-
 					try {
-						BusinessRuleService.getInstance().deleteBusinessRule(tbl_businessrules.getSelectionModel().getSelectedItem());
+						BusinessRule rule = tbl_businessrules.getSelectionModel().getSelectedItem();
+						System.out.println("Remove ID: " + rule.getId());
+						BusinessRuleService.getInstance().deleteBusinessRule(rule);
 					} catch(Exception e) {
 						e.printStackTrace();
 					}
@@ -160,7 +156,7 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				int id = tbl_businessrules.getSelectionModel().getSelectedItem().id();
+				int id = tbl_businessrules.getSelectionModel().getSelectedItem().getId();
 				try {
 					generateBusinessRule(id);
 				} catch (Exception e) {

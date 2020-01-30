@@ -13,7 +13,10 @@ public class AttributeRangeRule extends BaseRule {
 	private Range range;
 
 	public AttributeRangeRule(String code, String name, String failure, AttributeRangeRuleContext context) {
-		super(code, name, failure);
+		this(code, name, failure, context, -1);
+	}
+	public AttributeRangeRule(String code, String name, String failure, AttributeRangeRuleContext context, int id) {
+		super(code, name, failure, id);
 		this.column = context.getColumn();
 		this.not = context.getNot();
 		this.forEachRow = context.getForEachRow();

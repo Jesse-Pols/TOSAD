@@ -1,12 +1,11 @@
 package hu.tosad2019.groep4.generator.application.storage.dao;
 
+import java.util.List;
+
 import hu.tosad2019.groep4.generator.application.storage.interfaces.BasicDao;
 import hu.tosad2019.groep4.generator.application.storage.objects.SpecifiedValueModel;
-import hu.tosad2019.groep4.generator.application.storage.objects.TemplateModel;
 import hu.tosad2019.groep4.generator.dataaccess.storage.AbstractDao;
 import hu.tosad2019.groep4.generator.dataaccess.storage.DataAccessLayerException;
-
-import java.util.List;
 
 public class SpecifiedValueDao extends AbstractDao implements BasicDao {
 
@@ -17,11 +16,11 @@ public class SpecifiedValueDao extends AbstractDao implements BasicDao {
         return findAll(SpecifiedValueModel.class, where);
     }
 
-    public List findAllByRuleId(int id) throws DataAccessLayerException {
+    public List<?> findAllByRuleId(int id) throws DataAccessLayerException {
         return super.findAll(SpecifiedValueModel.class, "rule_id = " + id);
     }
 
-    public List findAllByListId(int id) throws DataAccessLayerException {
+    public List<?> findAllByListId(int id) throws DataAccessLayerException {
         return super.findAll(SpecifiedValueModel.class, "list_id = " + id);
     }
 

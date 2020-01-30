@@ -25,10 +25,13 @@ public class WindowManager implements WindowManagerFacade {
 		if(this.addRuleWindow.isActive()) return;
 		this.addRuleWindow.create();
 	}
+	public void closeAddRuleWindow() {
+		this.addRuleWindow.close();
+		this.addRuleWindow = new AddRuleWindow();
+	}
 	public void closeall() {
 		if(this.addRuleWindow.isActive()) {
-			this.addRuleWindow.close();
-			this.addRuleWindow = new AddRuleWindow();
+			this.closeAddRuleWindow();
 		}
 	}
 }

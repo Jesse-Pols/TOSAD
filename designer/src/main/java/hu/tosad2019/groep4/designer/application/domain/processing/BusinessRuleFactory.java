@@ -54,6 +54,7 @@ public class BusinessRuleFactory {
 
 
     private AttributeCompareRule createAttributeCompareRule(){
+    	int id = this.ruleContext.getId();
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	String failure = this.ruleContext.getFailure();
@@ -68,11 +69,12 @@ public class BusinessRuleFactory {
         	System.err.println("> " + ruleContext.getSpecifiedValues());
     	}
     	AttributeCompareRuleContext context = new AttributeCompareRuleContext(column, not, operator, value);
-    	return new AttributeCompareRule(type, name, failure, context);
+    	return new AttributeCompareRule(type, name, failure, context, id);
     }
 
 
     private AttributeRangeRule createAttributeRangeRule(){
+    	int id = this.ruleContext.getId();
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	String failure = this.ruleContext.getFailure();
@@ -107,10 +109,11 @@ public class BusinessRuleFactory {
         Range range = new Range(minValue, maxValue, minValueOperator, maxValueOperator);
         AttributeRangeRuleContext context = new AttributeRangeRuleContext(true, isNot, column, range);
         System.out.println(context);
-        return new AttributeRangeRule(type, name, failure, context);
+        return new AttributeRangeRule(type, name, failure, context, id);
     }
 
     private AttributeListRule createAttributeListRule(){
+    	int id = this.ruleContext.getId();
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	String failure = this.ruleContext.getFailure();
@@ -123,10 +126,11 @@ public class BusinessRuleFactory {
     		specifiedValueList.add(new SpecifiedValue(s));
     	}
     	AttributeListRuleContext context = new AttributeListRuleContext(column, isNot, operator, specifiedValueList);
-        return new AttributeListRule(type, name, failure, context);
+        return new AttributeListRule(type, name, failure, context, id);
     }
 
     private AttributeOtherRule createAttributeOtherRule(){
+    	int id = this.ruleContext.getId();
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	String failure = this.ruleContext.getFailure();
@@ -134,10 +138,11 @@ public class BusinessRuleFactory {
     	String sqlConstraint = this.ruleContext.getSQLQuery();
     	Operator operator = this.ruleContext.getOperator();
     	AttributeOtherRuleContext context = new AttributeOtherRuleContext(column, operator, sqlConstraint);
-        return new AttributeOtherRule(type, name, failure, context);
+        return new AttributeOtherRule(type, name, failure, context, id);
     }
     
     private TupleCompareRule createTupleCompareRule(){
+    	int id = this.ruleContext.getId();
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	String failure = this.ruleContext.getFailure();
@@ -146,10 +151,11 @@ public class BusinessRuleFactory {
     	boolean isNot = this.ruleContext.getIsNot()==1;
     	Operator operator = this.ruleContext.getOperator();
     	TupleCompareRuleContext context = new TupleCompareRuleContext(column1, column2, isNot, operator);
-        return new TupleCompareRule(type, name, failure, context);
+        return new TupleCompareRule(type, name, failure, context, id);
     }
 
     private InterEntityCompareRule createInterEntityCompareRule(){
+    	int id = this.ruleContext.getId();
     	String name = this.ruleContext.getName();
     	String type = "[" + this.ruleContext.getType().code + "] " + this.ruleContext.getType().friendlyLabel;
     	String failure = this.ruleContext.getFailure();

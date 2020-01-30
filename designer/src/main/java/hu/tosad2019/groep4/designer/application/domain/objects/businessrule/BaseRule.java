@@ -6,11 +6,7 @@ public abstract class BaseRule implements BusinessRule{
     private String name;
     private int id;
     private String failure;
-
-    public BaseRule(String code, String name, String failure){
-        this(code, name, failure, 0);
-    }
-
+    
     public BaseRule(String code, String name, String failure, int id) {
         this.code = code;
         this.name = name;
@@ -29,7 +25,9 @@ public abstract class BaseRule implements BusinessRule{
     }
 
     @Override
-    public int id() { return id; }
+    public int getId() { 
+    	return id; 
+    }
 
     @Override
     public void setId(int id){
