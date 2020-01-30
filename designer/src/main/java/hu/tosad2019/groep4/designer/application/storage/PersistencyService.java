@@ -73,12 +73,12 @@ public class PersistencyService extends AbstractPersistency {
         // DBCOLUMN
         if (context.getFirstColumnName() != null && context.getFirstTableName() != null) {
             BasicModel firstColumn = new DbColumnModel(context.getFirstColumnName(), context.getFirstTableName(), rule, 0);
-            firstColumn = super.checkAndSaveObject(firstColumn, super.dbColumnDao, "rule_id=" + rule.getId() + "AND position=0");
+            firstColumn = super.checkAndSaveObject(firstColumn, super.dbColumnDao, "rule_id= " + rule.getId() + " AND position=0");
         }
 
         if (context.getSecondColumnName() != null && context.getSecondTableName() != null) {
             BasicModel secondColumn = new DbColumnModel(context.getSecondColumnName(), context.getSecondTableName(), rule, 1);
-            secondColumn = super.checkAndSaveObject(secondColumn, super.dbColumnDao, "rule_id=" + rule.getId() + "AND position=1");
+            secondColumn = super.checkAndSaveObject(secondColumn, super.dbColumnDao, "rule_id= " + rule.getId() + " AND position=1");
         }
 
         // All specified Values:
