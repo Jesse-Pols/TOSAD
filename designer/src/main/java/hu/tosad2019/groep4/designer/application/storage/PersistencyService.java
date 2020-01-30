@@ -123,7 +123,7 @@ public class PersistencyService extends AbstractPersistency {
 
         if (context.getOperator() != null) {
             BasicModel operator = new OperatorModel(context.getOperatorAsString(), rule);
-            operator = super.checkAndSaveObject(operator, super.operatorDao, "operator='" + context.getOperatorAsString() + "'");
+            operator = super.checkAndSaveObject(operator, super.operatorDao, "rule_id=" + rule.getId());
         }
 
         return true;
