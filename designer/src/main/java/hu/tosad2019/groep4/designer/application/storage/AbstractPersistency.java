@@ -17,14 +17,7 @@ import hu.tosad2019.groep4.designer.application.storage.dao.StatementDao;
 import hu.tosad2019.groep4.designer.application.storage.dao.TemplateDao;
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicDao;
 import hu.tosad2019.groep4.designer.application.storage.interfaces.BasicModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleCategoryModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.BusinessRuleTypeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.ListModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.RangeModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.SpecifiedValueModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.StatementModel;
-import hu.tosad2019.groep4.designer.application.storage.objects.TemplateModel;
+import hu.tosad2019.groep4.designer.application.storage.objects.*;
 
 public class AbstractPersistency {
 
@@ -126,6 +119,11 @@ public class AbstractPersistency {
                 businessRuleValuesToString.add(value.getValue());
             }
             context.setBusinessRuleValues(businessRuleValuesToString);
+        }
+
+        List<OperatorModel> operators = (List<OperatorModel>) operatorDao.findWhere("rule_id=" + id);
+        if (!operators.isEmpty()) {
+            context.setOperator(operators.get(0).getOperator());
         }
 
         return context;
