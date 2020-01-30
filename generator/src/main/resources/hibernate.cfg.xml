@@ -19,5 +19,9 @@
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.BusinessRuleTypeModel"/>
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.DbColumnModel"/>
         <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.SpecifiedValueModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.OperatorModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.StatementModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.TemplateModel"/>
+        <mapping class="hu.tosad2019.groep4.generator.application.storage.objects.ListModel"/>
     </session-factory>
 </hibernate-configuration>
