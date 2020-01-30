@@ -139,13 +139,14 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				if(sendConfimation("Remove rule", "Are you sure you want to remove rule ..?")) {
-					rules.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
 					try {
 						BusinessRule rule = tbl_businessrules.getSelectionModel().getSelectedItem();
 						System.out.println("Remove ID: " + rule.getId());
 						BusinessRuleService.getInstance().deleteBusinessRule(rule);
+						rules.remove(tbl_businessrules.getSelectionModel().getSelectedItem());
 					} catch(Exception e) {
 						e.printStackTrace();
+						MainController.sendStaticError("Error while removing", e.getMessage());
 					}
 				}
 
@@ -232,6 +233,13 @@ public class MainController {
 	public void sendError(String message) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Connection error");
+		alert.setHeaderText(null);
+		if(message != null) alert.setContentText("Error: " + message);
+		alert.showAndWait();
+	}
+	public static void sendStaticError(String title, String message) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
 		alert.setHeaderText(null);
 		if(message != null) alert.setContentText("Error: " + message);
 		alert.showAndWait();
