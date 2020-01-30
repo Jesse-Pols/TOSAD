@@ -1,4 +1,4 @@
 EXCEPTION
   WHEN e_invalid THEN
-    DBMS_OUTPUT.PUT_LINE({{failure_message}});
+    DBMS_OUTPUT.PUT_LINE('{{failure_message}}');
 END;

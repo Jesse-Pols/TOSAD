@@ -7,7 +7,15 @@ import java.util.Optional;
 import hu.tosad2019.groep4.designer.application.application.MainFacade;
 import hu.tosad2019.groep4.designer.application.application.TargetDbContext;
 import hu.tosad2019.groep4.designer.application.application.TargetDbController;
+import hu.tosad2019.groep4.designer.application.domain.objects.Column;
+import hu.tosad2019.groep4.designer.application.domain.objects.Range;
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRule;
+import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributerangerule.AttributeRangeRuleContext;
+import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.BusinessRuleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -284,6 +292,17 @@ public class MainController {
 		List<BusinessRule> rules = new ArrayList<>();
 
 		rules = BusinessRuleService.getInstance().getAll();
+
+		AttributeCompareRuleContext compareRuleContext = new AttributeCompareRuleContext(new Column("adres", "adresid"), false, Operator.GREATERTHAN, new SpecifiedValue(0));
+		BusinessRule attributeCompareRule = new AttributeCompareRule("ACMP", "HARDCODED_ACMP_1", "value must be greater than 0", compareRuleContext, 1001);
+
+		Range range = new Range(0, 10000, Operator.GREATERTHAN, Operator.LESSTHEN);
+
+		AttributeRangeRuleContext rangeRuleContext = new AttributeRangeRuleContext(true, false, new Column("ov_chipkaart", "kaartnummer"), range);
+		AttributeRangeRule attributeRangeRule = new AttributeRangeRule("ARNG", "HARDCODED_ARNG_1", "value must be between 0 and 10000", rangeRuleContext, 1002);
+
+		rules.add(attributeCompareRule);
+		rules.add(attributeRangeRule);
 
 		return rules;
 	}

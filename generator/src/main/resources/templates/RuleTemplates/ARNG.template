@@ -1,4 +1,4 @@
-IF NOT :NEW.{{column_1}} {{operator_1}} :NEW.{{value_min}} {{operator}} NOT :NEW.{{column_2}} {{operator_2}} :NEW.{{value_max}} THEN
+IF NOT :NEW.{{column_1}} {{operator_1}} {{value_min}} {{operator}} NOT :NEW.{{column_2}} {{operator_2}} {{value_max}} THEN
   RAISE e_invalid;
 END IF;
 
