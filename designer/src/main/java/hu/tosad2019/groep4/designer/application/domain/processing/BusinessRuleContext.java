@@ -172,12 +172,7 @@ public class BusinessRuleContext {
         }
         return null;
     }
-    private String convertOperatorToString(Operator operator) {
-        return operator.label;
-    }
-
-    public List<String> getSpecifiedValues() { return this.specifiedValues; }
-    public void addSpecifiedValue(String value) { this.specifiedValues.add(value); }
+    public void addSpecifiedValue(String value) { this.business_rule_values.add(value); }
     public void setSqlQuery(String query) { this.sqlQuery = query; }
 
 }

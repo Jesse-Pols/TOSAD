@@ -1,5 +1,6 @@
 package hu.tosad2019.groep4.designer.application.domain.processing;
 
+import hu.tosad2019.groep4.designer.application.domain.objects.SpecifiedValue;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.BusinessRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributecomparerule.AttributeCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.attributelistrule.AttributeListRule;
@@ -8,6 +9,9 @@ import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.inte
 import hu.tosad2019.groep4.designer.application.domain.objects.businessrule.tuplecomparerule.TupleCompareRule;
 import hu.tosad2019.groep4.designer.application.domain.objects.enums.Operator;
 import hu.tosad2019.groep4.designer.application.domain.processing.enums.BusinessRuleType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BusinessRuleContextFactory {
     private BusinessRule rule;
@@ -54,7 +58,13 @@ public class BusinessRuleContextFactory {
         newContext.setOperator(rule.getOperator());
         newContext.setFirstColumnName(rule.getColumn().getName());
         newContext.setFirstTableName(rule.getColumn().getTableName());
-        newContext.addSpecifiedValue(rule.getSpecifiedValue().get().toString());
+
+        List<String> specifiedValues = new ArrayList<>();
+        SpecifiedValue specifiedValue = rule.getSpecifiedValue();
+        String specifiedValueString = specifiedValue.get().toString();
+        specifiedValues.add(specifiedValueString);
+        newContext.setBusinessRuleValues(specifiedValues);
+
         newContext.setCategory("STATIC");
         newContext.setTemplate(newContext.getType().code);
         newContext.setFailure(rule.getFailure());
