@@ -87,7 +87,7 @@ public class BusinessRuleFactory {
         Operator maxValueOperator = null;
 
         Integer minValue = 0;
-        Integer maxValue = 0;
+        Integer maxValue = 1;
 
         try{
             minValue = Integer.parseInt(ruleContext.getMinValue());
